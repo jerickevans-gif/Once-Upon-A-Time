@@ -26,7 +26,7 @@
 .auth-modal__art {
   background:
     linear-gradient(135deg, rgba(229,170,156,.05), rgba(139,80,68,.18)),
-    url("../auth-art.png") center/cover no-repeat;
+    image-set(url("../auth-art.webp") type("image/webp"), url("../auth-art.jpg") type("image/jpeg")) center/cover no-repeat;
   background-color: var(--rose-100);
 }
 .auth-modal__panel {

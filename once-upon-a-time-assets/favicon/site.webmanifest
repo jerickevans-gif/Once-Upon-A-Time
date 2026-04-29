@@ -1,0 +1,11 @@
+{
+  "name": "Once Upon A Time",
+  "short_name": "OUAT",
+  "icons": [
+    { "src": "/once-upon-a-time-assets/favicon/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/once-upon-a-time-assets/favicon/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#8B5044",
+  "background_color": "#FFF5EE",
+  "display": "standalone"
+}
