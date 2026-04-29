@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="Contact Once Upon A Time — questions, comments, and donation enquiries.">
+  <title>Contact — Once Upon A Time</title>
+
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.0/src/regular/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+
+  <style>
+    /* ============ Page-specific ============ */
+    .promo-bar {
+      background: var(--rose-100); color: var(--rose-700);
+      font-size: var(--t-label); padding: 8px 0;
+    }
+    .promo-bar__inner { display: flex; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; }
+
+    /* Hero band */
+    .hero {
+      background: var(--beginning);
+      padding: var(--s-7) 0 var(--s-7);
+    }
+    .hero__inner {
+      display: grid; grid-template-columns: 1.05fr 1fr; gap: var(--s-5);
+      align-items: stretch;
+    }
+    .hero__photo {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/2;
+      background: url("once-upon-a-time-assets/contact/unisphere.jpg") center/cover no-repeat;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero__rhombus {
+      position: relative;
+      display: grid; place-items: center;
+      background: var(--beginning);
+      border-radius: var(--radius-lg);
+      min-height: 320px;
+      overflow: hidden;
+    }
+    .hero__rhombus::before {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(315deg, #b8b779 0%, var(--garden) 55%, #4a4d12 100%);
+      clip-path: polygon(0% 50%, 12% 0%, 88% 0%, 100% 50%, 88% 100%, 12% 100%);
+    }
+    .hero__rhombus h1 {
+      position: relative; z-index: 1;
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(32px, 4.4vw, 54px);
+      letter-spacing: .05em; color: var(--ink);
+      text-transform: uppercase;
+      margin: 0;
+      padding: 0 var(--s-7);
+      text-align: center;
+    }
+    @media (max-width: 720px) {
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__photo { aspect-ratio: 16/9; }
+      .hero__rhombus { padding: var(--s-7) var(--s-5); }
+    }
+
+    /* "Let's talk" + form */
+    .talk {
+      display: grid; grid-template-columns: 1fr 1.05fr; gap: var(--s-7);
+      padding: var(--s-8) 0;
+      align-items: start;
+    }
+    .talk__copy h2 { margin-bottom: var(--s-4); text-transform: uppercase; }
+    .faq-block__title { text-transform: uppercase; }
+    .talk__copy p { color: var(--ink); margin-bottom: var(--s-6); max-width: 42ch; font-size: var(--t-lg); }
+    .talk__contacts { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
+    .talk__contact { display: flex; gap: var(--s-3); align-items: center; }
+    .talk__contact .ph {
+      font-size: 14px;
+      width: 28px; height: 28px;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--rose-700);
+      border: 1.5px solid var(--rose);
+      border-radius: 50%;
+    }
+    .talk__contact span { font-size: var(--t-base); color: var(--ink); line-height: 1.5; }
+
+    .form-card {
+      background: var(--rose-100);
+      border: 1px solid var(--rose);
+      border-radius: var(--radius-lg);
+      padding: var(--s-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); margin-bottom: var(--s-3); }
+    .form-card .input,
+    .form-card .textarea {
+      background: var(--snow);
+      border-color: var(--rose);
+    }
+    .form-card .input::placeholder,
+    .form-card .textarea::placeholder { color: var(--rose); opacity: .65; font-weight: 500; }
+    .form-card__actions { display: flex; justify-content: flex-end; margin-top: var(--s-4); }
+    @media (max-width: 720px) {
+      .talk { grid-template-columns: 1fr; gap: var(--s-6); }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* FAQ blocks */
+    .faq-block {
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--s-7);
+      align-items: start;
+      padding: var(--s-7) 0;
+    }
+    .faq-block--reverse { grid-template-columns: 1.6fr 1fr; }
+    .faq-block__art {
+      display: grid; place-items: center;
+      padding: var(--s-5);
+    }
+    .faq-block__art img { max-width: 100%; height: auto; max-height: 360px; }
+    .faq-block__title { margin-bottom: var(--s-5); }
+    .faq-list { display: grid; gap: var(--s-3); }
+    .faq-item {
+      background: var(--snow);
+      border: 1px solid var(--rose);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .faq-item[open] { background: var(--blush); }
+    .faq-item summary {
+      display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+      padding: var(--s-4) var(--s-5);
+      cursor: pointer; list-style: none;
+      font-family: var(--sans); font-size: var(--t-base); font-weight: 700;
+      color: var(--ink);
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: "\002B";  /* + */
+      font-family: var(--sans); font-weight: 400; font-size: 22px;
+      color: var(--rose-700);
+      transition: transform var(--dur-1) var(--ease);
+    }
+    .faq-item[open] summary::after { content: "\2212"; /* − */ }
+    .faq-item__body {
+      padding: 0 var(--s-5) var(--s-5);
+      color: var(--ink-muted);
+      font-size: var(--t-base);
+      line-height: var(--lh-body);
+    }
+    @media (max-width: 720px) {
+      .faq-block, .faq-block--reverse { grid-template-columns: 1fr; }
+      .faq-block--reverse .faq-block__art { order: -1; }
+    }
+
+    /* Still have questions banner */
+    .cta-banner {
+      background: var(--garden-100);
+      border-radius: var(--radius-lg);
+      padding: var(--s-6) var(--s-7);
+      display: flex; align-items: center; justify-content: space-between; gap: var(--s-5);
+      margin: var(--s-7) 0 var(--s-9);
+    }
+    .cta-banner__copy h3 { font-size: var(--t-h4); margin-bottom: 6px; text-transform: uppercase; }
+    .cta-banner__copy p { margin: 0; color: var(--ink-muted); font-size: var(--t-base); }
+    @media (max-width: 720px) {
+      .cta-banner { flex-direction: column; align-items: flex-start; padding: var(--s-5); }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ PROMO BAR ============ -->
+  <div class="promo-bar" role="region" aria-label="Announcement">
+    <div class="wrap promo-bar__inner">
+      <span><strong>Happening Now:</strong> Jazz Dancing (16+) · Instructor: Mia Kim</span>
+      <span>Next class: Intermediate Ballet (10+)</span>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand" aria-label="Once Upon A Time, home">
+        <img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time">
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="about.html">About Us</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="donate.html">Donation</a>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Cart, 0 items">
+          <i class="ph ph-shopping-cart" aria-hidden="true"></i>
+          <span class="badge" aria-hidden="true">0</span>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Notifications">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+        </button>
+        <span class="avatar" aria-hidden="true">JK</span>
+        <button class="btn btn--sm" type="button" data-open-signin>Sign-in</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap hero__inner">
+        <div class="hero__photo" role="img" aria-label="Unisphere monument with surrounding plaza"></div>
+        <div class="hero__rhombus">
+          <h1>"Contact&nbsp;Us"</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TALK + FORM ============ -->
+    <section class="wrap">
+      <div class="talk">
+        <div class="talk__copy">
+          <h2>Let's Talk With&nbsp;Us</h2>
+          <p>Questions, comments, or suggestions? Simply fill in the form and we'll be in touch shortly.</p>
+          <div class="talk__contacts">
+            <div class="talk__contact">
+              <i class="ph ph-map-pin" aria-hidden="true"></i>
+              <span>1055 Arthur Ave, Elk Grove, 67<br>New Palmas, South Carolina</span>
+            </div>
+            <div class="talk__contact">
+              <i class="ph ph-phone" aria-hidden="true"></i>
+              <span>+1 234 678 9108 99</span>
+            </div>
+            <div class="talk__contact">
+              <i class="ph ph-envelope-simple" aria-hidden="true"></i>
+              <span>contact@onceuponatime.org</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="form-card" novalidate>
+          <div class="form-row">
+            <label class="field">
+              <span class="sr-only">First name</span>
+              <input class="input" type="text" name="first" placeholder="John" autocomplete="given-name">
+            </label>
+            <label class="field">
+              <span class="sr-only">Last name</span>
+              <input class="input" type="text" name="last" placeholder="Last Name*" autocomplete="family-name" required>
+            </label>
+          </div>
+          <label class="field" style="margin-bottom: var(--s-3); display:block;">
+            <span class="sr-only">Email</span>
+            <input class="input" type="email" name="email" placeholder="Email*" autocomplete="email" required>
+          </label>
+          <label class="field" style="margin-bottom: var(--s-3); display:block;">
+            <span class="sr-only">Phone number</span>
+            <input class="input" type="tel" name="phone" placeholder="Phone Number*" autocomplete="tel" required>
+          </label>
+          <label class="field" style="display:block;">
+            <span class="sr-only">Your message</span>
+            <textarea class="textarea" name="message" placeholder="Your message..." rows="5"></textarea>
+          </label>
+          <div class="form-card__actions">
+            <button class="btn" type="submit">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ COMMON QUESTIONS ============ -->
+    <section class="wrap">
+      <div class="faq-block">
+        <div class="faq-block__art">
+          <img src="once-upon-a-time-assets/contact/qa-illustration.png" alt="" aria-hidden="true">
+        </div>
+        <div>
+          <h2 class="faq-block__title">Answer to common questions!</h2>
+          <div class="faq-list">
+            <details class="faq-item" open>
+              <summary>How do I book a class?</summary>
+              <div class="faq-item__body">
+                Browse the schedule on the Programs page, pick a class, and click <em>Enroll Now</em>. You'll be guided through registration and payment in a few short steps. Confirmation arrives by email within minutes.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>How many classes can I take?</summary>
+              <div class="faq-item__body">There's no cap — most students attend two to three classes per week. We can recommend a balanced schedule based on your goals.</div>
+            </details>
+            <details class="faq-item">
+              <summary>What is the cancellation policy?</summary>
+              <div class="faq-item__body">Cancellations made at least 24 hours before the class start time receive a full credit. Late cancellations may forfeit the session.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Are the tour prices per person or per group?</summary>
+              <div class="faq-item__body">Tour prices are per person, with discounts for groups of six or more. Reach out for custom group quotes.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DONATION QUESTIONS ============ -->
+    <section class="wrap">
+      <div class="faq-block faq-block--reverse">
+        <div>
+          <h2 class="faq-block__title">Donation questions? We've got answers!</h2>
+          <div class="faq-list">
+            <details class="faq-item" open>
+              <summary>How do I donate?</summary>
+              <div class="faq-item__body">Visit our <a class="link" href="donate.html">Donation page</a> and choose a one-time gift or a recurring monthly contribution. We accept card, ACH, and donor-advised funds.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Is my donation tax-deductible?</summary>
+              <div class="faq-item__body">Yes. Once Upon A Time, Inc. is a registered 501(c)(3) nonprofit. You'll receive an itemised tax receipt by email.</div>
+            </details>
+            <details class="faq-item">
+              <summary>What is the cancellation policy?</summary>
+              <div class="faq-item__body">Recurring donations can be paused or cancelled any time from your account preferences, or by replying to your monthly receipt.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Where does my donation go?</summary>
+              <div class="faq-item__body">Roughly 87¢ of every dollar funds programs — scholarships, instructor pay, and venue costs — with the remainder covering admin and outreach.</div>
+            </details>
+          </div>
+        </div>
+        <div class="faq-block__art">
+          <img src="once-upon-a-time-assets/contact/faq-splat.png" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STILL HAVE QUESTIONS ============ -->
+    <section class="wrap">
+      <div class="cta-banner">
+        <div class="cta-banner__copy">
+          <h3>Still have questions?</h3>
+          <p>Please write to our friendly support team or call us at +1 — 123-456-789.</p>
+        </div>
+        <a class="btn btn--garden" href="mailto:contact@onceuponatime.org">
+          Send Email <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block">
+          <div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></div>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#programs">Programs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="donate.html">Support Us</a></li>
+          </ul>
+        </div>
+        <div class="footer__address-block">
+          <div class="footer__address">
+            87-61 111th St, Richmond Hill<br>
+            NY 11418, United States
+          </div>
+          <div class="footer__socials">
+            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        Once Upon A Time Inc. © 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

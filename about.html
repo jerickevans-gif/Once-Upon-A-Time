@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="About Once Upon A Time — vision, mission, leadership, and programs.">
+  <title>About — Once Upon A Time</title>
+
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.0/src/regular/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+
+  <style>
+    /* ---------- Local aliases — re-map legacy tokens onto design system ---------- */
+    :root {
+      --bg:        var(--beginning);
+      --bg-soft:   var(--snow);
+      --hero:      var(--rose-100);
+      --form:      var(--rose-100);
+      --card:      var(--snow);
+      --accent:    var(--rose);
+      --accent-2:  var(--rose);
+      --accent-3:  var(--rose-700);
+      --green:     var(--garden);
+      --green-2:   var(--garden-700);
+      --ink-2:     var(--ink-muted);
+      --white:     #fff;
+      --focus:     var(--ink);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+    }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--bg);
+      font-size: 16px; line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    button { font: inherit; color: inherit; cursor: pointer; }
+    input, button, select, textarea { font: inherit; }
+    a { color: inherit; }
+
+    /* a11y */
+    .skip-link { position: absolute; left: -9999px; top: 8px; background: var(--ink); color:#fff; padding: 10px 14px; border-radius: 8px; z-index: 1000; text-decoration: none; }
+    .skip-link:focus { left: 8px; outline: 3px solid #f6c453; outline-offset: 2px; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+    .sr-only { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip: rect(0,0,0,0); white-space: nowrap; border:0; }
+
+    .wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+
+    .nav-toggle { display: none; }
+
+    /* ---------- Section base ---------- */
+    .section { padding: 56px 0; }
+    .section + .section { padding-top: 0; }
+    .section-title {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(34px, 4.4vw, 54px);
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: .01em;
+      margin: 0 0 12px;
+    }
+    .section-lede { text-align: center; max-width: 60ch; margin: 0 auto 36px; color: var(--ink-2); }
+    .eyebrow {
+      display: block; text-align: center;
+      font-size: 12px; font-weight: 600; letter-spacing: .25em;
+      color: var(--accent); text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    /* ---------- Vision & Mission ---------- */
+    .vision-wrap {
+      background: var(--hero);
+      padding: 64px 0 56px;
+    }
+    .vision__grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .vision__copy h1 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.04;
+      text-transform: uppercase;
+      margin: 0 0 18px;
+      color: var(--accent-3);
+      letter-spacing: -0.005em;
+    }
+    .vision__copy p {
+      font-size: 15px;
+      color: var(--ink);
+      margin: 0;
+      max-width: 50ch;
+    }
+    .vision__image {
+      border-radius: 18px;
+      overflow: hidden;
+      aspect-ratio: 5 / 4;
+      background: url("once-upon-a-time-assets/about/vision-hero.jpg") center/cover no-repeat,
+                  linear-gradient(135deg, #a14638, #4a201a);
+    }
+
+    /* ---------- Our Values ---------- */
+    .values {
+      background: var(--hero);
+      padding: 32px 0 80px;
+      position: relative;
+    }
+    .values__inner {
+      background: var(--bg-soft);
+      border: 1px solid #e6cfb8;
+      border-radius: 18px;
+      padding: 40px 32px;
+    }
+    .values .eyebrow { background: var(--card); display: inline-block; padding: 6px 14px; border-radius: 999px; }
+    .values__head { text-align: center; margin-bottom: 32px; }
+    .values__title {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(26px, 3vw, 38px);
+      text-transform: uppercase;
+      max-width: 28ch; margin: 0 auto;
+      line-height: 1.15;
+    }
+    .values__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .value {
+      text-align: center; padding: 0 8px;
+    }
+    .value__icon {
+      width: 56px; height: 56px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 14px; margin-bottom: 14px;
+      background: rgba(139,80,68,.08); color: var(--accent-2);
+    }
+    .value h3 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: 18px; margin: 0 0 8px;
+    }
+    .value p { font-size: 13px; color: var(--ink-2); margin: 0; line-height: 1.6; }
+
+    /* ---------- Founder & Leadership shared ---------- */
+    .text-block { padding: 56px 0; text-align: center; }
+    .text-block h2 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(30px, 4vw, 48px);
+      text-transform: uppercase;
+      margin: 0 0 24px;
+    }
+    .text-block .columns {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 40px; max-width: 920px; margin: 0 auto;
+      text-align: left;
+    }
+    .text-block p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin: 0; }
+
+    .leadership-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 40px; max-width: 920px; margin: 0 auto;
+      text-align: left;
+    }
+    .leader { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+    .leader__avatar {
+      flex: 0 0 auto; width: 140px; height: 140px;
+      border-radius: 14px;
+      background-size: cover; background-position: center top;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .leader--yasmine .leader__avatar { background-image: url("once-upon-a-time-assets/portraits/patricia.png"); }
+    .leader--dolores .leader__avatar { background-image: url("once-upon-a-time-assets/portraits/mariah.png"); }
+    .leader__name {
+      font-family: var(--serif); font-weight: 600;
+      font-size: 22px; margin: 0;
+    }
+    .leader__role {
+      color: var(--accent); font-size: 13px; font-weight: 500;
+      margin: 0 0 8px;
+    }
+    .leader__bio { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+
+    /* ---------- Current programs ---------- */
+    .programs { padding: 24px 0 72px; position: relative; }
+    .programs__viewport { position: relative; }
+    .programs__grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .program-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .program-card__media {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      background-size: cover; background-position: center;
+    }
+    .program-card__tag {
+      position: absolute; top: 14px; left: 14px;
+      background: rgba(255,255,255,.18);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #fff;
+      padding: 6px 12px; border-radius: 999px;
+      font-size: 12px; font-weight: 500;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .program-card__tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #b6e7a3; }
+    .program-card--camps   .program-card__media { background-image: url("once-upon-a-time-assets/about/program-camps.jpg"); }
+    .program-card--private .program-card__media { background-image: url("once-upon-a-time-assets/about/program-private.jpg"); }
+    .program-card__body {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 18px 20px;
+    }
+    .program-card h3 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: 22px; margin: 0;
+      text-transform: uppercase;
+    }
+    .program-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--card); border: 1px solid var(--line);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .program-arrow:hover { background: #fff; }
+    .program-arrow--prev { left: -22px; }
+    .program-arrow--next { right: -22px; }
+
+    /* ---------- Expanding platform ---------- */
+    .expanding {
+      position: relative;
+      border-radius: 18px;
+      padding: 56px 24px;
+      color: #f6e7d4;
+      text-align: center;
+      margin-bottom: 72px;
+      background:
+        linear-gradient(rgba(74,90,62,.55), rgba(74,90,62,.65)),
+        url("once-upon-a-time-assets/about/expanding.jpg") center/cover no-repeat,
+        var(--green-2);
+      overflow: hidden;
+    }
+    .expanding h2 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(28px, 3.6vw, 42px);
+      text-transform: uppercase;
+      margin: 0 0 12px;
+      color: #fff;
+    }
+    .expanding p { max-width: 60ch; margin: 0 auto 24px; color: #f0e3c9; font-size: 14px; }
+
+    /* ---------- Success stories ---------- */
+    .success { padding: 24px 0 72px; }
+    .success__grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .success-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 26px 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+    }
+    .success-card__quote {
+      font-family: var(--serif);
+      font-size: 28px; line-height: 1; color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .success-card p {
+      font-size: 13px; color: var(--ink-2); line-height: 1.6;
+      margin: 0 0 16px;
+    }
+    .success-card__avatar {
+      width: 56px; height: 56px; border-radius: 50%;
+      background-size: cover; background-position: center;
+      margin-bottom: 8px;
+      border: 2px solid var(--card);
+      box-shadow: 0 0 0 1px var(--line);
+    }
+    .success-card--jane  .success-card__avatar { background-image: url("once-upon-a-time-assets/about/story-1.jpg"); background-color: #d9c4ad; }
+    .success-card--josh  .success-card__avatar { background: linear-gradient(140deg, #6b8a52, #3f5235); display:inline-flex; align-items:center; justify-content:center; color:#f3e6d8; font-family: var(--serif); font-weight:600; font-size:22px; filter: saturate(.7); }
+    .success-card--josh  .success-card__avatar::before { content: "J"; }
+    .success-card--mariah .success-card__avatar { background: linear-gradient(140deg, #b88478, #6b2c24); display:inline-flex; align-items:center; justify-content:center; color:#f3e6d8; font-family: var(--serif); font-weight:600; font-size:22px; filter: saturate(.7); }
+    .success-card--mariah .success-card__avatar::before { content: "M"; }
+    .success-card__name { font-weight: 600; font-size: 14px; margin: 0; }
+
+    /* ---------- Where your donation goes ---------- */
+    .donation-goes { padding: 24px 0 80px; }
+    .donation-goes__grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 48px; align-items: center;
+    }
+    .donation-goes h2 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(30px, 3.6vw, 44px);
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin: 0 0 18px;
+    }
+    .donation-goes p { color: var(--ink-2); font-size: 14px; line-height: 1.7; margin: 0 0 24px; max-width: 50ch; }
+    .donation-goes__image {
+      border-radius: 18px;
+      overflow: hidden;
+      aspect-ratio: 5 / 4;
+      background: url("once-upon-a-time-assets/about/donation-goes.jpg") center/cover no-repeat,
+                  linear-gradient(135deg, #a14638, #4a201a);
+    }
+
+    /* ---------- Stay connected ---------- */
+    .stay-connected {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      padding: 64px 24px;
+      text-align: center;
+      color: #f6e7d4;
+      margin-bottom: 56px;
+      background:
+        linear-gradient(rgba(74,90,62,.85), rgba(74,90,62,.85)),
+        url("once-upon-a-time-assets/about/newsletter-bg.jpg") center/cover no-repeat,
+        var(--green-2);
+    }
+    .stay-connected h2 {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(28px, 3.6vw, 40px);
+      text-transform: uppercase;
+      margin: 0 0 10px;
+      color: #fff;
+    }
+    .stay-connected p { max-width: 56ch; margin: 0 auto 26px; color: #f0e3c9; font-size: 14px; }
+    .newsletter-form {
+      display: flex; gap: 10px; max-width: 520px; margin: 0 auto;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .newsletter-form .nl-field {
+      flex: 1 1 260px;
+      display: flex; align-items: center;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      padding: 4px 4px 4px 18px;
+      gap: 8px;
+    }
+    .newsletter-form input {
+      flex: 1;
+      background: transparent;
+      border: 0; color: #fff;
+      min-height: 40px;
+      font-size: 14px;
+    }
+    .newsletter-form input::placeholder { color: rgba(246,231,212,.65); }
+    .newsletter-form input:focus { outline: 0; }
+    .newsletter-form button {
+      min-height: var(--tap); padding: 0 22px;
+      background: var(--accent); color: #fff;
+      border: 0; border-radius: 999px;
+      font-weight: 500; font-size: 14px;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover { background: var(--accent-3); }
+
+    /* ---------- Footer (same as landing) ---------- */
+    .site-footer { background: var(--accent-2); color: #f4e6d3; padding: 56px 0 28px; }
+    .footer__grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1.5fr; gap: 40px; align-items: start; }
+    .footer-brand { line-height: 0; }
+    .footer-brand img { height: 56px; width: auto; display: block; filter: brightness(0) invert(1) sepia(.15) saturate(180%) hue-rotate(330deg) brightness(1.05); opacity: .92; }
+    .footer h4 { font-family: var(--serif); font-weight: 600; font-size: 16px; margin: 0 0 14px; text-transform: capitalize; }
+    .footer ul { list-style: none; padding: 0; margin: 0; }
+    .footer li { margin-bottom: 10px; }
+    .footer a { text-decoration: none; opacity: .85; font-size: 14px; }
+    .footer a:hover { opacity: 1; text-decoration: underline; }
+    .footer__address { font-size: 14px; line-height: 1.6; opacity: .85; }
+    .footer__socials { display: flex; gap: 8px; margin-top: 14px; }
+    .footer__socials a { width: var(--tap); height: var(--tap); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.08); }
+    .footer__socials a:hover { background: rgba(255,255,255,.18); }
+    .footer__legal { border-top: 1px solid rgba(255,255,255,.15); margin-top: 36px; padding-top: 18px; display: flex; justify-content: space-between; gap: 16px; font-size: 12px; opacity: .7; flex-wrap: wrap; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1024px) {
+      .vision__grid, .donation-goes__grid { grid-template-columns: 1fr; gap: 32px; }
+      .text-block .columns, .leadership-grid { grid-template-columns: 1fr; gap: 24px; }
+      .values__grid, .success__grid { grid-template-columns: 1fr; }
+      .programs__grid { grid-template-columns: 1fr; }
+      .program-arrow { display: none; }
+      .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
+    }
+    @media (max-width: 720px) {
+      .wrap { width: min(720px, 100% - 24px); }
+      .site-header__inner { flex-wrap: wrap; }
+      .primary-nav { order: 99; width: 100%; margin-inline: 0; flex-wrap: wrap; gap: 4px 16px; padding: 8px 0; border-top: 1px solid var(--line); max-height: 0; overflow: hidden; transition: max-height .25s ease, padding .25s ease; }
+      .primary-nav[data-open="true"] { max-height: 320px; padding: 12px 0; }
+      .nav-toggle { display: inline-flex; }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+      .footer__brand-block, .footer__address-block { grid-column: 1 / -1; }
+      .vision-wrap { padding: 48px 0 40px; }
+      .values__inner { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand" aria-label="Once Upon A Time, home">
+        <img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time">
+      </a>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <a href="about.html" aria-current="page">About Us</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="donate.html">Donation</a>
+        <a href="#newsletter">Newsletter</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation menu">
+          <i class="ph ph-list" aria-hidden="true"></i>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Cart, 0 items">
+          <i class="ph ph-shopping-cart" aria-hidden="true"></i>
+          <span class="badge" aria-hidden="true">0</span>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Notifications">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+        </button>
+        <a href="profile.html" class="avatar" aria-label="Account: Jerick">JE</a>
+        <button class="btn btn--sm" type="button" data-open-signin>Sign-in</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- VISION & MISSION -->
+    <section class="vision-wrap" aria-labelledby="vision-title">
+      <div class="wrap vision__grid">
+        <div class="vision__copy">
+          <h1 id="vision-title">Our Vision &amp; Mission</h1>
+          <p>OUAT envisions a community where children feel welcome and free to dance, sing, and storytelling to express themselves, connect with one another, and create shared experiences that bring people together. We exist to provide children and families across Queens with accessible and creative arts education. Our programs build creativity, teamwork, and self-expression in a supportive learning environment that helps children grow both on and off the stage.</p>
+        </div>
+        <div class="vision__image" role="img" aria-label="Children dancing on stage in a community performance"></div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="values" aria-labelledby="values-title">
+      <div class="wrap">
+        <div class="values__inner">
+          <div class="values__head">
+            <span class="eyebrow">Our Values</span>
+            <h2 id="values-title" class="values__title">OUAT dedicates its support through core programs and community engagement.</h2>
+          </div>
+
+          <div class="values__grid">
+            <div class="value">
+              <span class="value__icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M12 2 14 9h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/>
+                </svg>
+              </span>
+              <h3>Creative Programs</h3>
+              <p>Providing programs and seasonal courses in dance, theatre, and art that inspire creativity in young people.</p>
+            </div>
+            <div class="value">
+              <span class="value__icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <circle cx="9" cy="9" r="3"/><circle cx="17" cy="9" r="3"/>
+                  <path d="M2 20c1-3 4-5 7-5s6 2 7 5M22 20c-.5-2.5-2.5-4.5-5-5"/>
+                </svg>
+              </span>
+              <h3>Community Engagement</h3>
+              <p>Engaging with communities through performances, workshops, and cultural arts experiences across Queens.</p>
+            </div>
+            <div class="value">
+              <span class="value__icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M12 2v6M12 22v-6M2 12h6M22 12h-6M5 5l4 4M19 5l-4 4M5 19l4-4M19 19l-4-4"/>
+                </svg>
+              </span>
+              <h3>Personal Growth</h3>
+              <p>Supporting children's growth with skilled instructors who foster discipline, mastery, and personal growth.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDER LEGACY -->
+    <section class="text-block" aria-labelledby="founder-title">
+      <div class="wrap">
+        <h2 id="founder-title">Our Founder Legacy</h2>
+        <div class="columns">
+          <p>Lorem ipsum dolor sit amet consectetur. Tortor quam justo ac dignissim massa lacinia mi. Senectus tristique velit elementum integer erat ante laoreet. Lacus adipiscing vitae eu lectus. Sed felis eget eget ac risus eu. Cras nibh quam ac quam mauris commodo amet. Ac ut aliquam et a sapien.</p>
+          <p>Lorem ipsum dolor sit amet consectetur. Tortor quam justo ac dignissim massa lacinia mi. Senectus tristique velit elementum integer erat ante laoreet. Lacus adipiscing vitae eu lectus. Sed felis. Eget eget ac risus eu. Cras nibh quam ac quam mauris commodo amet. Ac ut aliquam et a sapien.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <section class="text-block" aria-labelledby="leadership-title" style="padding-top:0">
+      <div class="wrap">
+        <h2 id="leadership-title">Our New Leadership</h2>
+        <div class="leadership-grid">
+          <article class="leader leader--yasmine">
+            <div class="leader__avatar" role="img" aria-label="Portrait of Yasmine Rodriguez"></div>
+            <div>
+              <h3 class="leader__name">Yasmine Rodriguez</h3>
+              <p class="leader__role">Executive Director</p>
+              <p class="leader__bio">Lorem ipsum dolor sit amet consectetur. Tortor quam justo ac dignissim massa lacinia mi. Senectus tristique velit elementum integer erat ante laoreet.</p>
+            </div>
+          </article>
+          <article class="leader leader--dolores">
+            <div class="leader__avatar" role="img" aria-label="Portrait of Dolores Diaz"></div>
+            <div>
+              <h3 class="leader__name">Dolores Diaz</h3>
+              <p class="leader__role">Programs Director</p>
+              <p class="leader__bio">Lorem ipsum dolor sit amet consectetur. Tortor quam justo ac dignissim massa lacinia mi. Senectus tristique velit elementum integer erat ante laoreet.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURRENT PROGRAMS -->
+    <section class="programs" aria-labelledby="programs-title">
+      <div class="wrap">
+        <h2 id="programs-title" class="section-title">Our Current Program</h2>
+
+        <div class="programs__viewport">
+          <button class="program-arrow program-arrow--prev" type="button" aria-label="Previous program">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+
+          <div class="programs__grid">
+            <article class="program-card program-card--camps">
+              <div class="program-card__media" role="img" aria-label="Children performing in a seasonal camp">
+                <span class="program-card__tag">Active Program</span>
+              </div>
+              <div class="program-card__body">
+                <h3>Seasonal Camps</h3>
+                <a href="seasonal-camps.html" class="btn">View More</a>
+              </div>
+            </article>
+            <article class="program-card program-card--private">
+              <div class="program-card__media" role="img" aria-label="Student dancing freely during a private lesson">
+                <span class="program-card__tag">Active Program</span>
+              </div>
+              <div class="program-card__body">
+                <h3>Private Lesson</h3>
+                <a href="seasonal-camps.html" class="btn">View More</a>
+              </div>
+            </article>
+          </div>
+
+          <button class="program-arrow program-arrow--next" type="button" aria-label="Next program">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <!-- EXPANDING -->
+      <section class="expanding" aria-labelledby="expanding-title">
+        <h2 id="expanding-title">Expanding Our Platform</h2>
+        <p>Our support helps expand local programs to reach more children across communities. Donations meaningfully advance opportunities and create experiences for families.</p>
+        <a class="btn" href="donate.html#donate">Make a Donation</a>
+      </section>
+    </div>
+
+    <!-- SUCCESS STORIES -->
+    <section class="success" aria-labelledby="success-title">
+      <div class="wrap">
+        <h2 id="success-title" class="section-title">Success Stories</h2>
+        <div class="success__grid">
+          <figure class="success-card success-card--jane">
+            <div class="success-card__quote" aria-hidden="true">“</div>
+            <blockquote><p>Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></blockquote>
+            <span class="success-card__avatar" aria-hidden="true"></span>
+            <figcaption class="success-card__name">Jane, 18</figcaption>
+          </figure>
+          <figure class="success-card success-card--josh">
+            <div class="success-card__quote" aria-hidden="true">“</div>
+            <blockquote><p>The medical supplies and training provided have allowed us to save countless lives. The impact on our community has been extraordinary.</p></blockquote>
+            <span class="success-card__avatar" aria-hidden="true"></span>
+            <figcaption class="success-card__name">Josh, 13</figcaption>
+          </figure>
+          <figure class="success-card success-card--mariah">
+            <div class="success-card__quote" aria-hidden="true">“</div>
+            <blockquote><p>Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></blockquote>
+            <span class="success-card__avatar" aria-hidden="true"></span>
+            <figcaption class="success-card__name">Mariah, 22</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHERE YOUR DONATION GOES -->
+    <section class="donation-goes" aria-labelledby="donation-goes-title">
+      <div class="wrap donation-goes__grid">
+        <div>
+          <h2 id="donation-goes-title">Where Your Donation Goes</h2>
+          <p>Every donation contributed to OUAT directly supports our programs and students. Funds are allocated toward instructional materials, program supplies, and operational needs to help classes run effectively. The clearest evidence of your engaged support — children with growing experience while maintaining transparency and outcomes.</p>
+          <a class="btn" href="donate.html#donate">Learn More</a>
+        </div>
+        <div class="donation-goes__image" role="img" aria-label="Student smiling with school books"></div>
+      </div>
+    </section>
+
+    <!-- STAY CONNECTED -->
+    <div class="wrap">
+      <section class="stay-connected" id="newsletter" aria-labelledby="stay-title">
+        <h2 id="stay-title">Stay Connected to Our Mission</h2>
+        <p>Sign up for our newsletter to follow program updates, success stories, and ways to get involved.</p>
+        <form class="newsletter-form" id="newsletter-form" novalidate>
+          <div class="nl-field">
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input id="newsletter-email" name="email" type="email" placeholder="Newsletter signup..." autocomplete="email" required>
+          </div>
+          <button type="submit">Submit Us</button>
+        </form>
+        <p id="newsletter-status" role="status" aria-live="polite" class="sr-only"></p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer footer" role="contentinfo">
+    <div class="wrap footer__grid">
+      <div class="footer__brand-block">
+        <div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></div>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="donate.html#programs">Programs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="#events">Events</a></li>
+          <li><a href="donate.html#donate">Support Us</a></li>
+        </ul>
+      </div>
+      <div class="footer__address-block">
+        <p class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</p>
+        <div class="footer__socials" aria-label="Social media">
+          <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+          <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+          <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+          <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+          <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap footer__legal">
+      <span>Once Upon A Time Inc. © 2026. All rights reserved.</span>
+      <span>Nonprofit legal disclaimer and tax ID.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav
+    (function () {
+      const t = document.querySelector('.nav-toggle');
+      const n = document.getElementById('primary-nav');
+      if (!t || !n) return;
+      t.addEventListener('click', () => {
+        const open = n.dataset.open === 'true';
+        n.dataset.open = open ? 'false' : 'true';
+        t.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+    })();
+
+    // Newsletter form
+    (function () {
+      const f = document.getElementById('newsletter-form');
+      const s = document.getElementById('newsletter-status');
+      if (!f) return;
+      f.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = f.email.value.trim();
+        if (!email || !email.includes('@')) {
+          s.textContent = 'Please enter a valid email address.';
+          s.classList.remove('sr-only');
+          return;
+        }
+        s.textContent = `Thanks — we'll send updates to ${email}.`;
+        s.classList.remove('sr-only');
+        f.reset();
+      });
+    })();
+
+    // Programs carousel (toggle which card is highlighted)
+    (function () {
+      const prev = document.querySelector('.program-arrow--prev');
+      const next = document.querySelector('.program-arrow--next');
+      const grid = document.querySelector('.programs__grid');
+      if (!prev || !next || !grid) return;
+      [prev, next].forEach(b => b.addEventListener('click', () => {
+        grid.scrollBy({ left: b === next ? 320 : -320, behavior: 'smooth' });
+      }));
+    })();
+  </script>
+</body>
+</html>

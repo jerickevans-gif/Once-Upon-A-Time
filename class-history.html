@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="Your Once Upon A Time class history — enrolled and previous classes.">
+  <title>Class History — Once Upon A Time</title>
+
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.0/src/regular/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+
+  <style>
+    body { background: var(--snow); }
+    .account { display: grid; grid-template-columns: 280px 1fr; gap: var(--s-7); padding: var(--s-7) 0; }
+    .account__sidebar { display: grid; gap: var(--s-5); align-content: start; }
+    .account-user { display: grid; grid-template-columns: 44px 1fr; gap: var(--s-3); align-items: center; padding: 0 var(--s-3); margin-bottom: var(--s-2); }
+    .account-user__avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--rose); color: var(--snow); display: grid; place-items: center; font-size: 18px; }
+    .account-user__name { font-family: var(--sans); font-weight: 700; font-size: var(--t-base); letter-spacing: .04em; text-transform: uppercase; }
+    .account-nav { display: grid; gap: 4px; }
+    .account-nav a { display: grid; grid-template-columns: 24px 1fr auto; gap: var(--s-3); align-items: center; padding: 12px var(--s-4); border-radius: var(--radius); text-decoration: none; color: var(--ink); font-size: var(--t-base); font-weight: 500; }
+    .account-nav a:hover { background: var(--rose-50); }
+    .account-nav a[aria-current="page"] { background: var(--rose-100); color: var(--rose-700); font-weight: 700; }
+    .account-nav .ph { font-size: 20px; }
+    .account-nav__badge { background: var(--rose); color: var(--snow); font-size: 11px; font-weight: 700; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+    .account-side-card { background: var(--rose-100); border-radius: var(--radius); padding: var(--s-4) var(--s-5); display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+    .account-side-card__title { font-size: var(--t-label); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+    .account-side-card--ghost { background: var(--snow); border: 1px solid var(--line); }
+
+    .acc-section { margin-bottom: var(--s-8); }
+    .acc-section__title { font-family: var(--sans); font-weight: 700; font-size: var(--t-h4); margin: 0 0 var(--s-5); }
+
+    /* Class history cards */
+    .class-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+    .class-card {
+      background: var(--snow); border: 1px solid var(--line); border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: grid; grid-template-rows: 200px auto;
+    }
+    .class-card__photo {
+      position: relative;
+      background-size: cover; background-position: center;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: var(--s-4);
+    }
+    .class-card--camps26 .class-card__photo { background-image: url("once-upon-a-time-assets/landing/jazz-hero.jpg"); }
+    .class-card--camps25 .class-card__photo { background-image: url("once-upon-a-time-assets/landing/ballet-card.jpg"); }
+    .class-card--private .class-card__photo { background-image: url("once-upon-a-time-assets/landing/story-jazz.jpg"); }
+    .class-card--camps24 .class-card__photo { background-image: url("once-upon-a-time-assets/landing/jazz-hero.jpg"); }
+
+    .class-card__status {
+      background: var(--snow); color: var(--ink);
+      padding: 4px 12px; border-radius: var(--radius-pill);
+      font-size: var(--t-label); font-weight: 600;
+    }
+    .class-card__status--starting { background: var(--garden-100); color: var(--garden-700); }
+    .class-card__status--happening { background: var(--rose-100); color: var(--rose-700); }
+    .class-card__status--closed { background: var(--snow); color: var(--ink-muted); }
+    .class-card__price {
+      background: var(--snow); color: var(--ink);
+      padding: 4px 12px; border-radius: var(--radius-pill);
+      font-size: var(--t-label); font-weight: 700;
+    }
+
+    .class-card__body { padding: var(--s-5); display: grid; gap: var(--s-3); }
+    .class-card__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+    .class-card__title { font-family: var(--serif); font-weight: 400; font-size: var(--t-h4); margin: 0; }
+    .class-card__meta { font-size: var(--t-label); color: var(--ink-muted); }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip { font-size: var(--t-micro); font-weight: 600; padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid var(--rose); color: var(--rose-700); background: transparent; }
+    .chip--garden { border-color: var(--garden); color: var(--garden-700); }
+
+    .class-card__links { display: flex; gap: var(--s-4); align-items: center; font-size: var(--t-label); }
+    .class-card__links a { color: var(--rose); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+    .class-card__footer { display: flex; gap: var(--s-3); padding-top: var(--s-3); }
+    .class-card__footer .btn { flex: 1; }
+
+    @media (max-width: 900px) { .account, .class-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="about.html">About Us</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="donate.html">Donation</a>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Cart, 0 items"><i class="ph ph-shopping-cart"></i><span class="badge">0</span></button>
+        <button class="icon-btn" type="button" aria-label="Notifications"><i class="ph ph-bell"></i><span class="badge">3</span></button>
+        <span class="avatar">CS</span>
+        <a class="btn btn--sm" href="profile.html">Account</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap account">
+      <aside class="account__sidebar" aria-label="Account navigation">
+        <div class="account-user">
+          <span class="account-user__avatar"><i class="ph ph-user"></i></span>
+          <span class="account-user__name">Claire Sherlock</span>
+        </div>
+        <nav class="account-nav" aria-label="Account sections">
+          <a href="profile.html"><i class="ph ph-user-circle"></i><span>My Profile</span><span></span></a>
+          <a href="preferences.html"><i class="ph ph-sliders-horizontal"></i><span>Preferences</span><span></span></a>
+          <a href="class-history.html" aria-current="page"><i class="ph ph-book-open"></i><span>Class history</span><span></span></a>
+          <a href="#inbox"><i class="ph ph-envelope"></i><span>Inbox</span><span class="account-nav__badge">3</span></a>
+        </nav>
+        <div class="account-side-card">
+          <span class="account-side-card__title">Browse more classes?</span>
+          <a class="btn btn--sm" href="index.html#programs">See more</a>
+        </div>
+        <div class="account-side-card account-side-card--ghost">
+          <span class="account-side-card__title">Looking for support?</span>
+          <a class="btn btn--sm btn--outline" href="contact.html">Contact Us</a>
+        </div>
+      </aside>
+
+      <section class="account__main">
+        <div class="acc-section">
+          <h2 class="acc-section__title">Enrolled Classes</h2>
+          <div class="class-grid">
+            <article class="class-card class-card--camps26">
+              <div class="class-card__photo">
+                <span class="class-card__status class-card__status--starting">Starting Soon</span>
+                <span class="class-card__price">$250</span>
+              </div>
+              <div class="class-card__body">
+                <h3 class="class-card__title">Seasonal Camps 2026</h3>
+                <div class="class-card__meta">Start date · Mar 03 2026</div>
+                <div class="chips"><span class="chip">Dance</span><span class="chip">Theater</span><span class="chip chip--garden">Gardening</span></div>
+                <div class="class-card__links"><a href="#cancel">Cancel program</a><a href="#issue">Report an issue</a></div>
+                <div class="class-card__footer">
+                  <a class="btn btn--sm btn--outline" href="#details">View Details</a>
+                  <a class="btn btn--sm btn--outline" href="#receipt">View Receipt</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="class-card class-card--camps25">
+              <div class="class-card__photo">
+                <span class="class-card__status class-card__status--happening">Happening</span>
+                <span class="class-card__price">$250</span>
+              </div>
+              <div class="class-card__body">
+                <h3 class="class-card__title">Seasonal Camps 2025</h3>
+                <div class="class-card__meta">Start date · Mar 10 2025</div>
+                <div class="chips"><span class="chip">Dance</span><span class="chip">Theater</span><span class="chip chip--garden">Gardening</span></div>
+                <div class="class-card__footer">
+                  <a class="btn btn--sm btn--outline" href="#details">View Details</a>
+                  <a class="btn btn--sm btn--outline" href="#receipt">View Receipt</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="acc-section">
+          <h2 class="acc-section__title">Previous Classes</h2>
+          <div class="class-grid">
+            <article class="class-card class-card--private">
+              <div class="class-card__photo">
+                <span class="class-card__status class-card__status--closed">Closed</span>
+                <span class="class-card__price">$250</span>
+              </div>
+              <div class="class-card__body">
+                <h3 class="class-card__title">Private Sessions</h3>
+                <div class="class-card__meta">Start date · June 02 2024</div>
+                <div class="chips"><span class="chip">Acting</span></div>
+                <div class="class-card__footer">
+                  <a class="btn btn--sm btn--outline" href="#details">View Details</a>
+                  <a class="btn btn--sm btn--outline" href="#receipt">View Receipt</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="class-card class-card--camps24">
+              <div class="class-card__photo">
+                <span class="class-card__status class-card__status--closed">Closed</span>
+                <span class="class-card__price">$250</span>
+              </div>
+              <div class="class-card__body">
+                <h3 class="class-card__title">Seasonal Camps 2024</h3>
+                <div class="class-card__meta">Start date · Mar 8 2024</div>
+                <div class="chips"><span class="chip">Dance</span><span class="chip">Theater</span></div>
+                <div class="class-card__footer">
+                  <a class="btn btn--sm btn--outline" href="#details">View Details</a>
+                  <a class="btn btn--sm btn--outline" href="#receipt">View Receipt</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block">
+          <div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></div>
+        </div>
+        <div><h4>About</h4><ul><li><a href="about.html">About</a></li><li><a href="index.html#programs">Programs</a></li></ul></div>
+        <div><h4>Get Involved</h4><ul><li><a href="index.html#events">Events</a></li><li><a href="donate.html">Support Us</a></li></ul></div>
+        <div class="footer__address-block">
+          <div class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</div>
+          <div class="footer__socials">
+            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">Once Upon A Time Inc. © 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

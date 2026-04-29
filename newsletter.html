@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="Newsletter Dashboard — Once Upon A Time. Stories from the studio, community garden, and volunteer spotlight.">
+  <title>Newsletter Dashboard — Once Upon A Time</title>
+
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.0/src/regular/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+
+  <style>
+    /* ===== Page title ===== */
+    .nl-title {
+      padding: var(--s-7) 0 var(--s-3);
+    }
+    .nl-title h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(48px, 6.4vw, 88px);
+      text-transform: uppercase;
+      margin: 0; line-height: var(--lh-display);
+      letter-spacing: .02em;
+    }
+
+    /* ===== Toolbar ===== */
+    .nl-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--s-4); flex-wrap: wrap;
+      padding: var(--s-3) 0 var(--s-6);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: var(--s-6);
+    }
+    .nl-tabs { display: flex; align-items: center; gap: var(--s-5); }
+    .nl-tabs a {
+      font-size: var(--t-label); font-weight: 600;
+      color: var(--ink); text-decoration: none;
+      padding: 6px 0; border-bottom: 2px solid transparent;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .nl-tabs a.is-active { border-bottom-color: var(--rose); color: var(--rose-700); }
+    .nl-tabs a:hover { color: var(--rose); }
+    .nl-tools { display: flex; align-items: center; gap: var(--s-3); }
+    .nl-sort {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: var(--t-label); color: var(--ink);
+      padding: 6px 12px; border: 1px solid var(--line); border-radius: var(--radius-pill);
+      background: var(--snow);
+    }
+    .nl-date {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: var(--t-label); color: var(--ink);
+      padding: 6px 12px; border: 1px solid var(--line); border-radius: var(--radius-pill);
+      background: var(--snow);
+    }
+    .nl-views { display: inline-flex; gap: 4px; }
+    .nl-views button {
+      width: 32px; height: 32px; border: 1px solid var(--line);
+      background: var(--snow); border-radius: var(--radius);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; color: var(--ink-muted);
+    }
+    .nl-views button[aria-pressed="true"] { background: var(--rose); color: var(--snow); border-color: var(--rose); }
+
+    /* ===== Eyebrow row ===== */
+    .nl-eyebrow {
+      display: flex; align-items: center; gap: var(--s-3);
+      margin-bottom: var(--s-4);
+    }
+    .nl-eyebrow .eyebrow { margin: 0; }
+    .nl-tag {
+      display: inline-flex; align-items: center;
+      background: var(--snow); border: 1px solid var(--line);
+      color: var(--ink); font-size: var(--t-micro);
+      padding: 2px 10px; border-radius: var(--radius-pill);
+      font-weight: 600;
+    }
+
+    /* ===== Featured article (lead) ===== */
+    .nl-feature {
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--s-7);
+      align-items: start;
+      margin-bottom: var(--s-8);
+    }
+    .nl-feature__head {
+      grid-column: 1 / -1;
+      margin-bottom: var(--s-4);
+    }
+    .nl-feature h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(34px, 4vw, 52px);
+      text-transform: uppercase; margin: 0 0 var(--s-2);
+      letter-spacing: .02em;
+    }
+    .nl-byline {
+      font-size: var(--t-label); color: var(--ink-muted);
+      margin: 0;
+    }
+    .nl-feature__body {
+      column-count: 2; column-gap: var(--s-5);
+      font-size: var(--t-base); color: var(--ink);
+      line-height: var(--lh-body);
+    }
+    .nl-feature__body p { margin: 0 0 var(--s-3); break-inside: avoid-column; }
+    .nl-feature__photo {
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(139,80,68,.45), rgba(139,80,68,.5)),
+        url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
+      background-blend-mode: multiply, normal;
+    }
+
+    /* ===== Sub-articles ===== */
+    .nl-article {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--s-6);
+      align-items: start;
+      padding: var(--s-6) 0;
+      border-top: 1px solid var(--line);
+    }
+    .nl-article--reverse { grid-template-columns: 1.2fr 1fr; }
+    .nl-article--reverse .nl-article__photo { order: 2; }
+    .nl-article__photo {
+      aspect-ratio: 4/3;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background-size: cover; background-position: center;
+      background-blend-mode: multiply, normal;
+    }
+    .nl-article--garden .nl-article__photo {
+      background:
+        linear-gradient(rgba(107,109,32,.4), rgba(107,109,32,.45)),
+        url("once-upon-a-time-assets/landing/who-we-are-globe.jpg") center/cover no-repeat;
+    }
+    .nl-article--update .nl-article__photo {
+      background:
+        linear-gradient(rgba(107,109,32,.35), rgba(107,109,32,.4)),
+        url("once-upon-a-time-assets/landing/donor-bg.jpg") center/cover no-repeat;
+    }
+    .nl-article--volunteer .nl-article__photo {
+      background:
+        linear-gradient(rgba(139,80,68,.4), rgba(139,80,68,.45)),
+        url("once-upon-a-time-assets/landing/story-jazz.jpg") center/cover no-repeat;
+    }
+    .nl-article h3 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 2.8vw, 36px);
+      text-transform: uppercase;
+      margin: 0 0 var(--s-2);
+      letter-spacing: .02em;
+    }
+    .nl-article__body { font-size: var(--t-label); color: var(--ink); line-height: var(--lh-body); }
+    .nl-article__body p { margin: 0 0 var(--s-3); }
+
+    /* ===== Related newsletters ===== */
+    .nl-related {
+      padding: var(--s-8) 0;
+      border-top: 1px solid var(--line);
+      margin-top: var(--s-8);
+    }
+    .nl-related h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 3vw, 40px);
+      text-transform: uppercase;
+      margin: 0 0 var(--s-5);
+      letter-spacing: .02em;
+    }
+    .nl-related__viewport { position: relative; }
+    .nl-related__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); }
+    .nl-card {
+      background: var(--snow);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .nl-card__photo {
+      aspect-ratio: 16/10;
+      background-size: cover; background-position: center;
+      background-blend-mode: multiply, normal;
+    }
+    .nl-card--oct .nl-card__photo {
+      background:
+        linear-gradient(rgba(107,109,32,.4), rgba(107,109,32,.45)),
+        url("once-upon-a-time-assets/landing/donor-bg.jpg") center/cover no-repeat;
+    }
+    .nl-card--nov .nl-card__photo {
+      background:
+        linear-gradient(rgba(139,80,68,.4), rgba(139,80,68,.45)),
+        url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
+    }
+    .nl-card--dec .nl-card__photo {
+      background:
+        linear-gradient(rgba(139,80,68,.4), rgba(139,80,68,.45)),
+        url("once-upon-a-time-assets/landing/ballet-card.jpg") center/cover no-repeat;
+    }
+    .nl-card__body { padding: var(--s-4) var(--s-5); }
+    .nl-card__date {
+      font-family: var(--serif); font-weight: 400;
+      font-size: var(--t-h4);
+      text-transform: uppercase;
+      margin: 0 0 4px;
+      letter-spacing: .02em;
+    }
+    .nl-card__meta { font-size: var(--t-micro); color: var(--ink-muted); margin: 0 0 var(--s-3); display: flex; justify-content: space-between; }
+    .nl-card__copy { font-size: var(--t-label); color: var(--ink); margin: 0 0 var(--s-3); line-height: var(--lh-body); }
+    .nl-card__footer { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+    .nl-card__icons { display: inline-flex; gap: 6px; color: var(--ink-muted); }
+    .nl-card__icons button { background: transparent; border: 0; cursor: pointer; padding: 4px; color: inherit; }
+    .nl-related__arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      right: -22px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--snow); border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .nl-feature, .nl-article, .nl-article--reverse { grid-template-columns: 1fr; }
+      .nl-feature__body { column-count: 1; }
+      .nl-article--reverse .nl-article__photo { order: 0; }
+      .nl-related__grid { grid-template-columns: 1fr; }
+      .nl-toolbar { flex-direction: column; align-items: flex-start; }
+      .nl-related__arrow { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ PROMO BAR ============ -->
+  <div class="promo-bar" role="region" aria-label="Announcement">
+    <div class="wrap promo-bar__inner">
+      <span><strong>Happening Now:</strong> Jazz Dancing (16+) · Instructor: Mia Kim</span>
+      <span>Next class: Intermediate Ballet (10+)</span>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand" aria-label="Once Upon A Time, home">
+        <img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time">
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="about.html">About Us</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="donate.html">Donation</a>
+        <a href="newsletter.html" aria-current="page">Newsletter</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Cart, 0 items">
+          <i class="ph ph-shopping-cart" aria-hidden="true"></i>
+          <span class="badge" aria-hidden="true">0</span>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Notifications">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+        </button>
+        <a href="profile.html" class="avatar" aria-label="Account">JK</a>
+        <button class="btn btn--sm" type="button" data-open-signin>Sign-in</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ TITLE ============ -->
+    <section class="nl-title wrap">
+      <h1>Newsletter&nbsp;Dashboard</h1>
+    </section>
+
+    <!-- ============ TOOLBAR ============ -->
+    <div class="wrap nl-toolbar">
+      <nav class="nl-tabs" aria-label="Library views">
+        <a href="#" class="is-active"><i class="ph ph-book-open"></i> Read Articles</a>
+        <a href="#"><i class="ph ph-clock-counter-clockwise"></i> Read Latest</a>
+        <a href="#"><i class="ph ph-books"></i> Browse Library</a>
+      </nav>
+      <div class="nl-tools">
+        <span class="nl-sort"><i class="ph ph-funnel"></i> Sort By <i class="ph ph-caret-down"></i></span>
+        <span class="nl-date"><i class="ph ph-calendar-blank"></i> Jan 2026 <i class="ph ph-caret-down"></i></span>
+        <span class="nl-views" role="group" aria-label="Layout">
+          <button type="button" aria-label="Grid view" aria-pressed="true"><i class="ph ph-squares-four"></i></button>
+          <button type="button" aria-label="List view" aria-pressed="false"><i class="ph ph-list-bullets"></i></button>
+          <button type="button" aria-label="Magazine view" aria-pressed="false"><i class="ph ph-rows"></i></button>
+        </span>
+      </div>
+    </div>
+
+    <!-- ============ FEATURED ARTICLE ============ -->
+    <article class="wrap">
+      <div class="nl-eyebrow">
+        <span class="eyebrow" style="margin:0">Current Newsletter</span>
+        <span class="nl-tag">Newsletter</span>
+      </div>
+
+      <div class="nl-feature">
+        <header class="nl-feature__head">
+          <h2>Once Upon A Time</h2>
+          <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
+        </header>
+
+        <div class="nl-feature__body">
+          <p>Figma ipsum component variant main layer. Rectangle italic hand union select messing share inspect asset. Follower library blur connection community rotate group plugin team frame rectangle pencil. Component component main arrange auto background link export prototype font.</p>
+          <p>Background overlay bullet hand prototype boolean arrow plugin. Bullet draft frame duplicate move object. Static frame pen connection rectangle polygon. Bullet draft hand pen connection rotate flatten effect arrow.</p>
+          <p>Figma ipsum component variant main layer. Effect plugin layer pen bold duplicate. Scale fill union font undo. Move figjam list blur plugin font. Strikethrough text editor invite pencil create undo rectangle bullet. Device ellipse invite project team move flows.</p>
+          <p>Asset fill list outline union. Ipsum subtract inspect style layout horizontal scrolling figma fill flatten. Fill plugin vertical overflow star draft. Boolean asset group prototype fill arrow. Slice export variant mask project ipsum export duplicate.</p>
+          <p>Editor bold frame select clip polygon arrow. Comment pencil underline create auto mask arrow slice edit. Bold layer clip component pen. Plugin ellipse outline opacity duplicate follower layout invite.</p>
+        </div>
+
+        <div class="nl-feature__photo" role="img" aria-label="Featured story photograph"></div>
+      </div>
+
+      <!-- COMMUNITY GARDEN -->
+      <section class="nl-article nl-article--garden">
+        <div class="nl-article__photo" role="img" aria-label="Community garden"></div>
+        <div>
+          <h3>Community Garden</h3>
+          <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
+          <div class="nl-article__body" style="margin-top:var(--s-3)">
+            <p>Figma ipsum component variant main layer. Effect plugin layer pen bold duplicate. Scale fill union font undo. Move figjam list blur plugin font. Strikethrough text editor invite pencil create undo rectangle bullet. Device ellipse invite project team move flows. Font underline editor plugin stroke strikethrough scale flatten rectangle figma. Ellipse outline fill flatten draft vertical project background export.</p>
+            <p>Asset fill list outline union. Ipsum subtract inspect style layout horizontal scrolling figma fill flatten. Fill plugin vertical overflow star draft. Boolean asset group prototype fill arrow. Slice export variant mask project ipsum export duplicate.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMUNITY GARDEN UPDATE -->
+      <section class="nl-article nl-article--reverse nl-article--update">
+        <div class="nl-article__photo" role="img" aria-label="Community garden update"></div>
+        <div>
+          <h3>Community Garden Update</h3>
+          <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
+          <div class="nl-article__body" style="margin-top:var(--s-3)">
+            <p>Pizza ipsum dolor meat lovers buffalo. Wing large personal lot mayo onions lot wing pan. Sausage tossed mayo-red tomatoes green marinara tomato personal broccoli. Stuffed Chicago lasagna extra style. Style platter garlic string NY meat broccoli mouth. Extra peppers Aussie sautéed meatball anchovies. Burnt roll pan tomatoes ricotta.</p>
+            <p>Parmesan sausage beef pork wing beef pesto. Pesto extra tomatoes pork tossed rib pork mozzarella Hawaiian. Aussie hand platter tomatoes bell. Pork peppers extra red mayo lot. Olives and green bbq NY pineapple. Pineapple burnt red beef pepperoni cheese sausage ipsum extra roll. Cheese stuffed crust melted pie broccoli parmesan steak tomato. Sauce hand ranch.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VOLUNTEER SPOTLIGHT -->
+      <section class="nl-article nl-article--volunteer">
+        <div class="nl-article__photo" role="img" aria-label="Volunteer spotlight"></div>
+        <div>
+          <h3>Volunteer Spotlight</h3>
+          <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
+          <div class="nl-article__body" style="margin-top:var(--s-3)">
+            <p>Figma ipsum component variant main layer. Content main flows rotate duplicate component. Vector font effect pencil link pencil create hand follower library. Export pixel scale figma polygon follower plugin share comment. Arrow editor content comment scrolling variant ipsum.</p>
+            <p>Asset fill list outline union. Ipsum subtract inspect style layout horizontal scrolling figma fill flatten. Fill plugin vertical overflow star draft. Boolean asset group prototype fill arrow.</p>
+          </div>
+        </div>
+      </section>
+    </article>
+
+    <!-- ============ RELATED NEWSLETTERS ============ -->
+    <section class="wrap nl-related" aria-labelledby="related-title">
+      <h2 id="related-title">Related Newsletters</h2>
+      <div class="nl-related__viewport">
+        <div class="nl-related__grid">
+          <article class="nl-card nl-card--oct">
+            <div class="nl-card__photo" role="img" aria-label="October 2025 newsletter cover"></div>
+            <div class="nl-card__body">
+              <h3 class="nl-card__date">October&nbsp;2025</h3>
+              <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
+              <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
+              <div class="nl-card__footer">
+                <a class="btn btn--sm btn--outline" href="#">View More <i class="ph ph-arrow-right"></i></a>
+                <span class="nl-card__icons">
+                  <button type="button" aria-label="Bookmark"><i class="ph ph-bookmark-simple"></i></button>
+                  <button type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="nl-card nl-card--nov">
+            <div class="nl-card__photo" role="img" aria-label="November 2025 newsletter cover"></div>
+            <div class="nl-card__body">
+              <h3 class="nl-card__date">November&nbsp;2025</h3>
+              <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
+              <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
+              <div class="nl-card__footer">
+                <a class="btn btn--sm btn--outline" href="#">View More <i class="ph ph-arrow-right"></i></a>
+                <span class="nl-card__icons">
+                  <button type="button" aria-label="Bookmark"><i class="ph ph-bookmark-simple"></i></button>
+                  <button type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="nl-card nl-card--dec">
+            <div class="nl-card__photo" role="img" aria-label="December 2025 newsletter cover"></div>
+            <div class="nl-card__body">
+              <h3 class="nl-card__date">December&nbsp;2025</h3>
+              <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
+              <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
+              <div class="nl-card__footer">
+                <a class="btn btn--sm btn--outline" href="#">View More <i class="ph ph-arrow-right"></i></a>
+                <span class="nl-card__icons">
+                  <button type="button" aria-label="Bookmark"><i class="ph ph-bookmark-simple"></i></button>
+                  <button type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
+                </span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <button class="nl-related__arrow" type="button" aria-label="Next newsletters">
+          <i class="ph ph-caret-right"></i>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block">
+          <div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></div>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#programs">Programs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="donate.html">Support Us</a></li>
+          </ul>
+        </div>
+        <div class="footer__address-block">
+          <div class="footer__address">
+            87-61 111th St, Richmond Hill<br>
+            NY 11418, United States
+          </div>
+          <div class="footer__socials">
+            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        Once Upon A Time Inc. &copy; 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

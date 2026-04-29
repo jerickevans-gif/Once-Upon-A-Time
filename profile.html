@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="Your Once Upon A Time profile — manage your account, child details, and security.">
+  <title>My Profile — Once Upon A Time</title>
+
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.0/src/regular/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+
+  <style>
+    body { background: var(--snow); }
+
+    /* ===== Account shell ===== */
+    .account {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--s-7);
+      padding: var(--s-7) 0;
+    }
+    .account__sidebar {
+      display: grid; gap: var(--s-5);
+      align-content: start;
+    }
+    .account-user {
+      display: grid; grid-template-columns: 44px 1fr; gap: var(--s-3); align-items: center;
+      padding: 0 var(--s-3);
+      margin-bottom: var(--s-2);
+    }
+    .account-user__avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--rose); color: var(--snow);
+      display: grid; place-items: center;
+      font-size: 18px;
+    }
+    .account-user__name {
+      font-family: var(--sans); font-weight: 700; font-size: var(--t-base);
+      letter-spacing: .04em; text-transform: uppercase;
+    }
+    .account-nav { display: grid; gap: 4px; }
+    .account-nav a {
+      display: grid; grid-template-columns: 24px 1fr auto; gap: var(--s-3); align-items: center;
+      padding: 12px var(--s-4);
+      border-radius: var(--radius);
+      text-decoration: none; color: var(--ink);
+      font-size: var(--t-base); font-weight: 500;
+    }
+    .account-nav a:hover { background: var(--rose-50); }
+    .account-nav a[aria-current="page"] { background: var(--rose-100); color: var(--rose-700); font-weight: 700; }
+    .account-nav .ph { font-size: 20px; color: inherit; }
+    .account-nav__badge {
+      background: var(--rose); color: var(--snow);
+      font-size: 11px; font-weight: 700;
+      width: 20px; height: 20px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .account-side-card {
+      background: var(--rose-100);
+      border-radius: var(--radius);
+      padding: var(--s-4) var(--s-5);
+      display: flex; align-items: center; justify-content: space-between; gap: var(--s-3);
+    }
+    .account-side-card__title { font-size: var(--t-label); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink); }
+    .account-side-card .btn { white-space: nowrap; }
+    .account-side-card--ghost { background: var(--snow); border: 1px solid var(--line); }
+
+    .account__main {
+      background: var(--snow);
+      padding-right: var(--s-3);
+    }
+
+    /* ===== Section ===== */
+    .acc-section { margin-bottom: var(--s-8); }
+    .acc-section + .acc-section { padding-top: var(--s-7); }
+    .acc-section__head {
+      display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4);
+      padding-bottom: var(--s-3);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: var(--s-5);
+    }
+    .acc-section__title {
+      font-family: var(--sans); font-weight: 700;
+      font-size: var(--t-h4); text-transform: none;
+      margin: 0;
+      letter-spacing: 0;
+    }
+    .acc-section__head .actions { display: flex; gap: var(--s-3); align-items: center; }
+
+    /* ===== Profile-specific ===== */
+    .pref-name {
+      display: grid; grid-template-columns: 60px 1fr; gap: var(--s-4); align-items: center;
+      max-width: 520px;
+    }
+    .pref-name__avatar {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--rose); color: var(--snow);
+      display: grid; place-items: center;
+    }
+    .pref-name__avatar .ph { font-size: 28px; }
+    .pref-name__field { display: grid; gap: 4px; }
+    .pref-name__label { font-size: var(--t-label); color: var(--ink-muted); font-weight: 500; }
+
+    .child-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s-5);
+      margin-bottom: var(--s-3);
+    }
+    .child-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-5) var(--s-6);
+    }
+    .child-grid__field { display: grid; gap: 4px; }
+    .child-grid__label { font-size: var(--t-label); color: var(--ink-muted); }
+    .child-grid__value { font-size: var(--t-base); font-weight: 500; color: var(--ink); }
+
+    .load-more {
+      background: transparent; border: 0; color: var(--ink-muted);
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: var(--s-3) 0;
+      font-size: var(--t-base); cursor: pointer;
+    }
+    .load-more:hover { color: var(--rose); }
+
+    .security-row {
+      display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--s-4);
+      padding: var(--s-4) 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .security-row:last-child { border-bottom: 0; }
+    .security-row__label { font-size: var(--t-label); color: var(--ink-muted); }
+    .security-row__value { font-size: var(--t-base); color: var(--ink); margin-top: 2px; }
+    .security-row__action {
+      background: transparent; border: 0; color: var(--rose);
+      font-weight: 600; font-size: var(--t-base); cursor: pointer;
+    }
+    .security-row__action:hover { color: var(--rose-700); text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .account { grid-template-columns: 1fr; }
+      .child-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand" aria-label="Once Upon A Time, home">
+        <img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time">
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="about.html">About Us</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="donate.html">Donation</a>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Cart, 0 items"><i class="ph ph-shopping-cart"></i><span class="badge">0</span></button>
+        <button class="icon-btn" type="button" aria-label="Notifications"><i class="ph ph-bell"></i><span class="badge">3</span></button>
+        <span class="avatar" aria-label="Signed in as Claire">CS</span>
+        <a class="btn btn--sm" href="profile.html">Account</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap account">
+
+      <!-- ============ SIDEBAR ============ -->
+      <aside class="account__sidebar" aria-label="Account navigation">
+        <div class="account-user">
+          <span class="account-user__avatar"><i class="ph ph-user"></i></span>
+          <span class="account-user__name">Claire Sherlock</span>
+        </div>
+        <nav class="account-nav" aria-label="Account sections">
+          <a href="profile.html" aria-current="page"><i class="ph ph-user-circle"></i><span>My Profile</span><span></span></a>
+          <a href="preferences.html"><i class="ph ph-sliders-horizontal"></i><span>Preferences</span><span></span></a>
+          <a href="class-history.html"><i class="ph ph-book-open"></i><span>Class history</span><span></span></a>
+          <a href="#inbox"><i class="ph ph-envelope"></i><span>Inbox</span><span class="account-nav__badge">3</span></a>
+        </nav>
+        <div class="account-side-card">
+          <span class="account-side-card__title">Browse more classes?</span>
+          <a class="btn btn--sm" href="index.html#programs">See more</a>
+        </div>
+        <div class="account-side-card account-side-card--ghost">
+          <span class="account-side-card__title">Looking for support?</span>
+          <a class="btn btn--sm btn--outline" href="contact.html">Contact Us</a>
+        </div>
+      </aside>
+
+      <!-- ============ MAIN ============ -->
+      <section class="account__main">
+
+        <div class="acc-section">
+          <div class="acc-section__head"><h2 class="acc-section__title">Account</h2></div>
+          <div class="pref-name">
+            <span class="pref-name__avatar"><i class="ph ph-user"></i></span>
+            <div class="pref-name__field">
+              <label class="pref-name__label" for="prefName">Your Preferred Name</label>
+              <input class="input" id="prefName" type="text" value="CLAIRE SHERLOCK">
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-section">
+          <div class="acc-section__head">
+            <h2 class="acc-section__title">Child Details</h2>
+            <div class="actions">
+              <button class="btn btn--sm btn--outline" type="button"><i class="ph ph-plus"></i> Add profile</button>
+              <button class="btn btn--sm btn--text" type="button">Remove profile</button>
+            </div>
+          </div>
+
+          <article class="child-card">
+            <div class="child-grid">
+              <div class="child-grid__field"><span class="child-grid__label">Child Name</span><span class="child-grid__value">Daisy</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Child Age</span><span class="child-grid__value">10</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Child Phone Number</span><span class="child-grid__value">XX</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Special Conditions</span><span class="child-grid__value">None</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Allergy</span><span class="child-grid__value">None</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Emergency contact</span><span class="child-grid__value">XX</span></div>
+            </div>
+          </article>
+
+          <article class="child-card">
+            <div class="child-grid">
+              <div class="child-grid__field"><span class="child-grid__label">Child Name</span><span class="child-grid__value">Peter</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Child Age</span><span class="child-grid__value">12</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Child Phone Number</span><span class="child-grid__value">XX</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Special Conditions</span><span class="child-grid__value">None</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Allergy</span><span class="child-grid__value">Seafood</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Emergency contact</span><span class="child-grid__value">XX</span></div>
+            </div>
+          </article>
+
+          <button class="load-more" type="button"><i class="ph ph-arrow-down"></i> Load 3 more profiles</button>
+        </div>
+
+        <div class="acc-section">
+          <div class="acc-section__head"><h2 class="acc-section__title">Account Security</h2></div>
+          <div class="security-row">
+            <div>
+              <div class="security-row__label">Email</div>
+              <div class="security-row__value">email.address@email.com</div>
+            </div>
+            <button class="security-row__action" type="button">Change</button>
+          </div>
+          <div class="security-row">
+            <div>
+              <div class="security-row__label">Password</div>
+              <div class="security-row__value">**********</div>
+            </div>
+            <button class="security-row__action" type="button">Change</button>
+          </div>
+          <div class="security-row">
+            <div>
+              <div class="security-row__label">2-step verification</div>
+              <div class="security-row__value">Add an additional layer of security to your account.</div>
+            </div>
+            <button class="security-row__action" type="button">Change</button>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block">
+          <div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></div>
+        </div>
+        <div><h4>About</h4><ul><li><a href="about.html">About</a></li><li><a href="index.html#programs">Programs</a></li></ul></div>
+        <div><h4>Get Involved</h4><ul><li><a href="index.html#events">Events</a></li><li><a href="donate.html">Support Us</a></li></ul></div>
+        <div class="footer__address-block">
+          <div class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</div>
+          <div class="footer__socials">
+            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">Once Upon A Time Inc. © 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="Seasonal Camps — Once Upon A Time. Program info, instructors, class location, and registration.">
+  <title>Seasonal Camps — Once Upon A Time</title>
+
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.0/src/regular/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+
+  <style>
+    /* ===== Hero band ===== */
+    .pd-hero {
+      background:
+        linear-gradient(rgba(139, 80, 68, .55), rgba(139, 80, 68, .65)),
+        url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
+      height: 380px;
+      width: 100%;
+    }
+
+    /* ===== Body grid ===== */
+    .pd-body { padding: var(--s-7) 0 var(--s-9); }
+    .pd-body__grid {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: var(--s-7);
+      align-items: start;
+    }
+
+    /* ===== Sidebar ===== */
+    .pd-side { position: sticky; top: 24px; align-self: start; }
+    .pd-side__nav { display: grid; gap: var(--s-3); margin-bottom: var(--s-5); }
+    .pd-side__nav a {
+      font-size: var(--t-label); font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+      padding: 4px 0;
+    }
+    .pd-side__nav a.is-active {
+      text-decoration: underline; text-underline-offset: 4px;
+    }
+    .pd-side__nav a:hover { color: var(--rose-700); }
+
+    .pd-capacity {
+      border: 1px solid var(--rose-300);
+      border-radius: var(--radius);
+      padding: var(--s-4) var(--s-4) var(--s-3);
+      background: var(--snow);
+    }
+    .pd-capacity__top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: var(--s-2); margin-bottom: var(--s-3);
+    }
+    .pd-capacity__label {
+      font-size: var(--t-micro); font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--ink);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .pd-capacity__sub { font-size: var(--t-micro); color: var(--ink-muted); margin: 4px 0 0; }
+    .pd-capacity__price { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--ink); margin: 0; }
+    .pd-capacity__price + p { font-size: var(--t-micro); color: var(--ink-muted); margin: 2px 0 0; }
+    .pd-capacity .btn { white-space: nowrap; padding: 0 14px; min-height: 32px; font-size: var(--t-micro); }
+
+    /* ===== Main content ===== */
+    .pd-main h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(36px, 4.4vw, 56px);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin: 0 0 var(--s-5);
+      line-height: var(--lh-display);
+    }
+    .pd-section { margin-bottom: var(--s-7); }
+    .pd-section h2 {
+      font-size: var(--t-label); font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink);
+      margin: 0 0 var(--s-4);
+    }
+    .pd-sub h3 {
+      font-family: var(--sans); font-weight: 700;
+      font-size: var(--t-h4);
+      color: var(--rose-700);
+      margin: 0 0 var(--s-2);
+      text-transform: none; letter-spacing: 0;
+    }
+    .pd-sub { margin-bottom: var(--s-5); }
+    .pd-sub p { margin: 0 0 var(--s-2); color: var(--ink); font-size: var(--t-base); line-height: var(--lh-body); }
+    .pd-sub p strong { font-weight: 700; }
+    .pd-sub ul { margin: 0; padding-left: 20px; color: var(--ink); font-size: var(--t-base); }
+    .pd-sub ul li { margin-bottom: 4px; }
+    .pd-components {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2) var(--s-4);
+      list-style: disc; padding-left: 20px; margin: 0;
+    }
+    .pd-components li { font-size: var(--t-base); color: var(--ink); }
+    .pd-divider { border: 0; border-top: 1px solid var(--line); margin: var(--s-6) 0; }
+
+    /* ===== Instructors ===== */
+    .pd-instructors { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+    .pd-instructor__photo {
+      aspect-ratio: 4/5;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--rose-100);
+      background-size: cover; background-position: center top;
+      margin-bottom: var(--s-3);
+    }
+    .pd-instructor__photo { filter: saturate(.78) contrast(.96); }
+    .pd-instructor--courtney .pd-instructor__photo { background-image: url("once-upon-a-time-assets/portraits/patricia.png"); }
+    .pd-instructor--darrell  .pd-instructor__photo { background-image: url("once-upon-a-time-assets/portraits/mariah.png"); }
+    .pd-instructor h4 { font-size: var(--t-base); font-weight: 700; margin: 0 0 2px; }
+    .pd-instructor__role { color: var(--ink-muted); font-size: var(--t-label); margin: 0 0 var(--s-3); }
+    .pd-instructor__bio { font-size: var(--t-label); color: var(--ink); margin: 0; line-height: var(--lh-body); }
+
+    /* ===== Locations ===== */
+    .pd-locations { display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--s-5); align-items: start; }
+    .pd-location-list { display: grid; gap: var(--s-4); }
+    .pd-map {
+      aspect-ratio: 4/3;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 60% 50%, #fff 0 4px, transparent 5px),
+        linear-gradient(135deg, #f3eee7, #e8e0d2);
+      position: relative;
+      border: 1px solid var(--line);
+    }
+    .pd-map::after {
+      content: ""; position: absolute;
+      top: 50%; left: 60%; transform: translate(-50%, -100%);
+      width: 18px; height: 22px;
+      background: var(--rose);
+      clip-path: path("M9 0c5 0 9 4 9 9 0 6-9 13-9 13S0 15 0 9c0-5 4-9 9-9z");
+    }
+
+    /* ===== Still have questions ===== */
+    .pd-help {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s-5) var(--s-6);
+      display: grid; grid-template-columns: 1fr auto; gap: var(--s-4);
+      align-items: center;
+    }
+    .pd-help h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: var(--t-h3);
+      text-transform: uppercase;
+      margin: 0 0 6px;
+      letter-spacing: 0;
+    }
+    .pd-help p { margin: 0; color: var(--ink-muted); font-size: var(--t-label); }
+
+    /* ===== Alternatives band ===== */
+    .pd-alts {
+      background:
+        linear-gradient(rgba(107, 109, 32, .92), rgba(107, 109, 32, .96)),
+        url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
+      color: var(--snow);
+      padding: var(--s-9) 0;
+    }
+    .pd-alts h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 3.6vw, 44px);
+      text-transform: uppercase;
+      text-align: center; color: var(--snow);
+      margin: 0 0 var(--s-6);
+    }
+    .pd-alts__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+    .pd-alt {
+      background: var(--snow); color: var(--ink);
+      border-radius: var(--radius);
+      padding: var(--s-5);
+    }
+    .pd-alt h3 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: var(--t-h3);
+      margin: 0 0 var(--s-3);
+    }
+    .pd-alt p { font-size: var(--t-label); color: var(--ink-muted); margin: 0 0 var(--s-4); line-height: var(--lh-body); }
+
+    @media (max-width: 900px) {
+      .pd-body__grid { grid-template-columns: 1fr; }
+      .pd-side { position: static; }
+      .pd-instructors, .pd-locations, .pd-alts__grid, .pd-components { grid-template-columns: 1fr; }
+      .pd-help { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand" aria-label="Once Upon A Time, home">
+        <img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time">
+      </a>
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="about.html">About Us</a>
+        <a href="index.html#programs" aria-current="page">Programs</a>
+        <a href="donate.html">Donation</a>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Cart, 0 items">
+          <i class="ph ph-shopping-cart" aria-hidden="true"></i>
+          <span class="badge" aria-hidden="true">0</span>
+        </button>
+        <button class="icon-btn" type="button" aria-label="Notifications">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+        </button>
+        <a href="profile.html" class="avatar" aria-label="Account">JK</a>
+        <button class="btn btn--sm" type="button" data-open-signin>Sign-in</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="pd-hero" role="img" aria-label="Students dancing in a seasonal camp performance"></section>
+
+    <!-- ============ BODY ============ -->
+    <section class="pd-body">
+      <div class="wrap pd-body__grid">
+
+        <!-- Sidebar -->
+        <aside class="pd-side" aria-label="Page sections">
+          <nav class="pd-side__nav">
+            <a href="#program-info" class="is-active">Program Info</a>
+            <a href="#instructors">Instructors</a>
+            <a href="#class-location">Class Location</a>
+            <a href="#faqs">FAQs</a>
+          </nav>
+
+          <div class="pd-capacity">
+            <div class="pd-capacity__top">
+              <div>
+                <span class="pd-capacity__label"><i class="ph ph-info"></i> Class Capacity</span>
+                <p class="pd-capacity__sub">5 of 10 slots available</p>
+              </div>
+              <a class="btn" href="#register">Register now! <i class="ph ph-arrow-right"></i></a>
+            </div>
+            <div class="pd-capacity__price">$50.00</div>
+            <p>Down payment required</p>
+          </div>
+        </aside>
+
+        <!-- Main content -->
+        <article class="pd-main">
+          <h1>Seasonal&nbsp;Camps</h1>
+
+          <!-- PROGRAM INFO -->
+          <section class="pd-section" id="program-info" aria-labelledby="program-info-title">
+            <h2 id="program-info-title">Program Info</h2>
+
+            <div class="pd-sub">
+              <h3>Overview</h3>
+              <p>Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum sit nunc in eros scelerisque sed. Commodo in viverra nunc, ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis, pulvinar. Fermentum scelerisque sit consectetur hac mi. Mollis leo eleifend ultricies purus iaculis.</p>
+            </div>
+
+            <div class="pd-sub">
+              <h3>Class Schedule</h3>
+              <p>Program Dates: <strong>Aug 5 &ndash; Dec 7, 2025</strong></p>
+              <p>MON &middot; WED &middot; FRI (5PM &ndash; 7PM)</p>
+              <p>Public Holiday: <strong>Holiday 1, Holiday 2, Holiday 3</strong></p>
+            </div>
+
+            <div class="pd-sub">
+              <h3>Eligibility</h3>
+              <ul>
+                <li>Ages 8&ndash;15</li>
+                <li>2-months commitment</li>
+              </ul>
+            </div>
+
+            <div class="pd-sub">
+              <h3>Program Components</h3>
+              <ul class="pd-components">
+                <li>Dance</li>
+                <li>Gardening</li>
+                <li>Lorem</li>
+                <li>Visual Art</li>
+                <li>Cooking</li>
+                <li>Ipsum</li>
+              </ul>
+            </div>
+          </section>
+
+          <hr class="pd-divider">
+
+          <!-- INSTRUCTORS -->
+          <section class="pd-section" id="instructors" aria-labelledby="instructors-title">
+            <h2 id="instructors-title">Instructors</h2>
+            <div class="pd-instructors">
+              <article class="pd-instructor pd-instructor--courtney">
+                <div class="pd-instructor__photo" role="img" aria-label="Portrait of Courtney Henry"></div>
+                <h4>Courtney Henry</h4>
+                <p class="pd-instructor__role">Dance Instructor</p>
+                <p class="pd-instructor__bio">Lorem ipsum dolor sit amet consectetur. Mollis parturient metus lectus diam integer diam dolor habitant. Mi sapien posuere pretium orci.</p>
+              </article>
+              <article class="pd-instructor pd-instructor--darrell">
+                <div class="pd-instructor__photo" role="img" aria-label="Portrait of Darrell Steward"></div>
+                <h4>Darrell Steward</h4>
+                <p class="pd-instructor__role">Music Instructor</p>
+                <p class="pd-instructor__bio">Lorem ipsum dolor sit amet consectetur. Mollis parturient metus lectus diam integer diam dolor habitant. Mi sapien posuere pretium orci.</p>
+              </article>
+            </div>
+          </section>
+
+          <hr class="pd-divider">
+
+          <!-- CLASS LOCATIONS -->
+          <section class="pd-section" id="class-location" aria-labelledby="locations-title">
+            <h2 id="locations-title">Class Locations</h2>
+            <div class="pd-locations">
+              <div class="pd-location-list">
+                <div class="pd-sub">
+                  <h3>Drop-Off &amp; Pickup</h3>
+                  <p>Drop off and pickup can get busy &mdash; we recommend arriving early. If needed, one of us can help with picking up your child. Just let us know.</p>
+                </div>
+                <div class="pd-sub">
+                  <h3>Address</h3>
+                  <p>158-40 76th Rd, Fresh Meadows, NY 11366, United States</p>
+                </div>
+                <div class="pd-sub">
+                  <h3>Contact</h3>
+                  <p>+1 718-380-6929</p>
+                </div>
+              </div>
+              <div class="pd-map" role="img" aria-label="Map showing class location in Fresh Meadows, NY"></div>
+            </div>
+          </section>
+
+          <hr class="pd-divider">
+
+          <!-- FAQs -->
+          <section class="pd-section" id="faqs" aria-labelledby="faqs-title">
+            <h2 id="faqs-title">FAQs</h2>
+            <details class="pd-sub">
+              <summary><strong>What should my child bring to camp?</strong></summary>
+              <p>Comfortable clothing, a refillable water bottle, and a packed snack. We provide all program materials.</p>
+            </details>
+            <details class="pd-sub">
+              <summary><strong>Are scholarships available?</strong></summary>
+              <p>Yes &mdash; partial and full scholarships are awarded on a rolling basis. Email <a href="mailto:contact@onceuponatime.org">contact@onceuponatime.org</a> for the application.</p>
+            </details>
+            <details class="pd-sub">
+              <summary><strong>Can I drop in for a single session?</strong></summary>
+              <p>Our seasonal camps require a 2-month commitment so students can build through the full arc, but private sessions are available for short-term enrollment.</p>
+            </details>
+          </section>
+
+          <!-- Still have questions -->
+          <div class="pd-help">
+            <div>
+              <h2>Still Have Questions?</h2>
+              <p>Please write to our friendly support team or call us at <strong>+1 123-456-789</strong>.</p>
+            </div>
+            <a class="btn btn--outline" href="contact.html">Send Email</a>
+          </div>
+
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ ALTERNATIVES ============ -->
+    <section class="pd-alts" aria-labelledby="alts-title">
+      <div class="wrap">
+        <h2 id="alts-title">Not what you&rsquo;re looking for?</h2>
+        <div class="pd-alts__grid">
+          <article class="pd-alt">
+            <h3>Private Sessions</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue eget ligula vel egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut consequat velit non pellentesque venenatis.</p>
+            <a class="btn btn--outline btn--sm" href="index.html#programs">View Details</a>
+          </article>
+          <article class="pd-alt">
+            <h3>Choose Your Own Adventure</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue eget ligula vel egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut consequat velit non pellentesque venenatis.</p>
+            <a class="btn btn--outline btn--sm" href="contact.html">View Details</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block">
+          <div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></div>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#programs">Programs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="donate.html">Support Us</a></li>
+          </ul>
+        </div>
+        <div class="footer__address-block">
+          <div class="footer__address">
+            87-61 111th St, Richmond Hill<br>
+            NY 11418, United States
+          </div>
+          <div class="footer__socials">
+            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        Once Upon A Time Inc. &copy; 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Active section tracking on the sidebar
+    (function () {
+      const links = document.querySelectorAll('.pd-side__nav a');
+      const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+      if (!sections.length) return;
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            links.forEach(l => l.classList.toggle('is-active', l.getAttribute('href') === '#' + e.target.id));
+          }
+        });
+      }, { rootMargin: '-30% 0px -55% 0px', threshold: 0 });
+      sections.forEach(s => obs.observe(s));
+    })();
+  </script>
+</body>
+</html>
