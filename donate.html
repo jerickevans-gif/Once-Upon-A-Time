@@ -470,9 +470,22 @@
       margin-top: auto;
       padding-top: 12px;
       border-top: 1px solid var(--line);
+      display: flex; align-items: center; gap: 12px;
     }
-    .quote__person strong { display: block; font-weight: 600; }
-    .quote__person small { color: var(--ink-2); font-size: 12px; }
+    .quote__avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background-size: cover; background-position: center top;
+      background-color: var(--rose-100);
+      flex: 0 0 auto;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,.12);
+    }
+    .quote--maria  .quote__avatar { background-image: url("once-upon-a-time-assets/portraits/patricia.png"); }
+    .quote--james  .quote__avatar { background-image: url("once-upon-a-time-assets/portraits/josh.png"); }
+    .quote--sarah  .quote__avatar { background-image: url("once-upon-a-time-assets/portraits/faith.png"); }
+    .quote__name { display: flex; flex-direction: column; }
+    .quote__name strong { display: block; font-weight: 600; font-size: 14px; }
+    .quote__name small { color: var(--ink-2); font-size: 12px; }
 
     /* ---------- Questions ---------- */
     .questions {
@@ -787,30 +800,39 @@
         <p class="section-lede">Hear from the communities we serve and the donors who make it possible.</p>
 
         <div class="stories__grid">
-          <figure class="quote">
-            <div class="quote__mark" aria-hidden="true">“</div>
-            <blockquote><p>Seeing the quarterly impact reports and knowing exactly how my donations are used gives me confidence that I'm making a real difference.</p></blockquote>
+          <figure class="quote quote--maria">
+            <div class="quote__mark" aria-hidden="true">&ldquo;</div>
+            <blockquote><p>Seeing the quarterly impact reports and knowing exactly how my donations are used gives me confidence that I&rsquo;m making a real difference.</p></blockquote>
             <figcaption class="quote__person">
-              <strong>Maria Rodriguez</strong>
-              <small>Community Leader, Guatemala</small>
+              <span class="quote__avatar" role="img" aria-label="Portrait of Maria Rodriguez"></span>
+              <span class="quote__name">
+                <strong>Maria Rodriguez</strong>
+                <small>Community Leader, Guatemala</small>
+              </span>
             </figcaption>
           </figure>
 
-          <figure class="quote">
-            <div class="quote__mark" aria-hidden="true">“</div>
+          <figure class="quote quote--james">
+            <div class="quote__mark" aria-hidden="true">&ldquo;</div>
             <blockquote><p>The medical supplies and training provided have allowed us to save countless lives. The impact on our community has been extraordinary.</p></blockquote>
             <figcaption class="quote__person">
-              <strong>Dr. James Chen</strong>
-              <small>Local Health Provider</small>
+              <span class="quote__avatar" role="img" aria-label="Portrait of Dr. James Chen"></span>
+              <span class="quote__name">
+                <strong>Dr. James Chen</strong>
+                <small>Local Health Provider</small>
+              </span>
             </figcaption>
           </figure>
 
-          <figure class="quote">
-            <div class="quote__mark" aria-hidden="true">“</div>
-            <blockquote><p>Seeing the quarterly impact reports and knowing exactly how my donations are used gives me confidence that I'm making a real difference.</p></blockquote>
+          <figure class="quote quote--sarah">
+            <div class="quote__mark" aria-hidden="true">&ldquo;</div>
+            <blockquote><p>Seeing the quarterly impact reports and knowing exactly how my donations are used gives me confidence that I&rsquo;m making a real difference.</p></blockquote>
             <figcaption class="quote__person">
-              <strong>Sarah Thompson</strong>
-              <small>Monthly Donor</small>
+              <span class="quote__avatar" role="img" aria-label="Portrait of Sarah Thompson"></span>
+              <span class="quote__name">
+                <strong>Sarah Thompson</strong>
+                <small>Monthly Donor</small>
+              </span>
             </figcaption>
           </figure>
         </div>
