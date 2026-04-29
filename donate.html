@@ -488,45 +488,6 @@
     }
     .questions p { margin: 0; color: var(--ink-2); font-size: 14px; }
 
-    /* ---------- Footer ---------- */
-    .site-footer {
-      background: var(--accent-2);
-      color: #f4e6d3;
-      padding: 56px 0 28px;
-    }
-    .footer__grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr 1.5fr;
-      gap: 40px;
-      align-items: start;
-    }
-    .footer-brand { line-height: 0; }
-    .footer-brand img { height: 56px; width: auto; display: block; filter: brightness(0) invert(1) sepia(.15) saturate(180%) hue-rotate(330deg) brightness(1.05); opacity: .92; }
-    .footer h4 {
-      font-family: var(--serif); font-weight: 600;
-      font-size: 16px; margin: 0 0 14px; text-transform: capitalize;
-    }
-    .footer ul { list-style: none; padding: 0; margin: 0; }
-    .footer li { margin-bottom: 10px; }
-    .footer a { text-decoration: none; opacity: .85; font-size: 14px; }
-    .footer a:hover { opacity: 1; text-decoration: underline; }
-    .footer__address { font-size: 14px; line-height: 1.6; opacity: .85; }
-    .footer__socials { display: flex; gap: 8px; margin-top: 14px; }
-    .footer__socials a {
-      width: var(--tap); height: var(--tap);
-      display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 50%; background: rgba(255,255,255,.08);
-      transition: background .15s ease;
-    }
-    .footer__socials a:hover { background: rgba(255,255,255,.18); }
-    .footer__legal {
-      border-top: 1px solid rgba(255,255,255,.15);
-      margin-top: 36px; padding-top: 18px;
-      display: flex; justify-content: space-between; gap: 16px;
-      font-size: 12px; opacity: .7;
-      flex-wrap: wrap;
-    }
-
     /* ---------- Responsive ---------- */
     /* Tablet */
     @media (max-width: 1024px) {
@@ -534,8 +495,6 @@
       .hero__grid { grid-template-columns: 1fr; }
       .hero__image { min-height: 260px; }
       .donation__grid { grid-template-columns: 1fr; }
-      .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
-      .footer__grid > .footer__address-block { grid-column: 1 / -1; }
     }
     /* Mobile */
     @media (max-width: 720px) {
@@ -859,42 +818,43 @@
   </main>
 
   <!-- ============ FOOTER ============ -->
-  <footer class="site-footer footer" role="contentinfo">
-    <div class="wrap footer__grid">
-      <div class="footer__brand-block">
-        <div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></div>
-      </div>
-      <div>
-        <h4>About</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="#programs">Programs</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Get Involved</h4>
-        <ul>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#support">Support Us</a></li>
-        </ul>
-      </div>
-      <div class="footer__address-block">
-        <p class="footer__address">
-          87-61 111th St, Richmond Hill<br>
-          NY 11418, United States
-        </p>
-        <div class="footer__socials" aria-label="Social media">
-          <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
-          <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
-          <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
-          <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
-          <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block">
+          <div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></div>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#programs">Programs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Get Involved</h4>
+          <ul>
+            <li><a href="index.html#events">Events</a></li>
+            <li><a href="donate.html">Support Us</a></li>
+          </ul>
+        </div>
+        <div class="footer__address-block">
+          <div class="footer__address">
+            87-61 111th St, Richmond Hill<br>
+            NY 11418, United States
+          </div>
+          <div class="footer__socials">
+            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="wrap footer__legal">
-      <span>Once Upon A Time Inc. © 2026. All rights reserved.</span>
-      <span>Nonprofit legal disclaimer and tax ID.</span>
+      <div class="site-footer__bottom">
+        Once Upon A Time Inc. &copy; 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.
+      </div>
     </div>
   </footer>
 
