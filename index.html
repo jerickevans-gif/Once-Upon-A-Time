@@ -175,45 +175,61 @@
       color: var(--snow);
       padding: var(--s-9) 0;
     }
-    .donor h2 { color: var(--snow); margin-bottom: var(--s-3); text-align: center; }
-    .donor__lede { color: rgba(255,255,255,.85); max-width: 70ch; margin: 0 auto var(--s-7); text-align: center; font-size: var(--t-base); }
+    .donor h2 {
+      color: var(--snow); margin-bottom: var(--s-4); text-align: center;
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(36px, 4.4vw, 56px);
+      text-transform: uppercase; letter-spacing: .04em;
+    }
+    .donor__lede {
+      color: rgba(255,255,255,.92); max-width: 78ch; margin: 0 auto var(--s-7);
+      text-align: center; font-size: var(--t-lg); line-height: var(--lh-body);
+    }
     .donor__stats {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4);
-      margin-bottom: var(--s-7);
+      margin-bottom: var(--s-8);
     }
     .donor__stat {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,.32);
+      background: var(--beginning);
       border-radius: var(--radius);
-      padding: var(--s-5);
-      text-align: center;
+      padding: var(--s-4) var(--s-5);
+      text-align: left;
     }
-    .donor__stat strong { font-family: var(--serif); font-size: 40px; display: block; line-height: 1; margin-bottom: 6px; color: var(--snow); }
-    .donor__stat span { font-size: var(--t-label); opacity: .82; }
+    .donor__stat strong {
+      font-family: var(--sans); font-weight: 700;
+      font-size: 28px; display: block; line-height: 1.1;
+      margin-bottom: 4px; color: var(--ink);
+    }
+    .donor__stat span { font-size: var(--t-label); color: var(--ink-muted); }
 
-    /* Testimonials (inside donor band, light pill cards) */
-    .donor__testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+    /* Testimonials (inside donor band, no card bg, avatar-left text-right) */
+    .donor__testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); align-items: start; }
     .testimonial {
-      background: var(--rose-100);
-      color: var(--ink);
-      border-radius: var(--radius);
-      padding: var(--s-4) var(--s-4) var(--s-4) 96px;
-      position: relative;
-      min-height: 96px;
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: var(--s-4);
+      align-items: start;
+      margin: 0;
     }
     .testimonial__avatar {
-      position: absolute; top: var(--s-3); left: var(--s-3);
-      width: 64px; height: 64px; border-radius: 50%;
+      width: 96px; height: 96px; border-radius: 50%;
       background: var(--blush);
       background-size: cover; background-position: center top;
-      border: 2px solid var(--snow);
-      box-shadow: 0 2px 8px rgba(0,0,0,.18);
+      box-shadow: 0 2px 12px rgba(0,0,0,.22);
     }
     .testimonial--jimin   .testimonial__avatar { background-image: url("once-upon-a-time-assets/portraits/jane.png"); }
     .testimonial--mary    .testimonial__avatar { background-image: url("once-upon-a-time-assets/portraits/mary.png"); }
     .testimonial--noelle  .testimonial__avatar { background-image: url("once-upon-a-time-assets/portraits/natalie.png"); }
-    .testimonial p { color: var(--ink); font-size: var(--t-label); margin: 0 0 var(--s-2); line-height: var(--lh-body); }
-    .testimonial cite { font-style: normal; font-weight: 700; font-size: var(--t-label); color: var(--rose-700); }
+    .testimonial p {
+      color: var(--snow); font-size: var(--t-label);
+      line-height: var(--lh-body); margin: 0 0 var(--s-3);
+    }
+    .testimonial cite {
+      font-style: normal; font-weight: 700;
+      font-size: var(--t-base); color: var(--snow);
+      display: block;
+    }
+    /* Alternate avatar position: 1st left of text, 2nd left of text, 3rd left of text — match PDF flow */
     @media (max-width: 900px) {
       .donor__stats, .donor__testimonials { grid-template-columns: 1fr; }
     }
