@@ -167,47 +167,56 @@
     .program-card__age { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-label); color: var(--ink-muted); }
     @media (max-width: 720px) { .programs__grid { grid-template-columns: 1fr; } }
 
-    /* ===== Donor Spotlight ===== */
+    /* ===== Donor Spotlight (single continuous band) ===== */
     .donor {
       background:
-        linear-gradient(rgba(139,80,68,.78), rgba(139,80,68,.85)),
+        linear-gradient(rgba(139,80,68,.82), rgba(139,80,68,.88)),
         url("once-upon-a-time-assets/landing/donor-bg.jpg") center/cover no-repeat;
       color: var(--snow);
       padding: var(--s-9) 0;
     }
-    .donor h2 { color: var(--snow); margin-bottom: var(--s-3); }
+    .donor h2 { color: var(--snow); margin-bottom: var(--s-3); text-align: center; }
     .donor__lede { color: rgba(255,255,255,.85); max-width: 70ch; margin: 0 auto var(--s-7); text-align: center; font-size: var(--t-base); }
-    .donor__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+    .donor__stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4);
+      margin-bottom: var(--s-7);
+    }
     .donor__stat {
-      background: rgba(255,255,255,.08);
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.32);
       border-radius: var(--radius);
       padding: var(--s-5);
+      text-align: center;
     }
-    .donor__stat strong { font-family: var(--serif); font-size: 40px; display: block; line-height: 1; margin-bottom: 6px; }
+    .donor__stat strong { font-family: var(--serif); font-size: 40px; display: block; line-height: 1; margin-bottom: 6px; color: var(--snow); }
     .donor__stat span { font-size: var(--t-label); opacity: .82; }
 
-    /* ===== Testimonials ===== */
-    .testimonials {
-      background: var(--rose);
-      color: var(--snow);
-      padding: var(--s-8) 0;
+    /* Testimonials (inside donor band, light pill cards) */
+    .donor__testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4); }
+    .testimonial {
+      background: var(--rose-100);
+      color: var(--ink);
+      border-radius: var(--radius);
+      padding: var(--s-4) var(--s-4) var(--s-4) 96px;
+      position: relative;
+      min-height: 96px;
     }
-    .testimonials__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); }
-    .testimonial { display: grid; grid-template-columns: 80px 1fr; gap: var(--s-4); align-items: start; }
     .testimonial__avatar {
-      width: 80px; height: 80px; border-radius: 50%;
+      position: absolute; top: var(--s-3); left: var(--s-3);
+      width: 64px; height: 64px; border-radius: 50%;
       background: var(--blush);
       background-size: cover; background-position: center top;
-      display: grid; place-items: center;
-      font-family: var(--serif); font-size: 28px; color: var(--rose-700);
-      border: 3px solid var(--snow);
+      border: 2px solid var(--snow);
+      box-shadow: 0 2px 8px rgba(0,0,0,.18);
     }
     .testimonial--jimin   .testimonial__avatar { background-image: url("once-upon-a-time-assets/portraits/jane.png"); }
     .testimonial--mary    .testimonial__avatar { background-image: url("once-upon-a-time-assets/portraits/mary.png"); }
     .testimonial--noelle  .testimonial__avatar { background-image: url("once-upon-a-time-assets/portraits/natalie.png"); }
-    .testimonial p { color: rgba(255,255,255,.9); font-size: var(--t-label); margin: 0 0 var(--s-3); }
-    .testimonial cite { font-style: normal; font-weight: 700; font-size: var(--t-base); color: var(--snow); }
-    @media (max-width: 900px) { .testimonials__grid, .donor__stats { grid-template-columns: 1fr; } }
+    .testimonial p { color: var(--ink); font-size: var(--t-label); margin: 0 0 var(--s-2); line-height: var(--lh-body); }
+    .testimonial cite { font-style: normal; font-weight: 700; font-size: var(--t-label); color: var(--rose-700); }
+    @media (max-width: 900px) {
+      .donor__stats, .donor__testimonials { grid-template-columns: 1fr; }
+    }
 
     /* ===== Support Our Mission ===== */
     .mission { padding: var(--s-9) 0; }
@@ -423,40 +432,28 @@
     <!-- ============ DONOR SPOTLIGHT ============ -->
     <section class="donor">
       <div class="wrap">
-        <h2 style="text-align:center;">Donor&nbsp;Spotlight</h2>
+        <h2>Donor&nbsp;Spotlight</h2>
         <p class="donor__lede">Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum sit nunc in eros scelerisque sed. Commodo in viverra nunc, ullamcorper ut. Non, amet, aliquet scelerisque nullam sagittis, pulvinar. Fermentum scelerisque sit consectetur hac mi. Mollis leo eleifend ultricies purus iaculis.</p>
         <div class="donor__stats">
           <div class="donor__stat"><strong>100+</strong><span>Students served each year</span></div>
           <div class="donor__stat"><strong>100+</strong><span>Students served each year</span></div>
           <div class="donor__stat"><strong>100+</strong><span>Students served each year</span></div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ TESTIMONIALS ============ -->
-    <section class="testimonials">
-      <div class="wrap">
-        <div class="testimonials__grid">
+        <div class="donor__testimonials">
           <figure class="testimonial testimonial--jimin">
             <div class="testimonial__avatar" role="img" aria-label="Portrait of Jimin"></div>
-            <div>
-              <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&rdquo;</p>
-              <cite>Jimin, 17</cite>
-            </div>
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&rdquo;</p>
+            <cite>Jimin, 17</cite>
           </figure>
           <figure class="testimonial testimonial--mary">
             <div class="testimonial__avatar" role="img" aria-label="Portrait of Mary"></div>
-            <div>
-              <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&rdquo;</p>
-              <cite>Mary, 19</cite>
-            </div>
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&rdquo;</p>
+            <cite>Mary, 19</cite>
           </figure>
           <figure class="testimonial testimonial--noelle">
             <div class="testimonial__avatar" role="img" aria-label="Portrait of Noelle"></div>
-            <div>
-              <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&rdquo;</p>
-              <cite>Noelle, 18</cite>
-            </div>
+            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&rdquo;</p>
+            <cite>Noelle, 18</cite>
           </figure>
         </div>
       </div>
