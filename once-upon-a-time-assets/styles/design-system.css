@@ -280,7 +280,7 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 .primary-nav a:hover { color: var(--rose); }
 .primary-nav a[aria-current="page"] { border-bottom-color: var(--rose); color: var(--rose); }
 .header-actions { display: flex; align-items: center; gap: var(--s-3); }
-.icon-btn { display: inline-flex; align-items: center; gap: 8px; height: var(--tap); padding: 0 6px; background: transparent; border: 0; border-radius: var(--radius-pill); position: relative; color: var(--ink); font-size: var(--t-label); font-weight: 500; cursor: pointer; transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease); }
+.icon-btn { display: inline-flex; align-items: center; gap: 8px; min-width: var(--tap); height: var(--tap); padding: 0 6px; background: transparent; border: 0; border-radius: var(--radius-pill); position: relative; color: var(--ink); font-size: var(--t-label); font-weight: 500; cursor: pointer; transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease); }
 .icon-btn:hover { background: rgba(38,36,34,.06); }
 .icon-btn:active { background: rgba(38,36,34,.12); }
 .icon-btn .ph { font-size: 22px; flex: 0 0 auto; }
@@ -293,7 +293,9 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 .btn--signin:hover { background: #2f1d29; color: #fff; }
 .btn--signin:active { background: #20131a; transform: translateY(1px); }
 
-.nav-toggle { display: none; }
+.nav-toggle { display: none; width: var(--tap); height: var(--tap); border-radius: 50%; background: transparent; border: 0; align-items: center; justify-content: center; color: var(--ink); cursor: pointer; flex: 0 0 auto; }
+.nav-toggle:hover { background: rgba(38,36,34,.06); }
+.nav-toggle .ph { font-size: 22px; }
 
 /* ---------- Header responsive ---------- */
 @media (max-width: 1024px) {
@@ -302,15 +304,15 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
   .primary-nav a { font-size: var(--t-label); }
 }
 @media (max-width: 900px) {
-  .site-header__inner { gap: var(--s-3); padding: var(--s-2) 0; min-height: 64px; flex-wrap: wrap; }
-  .brand img { height: 36px; }
-  .nav-toggle { display: inline-flex; width: var(--tap); height: var(--tap); border-radius: 50%; background: transparent; border: 0; align-items: center; justify-content: center; color: var(--ink); cursor: pointer; }
-  .nav-toggle:hover { background: rgba(38,36,34,.06); }
-  .nav-toggle .ph { font-size: 22px; }
+  .wrap { width: min(1200px, 100% - 24px); }
+  .site-header__inner { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding: var(--s-2) 0; min-height: 64px; }
+  .brand img { height: 32px; }
+  .brand { flex: 0 0 auto; }
+  .nav-toggle { display: inline-flex; order: 4; }
   .primary-nav {
-    order: 99; flex-basis: 100%;
+    order: 99; flex-basis: 100%; width: 100%;
     flex-direction: column; gap: var(--s-2); margin-inline: 0;
-    padding: var(--s-3) 0;
+    padding: 0;
     border-top: 1px solid var(--line);
     max-height: 0; overflow: hidden;
     transition: max-height var(--dur-2) var(--ease), padding var(--dur-2) var(--ease);
@@ -318,13 +320,17 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
   }
   .primary-nav[data-open="true"] { max-height: 480px; padding: var(--s-3) 0 var(--s-4); }
   .primary-nav a { width: 100%; padding: var(--s-2) 0; }
-  .header-actions { margin-left: auto; gap: var(--s-2); }
-  .btn--signin { padding: 0 14px; font-size: var(--t-label); }
+  .header-actions { margin-left: auto; gap: 4px; flex: 0 0 auto; order: 3; }
+  .header-actions .icon-btn { width: var(--tap); padding: 0; justify-content: center; }
+  .header-actions .icon-btn--icon-only:not(.nav-toggle) { display: none; }
+  .btn--signin { padding: 0 12px; font-size: var(--t-label); min-height: 36px; }
 }
 @media (max-width: 540px) {
-  .header-actions .icon-btn--icon-only:not(.nav-toggle) { display: none; }
+  .btn--signin { display: none; }
   .promo-bar { font-size: var(--t-micro); }
-  .promo-bar__inner { gap: var(--s-2); }
+  .promo-bar__inner { gap: var(--s-2); flex-wrap: nowrap; overflow: hidden; }
+  .header-actions { gap: 0; }
+  .brand img { height: 28px; }
 }
 
 /* ---------- Footer ---------- */
