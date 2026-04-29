@@ -195,13 +195,24 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
+  <!-- ============ PROMO BAR ============ -->
+  <div class="promo-bar" role="region" aria-label="Announcement">
+    <div class="wrap promo-bar__inner">
+      <span><strong>Happening Now:</strong> Jazz Dancing (16+) &middot; Instructor: Mia Kim</span>
+      <span>Next class: Intermediate Ballet (10+) <button class="promo-bar__close" type="button" aria-label="Dismiss">&times;</button></span>
+    </div>
+  </div>
+
   <!-- ============ HEADER ============ -->
   <header class="site-header" role="banner">
     <div class="wrap site-header__inner">
       <a href="index.html" class="brand" aria-label="Once Upon A Time, home">
         <img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time">
       </a>
-      <nav class="primary-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation menu">
+        <i class="ph ph-list" aria-hidden="true"></i>
+      </button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
         <a href="about.html">About Us</a>
         <a href="index.html#programs" aria-current="page">Programs</a>
         <a href="donate.html">Donation</a>
@@ -209,15 +220,19 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-btn" type="button" aria-label="Cart, 0 items">
-          <i class="ph ph-shopping-cart" aria-hidden="true"></i>
-          <span class="badge" aria-hidden="true">0</span>
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items">
+          <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
+          <span>Cart</span>
+          <span class="badge" aria-hidden="true">9</span>
         </button>
-        <button class="icon-btn" type="button" aria-label="Notifications">
-          <i class="ph ph-bell" aria-hidden="true"></i>
+        <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings">
+          <i class="ph ph-gear" aria-hidden="true"></i>
         </button>
-        <a href="profile.html" class="avatar" aria-label="Account">JK</a>
-        <button class="btn btn--sm" type="button" data-open-signin>Sign-in</button>
+        <a href="profile.html" class="avatar" aria-label="Account, 9 notifications">
+          <i class="ph ph-user" aria-hidden="true"></i>
+          <span class="badge" aria-hidden="true">9</span>
+        </a>
+        <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
       </div>
     </div>
   </header>
@@ -449,5 +464,19 @@
       sections.forEach(s => obs.observe(s));
     })();
   </script>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('primary-nav');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', () => {
+        const open = nav.dataset.open === 'true';
+        nav.dataset.open = open ? 'false' : 'true';
+        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+    })();
+  </script>
+
 </body>
 </html>

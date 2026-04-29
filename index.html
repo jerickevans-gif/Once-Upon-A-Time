@@ -13,14 +13,6 @@
   <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
 
   <style>
-    /* ===== Promo bar ===== */
-    .promo-bar {
-      background: var(--rose-100); color: var(--rose-700);
-      font-size: var(--t-label); padding: 8px 0;
-    }
-    .promo-bar__inner { display: flex; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; }
-    .promo-bar__close { background: transparent; border: 0; color: var(--rose-700); cursor: pointer; padding: 0 4px; }
-
     /* ===== Hero ===== */
     .hero { background: var(--rose-100); padding: var(--s-6) 0 var(--s-7); }
     .hero__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: var(--s-6); align-items: center; }
@@ -248,7 +240,10 @@
       <a href="index.html" class="brand" aria-label="Once Upon A Time, home">
         <img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time">
       </a>
-      <nav class="primary-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation menu">
+        <i class="ph ph-list" aria-hidden="true"></i>
+      </button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
         <a href="about.html">About Us</a>
         <a href="#programs" aria-current="page">Programs</a>
         <a href="donate.html">Donation</a>
@@ -256,15 +251,19 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-btn" type="button" aria-label="Cart, 0 items">
-          <i class="ph ph-shopping-cart" aria-hidden="true"></i>
-          <span class="badge" aria-hidden="true">0</span>
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items">
+          <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
+          <span>Cart</span>
+          <span class="badge" aria-hidden="true">9</span>
         </button>
-        <button class="icon-btn" type="button" aria-label="Notifications">
-          <i class="ph ph-bell" aria-hidden="true"></i>
+        <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings">
+          <i class="ph ph-gear" aria-hidden="true"></i>
         </button>
-        <span class="avatar" aria-hidden="true">JK</span>
-        <button class="btn btn--sm" type="button" data-open-signin>Sign-in</button>
+        <a href="profile.html" class="avatar" aria-label="Account, 9 notifications">
+          <i class="ph ph-user" aria-hidden="true"></i>
+          <span class="badge" aria-hidden="true">9</span>
+        </a>
+        <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
       </div>
     </div>
   </header>
@@ -520,6 +519,20 @@
       </div>
     </div>
   </footer>
+
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('primary-nav');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', () => {
+        const open = nav.dataset.open === 'true';
+        nav.dataset.open = open ? 'false' : 'true';
+        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+    })();
+  </script>
 
 </body>
 </html>

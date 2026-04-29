@@ -42,23 +42,32 @@
     }
     .nl-tabs a.is-active { border-bottom-color: var(--rose); color: var(--rose-700); }
     .nl-tabs a:hover { color: var(--rose); }
-    .nl-tools { display: flex; align-items: center; gap: var(--s-3); }
-    .nl-sort {
+    .nl-tools { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
+    .nl-search {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: var(--t-label); color: var(--ink);
-      padding: 6px 12px; border: 1px solid var(--line); border-radius: var(--radius-pill);
-      background: var(--snow);
+      background: var(--snow); border: 1px solid var(--line);
+      border-radius: var(--radius-pill);
+      padding: 4px 10px 4px 14px; min-width: 220px;
     }
-    .nl-date {
-      display: inline-flex; align-items: center; gap: 6px;
+    .nl-search .ph { color: var(--ink-muted); font-size: 14px; }
+    .nl-search input {
+      border: 0; background: transparent; outline: 0;
       font-size: var(--t-label); color: var(--ink);
-      padding: 6px 12px; border: 1px solid var(--line); border-radius: var(--radius-pill);
-      background: var(--snow);
+      flex: 1; padding: 6px 0; min-width: 0;
     }
+    .nl-search input::placeholder { color: var(--ink-muted); }
+    .nl-add {
+      width: 32px; height: 32px; border: 0;
+      background: var(--rose); color: var(--snow);
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .nl-add:hover { background: var(--rose-700); }
     .nl-views { display: inline-flex; gap: 4px; }
     .nl-views button {
       width: 32px; height: 32px; border: 1px solid var(--line);
-      background: var(--snow); border-radius: var(--radius);
+      background: var(--snow); border-radius: var(--radius-sm, 8px);
       display: inline-flex; align-items: center; justify-content: center;
       cursor: pointer; color: var(--ink-muted);
     }
@@ -67,7 +76,7 @@
     /* ===== Eyebrow row ===== */
     .nl-eyebrow {
       display: flex; align-items: center; gap: var(--s-3);
-      margin-bottom: var(--s-4);
+      margin-bottom: var(--s-4); flex-wrap: wrap;
     }
     .nl-eyebrow .eyebrow { margin: 0; }
     .nl-tag {
@@ -76,6 +85,23 @@
       color: var(--ink); font-size: var(--t-micro);
       padding: 2px 10px; border-radius: var(--radius-pill);
       font-weight: 600;
+    }
+    .nl-chips { display: inline-flex; gap: 6px; margin-left: auto; }
+    .nl-chip {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: var(--snow);
+    }
+    .nl-chip--rose { background: var(--rose); }
+    .nl-chip--garden { background: var(--garden); }
+    .nl-chip--blush { background: var(--blush); color: var(--rose-700); }
+    .nl-chip--pillar { background: var(--pillar); }
+    .nl-chip--sky { background: var(--sky); color: var(--ink); }
+    .nl-chip--snow { background: var(--snow); border: 1px solid var(--line); color: var(--ink); }
+    .nl-feature__date {
+      font-family: var(--serif); font-size: var(--t-h4);
+      font-weight: 400; color: var(--rose-700);
+      margin: 0 0 var(--s-2);
     }
 
     /* ===== Featured article (lead) ===== */
@@ -132,17 +158,17 @@
     }
     .nl-article--garden .nl-article__photo {
       background:
-        linear-gradient(rgba(107,109,32,.4), rgba(107,109,32,.45)),
+        linear-gradient(rgba(139,80,68,.45), rgba(139,80,68,.5)),
         url("once-upon-a-time-assets/landing/who-we-are-globe.jpg") center/cover no-repeat;
     }
     .nl-article--update .nl-article__photo {
       background:
-        linear-gradient(rgba(107,109,32,.35), rgba(107,109,32,.4)),
+        linear-gradient(rgba(139,80,68,.45), rgba(139,80,68,.5)),
         url("once-upon-a-time-assets/landing/donor-bg.jpg") center/cover no-repeat;
     }
     .nl-article--volunteer .nl-article__photo {
       background:
-        linear-gradient(rgba(139,80,68,.4), rgba(139,80,68,.45)),
+        linear-gradient(rgba(139,80,68,.45), rgba(139,80,68,.5)),
         url("once-upon-a-time-assets/landing/story-jazz.jpg") center/cover no-repeat;
     }
     .nl-article h3 {
@@ -184,17 +210,17 @@
     }
     .nl-card--oct .nl-card__photo {
       background:
-        linear-gradient(rgba(107,109,32,.4), rgba(107,109,32,.45)),
+        linear-gradient(rgba(107,109,32,.45), rgba(107,109,32,.5)),
         url("once-upon-a-time-assets/landing/donor-bg.jpg") center/cover no-repeat;
     }
     .nl-card--nov .nl-card__photo {
       background:
-        linear-gradient(rgba(139,80,68,.4), rgba(139,80,68,.45)),
+        linear-gradient(rgba(139,80,68,.45), rgba(139,80,68,.5)),
         url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
     }
     .nl-card--dec .nl-card__photo {
       background:
-        linear-gradient(rgba(139,80,68,.4), rgba(139,80,68,.45)),
+        linear-gradient(rgba(139,80,68,.45), rgba(139,80,68,.5)),
         url("once-upon-a-time-assets/landing/ballet-card.jpg") center/cover no-repeat;
     }
     .nl-card__body { padding: var(--s-4) var(--s-5); }
@@ -236,8 +262,8 @@
   <!-- ============ PROMO BAR ============ -->
   <div class="promo-bar" role="region" aria-label="Announcement">
     <div class="wrap promo-bar__inner">
-      <span><strong>Happening Now:</strong> Jazz Dancing (16+) · Instructor: Mia Kim</span>
-      <span>Next class: Intermediate Ballet (10+)</span>
+      <span><strong>Happening Now:</strong> Jazz Dancing (16+) &middot; Instructor: Mia Kim</span>
+      <span>Next class: Intermediate Ballet (10+) <button class="promo-bar__close" type="button" aria-label="Dismiss">&times;</button></span>
     </div>
   </div>
 
@@ -247,7 +273,10 @@
       <a href="index.html" class="brand" aria-label="Once Upon A Time, home">
         <img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time">
       </a>
-      <nav class="primary-nav" aria-label="Primary">
+      <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation menu">
+        <i class="ph ph-list" aria-hidden="true"></i>
+      </button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
         <a href="about.html">About Us</a>
         <a href="index.html#programs">Programs</a>
         <a href="donate.html">Donation</a>
@@ -255,15 +284,19 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-btn" type="button" aria-label="Cart, 0 items">
-          <i class="ph ph-shopping-cart" aria-hidden="true"></i>
-          <span class="badge" aria-hidden="true">0</span>
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items">
+          <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
+          <span>Cart</span>
+          <span class="badge" aria-hidden="true">9</span>
         </button>
-        <button class="icon-btn" type="button" aria-label="Notifications">
-          <i class="ph ph-bell" aria-hidden="true"></i>
+        <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings">
+          <i class="ph ph-gear" aria-hidden="true"></i>
         </button>
-        <a href="profile.html" class="avatar" aria-label="Account">JK</a>
-        <button class="btn btn--sm" type="button" data-open-signin>Sign-in</button>
+        <a href="profile.html" class="avatar" aria-label="Account, 9 notifications">
+          <i class="ph ph-user" aria-hidden="true"></i>
+          <span class="badge" aria-hidden="true">9</span>
+        </a>
+        <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
       </div>
     </div>
   </header>
@@ -278,17 +311,21 @@
     <!-- ============ TOOLBAR ============ -->
     <div class="wrap nl-toolbar">
       <nav class="nl-tabs" aria-label="Library views">
-        <a href="#" class="is-active"><i class="ph ph-book-open"></i> Read Articles</a>
-        <a href="#"><i class="ph ph-clock-counter-clockwise"></i> Read Latest</a>
-        <a href="#"><i class="ph ph-books"></i> Browse Library</a>
+        <a href="#" class="is-active"><i class="ph ph-check-circle"></i> Read Articles</a>
+        <a href="#"><i class="ph ph-arrow-circle-up-right"></i> Read Latest</a>
+        <a href="#"><i class="ph ph-bookmark-simple"></i> Read Set</a>
       </nav>
       <div class="nl-tools">
-        <span class="nl-sort"><i class="ph ph-funnel"></i> Sort By <i class="ph ph-caret-down"></i></span>
-        <span class="nl-date"><i class="ph ph-calendar-blank"></i> Jan 2026 <i class="ph ph-caret-down"></i></span>
+        <label class="nl-search" aria-label="Search articles">
+          <i class="ph ph-magnifying-glass"></i>
+          <input type="search" placeholder="Search articles" autocomplete="off">
+        </label>
+        <button class="nl-add" type="button" aria-label="Add new"><i class="ph ph-plus"></i></button>
         <span class="nl-views" role="group" aria-label="Layout">
           <button type="button" aria-label="Grid view" aria-pressed="true"><i class="ph ph-squares-four"></i></button>
           <button type="button" aria-label="List view" aria-pressed="false"><i class="ph ph-list-bullets"></i></button>
           <button type="button" aria-label="Magazine view" aria-pressed="false"><i class="ph ph-rows"></i></button>
+          <button type="button" aria-label="Compact view" aria-pressed="false"><i class="ph ph-square-half"></i></button>
         </span>
       </div>
     </div>
@@ -298,11 +335,20 @@
       <div class="nl-eyebrow">
         <span class="eyebrow" style="margin:0">Current Newsletter</span>
         <span class="nl-tag">Newsletter</span>
+        <span class="nl-chips" aria-hidden="true">
+          <span class="nl-chip nl-chip--rose">A</span>
+          <span class="nl-chip nl-chip--garden">B</span>
+          <span class="nl-chip nl-chip--blush">C</span>
+          <span class="nl-chip nl-chip--pillar">D</span>
+          <span class="nl-chip nl-chip--sky">E</span>
+          <span class="nl-chip nl-chip--snow">F</span>
+        </span>
       </div>
 
       <div class="nl-feature">
         <header class="nl-feature__head">
           <h2>Once Upon A Time</h2>
+          <p class="nl-feature__date">December&nbsp;2025</p>
           <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
         </header>
 
@@ -458,5 +504,19 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.getElementById('primary-nav');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', () => {
+        const open = nav.dataset.open === 'true';
+        nav.dataset.open = open ? 'false' : 'true';
+        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+    })();
+  </script>
+
 </body>
 </html>
