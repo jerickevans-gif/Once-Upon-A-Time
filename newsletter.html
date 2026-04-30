@@ -26,6 +26,8 @@
   <link rel="manifest" href="once-upon-a-time-assets/favicon/site.webmanifest">
 
 
+    <link rel="preload" href="once-upon-a-time-assets/fonts/Voltra-Normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="once-upon-a-time-assets/fonts/Chivo-Variable.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
   <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
   <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
@@ -53,45 +55,88 @@
       border-bottom: 1px solid var(--line);
       margin-bottom: var(--s-6);
     }
-    .nl-tabs { display: flex; align-items: center; gap: var(--s-5); }
+    .nl-tabs { display: flex; align-items: center; gap: var(--s-5); flex-wrap: wrap; }
     .nl-tabs a {
       font-size: var(--t-label); font-weight: 600;
       color: var(--ink); text-decoration: none;
       padding: 6px 0; border-bottom: 2px solid transparent;
-      display: inline-flex; align-items: center; gap: 6px;
+      display: inline-flex; align-items: center; gap: 8px;
     }
-    .nl-tabs a.is-active { border-bottom-color: var(--rose); color: var(--rose-700); }
+    .nl-tabs a.is-active { border-bottom-color: var(--rose-700); color: var(--rose-700); }
     .nl-tabs a:hover { color: var(--rose); }
+    .nl-tabs a.is-muted { color: var(--ink-muted); opacity: .6; }
+    .nl-tabs__badge {
+      background: var(--rose); color: var(--snow);
+      font-size: 11px; font-weight: 700;
+      min-width: 20px; height: 20px;
+      padding: 0 6px;
+      border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .nl-tabs__more {
+      background: transparent; border: 0; padding: 4px 8px;
+      color: var(--ink); font-size: 18px; cursor: pointer;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
     .nl-tools { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
-    .nl-search {
-      display: inline-flex; align-items: center; gap: 6px;
+    .nl-filter {
+      display: inline-flex; align-items: center; gap: 8px;
       background: var(--snow); border: 1px solid var(--line);
-      border-radius: var(--radius-pill);
-      padding: 4px 10px 4px 14px; min-width: 220px;
+      border-radius: var(--radius-sm, 8px);
+      padding: 8px 14px;
+      font-size: var(--t-label); color: var(--ink-muted);
+      cursor: pointer;
+    }
+    .nl-filter:hover { border-color: var(--rose); color: var(--rose-700); }
+    .nl-filter .ph { font-size: 14px; }
+    .nl-search {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--snow); border: 1px solid var(--line);
+      border-radius: var(--radius-sm, 8px);
+      padding: 4px 12px 4px 14px; min-width: 220px;
     }
     .nl-search .ph { color: var(--ink-muted); font-size: 14px; }
     .nl-search input {
       border: 0; background: transparent; outline: 0;
       font-size: var(--t-label); color: var(--ink);
-      flex: 1; padding: 6px 0; min-width: 0;
+      flex: 1; padding: 8px 0; min-width: 0;
     }
     .nl-search input::placeholder { color: var(--ink-muted); }
-    .nl-add {
-      width: 32px; height: 32px; border: 0;
-      background: var(--rose); color: var(--snow);
-      border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
-      cursor: pointer;
+
+    /* Current Newsletter heading row + action buttons */
+    .nl-current-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--s-4); flex-wrap: wrap;
+      margin-bottom: var(--s-5);
     }
-    .nl-add:hover { background: var(--rose-700); }
-    .nl-views { display: inline-flex; gap: 4px; }
-    .nl-views button {
-      width: 32px; height: 32px; border: 1px solid var(--line);
-      background: var(--snow); border-radius: var(--radius-sm, 8px);
-      display: inline-flex; align-items: center; justify-content: center;
-      cursor: pointer; color: var(--ink-muted);
+    .nl-current-head h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 3vw, 40px);
+      text-transform: uppercase;
+      margin: 0;
+      letter-spacing: .02em;
     }
-    .nl-views button[aria-pressed="true"] { background: var(--rose); color: var(--snow); border-color: var(--rose); }
+    .nl-actions { display: inline-flex; gap: 8px; }
+    .nl-action {
+      width: 38px; height: 38px;
+      border: 0; cursor: pointer;
+      border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--rose-700); color: #fff;
+      font-size: 16px;
+    }
+    .nl-action--share { background: var(--garden); }
+    .nl-action:hover { filter: brightness(1.08); }
+
+    /* Article card-level bookmark/share floating in feature top-right */
+    .nl-feature { position: relative; }
+    .nl-feature__actions {
+      position: absolute; top: 0; right: 0;
+      display: inline-flex; gap: 6px;
+      padding: 12px;
+    }
+    .nl-feature__actions .nl-action { width: 32px; height: 32px; font-size: 14px; }
 
     /* ===== Eyebrow row ===== */
     .nl-eyebrow {
@@ -339,44 +384,47 @@
 
     <!-- ============ TOOLBAR ============ -->
     <div class="wrap nl-toolbar">
-      <nav class="nl-tabs" aria-label="Library views">
-        <a href="#" class="is-active"><i class="ph ph-check-circle"></i> Read Articles</a>
-        <a href="#"><i class="ph ph-arrow-circle-up-right"></i> Read Latest</a>
-        <a href="#"><i class="ph ph-bookmark-simple"></i> Read Set</a>
+      <nav class="nl-tabs" aria-label="Newsletter sections">
+        <a href="#">Home</a>
+        <a href="#" class="is-active">Saved Articles <span class="nl-tabs__badge">7</span></a>
+        <a href="#">Read Later <span class="nl-tabs__badge">2</span></a>
+        <a href="#">Get Involved!</a>
+        <a href="donate.html">Donate</a>
+        <a href="#" class="is-muted">Admin</a>
+        <button class="nl-tabs__more" type="button" aria-label="More options">···</button>
       </nav>
       <div class="nl-tools">
+        <button class="nl-filter" type="button" aria-label="Filter by publish date">
+          <i class="ph ph-calendar-blank"></i> Publish Date
+        </button>
         <label class="nl-search" aria-label="Search articles">
           <i class="ph ph-magnifying-glass"></i>
-          <input type="search" placeholder="Search articles" autocomplete="off">
+          <input type="search" placeholder="Search" autocomplete="off">
         </label>
-        <button class="nl-add" type="button" aria-label="Add new"><i class="ph ph-plus"></i></button>
-        <span class="nl-views" role="group" aria-label="Layout">
-          <button type="button" aria-label="Grid view" aria-pressed="true"><i class="ph ph-squares-four"></i></button>
-          <button type="button" aria-label="List view" aria-pressed="false"><i class="ph ph-list-bullets"></i></button>
-          <button type="button" aria-label="Magazine view" aria-pressed="false"><i class="ph ph-rows"></i></button>
-          <button type="button" aria-label="Compact view" aria-pressed="false"><i class="ph ph-square-half"></i></button>
-        </span>
       </div>
     </div>
 
     <!-- ============ FEATURED ARTICLE ============ -->
     <article class="wrap">
-      <div class="nl-eyebrow">
-        <span class="eyebrow" style="margin:0">Current Newsletter</span>
-        <span class="nl-tag">Newsletter</span>
-        <span class="nl-chips" aria-hidden="true">
-          <span class="nl-chip nl-chip--rose">A</span>
-          <span class="nl-chip nl-chip--garden">B</span>
-          <span class="nl-chip nl-chip--blush">C</span>
-          <span class="nl-chip nl-chip--pillar">D</span>
-          <span class="nl-chip nl-chip--sky">E</span>
-          <span class="nl-chip nl-chip--snow">F</span>
-        </span>
+      <div class="nl-current-head">
+        <h2>Current Newsletter</h2>
+        <div class="nl-actions" role="group" aria-label="Newsletter actions">
+          <button class="nl-action" type="button" aria-label="Save"><i class="ph ph-bookmark-simple"></i></button>
+          <button class="nl-action nl-action--share" type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
+          <button class="nl-action" type="button" aria-label="Skip to first"><i class="ph ph-rewind"></i></button>
+          <button class="nl-action" type="button" aria-label="Previous"><i class="ph ph-caret-left"></i></button>
+          <button class="nl-action" type="button" aria-label="Next"><i class="ph ph-caret-right"></i></button>
+          <button class="nl-action" type="button" aria-label="Skip to latest"><i class="ph ph-fast-forward"></i></button>
+        </div>
       </div>
 
       <div class="nl-feature">
+        <div class="nl-feature__actions" aria-hidden="true">
+          <button class="nl-action" type="button" aria-label="Save article"><i class="ph ph-bookmark-simple"></i></button>
+          <button class="nl-action nl-action--share" type="button" aria-label="Share article"><i class="ph ph-share-network"></i></button>
+        </div>
         <header class="nl-feature__head">
-          <h2>Once Upon A Time</h2>
+          <h2>Once Upon A Time <span style="font-family:var(--sans);font-weight:400;font-size:.55em;text-transform:none;letter-spacing:0;border-left:1.5px solid var(--ink);padding-left:14px;margin-left:8px;vertical-align:middle">Newsletter</span></h2>
           <p class="nl-feature__date">December&nbsp;2025</p>
           <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
         </header>

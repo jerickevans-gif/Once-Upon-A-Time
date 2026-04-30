@@ -26,6 +26,8 @@
   <link rel="manifest" href="once-upon-a-time-assets/favicon/site.webmanifest">
 
 
+    <link rel="preload" href="once-upon-a-time-assets/fonts/Voltra-Normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="once-upon-a-time-assets/fonts/Chivo-Variable.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
   <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
   <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
@@ -99,16 +101,22 @@
     /* ---------- Hero ---------- */
     .hero {
       position: relative;
-      padding: 28px 0 0;
+      padding: 28px 16px 0;
       background: linear-gradient(90deg, var(--rose-100) 0%, #F8E5DC 45%, #FBEFE6 75%, var(--beginning) 100%);
       overflow: hidden;
+      max-width: 100%;
+      box-sizing: border-box;
     }
-    /* Full-bleed the gradient beyond .wrap container so it spans the viewport */
-    main > .wrap > .hero {
-      width: 100vw;
-      margin-left: calc(50% - 50vw);
-      padding-left: max(16px, calc((100vw - 1200px) / 2));
-      padding-right: max(16px, calc((100vw - 1200px) / 2));
+    .hero__copy { padding-top: 8px; min-width: 0; }
+    .hero__lede, .hero__copy p { word-wrap: break-word; overflow-wrap: anywhere; }
+    /* Full-bleed the gradient beyond .wrap container so it spans the viewport (desktop+) */
+    @media (min-width: 720px) {
+      main > .wrap > .hero {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        padding-left: max(16px, calc((100vw - 1200px) / 2));
+        padding-right: max(16px, calc((100vw - 1200px) / 2));
+      }
     }
     .hero__grid {
       position: relative;
@@ -118,7 +126,6 @@
       align-items: center;
       padding-bottom: 32px;
     }
-    .hero__copy { padding-top: 8px; }
     .pill {
       display: inline-flex; align-items: center; gap: 10px;
       background: #E8B5A6; color: #fff;
@@ -593,6 +600,8 @@
       .hero__chip strong { font-size: 18px; }
       .hero__stats { gap: 28px; padding-bottom: 24px; }
       .hero__stat-num { font-size: 28px; }
+      .hero__copy { min-width: 0; max-width: 100%; }
+      .hero__lede { max-width: 100%; }
       h1.hero__title {
         font-size: 30px !important;
         letter-spacing: -0.02em;

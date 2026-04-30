@@ -445,6 +445,33 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 [data-state="success"] { color: var(--garden-700); font-weight: 600; }
 [data-state="error"] { color: var(--danger, #C0322E); font-weight: 600; }
 
+/* ---------- Global overflow guard + small-screen patches (added in mobile QA pass) ---------- */
+html, body { overflow-x: hidden; }
+img, video { max-width: 100%; height: auto; }
+
+@media (max-width: 720px) {
+  /* Account sidebar: stack title above CTA so neither truncates */
+  .account-side-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s-3);
+  }
+  .account-side-card .btn { width: 100%; }
+
+  /* Donate hero: ensure inner grid is single-column with safe spacing */
+  .hero__grid { grid-template-columns: 1fr !important; gap: var(--s-5); }
+  .hero__stats { gap: var(--s-5); }
+
+  /* Profile child-grid 3-cols → 2-cols on mobile */
+  .child-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Class-history grid */
+  .class-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 540px) {
+  .child-grid { grid-template-columns: 1fr; }
+}
+
 /* Print styles */
 @media print {
   .site-header, .site-footer, .promo-bar, .auth-modal { display: none !important; }
