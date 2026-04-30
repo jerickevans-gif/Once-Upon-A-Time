@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="Search the Once Upon A Time site.">
+  <link rel="canonical" href="https://jerickevans-gif.github.io/Once-Upon-A-Time/search.html">
+  
+  <title>Search — Once Upon A Time</title>
+  <link rel="icon" href="once-upon-a-time-assets/favicon/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="once-upon-a-time-assets/favicon/favicon-180.png">
+  <link rel="preload" href="once-upon-a-time-assets/fonts/Voltra-Normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="once-upon-a-time-assets/fonts/Chivo-Variable.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/components.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+  <script src="once-upon-a-time-assets/site.js" defer></script>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
+  <style>
+  .page-hero {
+    padding: 60px 0 40px;
+    background: var(--rose-100);
+    text-align: center;
+  }
+  .page-hero__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--rose-700); margin-bottom: 8px; }
+  .page-hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(40px, 5vw, 60px); margin: 0 0 12px; text-transform: uppercase; color: var(--pillar); }
+  .page-hero__sub { font-size: 16px; color: var(--ink-muted); max-width: 56ch; margin: 0 auto; line-height: 1.55; }
+  .legal-body { max-width: 720px; margin: 56px auto; padding: 0 24px; font-size: 15px; line-height: 1.7; color: var(--ink); }
+  .legal-body h2 { font-family: var(--serif); font-weight: 600; font-size: 24px; margin: 32px 0 12px; color: var(--pillar); text-transform: uppercase; }
+  .legal-body h3 { font-size: 16px; font-weight: 700; margin: 20px 0 8px; color: var(--ink); }
+  .legal-body p { margin: 0 0 12px; }
+  .legal-body ul { margin: 0 0 12px; padding-left: 24px; }
+  .legal-body li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand" aria-label="Once Upon A Time, home"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></a>
+      <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle nav"><i class="ph ph-list"></i></button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <a href="about.html">About Us</a><a href="programs.html">Programs</a><a href="donate.html">Donation</a><a href="newsletter.html">Newsletter</a><a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart"><i class="ph ph-shopping-cart-simple"></i><span>Cart</span><span class="badge">9</span></button>
+        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear"></i></a>
+        <a href="profile.html" class="avatar" aria-label="Account"><i class="ph ph-user"></i><span class="badge">9</span></a>
+        <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="page-hero">
+      <div class="wrap"><div class="page-hero__eyebrow">Search</div>
+      <h1 style="margin-bottom:24px">What can we help you find?</h1>
+      <form action="search.html" method="get" role="search" style="max-width:560px;margin:0 auto;display:flex;gap:8px">
+        <label style="flex:1;display:inline-flex;gap:8px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:8px;padding:10px 16px">
+          <i class="ph ph-magnifying-glass" style="color:var(--ink-muted)"></i>
+          <input type="search" name="q" id="q" placeholder="Search programs, instructors, articles..." autofocus style="border:0;background:transparent;outline:0;font-size:15px;flex:1">
+        </label>
+        <button class="btn" type="submit">Search</button>
+      </form>
+      </div>
+    </section>
+    <section class="wrap" id="results" style="padding:48px 0;max-width:780px"></section>
+    </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block"><div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="" loading="lazy"></div></div>
+        <div><h4>About</h4><ul><li><a href="about.html">About</a></li><li><a href="programs.html">Programs</a></li><li><a href="instructors.html">Instructors</a></li></ul></div>
+        <div><h4>Get Involved</h4><ul><li><a href="events.html">Events</a></li><li><a href="donate.html">Support Us</a></li><li><a href="volunteer-dashboard.html">Volunteer</a></li></ul></div>
+        <div class="footer__address-block">
+          <div class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</div>
+          <div class="footer__socials">
+            <a href="https://youtube.com/@onceuponatime" aria-label="YouTube" target="_blank" rel="noopener"><i class="ph ph-youtube-logo"></i></a>
+            <a href="https://facebook.com/onceuponatime" aria-label="Facebook" target="_blank" rel="noopener"><i class="ph ph-facebook-logo"></i></a>
+            <a href="https://twitter.com/onceuponatime" aria-label="Twitter" target="_blank" rel="noopener"><i class="ph ph-twitter-logo"></i></a>
+            <a href="https://instagram.com/onceuponatime" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
+          <div style="margin-top:14px;font-size:12px;opacity:.7"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">Once Upon A Time Inc. © 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const t = document.querySelector('.nav-toggle'), n = document.getElementById('primary-nav');
+      if (t && n) t.addEventListener('click', () => {
+        const o = n.dataset.open === 'true';
+        n.dataset.open = o ? 'false' : 'true';
+        t.setAttribute('aria-expanded', o ? 'false' : 'true');
+      });
+    })();
+    
+    (function(){
+      const params = new URLSearchParams(location.search);
+      const q = (params.get('q') || '').trim();
+      document.getElementById('q').value = q;
+      const out = document.getElementById('results');
+      if (!q) return;
+      // tiny client-side fuzzy index — would query Shopify Search & Discovery in prod.
+      const index = [
+        { title: 'Seasonal Camps', body: 'Multi-week program: dance, theater, gardening', url: 'seasonal-camps.html' },
+        { title: 'Private Lessons', body: 'One-on-one with an instructor', url: 'private-lessons.html' },
+        { title: 'Donate', body: 'Support our mission with a one-time or monthly gift', url: 'donate.html' },
+        { title: 'About Us', body: 'Vision, leadership, and current programs', url: 'about.html' },
+        { title: 'Newsletter', body: 'Stories from the studio, community garden updates', url: 'newsletter.html' },
+        { title: 'Contact', body: 'Get in touch: phone, email, address', url: 'contact.html' },
+        { title: 'Events', body: 'Upcoming showcases and fundraisers', url: 'events.html' },
+        { title: 'Instructors', body: 'Meet the working professionals teaching at OUAT', url: 'instructors.html' },
+        { title: 'Gallery', body: 'Photos from past performances and classes', url: 'gallery.html' },
+        { title: 'Programs', body: 'All active programs across tracks', url: 'programs.html' },
+        { title: 'Privacy Policy', body: 'How we collect and use your information', url: 'privacy.html' },
+        { title: 'Class History', body: 'Past and current enrollments', url: 'class-history.html' },
+      ];
+      const ql = q.toLowerCase();
+      const hits = index.filter(i => (i.title + ' ' + i.body).toLowerCase().includes(ql));
+      if (!hits.length) {
+        out.innerHTML = `<div class="empty-state"><div class="empty-state__icon"><i class="ph ph-magnifying-glass"></i></div><div class="empty-state__title">No matches for "${q}"</div><p class="empty-state__body">Try a shorter or different search term, or browse the home page.</p><div class="empty-state__actions"><a class="btn" href="index.html">Back to home</a><a class="btn btn--ghost" href="contact.html">Ask us anything</a></div></div>`;
+        return;
+      }
+      out.innerHTML = `<p style="font-size:13px;color:var(--ink-muted);margin-bottom:24px">${hits.length} result${hits.length===1?'':'s'} for "${q}"</p>` + hits.map(h => `
+        <a href="${h.url}" style="display:block;padding:18px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit">
+          <div style="font-family:var(--serif);font-size:18px;color:var(--pillar);margin-bottom:4px">${h.title}</div>
+          <div style="font-size:13px;color:var(--ink-muted)">${h.body}</div>
+          <div style="font-size:12px;color:var(--rose-700);margin-top:6px">/${h.url}</div>
+        </a>`).join('');
+    })();
+    
+  </script>
+</body>
+</html>

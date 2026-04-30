@@ -130,6 +130,7 @@
       .auth-page__title { font-size: 38px; }
     }
   </style>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
 </head>
 <body>
   <main class="auth-page">
@@ -187,9 +188,9 @@
       <div class="auth-divider"><span>Or Sign up with</span></div>
 
       <div class="social-row">
-        <button type="button" class="social-btn social-btn--google"><i class="ph ph-google-logo"></i> Google</button>
-        <button type="button" class="social-btn social-btn--apple"><i class="ph ph-apple-logo"></i> Apple</button>
-        <button type="button" class="social-btn social-btn--email"><i class="ph ph-envelope"></i> Email</button>
+        <button type="button" class="social-btn social-btn--google" data-mock="login-google"><i class="ph ph-google-logo"></i> Google</button>
+        <button type="button" class="social-btn social-btn--apple" data-mock="login-apple"><i class="ph ph-apple-logo"></i> Apple</button>
+        <button type="button" class="social-btn social-btn--email" data-mock="login-email"><i class="ph ph-envelope"></i> Email</button>
       </div>
 
       <div class="auth-page__footer">
@@ -219,7 +220,9 @@
         for (const f of fields) {
           if (!f.value.trim()) { f.focus(); return; }
         }
-        alert('Sign-up submitted (replace with real backend on Shopify).');
+        if (window.OUAT_toast) {
+          window.OUAT_toast('Account creation routes to Shopify customer accounts in production.', { variant: 'mock' });
+        }
       });
     })();
   </script>

@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
   <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
   <script src="once-upon-a-time-assets/site.js" defer></script>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
 
   <style>
     body { background: var(--snow); }
@@ -121,14 +122,12 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-btn" type="button" aria-label="Cart, 9 items">
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart">
           <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
           <span>Cart</span>
           <span class="badge" aria-hidden="true">9</span>
         </button>
-        <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings">
-          <i class="ph ph-gear" aria-hidden="true"></i>
-        </button>
+        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></a>
         <a href="profile.html" class="avatar" aria-label="Account, 9 notifications">
           <i class="ph ph-user" aria-hidden="true"></i>
           <span class="badge" aria-hidden="true">9</span>
@@ -174,10 +173,13 @@
                 <h3 class="class-card__title">Seasonal Camps 2026</h3>
                 <div class="class-card__meta">Start date · Mar 03 2026</div>
                 <div class="chips"><span class="chip">Dance</span><span class="chip">Theater</span><span class="chip chip--garden">Gardening</span></div>
-                <div class="class-card__links"><a href="#cancel">Cancel program</a><a href="#issue">Report an issue</a></div>
+                <div class="class-card__links">
+                  <a href="#" data-mock="cancel-program">Cancel program</a>
+                  <a href="mailto:contact@onceuponatime.org?subject=Report%20issue%20-%20Seasonal%20Camps%202026&body=Order%20%23OUAT-2026-001%0A%0AIssue%20description%3A">Report an issue</a>
+                </div>
                 <div class="class-card__footer">
-                  <a class="btn btn--sm btn--outline" href="#details">View Details</a>
-                  <a class="btn btn--sm btn--outline" href="#receipt">View Receipt</a>
+                  <a class="btn btn--sm btn--outline" href="seasonal-camps.html">View Details</a>
+                  <a class="btn btn--sm btn--outline" href="receipt.html?order=OUAT-2026-001">View Receipt</a>
                 </div>
               </div>
             </article>
@@ -192,8 +194,8 @@
                 <div class="class-card__meta">Start date · Mar 10 2025</div>
                 <div class="chips"><span class="chip">Dance</span><span class="chip">Theater</span><span class="chip chip--garden">Gardening</span></div>
                 <div class="class-card__footer">
-                  <a class="btn btn--sm btn--outline" href="#details">View Details</a>
-                  <a class="btn btn--sm btn--outline" href="#receipt">View Receipt</a>
+                  <a class="btn btn--sm btn--outline" href="seasonal-camps.html">View Details</a>
+                  <a class="btn btn--sm btn--outline" href="receipt.html?order=OUAT-2025-007">View Receipt</a>
                 </div>
               </div>
             </article>
@@ -213,8 +215,8 @@
                 <div class="class-card__meta">Start date · June 02 2024</div>
                 <div class="chips"><span class="chip">Acting</span></div>
                 <div class="class-card__footer">
-                  <a class="btn btn--sm btn--outline" href="#details">View Details</a>
-                  <a class="btn btn--sm btn--outline" href="#receipt">View Receipt</a>
+                  <a class="btn btn--sm btn--outline" href="private-lessons.html">View Details</a>
+                  <a class="btn btn--sm btn--outline" href="receipt.html?order=OUAT-2024-052">View Receipt</a>
                 </div>
               </div>
             </article>
@@ -229,8 +231,8 @@
                 <div class="class-card__meta">Start date · Mar 8 2024</div>
                 <div class="chips"><span class="chip">Dance</span><span class="chip">Theater</span></div>
                 <div class="class-card__footer">
-                  <a class="btn btn--sm btn--outline" href="#details">View Details</a>
-                  <a class="btn btn--sm btn--outline" href="#receipt">View Receipt</a>
+                  <a class="btn btn--sm btn--outline" href="seasonal-camps.html">View Details</a>
+                  <a class="btn btn--sm btn--outline" href="receipt.html?order=OUAT-2024-018">View Receipt</a>
                 </div>
               </div>
             </article>
@@ -251,10 +253,10 @@
         <div class="footer__address-block">
           <div class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</div>
           <div class="footer__socials">
-            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
-            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
-            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
-            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="https://youtube.com/@onceuponatime" aria-label="YouTube" target="_blank" rel="noopener"><i class="ph ph-youtube-logo"></i></a>
+            <a href="https://facebook.com/onceuponatime" aria-label="Facebook" target="_blank" rel="noopener"><i class="ph ph-facebook-logo"></i></a>
+            <a href="https://twitter.com/onceuponatime" aria-label="Twitter" target="_blank" rel="noopener"><i class="ph ph-twitter-logo"></i></a>
+            <a href="https://instagram.com/onceuponatime" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
             <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
           </div>
         </div>

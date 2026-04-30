@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="All Once Upon A Time programs — dance, theater, gardening, and more.">
+  <link rel="canonical" href="https://jerickevans-gif.github.io/Once-Upon-A-Time/programs.html">
+  
+  <title>Programs — Once Upon A Time</title>
+  <link rel="icon" href="once-upon-a-time-assets/favicon/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="once-upon-a-time-assets/favicon/favicon-180.png">
+  <link rel="preload" href="once-upon-a-time-assets/fonts/Voltra-Normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="once-upon-a-time-assets/fonts/Chivo-Variable.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/components.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+  <script src="once-upon-a-time-assets/site.js" defer></script>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
+  <style>
+  .page-hero {
+    padding: 60px 0 40px;
+    background: var(--rose-100);
+    text-align: center;
+  }
+  .page-hero__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--rose-700); margin-bottom: 8px; }
+  .page-hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(40px, 5vw, 60px); margin: 0 0 12px; text-transform: uppercase; color: var(--pillar); }
+  .page-hero__sub { font-size: 16px; color: var(--ink-muted); max-width: 56ch; margin: 0 auto; line-height: 1.55; }
+  .legal-body { max-width: 720px; margin: 56px auto; padding: 0 24px; font-size: 15px; line-height: 1.7; color: var(--ink); }
+  .legal-body h2 { font-family: var(--serif); font-weight: 600; font-size: 24px; margin: 32px 0 12px; color: var(--pillar); text-transform: uppercase; }
+  .legal-body h3 { font-size: 16px; font-weight: 700; margin: 20px 0 8px; color: var(--ink); }
+  .legal-body p { margin: 0 0 12px; }
+  .legal-body ul { margin: 0 0 12px; padding-left: 24px; }
+  .legal-body li { margin-bottom: 6px; }
+.chip-btn{padding:8px 14px;border-radius:999px;background:var(--snow);border:1px solid var(--line);font-size:13px;font-weight:600;cursor:pointer;color:var(--ink)} .chip-btn[aria-pressed="true"]{background:var(--rose);color:#fff;border-color:var(--rose)} .chip{font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;background:var(--rose-100);color:var(--rose-700)} .chip--garden{background:var(--garden);color:#fff}</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand" aria-label="Once Upon A Time, home"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></a>
+      <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle nav"><i class="ph ph-list"></i></button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <a href="about.html">About Us</a><a href="programs.html">Programs</a><a href="donate.html">Donation</a><a href="newsletter.html">Newsletter</a><a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart"><i class="ph ph-shopping-cart-simple"></i><span>Cart</span><span class="badge">9</span></button>
+        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear"></i></a>
+        <a href="profile.html" class="avatar" aria-label="Account"><i class="ph ph-user"></i><span class="badge">9</span></a>
+        <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="page-hero">
+      <div class="wrap"><div class="page-hero__eyebrow">All programs</div>
+      <h1>What's running this season</h1>
+      <p class="page-hero__sub">Browse every active program, filter by track or age group, and reserve a spot in seconds.</p></div>
+    </section>
+    <section class="wrap" style="padding:48px 0">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:32px">
+        <div style="display:inline-flex;gap:8px;flex-wrap:wrap" role="tablist" aria-label="Filter programs">
+          <button class="chip-btn" data-pf="all" aria-pressed="true">All</button>
+          <button class="chip-btn" data-pf="dance" aria-pressed="false">Dance</button>
+          <button class="chip-btn" data-pf="theater" aria-pressed="false">Theater</button>
+          <button class="chip-btn" data-pf="garden" aria-pressed="false">Gardening</button>
+          <button class="chip-btn" data-pf="visual" aria-pressed="false">Visual Art</button>
+        </div>
+        <label class="nl-search" aria-label="Search programs" style="background:var(--snow);border:1px solid var(--line);border-radius:8px;padding:6px 12px;display:inline-flex;gap:8px;align-items:center">
+          <i class="ph ph-magnifying-glass"></i>
+          <input type="search" placeholder="Search programs" data-program-search style="border:0;background:transparent;outline:0;font-size:14px">
+        </label>
+      </div>
+      <div class="program-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px">
+        
+        <article class="prog-card" data-tracks="dance theater garden" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.45),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/jazz-hero.jpg') center/cover;background-blend-mode:multiply"></div>
+          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Seasonal Camps</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$250</span></div>
+            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">Multi-week immersion across dance, theater, and gardening tracks. Ages 8–15.</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip">Dance</span><span class="chip">Theater</span><span class="chip chip--garden">Garden</span></div>
+            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="seasonal-camps.html">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
+          </div>
+        </article>
+        <article class="prog-card" data-tracks="dance theater visual" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.45),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/story-jazz.jpg') center/cover;background-blend-mode:multiply"></div>
+          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Private Lessons</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$75</span></div>
+            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">One-on-one instruction with a working professional, hour-long sessions.</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip">Dance</span><span class="chip">Acting</span></div>
+            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="private-lessons.html">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
+          </div>
+        </article>
+        <article class="prog-card" data-tracks="dance" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.45),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/ballet-card.jpg') center/cover;background-blend-mode:multiply"></div>
+          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Beginner Ballet</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$120</span></div>
+            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">Fundamentals: posture, footwork, simple combinations. Ages 6–10.</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip">Dance</span><span class="chip">Beginner</span></div>
+            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="enrollment.html?class=ballet">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
+          </div>
+        </article>
+        <article class="prog-card" data-tracks="dance theater" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.45),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/story-jazz.jpg') center/cover;background-blend-mode:multiply"></div>
+          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Story Jazz</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$180</span></div>
+            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">Narrative-driven jazz performance for stage. Ages 10+.</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip">Dance</span><span class="chip">Theater</span></div>
+            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="enrollment.html?class=story-jazz">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
+          </div>
+        </article>
+        <article class="prog-card" data-tracks="garden" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(107,109,32,.5),rgba(107,109,32,.55)),url('once-upon-a-time-assets/landing/donor-bg.jpg') center/cover;background-blend-mode:multiply"></div>
+          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Community Garden</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$95</span></div>
+            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">Hands-on plant care, harvest, and culinary basics. Ages 8+.</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip chip--garden">Garden</span></div>
+            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="enrollment.html?class=garden">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
+          </div>
+        </article>
+        <article class="prog-card" data-tracks="visual" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.45),rgba(139,80,68,.5)),url('once-upon-a-time-assets/about/program-camps.jpg') center/cover;background-blend-mode:multiply"></div>
+          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Visual Art Studio</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$140</span></div>
+            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">Drawing, painting, sculpture in a studio setting. Ages 7+.</p>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip">Visual Art</span></div>
+            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="enrollment.html?class=visual-art">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
+          </div>
+        </article>
+      </div>
+    </section>
+    </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block"><div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="" loading="lazy"></div></div>
+        <div><h4>About</h4><ul><li><a href="about.html">About</a></li><li><a href="programs.html">Programs</a></li><li><a href="instructors.html">Instructors</a></li></ul></div>
+        <div><h4>Get Involved</h4><ul><li><a href="events.html">Events</a></li><li><a href="donate.html">Support Us</a></li><li><a href="volunteer-dashboard.html">Volunteer</a></li></ul></div>
+        <div class="footer__address-block">
+          <div class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</div>
+          <div class="footer__socials">
+            <a href="https://youtube.com/@onceuponatime" aria-label="YouTube" target="_blank" rel="noopener"><i class="ph ph-youtube-logo"></i></a>
+            <a href="https://facebook.com/onceuponatime" aria-label="Facebook" target="_blank" rel="noopener"><i class="ph ph-facebook-logo"></i></a>
+            <a href="https://twitter.com/onceuponatime" aria-label="Twitter" target="_blank" rel="noopener"><i class="ph ph-twitter-logo"></i></a>
+            <a href="https://instagram.com/onceuponatime" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
+          <div style="margin-top:14px;font-size:12px;opacity:.7"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">Once Upon A Time Inc. © 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const t = document.querySelector('.nav-toggle'), n = document.getElementById('primary-nav');
+      if (t && n) t.addEventListener('click', () => {
+        const o = n.dataset.open === 'true';
+        n.dataset.open = o ? 'false' : 'true';
+        t.setAttribute('aria-expanded', o ? 'false' : 'true');
+      });
+    })();
+    
+    (function(){
+      const filters = document.querySelectorAll('[data-pf]');
+      const cards = document.querySelectorAll('.prog-card');
+      let active = 'all';
+      filters.forEach(b => b.addEventListener('click', () => {
+        filters.forEach(f => f.setAttribute('aria-pressed','false'));
+        b.setAttribute('aria-pressed','true');
+        active = b.dataset.pf;
+        cards.forEach(c => {
+          c.style.display = (active === 'all' || c.dataset.tracks.includes(active)) ? '' : 'none';
+        });
+      }));
+      const s = document.querySelector('[data-program-search]');
+      if (s) s.addEventListener('input', () => {
+        const q = s.value.toLowerCase().trim();
+        cards.forEach(c => {
+          if (!q) { c.style.display = (active === 'all' || c.dataset.tracks.includes(active)) ? '' : 'none'; return; }
+          c.style.display = c.textContent.toLowerCase().includes(q) ? '' : 'none';
+        });
+      });
+    })();
+    
+  </script>
+</body>
+</html>

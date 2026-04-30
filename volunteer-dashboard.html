@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="Volunteer dashboard — find shifts, track hours, message coordinators.">
+  <link rel="canonical" href="https://jerickevans-gif.github.io/Once-Upon-A-Time/volunteer-dashboard.html">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Volunteer — Once Upon A Time</title>
+  <link rel="icon" href="once-upon-a-time-assets/favicon/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="once-upon-a-time-assets/favicon/favicon-180.png">
+  <link rel="preload" href="once-upon-a-time-assets/fonts/Voltra-Normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="once-upon-a-time-assets/fonts/Chivo-Variable.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/components.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+  <script src="once-upon-a-time-assets/site.js" defer></script>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
+  <style>
+  .page-hero {
+    padding: 60px 0 40px;
+    background: var(--rose-100);
+    text-align: center;
+  }
+  .page-hero__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--rose-700); margin-bottom: 8px; }
+  .page-hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(40px, 5vw, 60px); margin: 0 0 12px; text-transform: uppercase; color: var(--pillar); }
+  .page-hero__sub { font-size: 16px; color: var(--ink-muted); max-width: 56ch; margin: 0 auto; line-height: 1.55; }
+  .legal-body { max-width: 720px; margin: 56px auto; padding: 0 24px; font-size: 15px; line-height: 1.7; color: var(--ink); }
+  .legal-body h2 { font-family: var(--serif); font-weight: 600; font-size: 24px; margin: 32px 0 12px; color: var(--pillar); text-transform: uppercase; }
+  .legal-body h3 { font-size: 16px; font-weight: 700; margin: 20px 0 8px; color: var(--ink); }
+  .legal-body p { margin: 0 0 12px; }
+  .legal-body ul { margin: 0 0 12px; padding-left: 24px; }
+  .legal-body li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand" aria-label="Once Upon A Time, home"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></a>
+      <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle nav"><i class="ph ph-list"></i></button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <a href="about.html">About Us</a><a href="programs.html">Programs</a><a href="donate.html">Donation</a><a href="newsletter.html">Newsletter</a><a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart"><i class="ph ph-shopping-cart-simple"></i><span>Cart</span><span class="badge">9</span></button>
+        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear"></i></a>
+        <a href="profile.html" class="avatar" aria-label="Account"><i class="ph ph-user"></i><span class="badge">9</span></a>
+        <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="page-hero">
+      <div class="wrap"><div class="page-hero__eyebrow">Get involved</div>
+      <h1>Volunteer With Us</h1>
+      <p class="page-hero__sub">Mentor a student. Help run an event. Garden with us on Saturdays. Find a way to plug in below.</p></div>
+    </section>
+    <section class="wrap" style="padding:48px 0;display:grid;grid-template-columns:1.4fr 1fr;gap:32px;max-width:1100px">
+      <div>
+        <h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin-bottom:16px;color:var(--pillar)">Open shifts</h2>
+        <div style="display:grid;gap:12px">
+          <article style="background:var(--snow);border:1px solid var(--line);border-radius:12px;padding:18px 22px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center"><div><div style="font-weight:700;font-size:15px">Spring Showcase Setup</div><div style="font-size:12px;color:var(--ink-muted);margin-top:4px">Sat May 28 · 2–6 PM · Studio A</div><div style="font-size:13px;margin-top:6px;line-height:1.5">Stage setup, lighting checks, refreshment table.</div></div><button class="btn btn--sm" type="button" data-mock="signup-shift" data-mock-toast="Shift sign-up routes to Shopify customer metaobject in production.">Sign up</button></article><article style="background:var(--snow);border:1px solid var(--line);border-radius:12px;padding:18px 22px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center"><div><div style="font-weight:700;font-size:15px">Garden Saturday</div><div style="font-size:12px;color:var(--ink-muted);margin-top:4px">Every Sat · 10 AM–1 PM · Queens Botanical Garden</div><div style="font-size:13px;margin-top:6px;line-height:1.5">Helps lead 8–12 year olds through plant care.</div></div><button class="btn btn--sm" type="button" data-mock="signup-shift" data-mock-toast="Shift sign-up routes to Shopify customer metaobject in production.">Sign up</button></article><article style="background:var(--snow);border:1px solid var(--line);border-radius:12px;padding:18px 22px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center"><div><div style="font-weight:700;font-size:15px">Fall Gala Reception</div><div style="font-size:12px;color:var(--ink-muted);margin-top:4px">Sat Sep 20 · 6–11 PM · TBA</div><div style="font-size:13px;margin-top:6px;line-height:1.5">Greet guests, manage check-in, run silent auction.</div></div><button class="btn btn--sm" type="button" data-mock="signup-shift" data-mock-toast="Shift sign-up routes to Shopify customer metaobject in production.">Sign up</button></article><article style="background:var(--snow);border:1px solid var(--line);border-radius:12px;padding:18px 22px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center"><div><div style="font-weight:700;font-size:15px">Class Photographer</div><div style="font-size:12px;color:var(--ink-muted);margin-top:4px">Per session · Studios</div><div style="font-size:13px;margin-top:6px;line-height:1.5">Photograph weekly classes for our gallery + newsletter.</div></div><button class="btn btn--sm" type="button" data-mock="signup-shift" data-mock-toast="Shift sign-up routes to Shopify customer metaobject in production.">Sign up</button></article>
+        </div>
+      </div>
+      <aside>
+        <div style="background:var(--rose-100);border-radius:14px;padding:24px;margin-bottom:18px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.25em;color:var(--rose-700);text-transform:uppercase;margin-bottom:8px">Your impact</div>
+          <div style="font-family:var(--serif);font-size:42px;font-weight:600;color:var(--pillar);line-height:1">36 <span style="font-size:16px;color:var(--ink-muted)">hours</span></div>
+          <p style="font-size:13px;color:var(--ink-muted);margin:8px 0 0">Logged this year. Thank you, Claire.</p>
+        </div>
+        <div style="background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:24px">
+          <h3 style="font-family:var(--serif);font-size:18px;text-transform:uppercase;margin:0 0 10px">New here?</h3>
+          <p style="font-size:13px;color:var(--ink-muted);line-height:1.6;margin:0 0 14px">Volunteers complete a short orientation and background check before their first shift.</p>
+          <a class="btn btn--sm" href="mailto:contact@onceuponatime.org?subject=Volunteer%20interest">Start onboarding</a>
+        </div>
+      </aside>
+    </section>
+    </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block"><div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="" loading="lazy"></div></div>
+        <div><h4>About</h4><ul><li><a href="about.html">About</a></li><li><a href="programs.html">Programs</a></li><li><a href="instructors.html">Instructors</a></li></ul></div>
+        <div><h4>Get Involved</h4><ul><li><a href="events.html">Events</a></li><li><a href="donate.html">Support Us</a></li><li><a href="volunteer-dashboard.html">Volunteer</a></li></ul></div>
+        <div class="footer__address-block">
+          <div class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</div>
+          <div class="footer__socials">
+            <a href="https://youtube.com/@onceuponatime" aria-label="YouTube" target="_blank" rel="noopener"><i class="ph ph-youtube-logo"></i></a>
+            <a href="https://facebook.com/onceuponatime" aria-label="Facebook" target="_blank" rel="noopener"><i class="ph ph-facebook-logo"></i></a>
+            <a href="https://twitter.com/onceuponatime" aria-label="Twitter" target="_blank" rel="noopener"><i class="ph ph-twitter-logo"></i></a>
+            <a href="https://instagram.com/onceuponatime" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
+          <div style="margin-top:14px;font-size:12px;opacity:.7"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">Once Upon A Time Inc. © 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const t = document.querySelector('.nav-toggle'), n = document.getElementById('primary-nav');
+      if (t && n) t.addEventListener('click', () => {
+        const o = n.dataset.open === 'true';
+        n.dataset.open = o ? 'false' : 'true';
+        t.setAttribute('aria-expanded', o ? 'false' : 'true');
+      });
+    })();
+    
+  </script>
+</body>
+</html>

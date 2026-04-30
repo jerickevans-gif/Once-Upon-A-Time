@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
   <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
   <script src="once-upon-a-time-assets/site.js" defer></script>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
 
   <style>
     body { background: var(--snow); }
@@ -114,7 +115,7 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-btn" type="button" aria-label="Cart, 9 items"><i class="ph ph-shopping-cart-simple"></i><span>Cart</span><span class="badge">9</span></button>
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart"><i class="ph ph-shopping-cart-simple"></i><span>Cart</span><span class="badge">9</span></button>
         <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings"><i class="ph ph-gear"></i></button>
         <a href="profile.html" class="avatar" aria-label="Account, 9 notifications"><i class="ph ph-user"></i><span class="badge">9</span></a>
         <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
@@ -226,10 +227,10 @@
         <div class="footer__address-block">
           <div class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</div>
           <div class="footer__socials">
-            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
-            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
-            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
-            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="https://youtube.com/@onceuponatime" aria-label="YouTube" target="_blank" rel="noopener"><i class="ph ph-youtube-logo"></i></a>
+            <a href="https://facebook.com/onceuponatime" aria-label="Facebook" target="_blank" rel="noopener"><i class="ph ph-facebook-logo"></i></a>
+            <a href="https://twitter.com/onceuponatime" aria-label="Twitter" target="_blank" rel="noopener"><i class="ph ph-twitter-logo"></i></a>
+            <a href="https://instagram.com/onceuponatime" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
             <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
           </div>
         </div>

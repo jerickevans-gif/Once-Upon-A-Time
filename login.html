@@ -182,6 +182,7 @@
       .auth-page__title { font-size: 38px; }
     }
   </style>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
 </head>
 <body>
   <main class="auth-page">
@@ -221,7 +222,7 @@
 
         <div class="auth-page__form-row">
           <label><input type="checkbox" name="remember"> Remember me</label>
-          <span>Forgot Password? <a class="link" href="#forgot">Click Here</a></span>
+          <span>Forgot Password? <a class="link" href="#" data-mock="reset-password" data-mock-toast="A magic-link reset email is sent via Shopify customer accounts in production.">Click Here</a></span>
         </div>
 
         <button type="submit" class="auth-submit">Log in</button>
@@ -230,9 +231,9 @@
       <div class="auth-divider"><span>Or log in with</span></div>
 
       <div class="social-row">
-        <button type="button" class="social-btn social-btn--google"><i class="ph ph-google-logo"></i> Google</button>
-        <button type="button" class="social-btn social-btn--apple"><i class="ph ph-apple-logo"></i> Apple</button>
-        <button type="button" class="social-btn social-btn--email"><i class="ph ph-envelope"></i> Email</button>
+        <button type="button" class="social-btn social-btn--google" data-mock="login-google"><i class="ph ph-google-logo"></i> Google</button>
+        <button type="button" class="social-btn social-btn--apple" data-mock="login-apple"><i class="ph ph-apple-logo"></i> Apple</button>
+        <button type="button" class="social-btn social-btn--email" data-mock="login-email"><i class="ph ph-envelope"></i> Email</button>
       </div>
 
       <div class="auth-page__footer">
@@ -256,15 +257,16 @@
         });
       });
 
-      // Form submit (placeholder)
+      // Form submit — Shopify customer accounts in production
       const form = document.getElementById('login-form');
       form?.addEventListener('submit', (e) => {
         e.preventDefault();
         const email = form.querySelector('input[type="email"]').value.trim();
         const pw = form.querySelector('input[type="password"]').value;
         if (!email || !pw) return;
-        // In production this would POST to /api/login or shopify customer endpoint.
-        alert('Login submitted for ' + email + ' (replace with real backend on Shopify).');
+        if (window.OUAT_toast) {
+          window.OUAT_toast(`Login for ${email} routes to Shopify customer accounts in production.`, { variant: 'mock' });
+        }
       });
     })();
   </script>

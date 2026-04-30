@@ -1,0 +1,214 @@
+/* ==========================================================================
+   components.css — Shared interactive component styles.
+   Loaded after design-system.css; built up during the P0–P3 design pass.
+   ========================================================================== */
+
+/* ---------- Empty state ---------- */
+.empty-state {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 64px 24px;
+  background: var(--snow);
+  border: 1.5px dashed var(--line);
+  border-radius: 16px;
+  color: var(--ink-muted);
+}
+.empty-state__icon {
+  width: 72px; height: 72px;
+  border-radius: 50%; background: var(--rose-50);
+  color: var(--rose-700); font-size: 32px;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.empty-state__title {
+  font-family: var(--serif); font-size: 22px; font-weight: 600;
+  color: var(--ink); margin: 0 0 8px;
+}
+.empty-state__body {
+  max-width: 40ch; font-size: 14px; line-height: 1.6;
+  margin: 0 0 20px;
+}
+.empty-state__actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+
+/* ---------- Modal ---------- */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(38,36,34,.55);
+  backdrop-filter: blur(4px);
+  display: grid; place-items: center; padding: 16px;
+  animation: modal-fade .25s ease;
+}
+.modal-overlay[hidden] { display: none; }
+@keyframes modal-fade { from { opacity: 0; } }
+.modal {
+  background: var(--snow);
+  border-radius: 16px;
+  width: min(440px, 100%);
+  padding: 28px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  animation: modal-pop .25s ease;
+}
+@keyframes modal-pop { from { transform: translateY(8px) scale(.98); opacity: 0; } }
+.modal__title { font-family: var(--serif); font-weight: 600; font-size: 22px; margin: 0 0 8px; color: var(--pillar); }
+.modal__body { font-size: 14px; color: var(--ink-muted); line-height: 1.6; margin: 0 0 20px; }
+.modal__actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+.modal__actions .btn { min-width: 100px; }
+.modal--danger .modal__title { color: #C0322E; }
+.modal--danger .btn-confirm { background: #C0322E; color: #fff; }
+.modal--danger .btn-confirm:hover { background: #8E1F1B; }
+
+/* ---------- Skeleton loader ---------- */
+.skeleton {
+  background: linear-gradient(90deg, var(--rose-50) 0%, var(--rose-100) 50%, var(--rose-50) 100%);
+  background-size: 200% 100%;
+  animation: skeleton-wave 1.4s infinite linear;
+  border-radius: 6px;
+}
+.skeleton--text { height: 14px; margin: 6px 0; }
+.skeleton--title { height: 28px; width: 60%; }
+.skeleton--block { height: 200px; }
+.skeleton--avatar { width: 48px; height: 48px; border-radius: 50%; }
+@keyframes skeleton-wave { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* ---------- Stepper ---------- */
+.cmp-stepper {
+  display: flex; align-items: center; gap: 0;
+  padding: 16px 0; margin-bottom: 24px;
+  overflow-x: auto;
+}
+.cmp-stepper__step {
+  display: flex; align-items: center; gap: 10px;
+  flex: 1; min-width: 0; color: var(--ink-muted);
+}
+.cmp-stepper__step + .cmp-stepper__step::before {
+  content: ""; width: 24px; height: 1px; background: var(--line); margin-right: 10px; flex-shrink: 0;
+}
+.cmp-stepper__dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1.5px solid var(--line); background: var(--snow);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700;
+}
+.cmp-stepper__step.is-active .cmp-stepper__dot { background: var(--rose); color: #fff; border-color: var(--rose); }
+.cmp-stepper__step.is-done .cmp-stepper__dot { background: var(--garden); color: #fff; border-color: var(--garden); }
+
+/* ---------- Settings dropdown (header gear) ---------- */
+.dropdown { position: relative; display: inline-block; }
+.dropdown__menu {
+  position: absolute; right: 0; top: calc(100% + 8px);
+  min-width: 220px;
+  background: var(--snow); border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.12);
+  padding: 8px;
+  z-index: 50;
+  display: none;
+}
+.dropdown.is-open .dropdown__menu { display: block; }
+.dropdown__item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 8px;
+  color: var(--ink); font-size: 14px; cursor: pointer;
+  text-decoration: none; background: transparent; border: 0; width: 100%;
+  font-weight: 500;
+}
+.dropdown__item:hover { background: var(--rose-50); }
+.dropdown__item .ph { color: var(--ink-muted); font-size: 18px; }
+.dropdown__sep { height: 1px; background: var(--line); margin: 6px 0; }
+.dropdown__label { font-size: 11px; font-weight: 700; color: var(--ink-muted); letter-spacing: .04em; text-transform: uppercase; padding: 6px 12px; }
+
+/* ---------- Cookie banner ---------- */
+.cookie-banner {
+  position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 90;
+  background: var(--pillar); color: #fff;
+  border-radius: 14px;
+  padding: 18px 22px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 12px 36px rgba(0,0,0,.30);
+  animation: cookie-up .35s ease;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.cookie-banner[hidden] { display: none; }
+@keyframes cookie-up { from { transform: translateY(20px); opacity: 0; } }
+.cookie-banner__text { font-size: 13px; line-height: 1.5; max-width: 460px; }
+.cookie-banner__text a { color: var(--blush); text-decoration: underline; }
+.cookie-banner__actions { display: inline-flex; gap: 10px; }
+.cookie-banner button {
+  padding: 10px 18px; border-radius: 8px; border: 0;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+}
+.cookie-banner .btn-accept { background: var(--rose); color: #fff; }
+.cookie-banner .btn-accept:hover { background: var(--rose-700); }
+.cookie-banner .btn-decline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.3); }
+.cookie-banner .btn-decline:hover { background: rgba(255,255,255,.1); }
+
+/* ---------- Date-picker popover (lite) ---------- */
+.date-popover {
+  position: absolute; z-index: 60;
+  background: var(--snow); border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px; min-width: 260px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.10);
+}
+.date-popover[hidden] { display: none; }
+.date-popover__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 6px 8px;
+  font-weight: 600; font-size: 13px;
+}
+.date-popover__head button {
+  background: transparent; border: 0; cursor: pointer;
+  width: 28px; height: 28px; border-radius: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.date-popover__head button:hover { background: var(--rose-50); }
+.date-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: 12px; }
+.date-grid__dow { text-align: center; padding: 6px 0; font-weight: 700; color: var(--ink-muted); }
+.date-grid__day {
+  aspect-ratio: 1; border-radius: 6px;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--ink);
+}
+.date-grid__day:hover { background: var(--rose-50); }
+.date-grid__day.is-active { background: var(--rose); color: #fff; }
+.date-grid__day.is-muted { color: var(--ink-muted); opacity: .4; }
+
+/* ---------- Form error states ---------- */
+.input.is-error, .textarea.is-error {
+  border-color: #C0322E !important;
+  box-shadow: 0 0 0 3px rgba(192,50,46,.1);
+}
+.field-error {
+  font-size: 12px; color: #C0322E; margin-top: 4px;
+  display: flex; align-items: center; gap: 4px;
+}
+.field-error::before { content: "⚠"; font-size: 13px; }
+
+/* ---------- Waitlist banner (used in detail pages when full) ---------- */
+.waitlist-banner {
+  background: var(--garden);
+  color: #fff;
+  padding: 14px 22px; border-radius: 10px;
+  font-size: 13px; font-weight: 500;
+  display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
+}
+.waitlist-banner button {
+  background: #fff; color: var(--garden-700); border: 0;
+  padding: 8px 16px; border-radius: 6px;
+  font-weight: 600; cursor: pointer;
+  margin-left: auto;
+}
+
+/* ---------- Sibling discount banner ---------- */
+.sibling-banner {
+  background: var(--rose-100); color: var(--rose-700);
+  border: 1px solid var(--rose-300); border-radius: 10px;
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13px; line-height: 1.5;
+  margin-bottom: 16px;
+}
+.sibling-banner .ph { font-size: 20px; flex-shrink: 0; }

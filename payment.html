@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
   <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
   <script src="once-upon-a-time-assets/site.js" defer></script>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
 
   <style>
     :root { --bg: var(--beginning); --hero-rose: var(--rose-100); }
@@ -231,13 +232,11 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-btn" type="button" aria-label="Cart, 9 items">
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart">
           <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
           <span>Cart</span><span class="badge" aria-hidden="true">9</span>
         </button>
-        <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings">
-          <i class="ph ph-gear" aria-hidden="true"></i>
-        </button>
+        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></a>
         <a href="profile.html" class="avatar" aria-label="Account, 9 notifications">
           <i class="ph ph-user" aria-hidden="true"></i><span class="badge" aria-hidden="true">9</span>
         </a>
@@ -399,10 +398,10 @@
         <div class="footer__address-block">
           <div class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</div>
           <div class="footer__socials">
-            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
-            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
-            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
-            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="https://youtube.com/@onceuponatime" aria-label="YouTube" target="_blank" rel="noopener"><i class="ph ph-youtube-logo"></i></a>
+            <a href="https://facebook.com/onceuponatime" aria-label="Facebook" target="_blank" rel="noopener"><i class="ph ph-facebook-logo"></i></a>
+            <a href="https://twitter.com/onceuponatime" aria-label="Twitter" target="_blank" rel="noopener"><i class="ph ph-twitter-logo"></i></a>
+            <a href="https://instagram.com/onceuponatime" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
             <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
           </div>
         </div>
@@ -441,10 +440,15 @@
         const method = form.querySelector('input[name="method"]:checked').value;
         const monthly = form.querySelector('input[name="monthly"]').checked;
         if (!submit.classList.contains('is-active') && method === 'card') {
-          alert('Please complete required card fields.');
+          if (window.OUAT_toast) window.OUAT_toast('Please complete required card fields.', { variant: 'warning' });
           return;
         }
-        alert(`Donation submitted via ${method}${monthly ? ' (monthly recurring)' : ''}.\n\nIn production, this would hand off to Stripe / PayPal / Apple Pay.`);
+        if (window.OUAT_toast) {
+          window.OUAT_toast(
+            `${monthly ? 'Recurring monthly' : 'One-time'} donation via ${method.toUpperCase()} routes to Stripe / Shopify Payments in production.`,
+            { variant: 'mock', duration: 4500 }
+          );
+        }
       });
 
       // Pull amount + freq from URL (set by donate form)

@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
   <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
   <script src="once-upon-a-time-assets/site.js" defer></script>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
 
   <style>
     /* ===== Hero ===== */
@@ -299,14 +300,12 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-btn" type="button" aria-label="Cart, 9 items">
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart">
           <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
           <span>Cart</span>
           <span class="badge" aria-hidden="true">9</span>
         </button>
-        <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings">
-          <i class="ph ph-gear" aria-hidden="true"></i>
-        </button>
+        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></a>
         <a href="profile.html" class="avatar" aria-label="Account, 9 notifications">
           <i class="ph ph-user" aria-hidden="true"></i>
           <span class="badge" aria-hidden="true">9</span>
@@ -327,9 +326,9 @@
           <p class="hero__sub">Thursdays | 4pm | Ages 10+ | Studio Room A</p>
           <p class="hero__lede">A six-week immersion in jazz fundamentals — rhythm, articulation, and stagecraft — taught by working professionals. Designed for students who want to perform, not just practise.</p>
           <div class="hero__actions">
-            <a class="btn" href="#enroll"><i class="ph ph-ticket"></i> Enroll Now</a>
-            <a class="btn btn--garden" href="#cart"><i class="ph ph-shopping-cart-simple"></i> Add to Cart</a>
-            <a class="btn btn--text" href="#more">Learn More <i class="ph ph-arrow-right"></i></a>
+            <a class="btn" href="enrollment.html?class=jazz-winter-2026"><i class="ph ph-ticket"></i> Enroll Now</a>
+            <button class="btn btn--garden" type="button" data-mock="add-to-cart"><i class="ph ph-shopping-cart-simple"></i> Add to Cart</button>
+            <a class="btn btn--text" href="seasonal-camps.html">Learn More <i class="ph ph-arrow-right"></i></a>
           </div>
         </div>
         <div class="hero__photo" role="img" aria-label="Students performing a jazz routine on stage"></div>
@@ -375,9 +374,9 @@
           <div class="calendar__head">
             <span class="calendar__title">Activity</span>
             <span class="calendar__nav">
-              <button type="button" aria-label="Previous month"><i class="ph ph-caret-left"></i></button>
-              Jan&nbsp;2026
-              <button type="button" aria-label="Next month"><i class="ph ph-caret-right"></i></button>
+              <button type="button" aria-label="Previous month" data-cal-prev><i class="ph ph-caret-left"></i></button>
+              <span data-cal-label>Jan&nbsp;2026</span>
+              <button type="button" aria-label="Next month" data-cal-next><i class="ph ph-caret-right"></i></button>
             </span>
           </div>
           <div class="calendar__grid">
@@ -542,10 +541,10 @@
             NY 11418, United States
           </div>
           <div class="footer__socials">
-            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
-            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
-            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
-            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="https://youtube.com/@onceuponatime" aria-label="YouTube" target="_blank" rel="noopener"><i class="ph ph-youtube-logo"></i></a>
+            <a href="https://facebook.com/onceuponatime" aria-label="Facebook" target="_blank" rel="noopener"><i class="ph ph-facebook-logo"></i></a>
+            <a href="https://twitter.com/onceuponatime" aria-label="Twitter" target="_blank" rel="noopener"><i class="ph ph-twitter-logo"></i></a>
+            <a href="https://instagram.com/onceuponatime" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
             <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
           </div>
         </div>
@@ -561,11 +560,34 @@
     (function () {
       const toggle = document.querySelector('.nav-toggle');
       const nav = document.getElementById('primary-nav');
-      if (!toggle || !nav) return;
-      toggle.addEventListener('click', () => {
-        const open = nav.dataset.open === 'true';
-        nav.dataset.open = open ? 'false' : 'true';
-        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const open = nav.dataset.open === 'true';
+          nav.dataset.open = open ? 'false' : 'true';
+          toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        });
+      }
+
+      // Calendar prev/next month label cycling
+      const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      const label = document.querySelector('[data-cal-label]');
+      const prev = document.querySelector('[data-cal-prev]');
+      const next = document.querySelector('[data-cal-next]');
+      let cur = { m: 0, y: 2026 };
+      function set () { if (label) label.innerHTML = months[cur.m] + '&nbsp;' + cur.y; }
+      if (prev) prev.addEventListener('click', () => { cur.m--; if (cur.m<0) { cur.m=11; cur.y--; } set(); });
+      if (next) next.addEventListener('click', () => { cur.m++; if (cur.m>11) { cur.m=0; cur.y++; } set(); });
+
+      // Hero pagination dots — clickable, no real carousel data so just toggle aria-current
+      document.querySelectorAll('.hero__dots span').forEach((dot, i, arr) => {
+        dot.style.cursor = 'pointer';
+        dot.setAttribute('role', 'button');
+        dot.setAttribute('tabindex', '0');
+        dot.setAttribute('aria-label', `Slide ${i+1} of ${arr.length}`);
+        dot.addEventListener('click', () => {
+          arr.forEach(d => d.removeAttribute('aria-current'));
+          dot.setAttribute('aria-current', 'true');
+        });
       });
     })();
   </script>

@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
   <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
   <script src="once-upon-a-time-assets/site.js" defer></script>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
 
   <style>
     /* ===== Page title ===== */
@@ -358,14 +359,12 @@
         <a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-btn" type="button" aria-label="Cart, 9 items">
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart">
           <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
           <span>Cart</span>
           <span class="badge" aria-hidden="true">9</span>
         </button>
-        <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings">
-          <i class="ph ph-gear" aria-hidden="true"></i>
-        </button>
+        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></a>
         <a href="profile.html" class="avatar" aria-label="Account, 9 notifications">
           <i class="ph ph-user" aria-hidden="true"></i>
           <span class="badge" aria-hidden="true">9</span>
@@ -385,21 +384,21 @@
     <!-- ============ TOOLBAR ============ -->
     <div class="wrap nl-toolbar">
       <nav class="nl-tabs" aria-label="Newsletter sections">
-        <a href="#">Home</a>
-        <a href="#" class="is-active">Saved Articles <span class="nl-tabs__badge">7</span></a>
-        <a href="#">Read Later <span class="nl-tabs__badge">2</span></a>
-        <a href="#">Get Involved!</a>
+        <a href="#" data-nl-tab="home">Home</a>
+        <a href="#" class="is-active" data-nl-tab="saved">Saved Articles <span class="nl-tabs__badge">7</span></a>
+        <a href="#" data-nl-tab="later">Read Later <span class="nl-tabs__badge">2</span></a>
+        <a href="#" data-nl-tab="involved">Get Involved!</a>
         <a href="donate.html">Donate</a>
-        <a href="#" class="is-muted">Admin</a>
-        <button class="nl-tabs__more" type="button" aria-label="More options">···</button>
+        <a href="#" class="is-muted" data-mock="admin-newsletter" data-mock-toast="Admin newsletter editor opens via Shopify in production.">Admin</a>
+        <button class="nl-tabs__more" type="button" aria-label="More options" data-mock="newsletter-more" data-mock-toast="More-actions menu (export, archive, settings) opens here in production.">···</button>
       </nav>
       <div class="nl-tools">
-        <button class="nl-filter" type="button" aria-label="Filter by publish date">
+        <button class="nl-filter" type="button" aria-label="Filter by publish date" data-mock="filter-date" data-mock-toast="A date-range picker opens here. Hooked to Shopify article publish_at in production.">
           <i class="ph ph-calendar-blank"></i> Publish Date
         </button>
         <label class="nl-search" aria-label="Search articles">
           <i class="ph ph-magnifying-glass"></i>
-          <input type="search" placeholder="Search" autocomplete="off">
+          <input type="search" placeholder="Search" autocomplete="off" data-nl-search>
         </label>
       </div>
     </div>
@@ -409,19 +408,19 @@
       <div class="nl-current-head">
         <h2>Current Newsletter</h2>
         <div class="nl-actions" role="group" aria-label="Newsletter actions">
-          <button class="nl-action" type="button" aria-label="Save"><i class="ph ph-bookmark-simple"></i></button>
-          <button class="nl-action nl-action--share" type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
-          <button class="nl-action" type="button" aria-label="Skip to first"><i class="ph ph-rewind"></i></button>
-          <button class="nl-action" type="button" aria-label="Previous"><i class="ph ph-caret-left"></i></button>
-          <button class="nl-action" type="button" aria-label="Next"><i class="ph ph-caret-right"></i></button>
-          <button class="nl-action" type="button" aria-label="Skip to latest"><i class="ph ph-fast-forward"></i></button>
+          <button class="nl-action" type="button" aria-label="Save" aria-pressed="false" data-bookmark="newsletter:december-2025"><i class="ph ph-bookmark-simple"></i></button>
+          <button class="nl-action nl-action--share" type="button" aria-label="Share" data-share data-share-title="Once Upon A Time — December 2025"><i class="ph ph-share-network"></i></button>
+          <button class="nl-action" type="button" aria-label="Skip to first" data-nl-nav="first"><i class="ph ph-rewind"></i></button>
+          <button class="nl-action" type="button" aria-label="Previous" data-nl-nav="prev"><i class="ph ph-caret-left"></i></button>
+          <button class="nl-action" type="button" aria-label="Next" data-nl-nav="next"><i class="ph ph-caret-right"></i></button>
+          <button class="nl-action" type="button" aria-label="Skip to latest" data-nl-nav="last"><i class="ph ph-fast-forward"></i></button>
         </div>
       </div>
 
       <div class="nl-feature">
-        <div class="nl-feature__actions" aria-hidden="true">
-          <button class="nl-action" type="button" aria-label="Save article"><i class="ph ph-bookmark-simple"></i></button>
-          <button class="nl-action nl-action--share" type="button" aria-label="Share article"><i class="ph ph-share-network"></i></button>
+        <div class="nl-feature__actions">
+          <button class="nl-action" type="button" aria-label="Save article" aria-pressed="false" data-bookmark="newsletter:december-2025-feature"><i class="ph ph-bookmark-simple"></i></button>
+          <button class="nl-action nl-action--share" type="button" aria-label="Share article" data-share data-share-title="Once Upon A Time Newsletter"><i class="ph ph-share-network"></i></button>
         </div>
         <header class="nl-feature__head">
           <h2>Once Upon A Time <span style="font-family:var(--sans);font-weight:400;font-size:.55em;text-transform:none;letter-spacing:0;border-left:1.5px solid var(--ink);padding-left:14px;margin-left:8px;vertical-align:middle">Newsletter</span></h2>
@@ -492,7 +491,7 @@
               <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
               <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
               <div class="nl-card__footer">
-                <a class="btn btn--sm btn--outline" href="#">View More <i class="ph ph-arrow-right"></i></a>
+                <a class="btn btn--sm btn--outline" href="#" data-mock="view-newsletter" data-mock-toast="Opens the standalone newsletter article page in production. Each issue gets its own permalink."><i class="ph ph-arrow-right"></i> View More</a>
                 <span class="nl-card__icons">
                   <button type="button" aria-label="Bookmark"><i class="ph ph-bookmark-simple"></i></button>
                   <button type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
@@ -508,7 +507,7 @@
               <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
               <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
               <div class="nl-card__footer">
-                <a class="btn btn--sm btn--outline" href="#">View More <i class="ph ph-arrow-right"></i></a>
+                <a class="btn btn--sm btn--outline" href="#" data-mock="view-newsletter" data-mock-toast="Opens the standalone newsletter article page in production. Each issue gets its own permalink."><i class="ph ph-arrow-right"></i> View More</a>
                 <span class="nl-card__icons">
                   <button type="button" aria-label="Bookmark"><i class="ph ph-bookmark-simple"></i></button>
                   <button type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
@@ -524,7 +523,7 @@
               <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
               <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
               <div class="nl-card__footer">
-                <a class="btn btn--sm btn--outline" href="#">View More <i class="ph ph-arrow-right"></i></a>
+                <a class="btn btn--sm btn--outline" href="#" data-mock="view-newsletter" data-mock-toast="Opens the standalone newsletter article page in production. Each issue gets its own permalink."><i class="ph ph-arrow-right"></i> View More</a>
                 <span class="nl-card__icons">
                   <button type="button" aria-label="Bookmark"><i class="ph ph-bookmark-simple"></i></button>
                   <button type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
@@ -568,10 +567,10 @@
             NY 11418, United States
           </div>
           <div class="footer__socials">
-            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
-            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
-            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
-            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="https://youtube.com/@onceuponatime" aria-label="YouTube" target="_blank" rel="noopener"><i class="ph ph-youtube-logo"></i></a>
+            <a href="https://facebook.com/onceuponatime" aria-label="Facebook" target="_blank" rel="noopener"><i class="ph ph-facebook-logo"></i></a>
+            <a href="https://twitter.com/onceuponatime" aria-label="Twitter" target="_blank" rel="noopener"><i class="ph ph-twitter-logo"></i></a>
+            <a href="https://instagram.com/onceuponatime" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
             <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
           </div>
         </div>
@@ -586,12 +585,57 @@
     (function () {
       const toggle = document.querySelector('.nav-toggle');
       const nav = document.getElementById('primary-nav');
-      if (!toggle || !nav) return;
-      toggle.addEventListener('click', () => {
-        const open = nav.dataset.open === 'true';
-        nav.dataset.open = open ? 'false' : 'true';
-        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const open = nav.dataset.open === 'true';
+          nav.dataset.open = open ? 'false' : 'true';
+          toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        });
+      }
+
+      // ---- Newsletter tab toggling (visual only — would query Shopify in prod) ----
+      const tabs = document.querySelectorAll('[data-nl-tab]');
+      tabs.forEach(t => t.addEventListener('click', (e) => {
+        e.preventDefault();
+        tabs.forEach(x => x.classList.remove('is-active'));
+        t.classList.add('is-active');
+        if (window.OUAT_toast) {
+          const labels = { home:'Home', saved:'Saved Articles', later:'Read Later', involved:'Get Involved!' };
+          window.OUAT_toast(`Showing: ${labels[t.dataset.nlTab] || ''} (Shopify queries by metafield in production)`, { variant:'info', duration:1800 });
+        }
+      }));
+
+      // ---- Newsletter article nav (prev/next/first/last) ----
+      const articles = Array.from(document.querySelectorAll('.nl-article, .nl-feature'));
+      let cursor = 0;
+      function go (target) {
+        if (!articles.length) return;
+        if (target === 'first') cursor = 0;
+        else if (target === 'last') cursor = articles.length - 1;
+        else if (target === 'prev') cursor = Math.max(0, cursor - 1);
+        else if (target === 'next') cursor = Math.min(articles.length - 1, cursor + 1);
+        const el = articles[cursor];
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.style.transition = 'box-shadow .25s';
+        el.style.boxShadow = '0 0 0 3px var(--rose-300)';
+        setTimeout(() => { el.style.boxShadow = ''; }, 1200);
+      }
+      document.querySelectorAll('[data-nl-nav]').forEach(b => {
+        b.addEventListener('click', () => go(b.dataset.nlNav));
       });
+
+      // ---- Newsletter search filter ----
+      const searchInput = document.querySelector('[data-nl-search]');
+      if (searchInput) {
+        const sections = Array.from(document.querySelectorAll('.nl-article, .nl-feature, .nl-card'));
+        searchInput.addEventListener('input', () => {
+          const q = searchInput.value.trim().toLowerCase();
+          if (!q) { sections.forEach(s => s.style.display = ''); return; }
+          sections.forEach(s => {
+            s.style.display = s.textContent.toLowerCase().includes(q) ? '' : 'none';
+          });
+        });
+      }
     })();
   </script>
 
