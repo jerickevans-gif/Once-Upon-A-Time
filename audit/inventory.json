@@ -17,6 +17,11 @@
       "importance": 5,
       "files": ["search.html"],
       "screenshot": "02-search-results.png",
+      "annotations": [
+        "Search input — reads ?q= from URL and highlights matched terms in results",
+        "Result heading + result-type chip — links straight to the source page",
+        "Inline match highlight — exact-token matches wrapped in <mark>"
+      ],
       "why": "32-entry hand-built index with token-based scoring, exact-phrase boost, all-tokens-must-match filter, matched-term highlighting, browse-by-section quick links when no query. Header magnifying-glass icon-link on every page is the entry point.",
       "design_notes": "Needs a dedicated SERP layout spec, suggested-query chips, recent-search history pattern, and empty-state illustration."
     },
@@ -57,6 +62,11 @@
       "importance": 4,
       "files": ["programs.html"],
       "screenshot": "04-programs-filter.png",
+      "annotations": [
+        "Chip filter row — All / Dance / Theater / Acting / Gardening, single-select with aria-pressed",
+        "In-page keyword search — filters live, deep-links via ?q=",
+        "Program card with track chip — chip text matches the active filter"
+      ],
       "why": "Chip row (All / Dance / Theater / Acting / Gardening) and live keyword search above the program cards. Filters both Open for Enrollment and Coming Soon sections; hides empty sections and shows a Clear-Filters affordance when nothing matches. Reads ?q= from URL.",
       "design_notes": "The PDF programs page has no filtering UI. Pattern is identical to standard e-commerce category pages — would benefit from a Shopify Search & Discovery integration."
     },
@@ -247,6 +257,11 @@
       "importance": 2,
       "files": ["tools/sync-footer.py", "47 *.html files"],
       "screenshot": "14-footer.png",
+      "annotations": [
+        "About column — About + Programs links, h3 heading per WCAG hierarchy",
+        "Events column — Events + Support Us links matching the PDF spec",
+        "Address + socials + legal block — Maps deep-link, real social URLs, Privacy · Terms · Accessibility"
+      ],
       "why": "8 distinct footer variants existed across 47 pages; collapsed to one canonical block (Brand, About / Programs, Events / Support Us, Address + socials + legal). tools/sync-footer.py keeps it in lock-step until the Shopify migration replaces it with a Liquid section.",
       "design_notes": "Matches the PDF programs-page footer exactly. After Shopify cut-over the script retires."
     },
