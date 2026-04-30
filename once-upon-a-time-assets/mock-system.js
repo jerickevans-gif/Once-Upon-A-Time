@@ -174,6 +174,72 @@
     });
   });
 
+  // -------------------- Cookie banner (auto-injected) -------------------- //
+  document.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('ouat:cookies-acked')) return;
+    if (document.querySelector('.cookie-banner')) return;
+    const banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-label', 'Cookie consent');
+    banner.innerHTML = `
+      <div class="cookie-banner__text">
+        We use a small number of essential cookies and an optional analytics cookie. You can change your mind any time. <a href="privacy.html">Learn more</a>.
+      </div>
+      <div class="cookie-banner__actions">
+        <button type="button" class="btn-decline" data-cookie-decline>Decline</button>
+        <button type="button" class="btn-accept" data-cookie-accept>Accept all</button>
+      </div>`;
+    document.body.appendChild(banner);
+    banner.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-cookie-accept], [data-cookie-decline]');
+      if (!btn) return;
+      localStorage.setItem('ouat:cookies-acked',
+        btn.dataset.cookieAccept !== undefined ? 'all' : 'essential');
+      banner.remove();
+    });
+  });
+
+  // -------------------- Settings dropdown (header gear) -------------------- //
+  // Replace bare gear link with a dropdown trigger if present.
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a.icon-btn--icon-only[aria-label="Settings"]').forEach(gear => {
+      // Wrap in dropdown if not already
+      if (gear.parentElement.classList.contains('dropdown')) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'dropdown';
+      gear.parentNode.insertBefore(wrap, gear);
+      wrap.appendChild(gear);
+      gear.removeAttribute('href');
+      gear.setAttribute('role', 'button');
+      gear.setAttribute('aria-haspopup', 'menu');
+      gear.setAttribute('tabindex', '0');
+      gear.style.cursor = 'pointer';
+      const menu = document.createElement('div');
+      menu.className = 'dropdown__menu';
+      menu.setAttribute('role', 'menu');
+      menu.innerHTML = `
+        <div class="dropdown__label">Account</div>
+        <a class="dropdown__item" href="profile.html"><i class="ph ph-user-circle"></i> My Profile</a>
+        <a class="dropdown__item" href="preferences.html"><i class="ph ph-sliders-horizontal"></i> Preferences</a>
+        <a class="dropdown__item" href="class-history.html"><i class="ph ph-book-open"></i> Class history</a>
+        <a class="dropdown__item" href="inbox.html"><i class="ph ph-envelope"></i> Inbox</a>
+        <div class="dropdown__sep"></div>
+        <div class="dropdown__label">Site</div>
+        <a class="dropdown__item" href="search.html"><i class="ph ph-magnifying-glass"></i> Search</a>
+        <a class="dropdown__item" href="accessibility.html"><i class="ph ph-eye"></i> Accessibility</a>
+        <button class="dropdown__item" type="button" data-mock="logout" data-mock-toast="Sign out via Shopify customer accounts in production."><i class="ph ph-sign-out"></i> Sign out</button>`;
+      wrap.appendChild(menu);
+      gear.addEventListener('click', (e) => {
+        e.preventDefault();
+        wrap.classList.toggle('is-open');
+      });
+      document.addEventListener('click', (e) => {
+        if (!wrap.contains(e.target)) wrap.classList.remove('is-open');
+      });
+    });
+  });
+
   // -------------------- FAQ accordion (data-faq) -------------------- //
   // <button data-faq aria-expanded="false" aria-controls="answer-id">
   document.addEventListener('click', (e) => {

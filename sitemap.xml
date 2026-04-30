@@ -2,9 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/about.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/donate.html</loc><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/contact.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/newsletter.html</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/programs.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/seasonal-camps.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/private-lessons.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/events.html</loc><changefreq>weekly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/instructors.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/gallery.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/donor-wall.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/impact-report.html</loc><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/scholarship.html</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/sponsorship.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/gift-donation.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/newsletter-article.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/privacy.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/terms.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://jerickevans-gif.github.io/Once-Upon-A-Time/accessibility.html</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
 </urlset>
