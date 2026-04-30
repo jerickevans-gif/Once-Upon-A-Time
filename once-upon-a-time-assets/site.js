@@ -17,7 +17,7 @@
   // Loading is gated on the user's analytics-cookie consent: the script only
   // attaches if `ouat:cookies-acked` === 'all'. If the user declined analytics
   // (or hasn't answered the banner yet), Clarity stays dormant.
-  const CLARITY_PROJECT_ID = ''; // TODO: replace with your Clarity Project ID
+  const CLARITY_PROJECT_ID = 'wk101k1149';
   function attachClarity (id) {
     (function (c, l, a, r, i, t, y) {
       c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
