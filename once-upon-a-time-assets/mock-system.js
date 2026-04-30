@@ -387,6 +387,82 @@
     main.insertBefore(nav, main.firstChild);
   });
 
+  // -------------------- Skeleton entrance for [data-skeleton-list] -------------------- //
+  // Hides the real list, shows skeletons for ~600ms, then reveals.
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('[data-skeleton-list]').forEach(list => {
+      const items = Array.from(list.children);
+      const count = parseInt(list.dataset.skeletonList, 10) || items.length || 6;
+      // Build skeleton cards
+      const skel = document.createElement('div');
+      skel.style.cssText = list.getAttribute('style') || '';
+      skel.className = list.className;
+      for (let i = 0; i < count; i++) {
+        const card = document.createElement('div');
+        card.style.cssText = 'background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden';
+        card.innerHTML = '<div class="skeleton skeleton--block" style="height:160px;border-radius:0"></div><div style="padding:18px"><div class="skeleton skeleton--title" style="margin-bottom:10px"></div><div class="skeleton skeleton--text"></div><div class="skeleton skeleton--text" style="width:60%"></div></div>';
+        skel.appendChild(card);
+      }
+      list.style.display = 'none';
+      list.parentNode.insertBefore(skel, list);
+      setTimeout(() => {
+        skel.remove();
+        list.style.display = '';
+      }, 600);
+    });
+  });
+
+  // -------------------- Calendar grid full navigation (index) -------------------- //
+  document.addEventListener('DOMContentLoaded', () => {
+    const calGrid = document.querySelector('.calendar__grid');
+    const calLabel = document.querySelector('[data-cal-label]');
+    if (!calGrid || !calLabel) return;
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const monthsLong = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    let cur = { m: 0, y: 2026 };
+    function highlightDays () {
+      // Random rose/garden/blush highlights for demo
+      const days = calGrid.querySelectorAll('.calendar__day');
+      days.forEach((d, i) => {
+        d.classList.remove('calendar__day--rose','calendar__day--garden','calendar__day--blush');
+        const x = (cur.m * 31 + i) % 13;
+        if (x === 1 || x === 8) d.classList.add('calendar__day--rose');
+        else if (x === 2 || x === 11) d.classList.add('calendar__day--blush');
+        else if (x === 3 || x === 9) d.classList.add('calendar__day--garden');
+      });
+    }
+    function rebuild () {
+      calLabel.innerHTML = months[cur.m] + '&nbsp;' + cur.y;
+      const firstDay = new Date(cur.y, cur.m, 1).getDay();
+      const daysInMonth = new Date(cur.y, cur.m + 1, 0).getDate();
+      // Replace day cells (keep 7 dow headers)
+      const dows = Array.from(calGrid.querySelectorAll('.calendar__dow'));
+      calGrid.innerHTML = '';
+      dows.forEach(d => calGrid.appendChild(d));
+      for (let i = 0; i < firstDay; i++) {
+        const blank = document.createElement('span');
+        blank.className = 'calendar__day calendar__day--blank';
+        blank.style.opacity = '0';
+        calGrid.appendChild(blank);
+      }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const cell = document.createElement('span');
+        cell.className = 'calendar__day';
+        cell.textContent = d;
+        calGrid.appendChild(cell);
+      }
+      highlightDays();
+    }
+    document.querySelector('[data-cal-prev]')?.addEventListener('click', () => {
+      cur.m--; if (cur.m < 0) { cur.m = 11; cur.y--; }
+      rebuild();
+    });
+    document.querySelector('[data-cal-next]')?.addEventListener('click', () => {
+      cur.m++; if (cur.m > 11) { cur.m = 0; cur.y++; }
+      rebuild();
+    });
+  });
+
   // -------------------- Hero carousel auto-rotate (index.html) -------------------- //
   document.addEventListener('DOMContentLoaded', () => {
     const dots = document.querySelectorAll('.hero__dots span[role="button"]');
