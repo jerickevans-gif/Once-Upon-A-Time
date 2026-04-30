@@ -6,6 +6,51 @@
 (function () {
   'use strict';
 
+  // ---------- Microsoft Clarity (heatmaps + session replay + analytics) ----------
+  //
+  // 1. Sign in at https://clarity.microsoft.com (free, no credit card)
+  // 2. Create a project for the OUAT site
+  // 3. Copy the Project ID from Settings → Setup → Tracking code
+  //    (it's an 8–12 char alphanumeric string like "abc123xyz")
+  // 4. Paste it below. Clarity will start collecting on the next deploy.
+  //
+  // Loading is gated on the user's analytics-cookie consent: the script only
+  // attaches if `ouat:cookies-acked` === 'all'. If the user declined analytics
+  // (or hasn't answered the banner yet), Clarity stays dormant.
+  const CLARITY_PROJECT_ID = ''; // TODO: replace with your Clarity Project ID
+  function attachClarity (id) {
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", id);
+  }
+  if (CLARITY_PROJECT_ID) {
+    let consent = null;
+    try { consent = localStorage.getItem('ouat:cookies-acked'); } catch (e) {}
+    if (consent === 'all') {
+      attachClarity(CLARITY_PROJECT_ID);
+    } else {
+      // Cross-tab consent change reloads to attach Clarity cleanly.
+      window.addEventListener('storage', function (e) {
+        if (e.key === 'ouat:cookies-acked' && e.newValue === 'all') location.reload();
+      });
+      // Same-tab Accept-all click attaches without a reload (deferred to next tick
+      // so the banner's own handler writes localStorage first).
+      document.addEventListener('click', function (e) {
+        if (e.target.closest && e.target.closest('[data-cookie-accept]')) {
+          setTimeout(function () {
+            try {
+              if (localStorage.getItem('ouat:cookies-acked') === 'all') {
+                attachClarity(CLARITY_PROJECT_ID);
+              }
+            } catch (err) {}
+          }, 0);
+        }
+      });
+    }
+  }
+
   // ---------- Mobile nav toggle ----------
   const navToggle = document.querySelector('.nav-toggle');
   const primaryNav = document.getElementById('primary-nav');
