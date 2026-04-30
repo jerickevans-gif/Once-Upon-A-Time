@@ -60,6 +60,63 @@
   }
   window.OUAT_toast = toast;
 
+  // ---------------------- Focus trap (modals, lightbox) ---------------------- //
+  // Captures the previously focused element, focuses the first focusable inside
+  // `container`, wraps Tab/Shift-Tab inside, and restores focus on detach().
+  function trapFocus (container, opts) {
+    opts = opts || {};
+    const previouslyFocused = document.activeElement;
+    const focusableSel = [
+      'a[href]', 'button:not([disabled])', 'textarea:not([disabled])',
+      'input:not([disabled])', 'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])', 'details > summary'
+    ].join(',');
+
+    function getNodes () {
+      return Array.from(container.querySelectorAll(focusableSel))
+        .filter(el => el.offsetParent !== null || el === document.activeElement);
+    }
+    // Initial focus
+    const initial = opts.initial && container.querySelector(opts.initial);
+    const nodes = getNodes();
+    (initial || nodes[0] || container).focus();
+
+    function onKey (e) {
+      if (e.key !== 'Tab') return;
+      const live = getNodes();
+      if (live.length === 0) { e.preventDefault(); return; }
+      const first = live[0], last = live[live.length - 1];
+      const active = document.activeElement;
+      if (e.shiftKey && (active === first || !container.contains(active))) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && (active === last || !container.contains(active))) {
+        e.preventDefault(); first.focus();
+      }
+    }
+    document.addEventListener('keydown', onKey, true);
+    return function detach () {
+      document.removeEventListener('keydown', onKey, true);
+      if (previouslyFocused && typeof previouslyFocused.focus === 'function') {
+        previouslyFocused.focus();
+      }
+    };
+  }
+  window.OUAT_trapFocus = trapFocus;
+
+  // ---------------------- Service worker registration ---------------------- //
+  // Registers a project-relative service worker so the same code works under
+  // both GitHub Pages (/Once-Upon-A-Time/) and a custom Shopify-hosted root.
+  if ('serviceWorker' in navigator) {
+    const isSecure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    if (isSecure) {
+      window.addEventListener('load', () => {
+        // Walk back from the current document URL to find sw.js at the same level
+        const swUrl = new URL('sw.js', location.href.replace(/\/[^/]*$/, '/')).toString();
+        navigator.serviceWorker.register(swUrl, { scope: './' }).catch(() => { /* ignore */ });
+      });
+    }
+  }
+
   // ----- localStorage helpers used by bookmark/dismiss/read state ----- //
   const ls = {
     has (key, val) {
@@ -126,6 +183,20 @@
       'reserve-spot':      'Class reservation routes to Shopify checkout in production.',
       'register-now':      'Registration routes to Shopify checkout in production.',
       'subscribe':         'Subscription created via Shopify Subscriptions in production.',
+      'admin-newsletter':  'Admin newsletter editor opens via Shopify in production.',
+      'archive-message':   'Message archived via Shopify Inbox in production.',
+      'reply-message':     'Reply composer opens. Routes via Shopify Inbox in production.',
+      'forward-message':   'Forward composer opens. Routes via Shopify Inbox in production.',
+      'download':          'Download begins. Generated server-side via Shopify in production.',
+      'download-pdf':      'PDF download is generated server-side via Shopify in production.',
+      'external-press':    'Opens the external press article in a new tab in production.',
+      'filter-date':       'Date-range picker opens. Hooked to Shopify article publish_at in production.',
+      'newsletter-more':   'More-actions menu (export, archive, settings) opens here in production.',
+      'reset-password':    'Magic-link reset email is sent via Shopify customer accounts in production.',
+      'rsvp':              'RSVP recorded via Shopify customer metaobject in production.',
+      'signup-shift':      'Volunteer shift sign-up runs through Shopify metaobject in production.',
+      'waitlist':          'Added to waitlist — notified by Shopify automation when a spot opens.',
+      'view-newsletter':   'Opens the standalone newsletter article page in production.',
     };
     const message = customMsg || map[feature] || 'This action runs through Shopify in production.';
     toast(message, { variant: 'mock' });
@@ -174,6 +245,15 @@
     });
   });
 
+  // -------------------- Sign-in launcher (data-open-signin) -------------------- //
+  // The Sign-in button in the header uses data-open-signin. Route it to login.html.
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-open-signin]');
+    if (!el) return;
+    e.preventDefault();
+    window.location.href = 'login.html';
+  });
+
   // -------------------- Confirmation modal (data-confirm) -------------------- //
   // Usage: <button data-confirm="<title>" data-confirm-body="<msg>" data-confirm-action="<url-or-mock>" data-confirm-cta="Delete">Delete</button>
   document.addEventListener('click', (e) => {
@@ -208,7 +288,9 @@
         </div>
       </div>`;
     document.body.appendChild(overlay);
-    const close = () => overlay.remove();
+    const dialog = overlay.querySelector('.modal');
+    const detachTrap = trapFocus(dialog, { initial: '[data-ok]' });
+    const close = () => { detachTrap(); overlay.remove(); };
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) close();
       if (e.target.matches('[data-cancel]')) close();
@@ -217,8 +299,6 @@
     document.addEventListener('keydown', function esc (ev) {
       if (ev.key === 'Escape') { close(); document.removeEventListener('keydown', esc); }
     });
-    // trap focus on the dialog's first button
-    setTimeout(() => overlay.querySelector('[data-ok]')?.focus(), 50);
   }
   window.OUAT_confirm = (opts) => showConfirm(opts);
 
@@ -434,24 +514,74 @@
     const calLabel = document.querySelector('[data-cal-label]');
     if (!calGrid || !calLabel) return;
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    const monthsLong = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    // Real schedule: keyed by `${year}-${month}` (0-indexed month). Each entry
+    // is { day: { kind: 'rose'|'garden'|'blush', label, href } }. `rose` = class,
+    // `garden` = drop-in workshop, `blush` = event/showcase.
+    const SCHEDULE = {
+      '2026-0': {
+        2:  { kind: 'rose',   label: 'Beginner Ballet — Tue 5pm',     href: 'private-lessons.html' },
+        4:  { kind: 'garden', label: 'Garden Co-op — Thu 4pm',         href: 'programs.html#garden' },
+        6:  { kind: 'rose',   label: 'Jazz Class — Thu 4pm',           href: 'enrollment.html?class=jazz-winter-2026' },
+        9:  { kind: 'rose',   label: 'Beginner Ballet — Tue 5pm',     href: 'private-lessons.html' },
+        11: { kind: 'garden', label: 'Garden Co-op — Thu 4pm',         href: 'programs.html#garden' },
+        13: { kind: 'rose',   label: 'Jazz Class — Thu 4pm',           href: 'enrollment.html?class=jazz-winter-2026' },
+        17: { kind: 'rose',   label: 'Storytime Showcase — Sat 11am', href: 'events.html' },
+        20: { kind: 'garden', label: 'Garden Co-op — Thu 4pm',         href: 'programs.html#garden' },
+        25: { kind: 'blush',  label: 'Winter Showcase — Sun 2pm',     href: 'events.html' },
+        27: { kind: 'blush',  label: 'Family Open House — Tue 6pm',   href: 'events.html' },
+        31: { kind: 'blush',  label: 'Donor Reception — Sat 7pm',     href: 'donate.html' }
+      },
+      '2026-1': {
+        3:  { kind: 'rose',   label: 'Beginner Ballet — Tue 5pm',     href: 'private-lessons.html' },
+        5:  { kind: 'rose',   label: 'Jazz Class — Thu 4pm',           href: 'enrollment.html?class=jazz-winter-2026' },
+        10: { kind: 'rose',   label: 'Beginner Ballet — Tue 5pm',     href: 'private-lessons.html' },
+        12: { kind: 'rose',   label: 'Jazz Class — Thu 4pm',           href: 'enrollment.html?class=jazz-winter-2026' },
+        14: { kind: 'blush',  label: 'Valentine’s Family Mixer', href: 'events.html' },
+        17: { kind: 'rose',   label: 'Beginner Ballet — Tue 5pm',     href: 'private-lessons.html' },
+        21: { kind: 'garden', label: 'Garden Co-op — Sat 10am',        href: 'programs.html#garden' },
+        24: { kind: 'rose',   label: 'Beginner Ballet — Tue 5pm',     href: 'private-lessons.html' },
+        28: { kind: 'blush',  label: 'Spring Reg Opens — Sat 9am',    href: 'enrollment.html' }
+      },
+      '2026-2': {
+        3:  { kind: 'rose',   label: 'Beginner Ballet — Tue 5pm',     href: 'private-lessons.html' },
+        5:  { kind: 'rose',   label: 'Ceramics Studio — Thu 4pm',     href: 'enrollment.html?class=ceramics-spring-2026' },
+        15: { kind: 'blush',  label: 'Botanical Garden Field Trip',   href: 'events.html' },
+        21: { kind: 'garden', label: 'Garden Co-op — Sat 10am',        href: 'programs.html#garden' },
+        28: { kind: 'blush',  label: 'Spring Showcase — Sat 2pm',     href: 'events.html' }
+      }
+    };
+
     let cur = { m: 0, y: 2026 };
-    function highlightDays () {
-      // Random rose/garden/blush highlights for demo
-      const days = calGrid.querySelectorAll('.calendar__day');
-      days.forEach((d, i) => {
-        d.classList.remove('calendar__day--rose','calendar__day--garden','calendar__day--blush');
-        const x = (cur.m * 31 + i) % 13;
-        if (x === 1 || x === 8) d.classList.add('calendar__day--rose');
-        else if (x === 2 || x === 11) d.classList.add('calendar__day--blush');
-        else if (x === 3 || x === 9) d.classList.add('calendar__day--garden');
+
+    function tooltip () {
+      let t = document.getElementById('ouat-cal-tip');
+      if (!t) {
+        t = document.createElement('div');
+        t.id = 'ouat-cal-tip';
+        t.style.cssText = 'position:fixed;z-index:1100;background:var(--ink);color:var(--snow);padding:6px 10px;border-radius:6px;font-size:12px;font-weight:500;pointer-events:none;opacity:0;transition:opacity .15s;max-width:240px;box-shadow:0 6px 20px rgba(0,0,0,.18);';
+        document.body.appendChild(t);
+      }
+      return t;
+    }
+    function showTip (target, text) {
+      const t = tooltip();
+      t.textContent = text;
+      const r = target.getBoundingClientRect();
+      t.style.left = `${Math.round(r.left + r.width / 2 - t.offsetWidth / 2 + (t.offsetWidth ? 0 : 30))}px`;
+      t.style.top = `${Math.round(r.top - 36)}px`;
+      t.style.opacity = '1';
+      // re-position once textContent set
+      requestAnimationFrame(() => {
+        t.style.left = `${Math.round(r.left + r.width / 2 - t.offsetWidth / 2)}px`;
       });
     }
+    function hideTip () { const t = tooltip(); t.style.opacity = '0'; }
+
     function rebuild () {
       calLabel.innerHTML = months[cur.m] + '&nbsp;' + cur.y;
       const firstDay = new Date(cur.y, cur.m, 1).getDay();
       const daysInMonth = new Date(cur.y, cur.m + 1, 0).getDate();
-      // Replace day cells (keep 7 dow headers)
       const dows = Array.from(calGrid.querySelectorAll('.calendar__dow'));
       calGrid.innerHTML = '';
       dows.forEach(d => calGrid.appendChild(d));
@@ -461,14 +591,33 @@
         blank.style.opacity = '0';
         calGrid.appendChild(blank);
       }
+      const monthSchedule = SCHEDULE[`${cur.y}-${cur.m}`] || {};
       for (let d = 1; d <= daysInMonth; d++) {
         const cell = document.createElement('span');
         cell.className = 'calendar__day';
         cell.textContent = d;
+        const ev = monthSchedule[d];
+        if (ev) {
+          cell.classList.add('calendar__day--' + ev.kind);
+          cell.setAttribute('role', 'link');
+          cell.setAttribute('tabindex', '0');
+          cell.dataset.evHref = ev.href;
+          cell.dataset.evLabel = ev.label;
+          cell.setAttribute('aria-label', `${months[cur.m]} ${d} — ${ev.label}`);
+          cell.style.cursor = 'pointer';
+          cell.addEventListener('mouseenter', () => showTip(cell, ev.label));
+          cell.addEventListener('mouseleave', hideTip);
+          cell.addEventListener('focus', () => showTip(cell, ev.label));
+          cell.addEventListener('blur', hideTip);
+          cell.addEventListener('click', () => { window.location.href = ev.href; });
+          cell.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = ev.href; }
+          });
+        }
         calGrid.appendChild(cell);
       }
-      highlightDays();
     }
+    rebuild();  // ensure first render uses real schedule even when markup ships static
     document.querySelector('[data-cal-prev]')?.addEventListener('click', () => {
       cur.m--; if (cur.m < 0) { cur.m = 11; cur.y--; }
       rebuild();
@@ -479,8 +628,11 @@
     });
   });
 
-  // -------------------- Hero carousel auto-rotate (index.html) -------------------- //
+  // -------------------- Hero carousel auto-rotate -------------------- //
+  // index.html owns its own carousel logic (slides + content swap). This
+  // fallback only kicks in if a page has dots but no inline implementation.
   document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('[data-hero]')) return;  // owned by page
     const dots = document.querySelectorAll('.hero__dots span[role="button"]');
     if (dots.length < 2) return;
     let i = 0;
@@ -508,16 +660,21 @@
       position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);
       display:grid;place-items:center;padding:24px;
       animation:lightbox-fade .25s ease`;
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Image preview');
     overlay.innerHTML = `
       <button type="button" aria-label="Close lightbox" data-close
         style="position:absolute;top:24px;right:24px;background:rgba(255,255,255,.1);border:0;color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:18px;display:inline-flex;align-items:center;justify-content:center"><i class="ph ph-x"></i></button>
       <img src="${src}" style="max-width:100%;max-height:90vh;border-radius:8px;box-shadow:0 16px 48px rgba(0,0,0,.5)" alt="">`;
     document.body.appendChild(overlay);
+    const detachTrap = trapFocus(overlay, { initial: '[data-close]' });
+    const close = () => { detachTrap(); overlay.remove(); };
     overlay.addEventListener('click', (ev) => {
-      if (ev.target === overlay || ev.target.closest('[data-close]')) overlay.remove();
+      if (ev.target === overlay || ev.target.closest('[data-close]')) close();
     });
     document.addEventListener('keydown', function esc (ev) {
-      if (ev.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', esc); }
+      if (ev.key === 'Escape') { close(); document.removeEventListener('keydown', esc); }
     });
   });
 

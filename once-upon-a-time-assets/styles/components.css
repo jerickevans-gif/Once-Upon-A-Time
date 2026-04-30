@@ -71,27 +71,61 @@
 .skeleton--avatar { width: 48px; height: 48px; border-radius: 50%; }
 @keyframes skeleton-wave { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-/* ---------- Stepper ---------- */
-.cmp-stepper {
+/* ---------- Stepper ----------
+   Multi-step flow indicator. Use either `.cmp-stepper`/`.cmp-stepper__step`
+   (preferred — namespaced) or the legacy `.stepper`/`.step` aliases below.
+   States: `.is-active` (current step), `.is-done` (completed step — auto check mark).
+   Markup:
+     <ol class="cmp-stepper" role="list">
+       <li class="cmp-stepper__step is-done"><span class="cmp-stepper__dot">1</span><span class="cmp-stepper__label">Student</span></li>
+       <li class="cmp-stepper__step is-active"><span class="cmp-stepper__dot">2</span><span class="cmp-stepper__label">Session</span></li>
+       <li class="cmp-stepper__step"><span class="cmp-stepper__dot">3</span><span class="cmp-stepper__label">Review</span></li>
+     </ol>
+*/
+.cmp-stepper, .stepper {
   display: flex; align-items: center; gap: 0;
   padding: 16px 0; margin-bottom: 24px;
   overflow-x: auto;
+  list-style: none;
 }
-.cmp-stepper__step {
+.cmp-stepper__step, .step {
   display: flex; align-items: center; gap: 10px;
   flex: 1; min-width: 0; color: var(--ink-muted);
 }
-.cmp-stepper__step + .cmp-stepper__step::before {
-  content: ""; width: 24px; height: 1px; background: var(--line); margin-right: 10px; flex-shrink: 0;
+.cmp-stepper__step + .cmp-stepper__step::before,
+.step + .step::before {
+  content: ""; width: 24px; height: 1px; background: var(--line);
+  margin-right: 10px; flex-shrink: 0;
 }
-.cmp-stepper__dot {
+.cmp-stepper__dot, .step__dot {
   width: 28px; height: 28px; border-radius: 50%;
   border: 1.5px solid var(--line); background: var(--snow);
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700;
+  font-size: 12px; font-weight: 700; flex-shrink: 0;
 }
-.cmp-stepper__step.is-active .cmp-stepper__dot { background: var(--rose); color: #fff; border-color: var(--rose); }
-.cmp-stepper__step.is-done .cmp-stepper__dot { background: var(--garden); color: #fff; border-color: var(--garden); }
+.cmp-stepper__label, .step__label {
+  font-size: 13px; font-weight: 600; white-space: nowrap;
+}
+.cmp-stepper__step.is-active, .step.is-active { color: var(--rose-700); }
+.cmp-stepper__step.is-active .cmp-stepper__dot,
+.step.is-active .step__dot {
+  background: var(--rose); color: #fff; border-color: var(--rose);
+}
+.cmp-stepper__step.is-done, .step.is-done { color: var(--garden-700); }
+.cmp-stepper__step.is-done .cmp-stepper__dot,
+.step.is-done .step__dot {
+  background: var(--garden); color: #fff; border-color: var(--garden);
+  font-size: 0;
+}
+.cmp-stepper__step.is-done .cmp-stepper__dot::before,
+.step.is-done .step__dot::before {
+  content: "✓"; font-size: 14px;
+}
+@media (max-width: 540px) {
+  .cmp-stepper__label, .step__label { display: none; }
+  .cmp-stepper__step + .cmp-stepper__step::before,
+  .step + .step::before { width: 16px; }
+}
 
 /* ---------- Settings dropdown (header gear) ---------- */
 .dropdown { position: relative; display: inline-block; }
@@ -225,14 +259,71 @@
   --line: #3A2E2A;
   --rose-50: #3A2823;
   --rose-100: #4A2F28;
+  --rose-300: #6E4C44;
   --rose: #C99A8E;
   --rose-700: #E5AA9C;
   --pillar: #F2DDD5;
+  --garden-50: #2D2E16;
+  --garden-100: #3A3C18;
+  --garden-300: #5C5F25;
+  --garden: #A6A968;
+  --garden-700: #C7CB8A;
+  --shadow-sm: 0 2px 6px rgba(0,0,0,.5);
+  --shadow-md: 0 8px 24px rgba(0,0,0,.6);
 }
 .theme-dark body { background: var(--beginning); color: var(--ink); }
 .theme-dark .site-header { background: var(--beginning); border-bottom: 1px solid var(--line); }
 .theme-dark .promo-bar { background: var(--rose-100); color: var(--rose-700); }
 .theme-dark .auth-modal__art, .theme-dark .auth-page__art { filter: brightness(0.7); }
+.theme-dark .site-footer { background: #1A1614; color: var(--ink-muted); }
+.theme-dark .site-footer a { color: var(--rose-700); }
+.theme-dark .footer__address { color: var(--ink-muted); }
+/* Inline-style escape hatches: many pages hard-code surface colors. Patch them. */
+.theme-dark [style*="background:#fff"]:not([style*="rgba"]),
+.theme-dark [style*="background: #fff"]:not([style*="rgba"]),
+.theme-dark [style*="background:#FFFCFA"],
+.theme-dark [style*="background: #FFFCFA"],
+.theme-dark [style*="background:var(--snow)"],
+.theme-dark [style*="background: var(--snow)"] {
+  background: var(--snow) !important;
+}
+.theme-dark [style*="background:#FFF5EE"],
+.theme-dark [style*="background: #FFF5EE"],
+.theme-dark [style*="background:var(--beginning)"] {
+  background: var(--beginning) !important;
+}
+.theme-dark [style*="background:#FAEEE9"],
+.theme-dark [style*="background: #FAEEE9"],
+.theme-dark [style*="background:var(--rose-50)"] {
+  background: var(--rose-50) !important;
+}
+.theme-dark [style*="color:var(--ink)"]:not([style*="rgba"]),
+.theme-dark [style*="color: var(--ink)"]:not([style*="rgba"]) {
+  color: var(--ink) !important;
+}
+/* Modal + overlay surfaces */
+.theme-dark .modal { background: var(--snow); color: var(--ink); border: 1px solid var(--line); }
+.theme-dark .modal__title { color: var(--rose-700); }
+.theme-dark .dropdown__menu { background: var(--snow); border-color: var(--line); }
+.theme-dark .dropdown__item { color: var(--ink); }
+.theme-dark .dropdown__item:hover { background: var(--rose-50); }
+.theme-dark .empty-state { color: var(--ink-muted); }
+.theme-dark .empty-state h3 { color: var(--ink); }
+/* Form fields */
+.theme-dark input, .theme-dark textarea, .theme-dark select,
+.theme-dark .input, .theme-dark .textarea {
+  background: var(--snow);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.theme-dark input::placeholder, .theme-dark textarea::placeholder {
+  color: var(--ink-muted); opacity: .7;
+}
+/* Page hero usually has a tinted bg — keep ink readable */
+.theme-dark .page-hero { background: var(--rose-50); }
+.theme-dark .page-hero h1 { color: var(--rose-700); }
+.theme-dark .page-hero__sub { color: var(--ink); }
+/* Toast container respects dark inherently (it uses fixed colors); skip */
 
 /* ---------- Page hero responsive (used on most P0-P3 pages) ---------- */
 @media (max-width: 540px) {

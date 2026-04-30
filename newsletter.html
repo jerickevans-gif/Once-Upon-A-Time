@@ -82,6 +82,31 @@
       line-height: 1;
     }
     .nl-tools { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
+    .nl-panel[hidden] { display: none !important; }
+    .nl-involved-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--s-5); margin-top: var(--s-5);
+    }
+    .nl-involved-card {
+      display: flex; flex-direction: column; gap: var(--s-3);
+      padding: var(--s-6);
+      background: var(--snow);
+      border: 1px solid var(--line); border-radius: 14px;
+      color: var(--ink); text-decoration: none;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .nl-involved-card:hover {
+      border-color: var(--rose-300);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139,80,68,.08);
+    }
+    .nl-involved-card > i.ph { font-size: 32px; color: var(--rose); }
+    .nl-involved-card h3 { font-family: var(--serif); font-weight: 400; font-size: 22px; margin: 0; }
+    .nl-involved-card p { color: var(--ink-muted); font-size: 14px; margin: 0; line-height: 1.55; }
+    .nl-involved-card__cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 600; color: var(--rose-700); margin-top: auto;
+    }
     .nl-filter {
       display: inline-flex; align-items: center; gap: 8px;
       background: var(--snow); border: 1px solid var(--line);
@@ -384,11 +409,11 @@
 
     <!-- ============ TOOLBAR ============ -->
     <div class="wrap nl-toolbar">
-      <nav class="nl-tabs" aria-label="Newsletter sections">
-        <a href="#" data-nl-tab="home">Home</a>
-        <a href="#" class="is-active" data-nl-tab="saved">Saved Articles <span class="nl-tabs__badge">7</span></a>
-        <a href="#" data-nl-tab="later">Read Later <span class="nl-tabs__badge">2</span></a>
-        <a href="#" data-nl-tab="involved">Get Involved!</a>
+      <nav class="nl-tabs" aria-label="Newsletter sections" role="tablist">
+        <a href="#" class="is-active" data-nl-tab="home" role="tab" aria-selected="true" aria-controls="nl-panel-home">Home</a>
+        <a href="#" data-nl-tab="saved" role="tab" aria-selected="false" aria-controls="nl-panel-saved">Saved Articles <span class="nl-tabs__badge" data-nl-count="saved">7</span></a>
+        <a href="#" data-nl-tab="later" role="tab" aria-selected="false" aria-controls="nl-panel-later">Read Later <span class="nl-tabs__badge" data-nl-count="later">2</span></a>
+        <a href="#" data-nl-tab="involved" role="tab" aria-selected="false" aria-controls="nl-panel-involved">Get Involved!</a>
         <a href="donate.html">Donate</a>
         <a href="#" class="is-muted" data-mock="admin-newsletter" data-mock-toast="Admin newsletter editor opens via Shopify in production.">Admin</a>
         <button class="nl-tabs__more" type="button" aria-label="More options" data-mock="newsletter-more" data-mock-toast="More-actions menu (export, archive, settings) opens here in production.">···</button>
@@ -403,6 +428,9 @@
         </label>
       </div>
     </div>
+
+    <!-- ============ TAB PANELS ============ -->
+    <div id="nl-panel-home" class="nl-panel" role="tabpanel" aria-labelledby="nl-tab-home">
 
     <!-- ============ FEATURED ARTICLE ============ -->
     <article class="wrap">
@@ -492,10 +520,10 @@
               <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
               <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
               <div class="nl-card__footer">
-                <a class="btn btn--sm btn--outline" href="#" data-mock="view-newsletter" data-mock-toast="Opens the standalone newsletter article page in production. Each issue gets its own permalink."><i class="ph ph-arrow-right"></i> View More</a>
+                <a class="btn btn--sm btn--outline" href="newsletter-article.html?id=newsletter:october-2025"><i class="ph ph-arrow-right"></i> View More</a>
                 <span class="nl-card__icons">
-                  <button type="button" aria-label="Bookmark"><i class="ph ph-bookmark-simple"></i></button>
-                  <button type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
+                  <button type="button" aria-label="Bookmark October 2025 newsletter" data-bookmark="newsletter:october-2025"><i class="ph ph-bookmark-simple"></i></button>
+                  <button type="button" aria-label="Share October 2025 newsletter" data-share data-share-title="October 2025 — Once Upon A Time"><i class="ph ph-share-network"></i></button>
                 </span>
               </div>
             </div>
@@ -508,10 +536,10 @@
               <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
               <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
               <div class="nl-card__footer">
-                <a class="btn btn--sm btn--outline" href="#" data-mock="view-newsletter" data-mock-toast="Opens the standalone newsletter article page in production. Each issue gets its own permalink."><i class="ph ph-arrow-right"></i> View More</a>
+                <a class="btn btn--sm btn--outline" href="newsletter-article.html?id=newsletter:november-2025"><i class="ph ph-arrow-right"></i> View More</a>
                 <span class="nl-card__icons">
-                  <button type="button" aria-label="Bookmark"><i class="ph ph-bookmark-simple"></i></button>
-                  <button type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
+                  <button type="button" aria-label="Bookmark November 2025 newsletter" data-bookmark="newsletter:november-2025"><i class="ph ph-bookmark-simple"></i></button>
+                  <button type="button" aria-label="Share November 2025 newsletter" data-share data-share-title="November 2025 — Once Upon A Time"><i class="ph ph-share-network"></i></button>
                 </span>
               </div>
             </div>
@@ -524,20 +552,86 @@
               <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
               <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
               <div class="nl-card__footer">
-                <a class="btn btn--sm btn--outline" href="#" data-mock="view-newsletter" data-mock-toast="Opens the standalone newsletter article page in production. Each issue gets its own permalink."><i class="ph ph-arrow-right"></i> View More</a>
+                <a class="btn btn--sm btn--outline" href="newsletter-article.html?id=newsletter:december-2025"><i class="ph ph-arrow-right"></i> View More</a>
                 <span class="nl-card__icons">
-                  <button type="button" aria-label="Bookmark"><i class="ph ph-bookmark-simple"></i></button>
-                  <button type="button" aria-label="Share"><i class="ph ph-share-network"></i></button>
+                  <button type="button" aria-label="Bookmark December 2025 newsletter" data-bookmark="newsletter:december-2025"><i class="ph ph-bookmark-simple"></i></button>
+                  <button type="button" aria-label="Share December 2025 newsletter" data-share data-share-title="December 2025 — Once Upon A Time"><i class="ph ph-share-network"></i></button>
                 </span>
               </div>
             </div>
           </article>
         </div>
-        <button class="nl-related__arrow" type="button" aria-label="Next newsletters">
+        <button class="nl-related__arrow" type="button" aria-label="Next newsletters" data-related-next>
           <i class="ph ph-caret-right"></i>
         </button>
       </div>
     </section>
+
+    </div><!-- /nl-panel-home -->
+
+    <!-- ============ SAVED ARTICLES ============ -->
+    <div id="nl-panel-saved" class="nl-panel" role="tabpanel" aria-labelledby="nl-tab-saved" hidden>
+      <section class="wrap" style="padding-top:var(--s-3)">
+        <div class="nl-current-head">
+          <h2>Saved Articles</h2>
+          <p class="nl-byline" data-nl-saved-meta>Your bookmarked stories</p>
+        </div>
+        <div class="nl-related__grid" data-nl-saved-grid data-skeleton-list data-skeleton-count="6"></div>
+        <div class="empty-state" data-nl-saved-empty hidden>
+          <i class="ph ph-bookmark-simple" aria-hidden="true" style="font-size:42px;color:var(--rose);margin-bottom:var(--s-3)"></i>
+          <h3>No saved articles yet</h3>
+          <p>Tap the bookmark icon on any newsletter or article to save it here.</p>
+          <a class="btn btn--primary" href="#" data-nl-tab-jump="home" style="margin-top:var(--s-4)">Browse newsletters</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ READ LATER ============ -->
+    <div id="nl-panel-later" class="nl-panel" role="tabpanel" aria-labelledby="nl-tab-later" hidden>
+      <section class="wrap" style="padding-top:var(--s-3)">
+        <div class="nl-current-head">
+          <h2>Read Later</h2>
+          <p class="nl-byline" data-nl-later-meta>Articles queued for later</p>
+        </div>
+        <div class="nl-related__grid" data-nl-later-grid data-skeleton-list data-skeleton-count="4"></div>
+        <div class="empty-state" data-nl-later-empty hidden>
+          <i class="ph ph-clock" aria-hidden="true" style="font-size:42px;color:var(--rose);margin-bottom:var(--s-3)"></i>
+          <h3>Nothing queued yet</h3>
+          <p>Use the &ldquo;Read Later&rdquo; option in any article&rsquo;s share menu to queue it here.</p>
+          <a class="btn btn--primary" href="#" data-nl-tab-jump="home" style="margin-top:var(--s-4)">Browse newsletters</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ GET INVOLVED ============ -->
+    <div id="nl-panel-involved" class="nl-panel" role="tabpanel" aria-labelledby="nl-tab-involved" hidden>
+      <section class="wrap" style="padding-top:var(--s-3)">
+        <div class="nl-current-head">
+          <h2>Get Involved</h2>
+          <p class="nl-byline">Three ways to make an impact this month</p>
+        </div>
+        <div class="nl-involved-grid">
+          <a class="nl-involved-card" href="donate.html">
+            <i class="ph ph-heart" aria-hidden="true"></i>
+            <h3>Donate</h3>
+            <p>Sponsor a child&rsquo;s scholarship, fund supplies, or contribute to our garden initiative.</p>
+            <span class="nl-involved-card__cta">Give now <i class="ph ph-arrow-right"></i></span>
+          </a>
+          <a class="nl-involved-card" href="contact.html">
+            <i class="ph ph-hand-heart" aria-hidden="true"></i>
+            <h3>Volunteer</h3>
+            <p>Mentor in our after-school programs, help at events, or share your craft with kids.</p>
+            <span class="nl-involved-card__cta">Sign up <i class="ph ph-arrow-right"></i></span>
+          </a>
+          <a class="nl-involved-card" href="sponsorship.html">
+            <i class="ph ph-buildings" aria-hidden="true"></i>
+            <h3>Partner</h3>
+            <p>Bring your business or organization on board as a corporate sponsor or programs partner.</p>
+            <span class="nl-involved-card__cta">Become a partner <i class="ph ph-arrow-right"></i></span>
+          </a>
+        </div>
+      </section>
+    </div>
 
   </main>
 
@@ -594,17 +688,127 @@
         });
       }
 
-      // ---- Newsletter tab toggling (visual only — would query Shopify in prod) ----
-      const tabs = document.querySelectorAll('[data-nl-tab]');
+      // ---- Newsletter tab swap ----
+      const tabs = Array.from(document.querySelectorAll('[data-nl-tab]'));
+      const panels = Array.from(document.querySelectorAll('.nl-panel'));
+      const labels = { home:'Home', saved:'Saved Articles', later:'Read Later', involved:'Get Involved!' };
+
+      // Demo dataset — when localStorage has nothing, we still show fixtures so the UI is never empty
+      const demoArticles = [
+        { id:'newsletter:december-2025', title:'December 2025', author:'Sydney Phelps', date:'1/18/2026', img:'nl-card--dec', copy:'Reflecting on a year of stories, songs, and the kids who made it all possible.' },
+        { id:'newsletter:november-2025', title:'November 2025', author:'Lara Stuart',   date:'12/18/2025', img:'nl-card--nov', copy:'Thanksgiving food drive recap, Chicago drum corps visit, and meet our new mentors.' },
+        { id:'newsletter:october-2025',  title:'October 2025',  author:'Lara Stuart',   date:'11/18/2025', img:'nl-card--oct', copy:'Costume parade, ceramics show, and the launch of our community garden initiative.' },
+        { id:'article:garden-update',    title:'Community Garden Update', author:'Sydney Phelps', date:'1/12/2026', img:'nl-card--oct', copy:'The first harvest is in. Here’s how the kids planned, planted, and tended every row.' },
+        { id:'article:volunteer-spotlight', title:'Volunteer Spotlight: Maya', author:'Sydney Phelps', date:'1/05/2026', img:'nl-card--nov', copy:'How a part-time mentor became one of our most trusted leaders in just two semesters.' },
+        { id:'article:scholarship-stories', title:'Three Scholarship Stories', author:'Lara Stuart', date:'12/22/2025', img:'nl-card--dec', copy:'Meet Aisha, Marco, and June — three students whose families said scholarships changed everything.' }
+      ];
+
+      function readSet (key) {
+        try { return new Set(JSON.parse(localStorage.getItem(key) || '[]')); }
+        catch { return new Set(); }
+      }
+      function loadSaved () {
+        const set = readSet('ouat:bookmarks');
+        const filtered = demoArticles.filter(a => set.has(a.id));
+        // Fallback: if nothing saved, show first 4 demo as preview
+        return filtered.length ? filtered : demoArticles.slice(0, 4);
+      }
+      function loadLater () {
+        const set = readSet('ouat:read-later');
+        const filtered = demoArticles.filter(a => set.has(a.id));
+        return filtered.length ? filtered : demoArticles.slice(2, 4);
+      }
+
+      function renderCards (grid, items, emptyEl) {
+        if (!grid) return;
+        const reallyEmpty = !items.length;
+        if (reallyEmpty) {
+          grid.innerHTML = '';
+          if (emptyEl) emptyEl.hidden = false;
+          return;
+        }
+        if (emptyEl) emptyEl.hidden = true;
+        grid.innerHTML = items.map(a => `
+          <article class="nl-card ${a.img}">
+            <div class="nl-card__photo" role="img" aria-label="${a.title}"></div>
+            <div class="nl-card__body">
+              <h3 class="nl-card__date">${a.title}</h3>
+              <p class="nl-card__meta"><span>Author: ${a.author}</span><span>Published ${a.date}</span></p>
+              <p class="nl-card__copy">${a.copy}</p>
+              <div class="nl-card__footer">
+                <a class="btn btn--sm btn--outline" href="newsletter-article.html"><i class="ph ph-arrow-right"></i> Read</a>
+                <span class="nl-card__icons">
+                  <button type="button" aria-label="Bookmark" data-bookmark="${a.id}"><i class="ph ph-bookmark-simple"></i></button>
+                  <button type="button" aria-label="Share" data-share data-share-title="${a.title}"><i class="ph ph-share-network"></i></button>
+                </span>
+              </div>
+            </div>
+          </article>
+        `).join('');
+      }
+
+      function refreshCounts () {
+        const savedSet = readSet('ouat:bookmarks');
+        const laterSet = readSet('ouat:read-later');
+        const savedCount = demoArticles.filter(a => savedSet.has(a.id)).length;
+        const laterCount = demoArticles.filter(a => laterSet.has(a.id)).length;
+        const sB = document.querySelector('[data-nl-count="saved"]');
+        const lB = document.querySelector('[data-nl-count="later"]');
+        if (sB) sB.textContent = String(savedCount || 4);  // mirrors fallback preview length
+        if (lB) lB.textContent = String(laterCount || 2);
+      }
+
+      function showTab (key) {
+        tabs.forEach(t => {
+          const active = t.dataset.nlTab === key;
+          t.classList.toggle('is-active', active);
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+        panels.forEach(p => { p.hidden = (p.id !== `nl-panel-${key}`); });
+        if (key === 'saved') {
+          const grid = document.querySelector('[data-nl-saved-grid]');
+          const empty = document.querySelector('[data-nl-saved-empty]');
+          renderCards(grid, loadSaved(), empty);
+        } else if (key === 'later') {
+          const grid = document.querySelector('[data-nl-later-grid]');
+          const empty = document.querySelector('[data-nl-later-empty]');
+          renderCards(grid, loadLater(), empty);
+        }
+        refreshCounts();
+      }
+
       tabs.forEach(t => t.addEventListener('click', (e) => {
         e.preventDefault();
-        tabs.forEach(x => x.classList.remove('is-active'));
-        t.classList.add('is-active');
-        if (window.OUAT_toast) {
-          const labels = { home:'Home', saved:'Saved Articles', later:'Read Later', involved:'Get Involved!' };
-          window.OUAT_toast(`Showing: ${labels[t.dataset.nlTab] || ''} (Shopify queries by metafield in production)`, { variant:'info', duration:1800 });
-        }
+        showTab(t.dataset.nlTab);
       }));
+
+      // "Browse newsletters" inside empty state jumps back to Home
+      document.querySelectorAll('[data-nl-tab-jump]').forEach(b => {
+        b.addEventListener('click', (e) => { e.preventDefault(); showTab(b.dataset.nlTabJump); });
+      });
+
+      // Bookmark events anywhere should refresh counts and re-render saved if visible
+      document.addEventListener('click', (e) => {
+        const bm = e.target.closest('[data-bookmark]');
+        if (!bm) return;
+        // Defer until mock-system has updated localStorage
+        setTimeout(() => {
+          refreshCounts();
+          const active = document.querySelector('.nl-tabs a.is-active');
+          if (active && active.dataset.nlTab === 'saved') showTab('saved');
+        }, 50);
+      });
+
+      refreshCounts();
+
+      // ---- Related newsletters scroll arrow ----
+      const relGrid = document.querySelector('.nl-related__grid');
+      const relArrow = document.querySelector('[data-related-next]');
+      if (relGrid && relArrow) {
+        relArrow.addEventListener('click', () => {
+          relGrid.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+      }
 
       // ---- Newsletter article nav (prev/next/first/last) ----
       const articles = Array.from(document.querySelectorAll('.nl-article, .nl-feature'));

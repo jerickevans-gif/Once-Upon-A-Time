@@ -81,29 +81,89 @@
             <label style="display:inline-flex;gap:10px;padding:14px 18px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;font-weight:600;align-items:center"><input type="radio" name="gift-type" value="memory"> In memory of</label>
           </div>
         </fieldset>
-        <label class="field"><span class="field__label">Honoree's name</span><input class="input" type="text" placeholder="e.g. Grandma Rose" required></label>
-        <label class="field"><span class="field__label">Personal message (optional)</span><textarea class="textarea" rows="3" style="width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--snow)" placeholder="Happy 80th birthday from Claire and Daisy"></textarea></label>
+        <label class="field"><span class="field__label">Honoree&#39;s name</span><input class="input" name="honoree" type="text" placeholder="e.g. Grandma Rose" required aria-required="true"></label>
+        <label class="field"><span class="field__label">Personal message (optional)</span><textarea class="textarea" name="message" rows="3" style="width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--snow)" placeholder="Happy 80th birthday from Claire and Daisy"></textarea></label>
         <h3 style="font-family:var(--serif);font-size:18px;text-transform:uppercase;margin:8px 0 0">Send notification to</h3>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-          <label class="field"><span class="field__label">Recipient name</span><input class="input" type="text" required></label>
-          <label class="field"><span class="field__label">Email</span><input class="input" type="email" required></label>
+          <label class="field"><span class="field__label">Recipient name</span><input class="input" name="recipient-name" type="text" required aria-required="true"></label>
+          <label class="field"><span class="field__label">Email</span><input class="input" name="recipient-email" type="email" required aria-required="true"></label>
         </div>
         <h3 style="font-family:var(--serif);font-size:18px;text-transform:uppercase;margin:8px 0 0">Gift amount</h3>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
-          <label style="text-align:center;padding:12px 0;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-weight:600"><input type="radio" name="amount" value="50" style="display:none">$50</label>
-          <label style="text-align:center;padding:12px 0;border:1.5px solid var(--rose);background:var(--rose);color:#fff;border-radius:8px;cursor:pointer;font-weight:600"><input type="radio" name="amount" value="100" checked style="display:none">$100</label>
-          <label style="text-align:center;padding:12px 0;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-weight:600"><input type="radio" name="amount" value="250" style="display:none">$250</label>
-          <label style="text-align:center;padding:12px 0;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-weight:600"><input type="radio" name="amount" value="500" style="display:none">$500</label>
+        <div class="gift-amounts" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          <label class="gift-amounts__opt"><input type="radio" name="amount" value="50">$50</label>
+          <label class="gift-amounts__opt is-active"><input type="radio" name="amount" value="100" checked>$100</label>
+          <label class="gift-amounts__opt"><input type="radio" name="amount" value="250">$250</label>
+          <label class="gift-amounts__opt"><input type="radio" name="amount" value="500">$500</label>
         </div>
+        <label class="field"><span class="field__label">Or enter a custom amount ($)</span><input class="input" name="custom-amount" type="number" min="1" step="1" placeholder="Custom amount"></label>
         <button class="btn" type="submit">Continue to payment <i class="ph ph-arrow-right"></i></button>
       </form>
     </section>
+    <style>
+      .gift-amounts__opt {
+        text-align: center; padding: 12px 0;
+        border: 1.5px solid var(--line); border-radius: 8px;
+        cursor: pointer; font-weight: 600;
+        transition: border-color .15s, background .15s, color .15s;
+      }
+      .gift-amounts__opt input { display: none; }
+      .gift-amounts__opt.is-active {
+        border-color: var(--rose); background: var(--rose); color: #fff;
+      }
+      .gift-amounts__opt:hover { border-color: var(--rose-300); }
+    </style>
     <script>
-      document.getElementById('gift-form')?.addEventListener('submit', e => {
-        e.preventDefault();
-        const amount = e.target.querySelector('input[name="amount"]:checked')?.value || 100;
-        location.href = 'payment.html?amount=' + amount + '&freq=One-time&kind=gift';
-      });
+      (function () {
+        const form = document.getElementById('gift-form');
+        if (!form) return;
+
+        // Visual sync for amount radios (clicking a label flips is-active)
+        const amtOpts = form.querySelectorAll('.gift-amounts__opt');
+        amtOpts.forEach(opt => {
+          opt.addEventListener('click', () => {
+            amtOpts.forEach(o => o.classList.remove('is-active'));
+            opt.classList.add('is-active');
+            // clear custom amount when picking a preset
+            const custom = form.querySelector('input[name="custom-amount"]');
+            if (custom) custom.value = '';
+          });
+        });
+
+        // Custom amount unselects radio presets
+        const customAmt = form.querySelector('input[name="custom-amount"]');
+        customAmt?.addEventListener('input', () => {
+          if (customAmt.value.trim()) {
+            amtOpts.forEach(o => o.classList.remove('is-active'));
+            form.querySelectorAll('input[name="amount"]').forEach(r => r.checked = false);
+          }
+        });
+
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          let bad = false;
+          form.querySelectorAll('[required]').forEach(f => {
+            if (!f.value.trim()) {
+              const lbl = f.closest('.field')?.querySelector('.field__label')?.textContent || 'This field';
+              window.OUAT_setFieldError?.(f, lbl + ' is required');
+              bad = true;
+            } else if (f.type === 'email' && !/.+@.+\..+/.test(f.value)) {
+              window.OUAT_setFieldError?.(f, 'Enter a valid email');
+              bad = true;
+            }
+          });
+          if (bad) return;
+
+          const customVal = parseFloat(customAmt?.value || '');
+          const amount = Number.isFinite(customVal) && customVal > 0
+            ? customVal
+            : (form.querySelector('input[name="amount"]:checked')?.value || 100);
+          if (!Number.isFinite(parseFloat(amount)) || parseFloat(amount) <= 0) {
+            window.OUAT_toast?.('Choose a gift amount.', { variant:'warning' });
+            return;
+          }
+          location.href = 'payment.html?amount=' + amount + '&freq=One-time&kind=gift';
+        });
+      })();
     </script>
     </main>
   <footer class="site-footer" role="contentinfo">

@@ -69,7 +69,10 @@
       aspect-ratio: 4/3;
       background: url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
       box-shadow: var(--shadow-md);
+      transition: opacity .3s ease, background-image .3s ease;
     }
+    .hero__copy > * { transition: opacity .3s ease; }
+    .hero[data-fading] .hero__copy > *, .hero[data-fading] .hero__photo { opacity: 0; }
     .hero__dots { display: flex; gap: 8px; justify-content: center; margin-top: var(--s-5); }
     .hero__dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--rose-300); }
     .hero__dots span[aria-current="true"] { background: var(--rose); }
@@ -319,22 +322,22 @@
   <main id="main" tabindex="-1">
 
     <!-- ============ HERO ============ -->
-    <section class="hero">
+    <section class="hero" data-hero>
       <div class="wrap hero__grid">
         <div class="hero__copy">
-          <span class="hero__meta"><i class="ph ph-clock" aria-hidden="true"></i> 10 spots left</span>
-          <h1>Jazz Class — Winter 2026</h1>
-          <p class="hero__sub">Thursdays | 4pm | Ages 10+ | Studio Room A</p>
-          <p class="hero__lede">A six-week immersion in jazz fundamentals — rhythm, articulation, and stagecraft — taught by working professionals. Designed for students who want to perform, not just practise.</p>
-          <div class="hero__actions">
-            <a class="btn" href="enrollment.html?class=jazz-winter-2026"><i class="ph ph-ticket"></i> Enroll Now</a>
-            <button class="btn btn--garden" type="button" data-mock="add-to-cart"><i class="ph ph-shopping-cart-simple"></i> Add to Cart</button>
-            <a class="btn btn--text" href="seasonal-camps.html">Learn More <i class="ph ph-arrow-right"></i></a>
+          <span class="hero__meta" data-hero-meta><i class="ph ph-clock" aria-hidden="true"></i> <span data-hero-meta-text>10 spots left</span></span>
+          <h1 data-hero-title>Jazz Class — Winter 2026</h1>
+          <p class="hero__sub" data-hero-sub>Thursdays | 4pm | Ages 10+ | Studio Room A</p>
+          <p class="hero__lede" data-hero-lede>A six-week immersion in jazz fundamentals — rhythm, articulation, and stagecraft — taught by working professionals. Designed for students who want to perform, not just practise.</p>
+          <div class="hero__actions" data-hero-actions>
+            <a class="btn" href="enrollment.html?class=jazz-winter-2026" data-hero-cta-primary><i class="ph ph-ticket"></i> <span>Enroll Now</span></a>
+            <button class="btn btn--garden" type="button" data-mock="add-to-cart" data-hero-cta-cart><i class="ph ph-shopping-cart-simple"></i> <span>Add to Cart</span></button>
+            <a class="btn btn--text" href="seasonal-camps.html" data-hero-cta-learn><span>Learn More</span> <i class="ph ph-arrow-right"></i></a>
           </div>
         </div>
-        <div class="hero__photo" role="img" aria-label="Students performing a jazz routine on stage"></div>
+        <div class="hero__photo" role="img" aria-label="Students performing a jazz routine on stage" data-hero-photo></div>
       </div>
-      <div class="hero__dots" aria-hidden="true">
+      <div class="hero__dots" role="tablist" aria-label="Featured programs">
         <span aria-current="true"></span><span></span><span></span><span></span>
       </div>
     </section>
@@ -579,17 +582,112 @@
       if (prev) prev.addEventListener('click', () => { cur.m--; if (cur.m<0) { cur.m=11; cur.y--; } set(); });
       if (next) next.addEventListener('click', () => { cur.m++; if (cur.m>11) { cur.m=0; cur.y++; } set(); });
 
-      // Hero pagination dots — clickable, no real carousel data so just toggle aria-current
-      document.querySelectorAll('.hero__dots span').forEach((dot, i, arr) => {
+      // ---- Hero carousel: real slide data ----
+      const heroSlides = [
+        {
+          meta: '10 spots left', metaIcon: 'ph-clock',
+          title: 'Jazz Class — Winter 2026',
+          sub: 'Thursdays | 4pm | Ages 10+ | Studio Room A',
+          lede: 'A six-week immersion in jazz fundamentals — rhythm, articulation, and stagecraft — taught by working professionals. Designed for students who want to perform, not just practise.',
+          cta: { href: 'enrollment.html?class=jazz-winter-2026', label: 'Enroll Now', icon: 'ph-ticket' },
+          img: 'once-upon-a-time-assets/landing/jazz-hero.jpg',
+          alt: 'Students performing a jazz routine on stage'
+        },
+        {
+          meta: '4 spots left', metaIcon: 'ph-fire',
+          title: 'Beginner Ballet — Spring 2026',
+          sub: 'Tuesdays | 5pm | Ages 6–9 | Studio Room B',
+          lede: 'Eight weeks of foundational ballet technique focused on poise, listening to music, and the joy of movement. Caps at 12 students for individualised attention.',
+          cta: { href: 'enrollment.html?class=ballet-spring-2026', label: 'Enroll Now', icon: 'ph-ticket' },
+          img: 'once-upon-a-time-assets/landing/ballet-card.jpg',
+          alt: 'Children rehearsing a ballet position at the barre'
+        },
+        {
+          meta: 'Sliding-scale tuition', metaIcon: 'ph-plant',
+          title: 'Community Garden Co-op',
+          sub: 'Saturdays | 10am | All ages | Outdoor lot',
+          lede: 'Plant, weed, and harvest as a family. Our garden track teaches stewardship, food literacy, and patience — and yields a bumper crop of tomatoes by July.',
+          cta: { href: 'programs.html#garden', label: 'See schedule', icon: 'ph-calendar-blank' },
+          img: 'once-upon-a-time-assets/landing/queens-skyline.jpg',
+          alt: 'Volunteers tending raised beds in a community garden'
+        },
+        {
+          meta: 'Open enrollment', metaIcon: 'ph-paint-brush',
+          title: 'Ceramics Studio — Spring 2026',
+          sub: 'Sundays | 1pm | Ages 12+ | Kiln Room',
+          lede: 'Hand-building, throwing on the wheel, and glaze chemistry — taught in our heated kiln room by potter-in-residence Anna Reyes. Six weeks; clay and firings included.',
+          cta: { href: 'enrollment.html?class=ceramics-spring-2026', label: 'Enroll Now', icon: 'ph-ticket' },
+          img: 'once-upon-a-time-assets/landing/story-jazz.jpg',
+          alt: 'Hands shaping a ceramic vessel on a pottery wheel'
+        }
+      ];
+
+      const heroEl = document.querySelector('[data-hero]');
+      const dotsEls = Array.from(document.querySelectorAll('.hero__dots span'));
+      const metaText = document.querySelector('[data-hero-meta-text]');
+      const metaIcon = document.querySelector('[data-hero-meta] i.ph');
+      const titleEl = document.querySelector('[data-hero-title]');
+      const subEl = document.querySelector('[data-hero-sub]');
+      const ledeEl = document.querySelector('[data-hero-lede]');
+      const ctaPrimary = document.querySelector('[data-hero-cta-primary]');
+      const photoEl = document.querySelector('[data-hero-photo]');
+
+      let heroIdx = 0;
+      let heroTimer = null;
+      function paintHero (i) {
+        const s = heroSlides[i]; if (!s) return;
+        if (heroEl) heroEl.dataset.fading = 'true';
+        setTimeout(() => {
+          if (metaText) metaText.textContent = s.meta;
+          if (metaIcon) {
+            metaIcon.className = 'ph ' + s.metaIcon;
+          }
+          if (titleEl) titleEl.textContent = s.title;
+          if (subEl) subEl.textContent = s.sub;
+          if (ledeEl) ledeEl.textContent = s.lede;
+          if (ctaPrimary) {
+            ctaPrimary.href = s.cta.href;
+            const span = ctaPrimary.querySelector('span');
+            if (span) span.textContent = s.cta.label;
+            const ic = ctaPrimary.querySelector('i.ph');
+            if (ic) ic.className = 'ph ' + s.cta.icon;
+          }
+          if (photoEl) {
+            photoEl.style.backgroundImage = `url("${s.img}")`;
+            photoEl.setAttribute('aria-label', s.alt);
+          }
+          dotsEls.forEach((d, j) => {
+            if (j === i) d.setAttribute('aria-current', 'true');
+            else d.removeAttribute('aria-current');
+          });
+          if (heroEl) delete heroEl.dataset.fading;
+        }, 300);
+      }
+      function nextHero () {
+        heroIdx = (heroIdx + 1) % heroSlides.length;
+        paintHero(heroIdx);
+      }
+      function startHeroAuto () {
+        clearInterval(heroTimer);
+        heroTimer = setInterval(nextHero, 7000);
+      }
+      dotsEls.forEach((dot, i) => {
         dot.style.cursor = 'pointer';
-        dot.setAttribute('role', 'button');
+        dot.setAttribute('role', 'tab');
         dot.setAttribute('tabindex', '0');
-        dot.setAttribute('aria-label', `Slide ${i+1} of ${arr.length}`);
-        dot.addEventListener('click', () => {
-          arr.forEach(d => d.removeAttribute('aria-current'));
-          dot.setAttribute('aria-current', 'true');
+        dot.setAttribute('aria-label', `Slide ${i+1} of ${dotsEls.length}: ${heroSlides[i].title}`);
+        dot.addEventListener('click', () => { heroIdx = i; paintHero(i); startHeroAuto(); });
+        dot.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); heroIdx = i; paintHero(i); startHeroAuto(); }
+          if (e.key === 'ArrowRight') { e.preventDefault(); nextHero(); startHeroAuto(); dotsEls[(i+1)%dotsEls.length].focus(); }
+          if (e.key === 'ArrowLeft') { e.preventDefault(); heroIdx = (i-1+dotsEls.length)%dotsEls.length; paintHero(heroIdx); startHeroAuto(); dotsEls[heroIdx].focus(); }
         });
       });
+      if (heroEl) {
+        heroEl.addEventListener('mouseenter', () => clearInterval(heroTimer));
+        heroEl.addEventListener('mouseleave', startHeroAuto);
+        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) startHeroAuto();
+      }
     })();
   </script>
 

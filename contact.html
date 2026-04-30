@@ -268,7 +268,8 @@
           </div>
         </div>
 
-        <form id="contact-form" class="form-card" novalidate aria-label="Contact form">
+        <!-- Replace REPLACE_ME with a Formspree form ID (https://formspree.io) to submit real messages. -->
+        <form id="contact-form" class="form-card" novalidate aria-label="Contact form" data-formspree-id="REPLACE_ME">
           <div class="form-row">
             <label class="field" for="contact-first">
               <span class="sr-only">First name</span>
@@ -422,11 +423,74 @@
     (function () {
       const toggle = document.querySelector('.nav-toggle');
       const nav = document.getElementById('primary-nav');
-      if (!toggle || !nav) return;
-      toggle.addEventListener('click', () => {
-        const open = nav.dataset.open === 'true';
-        nav.dataset.open = open ? 'false' : 'true';
-        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const open = nav.dataset.open === 'true';
+          nav.dataset.open = open ? 'false' : 'true';
+          toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        });
+      }
+
+      // ---- Contact form submit (Formspree-ready) ----
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('contact-status');
+      if (!form) return;
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        // Validate
+        const fields = form.querySelectorAll('[required]');
+        let bad = false;
+        fields.forEach(f => {
+          if (!f.value.trim()) {
+            const label = f.placeholder || f.getAttribute('name') || 'This field';
+            window.OUAT_setFieldError?.(f, label.replace('*','').trim() + ' is required');
+            bad = true;
+          } else if (f.type === 'email' && !/.+@.+\..+/.test(f.value)) {
+            window.OUAT_setFieldError?.(f, 'Enter a valid email');
+            bad = true;
+          }
+        });
+        if (bad) return;
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalLabel = submitBtn?.textContent;
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+
+        const formspreeId = form.dataset.formspreeId;
+        if (!formspreeId || formspreeId === 'REPLACE_ME') {
+          // No live endpoint configured — keep mock UX
+          setTimeout(() => {
+            window.OUAT_toast?.('Message would send via Formspree in production. Set data-formspree-id on the form to enable real submission.', { variant:'mock', duration:4500 });
+            if (status) status.textContent = 'Message sent (demo mode).';
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel || 'Send Message'; }
+            form.reset();
+          }, 600);
+          return;
+        }
+
+        // Real submission
+        try {
+          const data = new FormData(form);
+          const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+            method: 'POST', body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (res.ok) {
+            window.OUAT_toast?.('Thanks — your message is on its way. We typically reply within 2 business days.', { variant:'success', duration:4500 });
+            if (status) status.textContent = 'Your message has been sent.';
+            form.reset();
+          } else {
+            const json = await res.json().catch(() => ({}));
+            const msg = json.errors?.[0]?.message || 'Something went wrong sending your message.';
+            window.OUAT_toast?.(msg, { variant:'warning', duration:4500 });
+            if (status) status.textContent = msg;
+          }
+        } catch (err) {
+          window.OUAT_toast?.('Network error. Try again, or email us directly at contact@onceuponatime.org.', { variant:'warning', duration:4500 });
+          if (status) status.textContent = 'Network error.';
+        } finally {
+          if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel || 'Send Message'; }
+        }
       });
     })();
   </script>

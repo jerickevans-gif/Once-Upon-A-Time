@@ -41,38 +41,8 @@
     .enroll-title { font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); margin: 12px 0 4px; text-transform: uppercase; }
     .enroll-sub { color: var(--ink-muted); margin: 0; font-size: 14px; }
 
-    /* Stepper */
-    .stepper {
-      display: flex; align-items: center; gap: 0;
-      padding: 24px 0;
-      margin-bottom: 24px;
-      border-bottom: 1px solid var(--line);
-      overflow-x: auto;
-    }
-    .step {
-      display: flex; align-items: center; gap: 10px;
-      flex: 1; min-width: 0;
-      color: var(--ink-muted);
-    }
-    .step + .step::before {
-      content: "";
-      width: 32px; height: 1px; background: var(--line);
-      margin-right: 12px; flex-shrink: 0;
-    }
-    .step__dot {
-      width: 28px; height: 28px; border-radius: 50%;
-      border: 1.5px solid var(--line); background: var(--snow);
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 700; flex-shrink: 0;
-    }
-    .step__label { font-size: 13px; font-weight: 600; white-space: nowrap; }
-    .step.is-active { color: var(--rose-700); }
-    .step.is-active .step__dot { border-color: var(--rose); background: var(--rose); color: #fff; }
-    .step.is-done { color: var(--garden-700); }
-    .step.is-done .step__dot { border-color: var(--garden); background: var(--garden); color: #fff; }
-    .step.is-done .step__dot::before { content: "✓"; }
-    .step.is-done .step__dot { font-size: 0; }
-    .step.is-done .step__dot::before { font-size: 14px; }
+    /* Stepper — base styles live in components.css; only need bottom-border + spacing tweak */
+    .stepper { padding: 24px 0; border-bottom: 1px solid var(--line); }
 
     .panel {
       background: var(--snow); border: 1px solid var(--line);
@@ -242,7 +212,8 @@
   </style>
 </head>
 <body>
-  <div class="enroll-wrap">
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <main id="main" tabindex="-1" class="enroll-wrap">
     <header class="enroll-head">
       <a href="javascript:history.back()"><i class="ph ph-arrow-left"></i> Back</a>
       <h1 class="enroll-title" id="enroll-title">Class Enrollment</h1>
@@ -397,7 +368,7 @@
         <button class="btn-next" type="button" id="checkout-btn" data-mock="checkout" data-mock-toast="Routes to Shopify Payments / Stripe checkout in production.">Continue to payment <i class="ph ph-lock-key"></i></button>
       </div>
     </section>
-  </div>
+  </main>
 
   <script>
     (function () {

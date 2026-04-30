@@ -161,56 +161,66 @@
           </div>
 
           <ul class="msg-list" role="list">
-            <li class="msg is-unread" data-status="unread">
+            <li class="msg is-unread is-starred" data-status="unread" data-id="m1" data-starred="true">
               <span class="msg__avatar" aria-hidden="true">L</span>
               <div class="msg__main">
                 <span class="msg__from">Luna Pinelli — Beginner Ballet</span>
                 <p class="msg__title">Welcome to next week's session</p>
                 <p class="msg__preview">A quick reminder that Daisy's Mar 10 class moves to Studio Room A. Please arrive 10 minutes early so we can get her warmed up before…</p>
               </div>
+              <button class="msg__star" type="button" aria-label="Toggle star" aria-pressed="true" data-msg-star="m1"><i class="ph ph-star-fill"></i></button>
               <span class="msg__time">2h ago</span>
             </li>
 
-            <li class="msg is-unread" data-status="unread">
+            <li class="msg is-unread" data-status="unread" data-id="m2">
               <span class="msg__avatar" aria-hidden="true">O</span>
               <div class="msg__main">
                 <span class="msg__from">Once Upon A Time</span>
                 <p class="msg__title">Thank you for your $100 donation</p>
                 <p class="msg__preview">Hi Claire — your contribution this month directly funded scholarship instruments for two new students. Your receipt is attached for…</p>
               </div>
+              <button class="msg__star" type="button" aria-label="Toggle star" aria-pressed="false" data-msg-star="m2"><i class="ph ph-star"></i></button>
               <span class="msg__time">Yesterday</span>
             </li>
 
-            <li class="msg is-unread" data-status="unread">
+            <li class="msg is-unread is-starred" data-status="unread" data-id="m3" data-starred="true">
               <span class="msg__avatar" aria-hidden="true">C</span>
               <div class="msg__main">
                 <span class="msg__from">Courtney Henry — Seasonal Camps</span>
                 <p class="msg__title">Permission slip needed for Mar 15</p>
                 <p class="msg__preview">We're heading to the Queens Botanical Garden as part of the Gardening track. Please sign and return the attached release form by…</p>
               </div>
+              <button class="msg__star" type="button" aria-label="Toggle star" aria-pressed="true" data-msg-star="m3"><i class="ph ph-star-fill"></i></button>
               <span class="msg__time">Mar 02</span>
             </li>
 
-            <li class="msg" data-status="read">
+            <li class="msg" data-status="read" data-id="m4">
               <span class="msg__avatar" aria-hidden="true">S</span>
               <div class="msg__main">
                 <span class="msg__from">Sydney Phelps — Newsletter</span>
                 <p class="msg__title">December newsletter is live</p>
                 <p class="msg__preview">Catch up on Community Garden updates, Volunteer Spotlight, and a recap of our winter showcase performances at the Richmond…</p>
               </div>
+              <button class="msg__star" type="button" aria-label="Toggle star" aria-pressed="false" data-msg-star="m4"><i class="ph ph-star"></i></button>
               <span class="msg__time">Feb 18</span>
             </li>
 
-            <li class="msg" data-status="read">
+            <li class="msg" data-status="read" data-id="m5">
               <span class="msg__avatar" aria-hidden="true">O</span>
               <div class="msg__main">
                 <span class="msg__from">Once Upon A Time</span>
                 <p class="msg__title">Receipt: Seasonal Camps 2025</p>
                 <p class="msg__preview">Your enrollment for Daisy is confirmed. Total charged: $150.00 to MasterCard ending 5555. Add this to your tax records using the…</p>
               </div>
+              <button class="msg__star" type="button" aria-label="Toggle star" aria-pressed="false" data-msg-star="m5"><i class="ph ph-star"></i></button>
               <span class="msg__time">Feb 10</span>
             </li>
           </ul>
+          <div class="empty-state" data-inbox-empty hidden>
+            <i class="ph ph-tray" aria-hidden="true" style="font-size:42px;color:var(--rose);margin-bottom:var(--s-3)"></i>
+            <h3 data-inbox-empty-title>No messages</h3>
+            <p data-inbox-empty-msg>You&rsquo;re all caught up.</p>
+          </div>
         </div>
       </section>
     </div>
@@ -240,25 +250,98 @@
     </div>
   </footer>
 
+  <style>
+    .msg { position: relative; cursor: pointer; }
+    .msg__star {
+      background: transparent; border: 0; padding: 4px;
+      color: var(--ink-muted); cursor: pointer; font-size: 18px;
+      align-self: center;
+    }
+    .msg__star:hover { color: var(--rose-700); }
+    .msg.is-starred .msg__star { color: #d4a017; }
+    .msg.is-starred .msg__star i.ph-star { display: none; }
+    .msg__star i.ph-star-fill { display: none; }
+    .msg.is-starred .msg__star i.ph-star-fill { display: inline-block; }
+  </style>
   <script>
     (function () {
       const filterBtns = document.querySelectorAll('[data-filter]');
-      const msgs = document.querySelectorAll('.msg');
+      const msgs = Array.from(document.querySelectorAll('.msg'));
+      const emptyEl = document.querySelector('[data-inbox-empty]');
+      const emptyTitle = document.querySelector('[data-inbox-empty-title]');
+      const emptyMsg = document.querySelector('[data-inbox-empty-msg]');
+
+      const STAR_KEY = 'ouat:inbox-starred';
+      let starred = (() => {
+        try { return new Set(JSON.parse(localStorage.getItem(STAR_KEY) || '[]')); }
+        catch { return new Set(); }
+      })();
+      // Seed defaults so Starred filter has content on first visit
+      if (!localStorage.getItem(STAR_KEY)) {
+        starred = new Set(['m1', 'm3']);
+        localStorage.setItem(STAR_KEY, JSON.stringify([...starred]));
+      }
+      // Reflect localStorage onto DOM
+      msgs.forEach(m => {
+        const id = m.dataset.id;
+        const isStar = starred.has(id);
+        m.classList.toggle('is-starred', isStar);
+        m.dataset.starred = isStar ? 'true' : 'false';
+        const btn = m.querySelector('[data-msg-star]');
+        if (btn) btn.setAttribute('aria-pressed', isStar ? 'true' : 'false');
+      });
+
+      function applyFilter (f) {
+        let visible = 0;
+        msgs.forEach(m => {
+          let show = true;
+          if (f === 'unread') show = m.dataset.status === 'unread';
+          else if (f === 'starred') show = m.dataset.starred === 'true';
+          m.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        if (emptyEl) {
+          emptyEl.hidden = visible !== 0;
+          if (emptyTitle) emptyTitle.textContent =
+            f === 'unread' ? 'No unread messages' :
+            f === 'starred' ? 'No starred messages' :
+            'No messages';
+          if (emptyMsg) emptyMsg.textContent =
+            f === 'starred' ? 'Tap the star on any message to keep it here.' :
+            'You’re all caught up.';
+        }
+      }
+
       filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           filterBtns.forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
-          const f = btn.dataset.filter;
-          msgs.forEach(m => {
-            const show = f === 'all' || m.dataset.status === f;
-            m.style.display = show ? '' : 'none';
-          });
+          applyFilter(btn.dataset.filter);
         });
       });
-      // Click message → mark as read
+
+      // Star toggle (don't bubble to row click)
+      document.querySelectorAll('[data-msg-star]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const m = btn.closest('.msg');
+          const id = m.dataset.id;
+          const wasStarred = m.classList.toggle('is-starred');
+          m.dataset.starred = wasStarred ? 'true' : 'false';
+          btn.setAttribute('aria-pressed', wasStarred ? 'true' : 'false');
+          if (wasStarred) starred.add(id); else starred.delete(id);
+          localStorage.setItem(STAR_KEY, JSON.stringify([...starred]));
+          // Re-apply current filter so starred-filter view updates
+          const active = document.querySelector('[data-filter][aria-pressed="true"]');
+          if (active) applyFilter(active.dataset.filter);
+        });
+      });
+
+      // Click message → open detail page (uses inbox-message.html as a single template)
       msgs.forEach(m => {
         m.addEventListener('click', () => {
           m.classList.remove('is-unread');
           m.dataset.status = 'read';
+          window.location.href = `inbox-message.html?id=${encodeURIComponent(m.dataset.id || '')}`;
         });
       });
     })();
