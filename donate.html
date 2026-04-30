@@ -99,127 +99,119 @@
     /* ---------- Hero ---------- */
     .hero {
       position: relative;
-      padding: 56px 0 88px;
-      background:
-        radial-gradient(120% 80% at 0% 30%, var(--rose-100) 0%, var(--rose-50) 55%, var(--beginning) 100%);
+      padding: 28px 0 0;
+      background: var(--rose-100);
+      border-radius: 0 0 24px 24px;
       overflow: hidden;
-    }
-    .hero::before {
-      content: "";
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(60% 40% at 90% 90%, rgba(229,170,156,.35) 0%, transparent 70%);
-      pointer-events: none;
     }
     .hero__grid {
       position: relative;
       display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: 56px;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
       align-items: center;
+      padding-bottom: 32px;
     }
     .hero__copy { padding-top: 8px; }
     .pill {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--rose); color: #fff;
-      padding: 10px 18px; border-radius: 999px;
+      background: #f4ddd2; color: var(--rose-700);
+      padding: 8px 16px; border-radius: 999px;
       font-size: 13px; font-weight: 500;
-      letter-spacing: .02em;
-      box-shadow: 0 6px 16px rgba(139,80,68,.18);
     }
     .pill::before {
       content: "";
-      width: 14px; height: 14px;
-      background: #fff;
-      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M12 21s-7.5-4.6-9.6-9.3C1.1 8.6 2.6 5 6.1 5c2.1 0 3.5 1.2 4.4 2.6h.6C12 6.2 13.4 5 15.5 5 19 5 20.5 8.6 19.6 11.7 17.5 16.4 12 21 12 21z'/></svg>") center/contain no-repeat;
-              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'><path d='M12 21s-7.5-4.6-9.6-9.3C1.1 8.6 2.6 5 6.1 5c2.1 0 3.5 1.2 4.4 2.6h.6C12 6.2 13.4 5 15.5 5 19 5 20.5 8.6 19.6 11.7 17.5 16.4 12 21 12 21z'/></svg>") center/contain no-repeat;
+      width: 13px; height: 13px;
+      background: var(--rose);
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21s-7.5-4.6-9.6-9.3C1.1 8.6 2.6 5 6.1 5c2.1 0 3.5 1.2 4.4 2.6h.6C12 6.2 13.4 5 15.5 5 19 5 20.5 8.6 19.6 11.7 17.5 16.4 12 21 12 21z'/></svg>") center/contain no-repeat;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21s-7.5-4.6-9.6-9.3C1.1 8.6 2.6 5 6.1 5c2.1 0 3.5 1.2 4.4 2.6h.6C12 6.2 13.4 5 15.5 5 19 5 20.5 8.6 19.6 11.7 17.5 16.4 12 21 12 21z'/></svg>") center/contain no-repeat;
     }
     h1.hero__title {
       font-family: var(--serif);
       font-weight: 600;
-      font-size: clamp(44px, 6.4vw, 76px);
+      font-size: clamp(40px, 6vw, 70px);
       line-height: 1.02;
       letter-spacing: -0.01em;
       text-transform: uppercase;
-      margin: 22px 0 22px;
+      margin: 18px 0 20px;
       color: var(--pillar);
     }
     .hero__lede {
-      font-size: 17px;
-      max-width: 48ch;
+      font-size: 15px;
+      max-width: 46ch;
       color: var(--ink-2);
-      margin: 0 0 32px;
+      margin: 0 0 28px;
       line-height: 1.6;
     }
     .hero__cta {
       background: var(--rose);
       color: #fff;
-      padding: 14px 28px;
-      border-radius: 12px;
+      padding: 13px 24px;
+      border-radius: 10px;
       font-weight: 600;
-      font-size: 15px;
-      box-shadow: 0 10px 24px rgba(139,80,68,.28);
+      font-size: 14px;
+      box-shadow: 0 6px 16px rgba(139,80,68,.20);
       text-decoration: none;
-      display: inline-flex; align-items: center; gap: 10px;
-      transition: background .15s ease, transform .15s ease, box-shadow .15s ease;
+      display: inline-block;
+      transition: background .15s ease, transform .15s ease;
     }
-    .hero__cta:hover { background: var(--rose-700); transform: translateY(-1px); box-shadow: 0 14px 28px rgba(139,80,68,.32); }
-    .hero__cta::after { content: "→"; font-size: 18px; line-height: 1; }
+    .hero__cta:hover { background: var(--rose-700); transform: translateY(-1px); }
     .hero__media {
       position: relative;
       align-self: center;
+      padding: 12px 28px 28px 12px;
     }
     .hero__image {
       position: relative;
-      border-radius: 22px;
+      border-radius: 6px;
       overflow: hidden;
       aspect-ratio: 5 / 4;
-      min-height: 320px;
+      min-height: 260px;
       background:
-        linear-gradient(160deg, rgba(139,80,68,.55) 0%, rgba(76,47,59,.62) 100%),
+        linear-gradient(160deg, rgba(139,80,68,.45) 0%, rgba(76,47,59,.55) 100%),
         url("once-upon-a-time-assets/img/hero.jpg") center/cover no-repeat;
       background-blend-mode: multiply, normal;
-      box-shadow: 0 24px 48px rgba(76,47,59,.22);
+      box-shadow: 0 20px 40px rgba(76,47,59,.20);
+      transform: rotate(-2.5deg);
+      transform-origin: center;
     }
     .hero__chip {
       position: absolute;
-      left: -28px; bottom: -28px;
-      background: #fff;
-      color: var(--ink);
-      padding: 16px 22px;
-      border-radius: 16px;
+      right: -8px; bottom: 8px;
+      background: var(--rose);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 6px;
       font-size: 12px;
       line-height: 1.3;
-      box-shadow: 0 16px 32px rgba(76,47,59,.22);
-      display: flex; align-items: center; gap: 14px;
-      border: 1px solid rgba(229,170,156,.4);
+      box-shadow: 0 10px 24px rgba(76,47,59,.22);
+      transform: rotate(-2.5deg);
+      min-width: 110px;
+      text-align: center;
     }
-    .hero__chip-icon {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: var(--rose-100);
-      color: var(--rose);
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 20px;
-      flex: 0 0 auto;
+    .hero__chip small { display: block; font-size: 11px; opacity: .9; }
+    .hero__chip strong { display: block; font-family: var(--serif); font-size: 22px; font-weight: 600; margin: 2px 0; }
+    .hero__divider {
+      position: relative;
+      height: 1px;
+      background: rgba(76,47,59,.20);
+      margin: 8px 0 28px;
     }
-    .hero__chip-text { display: flex; flex-direction: column; line-height: 1.2; }
-    .hero__chip small { color: var(--ink-2); font-size: 11px; }
-    .hero__chip strong { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--pillar); margin: 2px 0; }
-
-    /* ---------- Stats ---------- */
-    .stats {
-      padding: 8px 0 64px;
+    .hero__stats {
+      position: relative;
+      display: flex; gap: 64px; flex-wrap: wrap;
+      padding: 0 0 32px;
     }
-    .stats__row {
-      display: flex; gap: 56px; flex-wrap: wrap;
-    }
-    .stat__num {
+    .hero__stat-num {
       font-family: var(--serif);
-      font-size: 38px; font-weight: 600;
+      font-size: 36px; font-weight: 600;
       line-height: 1;
+      color: var(--pillar);
     }
-    .stat__label { font-size: 13px; color: var(--ink-2); margin-top: 4px; }
+    .hero__stat-label { font-size: 12px; color: var(--ink-2); margin-top: 6px; }
+
+    /* Spacing after hero band */
+    .hero { margin-bottom: 56px; }
 
     /* ---------- Section heading ---------- */
     .section-title {
@@ -240,10 +232,27 @@
 
     /* ---------- Donation block ---------- */
     .donation-wrap { position: relative; margin-bottom: 72px; }
+    .donation-wrap::before,
+    .donation-wrap::after {
+      content: "";
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 180px; height: 320px; z-index: 0;
+      background-repeat: no-repeat; background-size: contain;
+      pointer-events: none;
+      opacity: .55;
+    }
+    .donation-wrap::before {
+      left: -120px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 320' fill='%23B8C266'><path d='M40 160 Q20 90 80 30 Q140 70 130 160 Q180 200 130 280 Q70 240 60 200 Q30 200 40 160 Z'/></svg>");
+    }
+    .donation-wrap::after {
+      right: -120px; transform: translateY(-50%) scaleX(-1);
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 320' fill='%23B8C266'><path d='M40 160 Q20 90 80 30 Q140 70 130 160 Q180 200 130 280 Q70 240 60 200 Q30 200 40 160 Z'/></svg>");
+    }
     .donation {
       position: relative; z-index: 1;
       background: var(--form);
-      padding: 64px 0 72px;
+      padding: 56px 0 64px;
       border-radius: 24px;
     }
     .donation .section-title { color: var(--ink); }
@@ -520,22 +529,13 @@
       margin-top: auto;
       padding-top: 12px;
       border-top: 1px solid var(--line);
-      display: flex; align-items: center; gap: 12px;
+      display: flex; flex-direction: column; gap: 2px;
+      text-align: center;
+      align-items: center;
     }
-    .quote__avatar {
-      width: 48px; height: 48px; border-radius: 50%;
-      background-size: cover; background-position: center top;
-      background-color: var(--rose-100);
-      flex: 0 0 auto;
-      border: 2px solid #fff;
-      box-shadow: 0 1px 4px rgba(0,0,0,.12);
-    }
-    .quote--maria  .quote__avatar { background-image: url("once-upon-a-time-assets/portraits/patricia.png"); }
-    .quote--james  .quote__avatar { background-image: url("once-upon-a-time-assets/portraits/josh.png"); }
-    .quote--sarah  .quote__avatar { background-image: url("once-upon-a-time-assets/portraits/faith.png"); }
-    .quote__name { display: flex; flex-direction: column; }
-    .quote__name strong { display: block; font-weight: 600; font-size: 14px; }
-    .quote__name small { color: var(--ink-2); font-size: 12px; }
+    .quote__name { display: flex; flex-direction: column; align-items: center; }
+    .quote__name strong { display: block; font-family: var(--serif); font-weight: 600; font-size: 16px; color: var(--rose-700); }
+    .quote__name small { color: var(--ink-2); font-size: 12px; margin-top: 2px; }
 
     /* ---------- Questions ---------- */
     .questions {
@@ -559,10 +559,12 @@
     /* Tablet */
     @media (max-width: 1024px) {
       .primary-nav { gap: 18px; }
-      .hero { padding: 40px 0 72px; }
-      .hero__grid { grid-template-columns: 1fr; gap: 36px; }
+      .hero { padding: 32px 0 0; }
+      .hero__grid { grid-template-columns: 1fr; gap: 28px; padding-bottom: 24px; }
+      .hero__media { padding: 8px 32px 32px 8px; max-width: 600px; }
       .hero__image { min-height: 280px; }
-      .hero__chip { left: 16px; bottom: -24px; }
+      .hero__chip { right: 0; bottom: 0; }
+      .donation-wrap::before, .donation-wrap::after { display: none; }
       .donation__grid { grid-template-columns: 1fr; }
     }
     /* Mobile */
@@ -576,11 +578,20 @@
         max-height: 0; overflow: hidden;
         transition: max-height .25s ease, padding .25s ease, border-color .25s ease;
       }
-      .hero { padding: 28px 0 56px; }
-      .hero__media { padding-bottom: 36px; }
-      .hero__chip { left: 12px; bottom: 0; padding: 12px 16px; }
+      .hero { padding: 24px 0 0; }
+      .hero__grid { gap: 20px; padding-bottom: 20px; }
+      .hero__media { padding: 8px 20px 24px 8px; }
+      .hero__image { min-height: 220px; aspect-ratio: 4 / 3; }
+      .hero__chip { padding: 10px 14px; }
       .hero__chip strong { font-size: 18px; }
-      h1.hero__title { font-size: clamp(36px, 9vw, 52px); }
+      .hero__stats { gap: 28px; padding-bottom: 24px; }
+      .hero__stat-num { font-size: 28px; }
+      h1.hero__title {
+        font-size: 30px !important;
+        letter-spacing: -0.02em;
+        margin: 14px 0 16px;
+        line-height: 1.05;
+      }
       .stats__row { gap: 28px; }
       .stat__num { font-size: 30px; }
       .impact__grid { grid-template-columns: 1fr; }
@@ -669,23 +680,17 @@
           <div class="hero__media">
             <div class="hero__image" role="img" aria-label="Volunteers gathered together at a community event"></div>
             <div class="hero__chip" aria-hidden="true">
-              <span class="hero__chip-icon"><i class="ph ph-heart-fill"></i></span>
-              <span class="hero__chip-text">
-                <small>This month</small>
-                <strong>1,247</strong>
-                <small>people helped</small>
-              </span>
+              <small>This month</small>
+              <strong>1,247</strong>
+              <small>people helped</small>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- STATS -->
-      <section class="stats" aria-label="Headline impact numbers">
-        <div class="stats__row">
-          <div class="stat"><div class="stat__num">50K+</div><div class="stat__label">Lives Impacted</div></div>
-          <div class="stat"><div class="stat__num">$2M+</div><div class="stat__label">Funds Raised</div></div>
-          <div class="stat"><div class="stat__num">100+</div><div class="stat__label">Projects</div></div>
+        <div class="hero__divider" aria-hidden="true"></div>
+        <div class="hero__stats" role="list" aria-label="Headline impact numbers">
+          <div role="listitem"><div class="hero__stat-num">50K+</div><div class="hero__stat-label">Lives Impacted</div></div>
+          <div role="listitem"><div class="hero__stat-num">$2M+</div><div class="hero__stat-label">Funds Raised</div></div>
+          <div role="listitem"><div class="hero__stat-num">100+</div><div class="hero__stat-label">Projects</div></div>
         </div>
       </section>
 
@@ -751,7 +756,7 @@
               </fieldset>
 
               <button type="submit" class="btn btn--block" id="donate-submit">
-                Donate <span id="donate-amount">$100</span> Now
+                Donate <span id="donate-amount">$ 100</span> Now
               </button>
 
               <p class="secure-note">Your donation is secure and encrypted. We never store your payment information.</p>
@@ -865,7 +870,6 @@
             <div class="quote__mark" aria-hidden="true">&ldquo;</div>
             <blockquote><p>Seeing the quarterly impact reports and knowing exactly how my donations are used gives me confidence that I&rsquo;m making a real difference.</p></blockquote>
             <figcaption class="quote__person">
-              <span class="quote__avatar" role="img" aria-label="Portrait of Maria Rodriguez"></span>
               <span class="quote__name">
                 <strong>Maria Rodriguez</strong>
                 <small>Community Leader, Guatemala</small>
@@ -877,7 +881,6 @@
             <div class="quote__mark" aria-hidden="true">&ldquo;</div>
             <blockquote><p>The medical supplies and training provided have allowed us to save countless lives. The impact on our community has been extraordinary.</p></blockquote>
             <figcaption class="quote__person">
-              <span class="quote__avatar" role="img" aria-label="Portrait of Dr. James Chen"></span>
               <span class="quote__name">
                 <strong>Dr. James Chen</strong>
                 <small>Local Health Provider</small>
@@ -889,7 +892,6 @@
             <div class="quote__mark" aria-hidden="true">&ldquo;</div>
             <blockquote><p>Seeing the quarterly impact reports and knowing exactly how my donations are used gives me confidence that I&rsquo;m making a real difference.</p></blockquote>
             <figcaption class="quote__person">
-              <span class="quote__avatar" role="img" aria-label="Portrait of Sarah Thompson"></span>
               <span class="quote__name">
                 <strong>Sarah Thompson</strong>
                 <small>Monthly Donor</small>
@@ -905,7 +907,7 @@
       <section class="questions" id="contact" aria-labelledby="questions-title">
         <div>
           <h2 id="questions-title">Still Have Questions?</h2>
-          <p>Please write to our friendly support team or call us at <a href="tel:+11234567890">+1 - 123-456-789</a>.</p>
+          <p>Please write to our friendly support team or call us at <a href="tel:+17183806929">+1-718-380-6929</a>.</p>
         </div>
         <a href="mailto:hello@onceuponatime.org" class="btn">Send Email</a>
       </section>
@@ -939,7 +941,6 @@
             NY 11418, United States
           </div>
           <div class="footer__socials">
-            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
             <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
             <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
             <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
@@ -964,7 +965,7 @@
       const submitAmount = document.getElementById('donate-amount');
       const status       = document.getElementById('donation-status');
 
-      const fmt = (n) => '$' + Number(n).toLocaleString();
+      const fmt = (n) => '$ ' + Number(n).toLocaleString();
 
       function getSelectedAmount() {
         const custom = parseFloat(customInput.value);
