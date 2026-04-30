@@ -234,6 +234,14 @@
 .theme-dark .promo-bar { background: var(--rose-100); color: var(--rose-700); }
 .theme-dark .auth-modal__art, .theme-dark .auth-page__art { filter: brightness(0.7); }
 
+/* ---------- Page hero responsive (used on most P0-P3 pages) ---------- */
+@media (max-width: 540px) {
+  .page-hero { padding: 36px 0 28px; }
+  .page-hero h1 { font-size: clamp(26px, 9vw, 36px) !important; word-break: break-word; }
+  .page-hero__sub { font-size: 14px; }
+  .page-hero__eyebrow { font-size: 11px; }
+}
+
 /* ---------- Sibling discount banner ---------- */
 .sibling-banner {
   background: var(--rose-100); color: var(--rose-700);
