@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Snapshot — Auth modal</title>
+  <link rel="stylesheet" href="../../once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="../../once-upon-a-time-assets/styles/components.css">
+  <link rel="stylesheet" href="../../once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="../../once-upon-a-time-assets/phosphor/style.css">
+  <script src="../../once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+  <style>
+    body { background: var(--rose-100); margin: 0; min-height: 100vh; display: grid; place-items: center; }
+  </style>
+</head>
+<body>
+  <button type="button" data-open-signin hidden>open</button>
+  <script>
+    window.addEventListener('load', () => {
+      // Wait briefly for auth-modal to attach, then trigger
+      setTimeout(() => document.querySelector('[data-open-signin]').click(), 100);
+    });
+  </script>
+</body>
+</html>

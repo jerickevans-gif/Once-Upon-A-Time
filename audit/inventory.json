@@ -1,10 +1,10 @@
 {
-  "$schema": "Once Upon A Time — site features built without PDF design source",
+  "$schema": "Once Upon A Time \u2014 site features built without PDF design source",
   "generated": "2026-04-30",
   "summary": "35+ features, components, and pages live in production but had no corresponding artifact in the original design PDF set. This inventory exists so the design team can either (a) bless the implementation as-is, (b) draft formal specs to retrofit, or (c) make explicit decisions about the Shopify migration scope.",
   "importance_scale": {
-    "5": "Core to site functioning — removing it breaks a critical journey",
-    "4": "Important and pervasive — used across many pages",
+    "5": "Core to site functioning \u2014 removing it breaks a critical journey",
+    "4": "Important and pervasive \u2014 used across many pages",
     "3": "Nice-to-have polish or single-page feature",
     "2": "Tooling, SEO, or developer infrastructure",
     "1": "Minor copy or content placeholder"
@@ -15,325 +15,482 @@
       "title": "Site-wide Search",
       "category": "Discovery",
       "importance": 5,
-      "files": ["search.html"],
+      "files": [
+        "search.html"
+      ],
       "screenshot": "02-search-results.png",
       "annotations": [
-        "Search input — reads ?q= from URL and highlights matched terms in results",
-        "Result heading + result-type chip — links straight to the source page",
-        "Inline match highlight — exact-token matches wrapped in <mark>"
+        "Search input \u2014 reads ?q= from URL and highlights matched terms in results",
+        "Result heading + result-type chip \u2014 links straight to the source page",
+        "Inline match highlight \u2014 exact-token matches wrapped in <mark>"
       ],
       "why": "32-entry hand-built index with token-based scoring, exact-phrase boost, all-tokens-must-match filter, matched-term highlighting, browse-by-section quick links when no query. Header magnifying-glass icon-link on every page is the entry point.",
-      "design_notes": "Needs a dedicated SERP layout spec, suggested-query chips, recent-search history pattern, and empty-state illustration."
+      "design_notes": "Needs a dedicated SERP layout spec, suggested-query chips, recent-search history pattern, and empty-state illustration.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/search.html?q=garden",
+      "ux_rationale": "Search is the parent's escape hatch when nav fails. If a kid likes 'gardening' but can't find which programs include it, the site loses them. Even a small handcrafted index buys real conversion until Shopify's Search & Discovery takes over."
     },
     {
       "id": "auth-modal",
       "title": "Sign-in / Sign-up Modal",
       "category": "Identity",
       "importance": 5,
-      "files": ["once-upon-a-time-assets/styles/auth-modal.js", "once-upon-a-time-assets/styles/auth-modal.css"],
+      "files": [
+        "once-upon-a-time-assets/styles/auth-modal.js",
+        "once-upon-a-time-assets/styles/auth-modal.css"
+      ],
       "screenshot": "08-auth-modal.png",
       "why": "Self-injecting overlay with role toggle (student / donor), social OAuth buttons (Google, Apple, Email), password visibility toggle, remember-me, forgot-password link, focus trap, ESC-close. Triggered by every Sign-in button via data-open-signin.",
-      "design_notes": "PDFs cover login/signup as full pages; the modal pattern was added so users can authenticate without losing context. Needs spec for error states, OAuth fail recovery, and loading."
+      "design_notes": "PDFs cover login/signup as full pages; the modal pattern was added so users can authenticate without losing context. Needs spec for error states, OAuth fail recovery, and loading.",
+      "link": "_snapshots/auth-modal.html",
+      "ux_rationale": "Forcing parents to leave the page they're on to log in is the #1 way to lose an enrolment mid-flow. The modal pattern preserves their place. It also gives donors and parents one consistent entry point regardless of which page they came from."
     },
     {
       "id": "service-worker",
       "title": "Service Worker + Offline Page",
       "category": "Reliability",
       "importance": 5,
-      "files": ["sw.js", "offline.html"],
+      "files": [
+        "sw.js",
+        "offline.html"
+      ],
       "screenshot": "05-offline.png",
       "why": "Precaches the app shell on first load, stale-while-revalidate for same-origin GETs, navigation requests fall back to offline.html when the user is disconnected. Bumped on every deploy that ships changed assets.",
-      "design_notes": "Offline page copy and illustration could use a branded pass — currently uses plain text and a single icon."
+      "design_notes": "Offline page copy and illustration could use a branded pass \u2014 currently uses plain text and a single icon.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/sw.js",
+      "ux_rationale": "Parents on flaky studio Wi-Fi shouldn't see a Chrome dinosaur. The service worker keeps the app shell available even offline, and the branded offline page reassures users the site isn't broken \u2014 just temporarily disconnected."
     },
     {
       "id": "hero-carousel",
       "title": "Landing Page Hero Carousel",
       "category": "Marketing",
       "importance": 5,
-      "files": ["index.html"],
+      "files": [
+        "index.html"
+      ],
       "screenshot": "01-hero-carousel.png",
-      "why": "Auto-rotating 4-slide hero with keyboard navigation, dot indicators that meet WCAG target-size minimum (24×24 hit area / 8px visual), and rich slide metadata (eyebrow, title, subtitle, lede, CTA with icon, photo).",
-      "design_notes": "PDFs show a single static landing hero. Carousel was added so multiple programs can share the prime slot. Need formal specs for slide-change transitions, autoplay timing, and reduced-motion fallback."
+      "why": "Auto-rotating 4-slide hero with keyboard navigation, dot indicators that meet WCAG target-size minimum (24\u00d724 hit area / 8px visual), and rich slide metadata (eyebrow, title, subtitle, lede, CTA with icon, photo).",
+      "design_notes": "PDFs show a single static landing hero. Carousel was added so multiple programs can share the prime slot. Need formal specs for slide-change transitions, autoplay timing, and reduced-motion fallback.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/index.html",
+      "ux_rationale": "The hero is prime real estate and the home page has more than one story to tell \u2014 programs, donations, events. A carousel rotates them without forcing a choice between them at design time. Kids notice motion; parents notice the photos."
     },
     {
       "id": "programs-filter",
       "title": "Programs Page Chip Filter + Search",
       "category": "Discovery",
       "importance": 4,
-      "files": ["programs.html"],
+      "files": [
+        "programs.html"
+      ],
       "screenshot": "04-programs-filter.png",
       "annotations": [
-        "Chip filter row — All / Dance / Theater / Acting / Gardening, single-select with aria-pressed",
-        "In-page keyword search — filters live, deep-links via ?q=",
-        "Program card with track chip — chip text matches the active filter"
+        "Chip filter row \u2014 All / Dance / Theater / Acting / Gardening, single-select with aria-pressed",
+        "In-page keyword search \u2014 filters live, deep-links via ?q=",
+        "Program card with track chip \u2014 chip text matches the active filter"
       ],
       "why": "Chip row (All / Dance / Theater / Acting / Gardening) and live keyword search above the program cards. Filters both Open for Enrollment and Coming Soon sections; hides empty sections and shows a Clear-Filters affordance when nothing matches. Reads ?q= from URL.",
-      "design_notes": "The PDF programs page has no filtering UI. Pattern is identical to standard e-commerce category pages — would benefit from a Shopify Search & Discovery integration."
+      "design_notes": "The PDF programs page has no filtering UI. Pattern is identical to standard e-commerce category pages \u2014 would benefit from a Shopify Search & Discovery integration.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/programs.html",
+      "ux_rationale": "Parents arriving at the Programs page already know what they want \u2014 Dance, Theatre, or Gardening. A chip filter and live search lets them narrow down in seconds, instead of scrolling past every program. The faster a parent finds the right card, the higher the conversion."
     },
     {
       "id": "calendar",
       "title": "Interactive Class Calendar",
       "category": "Scheduling",
       "importance": 4,
-      "files": ["index.html", "once-upon-a-time-assets/mock-system.js"],
+      "files": [
+        "index.html",
+        "once-upon-a-time-assets/mock-system.js"
+      ],
       "screenshot": "09-calendar.png",
       "why": "Full month-by-month navigation with real schedule data keyed by month-year. Day cells are colour-coded by class type (rose / garden / blush) and link to enrollment. Lives on the home page next to today's classes.",
-      "design_notes": "PDFs only show a static today's-classes list. Need spec for week view, multi-class days, and time-zone behaviour."
+      "design_notes": "PDFs only show a static today's-classes list. Need spec for week view, multi-class days, and time-zone behaviour.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/index.html",
+      "ux_rationale": "Showing this week's classes upfront tells parents the studio is alive and active. Coloured cells signal class type at a glance \u2014 kids scanning with their parent can point and say 'that one'. Without it, the home page is just marketing copy."
     },
     {
       "id": "toast",
       "title": "Toast Notification System",
       "category": "Feedback",
       "importance": 4,
-      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "files": [
+        "once-upon-a-time-assets/mock-system.js"
+      ],
       "screenshot": "10-toast.png",
       "why": "Stack-managed toasts with four variants (info / success / warning / mock). Used by every data-mock interaction so there is consistent confirmation feedback across the entire site. Auto-dismiss after 3.5s, accessible via aria-live region.",
-      "design_notes": "Variant palette and icons need explicit design tokens. Current implementation is minimal: solid pill, matching brand color, dismissible."
+      "design_notes": "Variant palette and icons need explicit design tokens. Current implementation is minimal: solid pill, matching brand color, dismissible.",
+      "link": "_snapshots/toast.html",
+      "ux_rationale": "When a parent taps Add to Cart, they need a tiny acknowledgement that the system heard them. Toasts give that micro-confirmation without yanking the user out of their flow. Used consistently, they become the site's quiet vocabulary of success."
     },
     {
       "id": "confirm-dialog",
       "title": "Generic Confirmation Dialog",
       "category": "Feedback",
       "importance": 4,
-      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "files": [
+        "once-upon-a-time-assets/mock-system.js"
+      ],
       "screenshot": null,
       "why": "Any element with data-confirm opens a focus-trapped modal with title, body, and labeled CTA button. Used for destructive or stateful actions (cancel program, remove profile, etc.) so users always see a confirm step.",
-      "design_notes": "Needs a destructive variant (red CTA) explicitly specced."
+      "design_notes": "Needs a destructive variant (red CTA) explicitly specced.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/once-upon-a-time-assets/mock-system.js",
+      "ux_rationale": "Cancelling a class or removing a child profile shouldn't feel like a single careless tap. A focus-trapped confirmation modal slows the user down at exactly the right moment, and gives them a clean way out. The pattern saves more refunds than it costs to build."
     },
     {
       "id": "settings-dropdown",
       "title": "Settings Dropdown Menu",
       "category": "Navigation",
       "importance": 4,
-      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "files": [
+        "once-upon-a-time-assets/mock-system.js"
+      ],
       "screenshot": null,
       "why": "Wraps the gear icon in the header with a dropdown: My Profile, Preferences, Class history, Inbox, Search, Accessibility, Sign out. Provides account navigation without forcing a full-page detour to a profile hub.",
-      "design_notes": "Visual treatment is functional but uniform — would benefit from icons per item and section dividers."
+      "design_notes": "Visual treatment is functional but uniform \u2014 would benefit from icons per item and section dividers.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/once-upon-a-time-assets/mock-system.js",
+      "ux_rationale": "Account-area navigation belongs in the header, not on a separate page. The gear-icon dropdown lets parents jump to Preferences or Class History in one click instead of hunting through a profile-area sub-nav. Lower mental load = more self-service."
     },
     {
       "id": "bookmark",
       "title": "Bookmark Toggle",
       "category": "Engagement",
       "importance": 3,
-      "files": ["once-upon-a-time-assets/mock-system.js"],
-      "screenshot": null,
+      "files": [
+        "once-upon-a-time-assets/mock-system.js"
+      ],
+      "screenshot": "15-bookmark-share.png",
       "why": "data-bookmark on any element toggles localStorage state, swaps the icon between hollow and filled, and emits a toast. Used on program cards, articles, instructor profiles. Persistent across sessions.",
-      "design_notes": "Icon set should be formalised (currently Phosphor bookmark-simple / -fill). Empty / saved-articles dashboards use the same key."
+      "design_notes": "Icon set should be formalised (currently Phosphor bookmark-simple / -fill). Empty / saved-articles dashboards use the same key.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/programs.html",
+      "ux_rationale": "Parents browse 5-10 programs before committing. The bookmark icon lets them save candidates without registering or making a decision. It removes the 'I'll come back later' anxiety and shifts the visit from research to short-list."
     },
     {
       "id": "share",
       "title": "Share Button",
       "category": "Engagement",
       "importance": 3,
-      "files": ["once-upon-a-time-assets/mock-system.js"],
-      "screenshot": null,
+      "files": [
+        "once-upon-a-time-assets/mock-system.js"
+      ],
+      "screenshot": "15-bookmark-share.png",
       "why": "data-share uses the Web Share API on mobile and falls back to copy-to-clipboard on desktop. Reads optional data-share-url and data-share-title. Used on every program card.",
-      "design_notes": "Copy-success toast copy is a placeholder."
+      "design_notes": "Copy-success toast copy is a placeholder.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/programs.html",
+      "ux_rationale": "Parents text each other links to programs constantly \u2014 'is your kid doing the dance camp this year?'. A share button surfaces that natural behaviour and tracks attribution post-Shopify. On mobile it taps into the native share sheet; on desktop it copies the link."
     },
     {
       "id": "cookie-banner",
       "title": "Cookie Consent Banner",
       "category": "Compliance",
       "importance": 3,
-      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "files": [
+        "once-upon-a-time-assets/mock-system.js"
+      ],
       "screenshot": "11-cookie-banner.png",
       "why": "Auto-injected on first visit, persists acknowledgement to localStorage (ouat:cookies-acked). Decline / Accept all actions with a Learn-more link.",
-      "design_notes": "Copy is generic; legal team should provide final wording. Categorised consent (analytics vs essential) is implied but not specced."
+      "design_notes": "Copy is generic; legal team should provide final wording. Categorised consent (analytics vs essential) is implied but not specced.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/about.html",
+      "ux_rationale": "Compliance is non-negotiable in 2026 and US states are catching up to GDPR fast. The banner is small, dismissible, and respects the user's choice \u2014 none of the dark patterns that erode trust in the brand. Once Shopify is live, this swaps for a managed app."
     },
     {
       "id": "breadcrumbs",
       "title": "Auto-Injected Breadcrumbs",
       "category": "Wayfinding",
       "importance": 3,
-      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "files": [
+        "once-upon-a-time-assets/mock-system.js"
+      ],
       "screenshot": "12-breadcrumb.png",
       "why": "15-route map auto-injects breadcrumb HTML at the top of detail and transactional pages: newsletter article, instructor profile, enrollment, receipt, gift donation, scholarship, sponsorship, donor wall, impact report, gallery, events, programs, etc.",
-      "design_notes": "Visual treatment is plain; could have a more branded chevron and an expand-on-hover affordance for long paths."
+      "design_notes": "Visual treatment is plain; could have a more branded chevron and an expand-on-hover affordance for long paths.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/seasonal-camps.html",
+      "ux_rationale": "Parents land on detail pages from search, social, or email \u2014 not always from the nav. Breadcrumbs remind them where they are in the site and offer a one-tap way back to the parent category. They are quiet wayfinding, especially on mobile where the back button is unreliable."
     },
     {
       "id": "skip-link",
       "title": "Skip-to-Main Link",
       "category": "Accessibility",
       "importance": 3,
-      "files": ["every page"],
+      "files": [
+        "every page"
+      ],
       "screenshot": null,
       "why": "First focusable element on every page jumps to #main. WCAG 2.1 bypass-blocks compliance.",
-      "design_notes": "Visible-on-focus only; uses brand rose. Designers may want a more visible treatment for low-vision users."
+      "design_notes": "Visible-on-focus only; uses brand rose. Designers may want a more visible treatment for low-vision users.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/index.html",
+      "ux_rationale": "Keyboard and screen-reader users skip past the nav on every single page. Without a skip-link they tab through 8-10 nav items each time. WCAG bypass-blocks compliance is mandatory; the user benefit is just as real."
     },
     {
       "id": "faq-accordion",
       "title": "FAQ Accordion",
       "category": "Information",
       "importance": 3,
-      "files": ["contact.html", "once-upon-a-time-assets/mock-system.js"],
+      "files": [
+        "contact.html",
+        "once-upon-a-time-assets/mock-system.js"
+      ],
       "screenshot": "13-faq.png",
       "why": "data-faq buttons toggle aria-expanded on adjacent panels. Used across the contact / FAQ section and donation questions.",
-      "design_notes": "Open and closed states currently use a simple chevron. PDF showed pink and olive Q&A bubble illustrations that are now in place; expand transition needs spec."
+      "design_notes": "Open and closed states currently use a simple chevron. PDF showed pink and olive Q&A bubble illustrations that are now in place; expand transition needs spec.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/contact.html",
+      "ux_rationale": "FAQs are scan-first, read-second. An accordion lets parents see all questions at once and only commit to reading what matters. A scrolling wall of full Q&A would lose them in 5 seconds."
     },
     {
       "id": "lightbox",
       "title": "Gallery Lightbox",
       "category": "Media",
       "importance": 3,
-      "files": ["gallery.html", "once-upon-a-time-assets/mock-system.js"],
+      "files": [
+        "gallery.html",
+        "once-upon-a-time-assets/mock-system.js"
+      ],
       "screenshot": null,
       "why": "Click any data-lightbox tile to open a full-bleed overlay with the underlying CSS background-image. ESC-to-close, click outside to close.",
-      "design_notes": "Needs prev/next navigation, swipe support, and image caption treatment."
+      "design_notes": "Needs prev/next navigation, swipe support, and image caption treatment.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/gallery.html",
+      "ux_rationale": "Photos of past performances are the strongest emotional sales tool the studio has \u2014 but only if the user can see them at full size. The lightbox lets parents zoom in without leaving the gallery. Kids point and ask which class is in the photo."
     },
     {
       "id": "skeleton-loader",
       "title": "Skeleton Loaders",
       "category": "Feedback",
       "importance": 3,
-      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "files": [
+        "once-upon-a-time-assets/mock-system.js"
+      ],
       "screenshot": null,
-      "why": "List pages with data-skeleton-list show shimmering placeholder cards for ~600ms before the real content reveals — masking layout shift on slow connections.",
-      "design_notes": "Shimmer animation timing and colour are functional defaults. Need explicit token for skeleton bg / highlight."
+      "why": "List pages with data-skeleton-list show shimmering placeholder cards for ~600ms before the real content reveals \u2014 masking layout shift on slow connections.",
+      "design_notes": "Shimmer animation timing and colour are functional defaults. Need explicit token for skeleton bg / highlight.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/class-history.html",
+      "ux_rationale": "On slow connections \u2014 studio Wi-Fi, parents on the subway \u2014 list pages can feel broken when content takes 800ms to render. A shimmering skeleton signals 'I'm working on it' and prevents the user from refreshing. Tiny detail, big perceived-performance gain."
     },
     {
       "id": "error-pages",
       "title": "Error / Maintenance / Offline Pages",
       "category": "Reliability",
       "importance": 3,
-      "files": ["500.html", "maintenance.html", "offline.html"],
+      "files": [
+        "500.html",
+        "maintenance.html",
+        "offline.html"
+      ],
       "screenshot": "06-error-500.png",
       "why": "Branded fallback pages for server errors, scheduled downtime, and offline navigations. Each carries the canonical header + footer so users can recover or contact support.",
-      "design_notes": "Copy and illustration are placeholders. Tone (apologetic vs reassuring) needs a brand voice pass."
+      "design_notes": "Copy and illustration are placeholders. Tone (apologetic vs reassuring) needs a brand voice pass.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/500.html",
+      "ux_rationale": "When something goes wrong, the worst response is a generic browser error. Branded 404 / 500 / maintenance / offline pages tell the user the brand is still in control. They keep the header and footer so the recovery path is always one tap away."
     },
     {
       "id": "promo-bar",
       "title": "Dismissable Promo Bar",
       "category": "Marketing",
       "importance": 3,
-      "files": ["index.html", "about.html", "newsletter.html", "programs.html"],
-      "screenshot": null,
+      "files": [
+        "index.html",
+        "about.html",
+        "newsletter.html",
+        "programs.html"
+      ],
+      "screenshot": "18-promo-bar.png",
       "why": "Top-of-page strip announcing happening-now and next-class. Dismissal persists to localStorage (promo-dismissed-2026 key) so it does not nag returning visitors.",
-      "design_notes": "Currently a single static message. Needs CMS-driven content for production."
+      "design_notes": "Currently a single static message. Needs CMS-driven content for production.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/about.html",
+      "ux_rationale": "The studio always has a 'happening now' moment \u2014 a class enrolment closing soon, a fall showcase, a guest instructor. The promo bar surfaces that one timely thing at the top of every page without commandeering the design. Dismissal persists so it doesn't nag returning visitors."
     },
     {
       "id": "dark-mode",
       "title": "Dark Mode Toggle",
       "category": "Theme",
       "importance": 3,
-      "files": ["once-upon-a-time-assets/mock-system.js", "once-upon-a-time-assets/styles/components.css"],
+      "files": [
+        "once-upon-a-time-assets/mock-system.js",
+        "once-upon-a-time-assets/styles/components.css"
+      ],
       "screenshot": null,
       "why": "Setting in the gear menu writes ouat:theme to localStorage; .theme-dark class restyles the surface palette. Currently only the footer and a few surfaces are mapped.",
-      "design_notes": "Dark palette is inferred from the rose/garden tokens — no formal dark spec exists. Would benefit from a full token table."
+      "design_notes": "Dark palette is inferred from the rose/garden tokens \u2014 no formal dark spec exists. Would benefit from a full token table.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/preferences.html",
+      "ux_rationale": "Some parents browse classes after the kids are in bed \u2014 phone in hand, room dark. Dark mode lowers eye strain at that hour. It's a small touch but signals to power users that the brand cares about real-world usage."
     },
     {
       "id": "form-validation",
       "title": "Inline Form Validation",
       "category": "Forms",
       "importance": 3,
-      "files": ["once-upon-a-time-assets/site.js", "once-upon-a-time-assets/mock-system.js"],
-      "screenshot": null,
+      "files": [
+        "once-upon-a-time-assets/site.js",
+        "once-upon-a-time-assets/mock-system.js"
+      ],
+      "screenshot": "20-form-validation.png",
       "why": "Newsletter and contact forms check empty / email-shaped values before submit. OUAT_setFieldError adds .is-error to the field and emits a sibling .field-error message. Submission goes through Formspree once IDs are wired.",
-      "design_notes": "Error state pattern is consistent but minimal. Need specs for inline help, success state, and submit-pending spinner."
+      "design_notes": "Error state pattern is consistent but minimal. Need specs for inline help, success state, and submit-pending spinner.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/contact.html",
+      "ux_rationale": "A form that swallows a user's input and gives no feedback is the fastest way to lose trust. Inline validation shows what's wrong while the parent is still on the field, before they hit submit. The pattern shaves 15-20% off form abandonment in most studies."
     },
     {
       "id": "json-ld",
       "title": "Schema.org JSON-LD",
       "category": "SEO",
       "importance": 2,
-      "files": ["index.html", "contact.html", "programs.html"],
+      "files": [
+        "index.html",
+        "contact.html",
+        "programs.html"
+      ],
       "screenshot": null,
       "why": "Organization, ContactPage, and Course types embedded as JSON-LD so Google can render rich results (sitelinks, FAQ rich answers, course cards in SERPs).",
-      "design_notes": "Invisible to designers but worth flagging — copy choices in the JSON affect how the site appears in search results."
+      "design_notes": "Invisible to designers but worth flagging \u2014 copy choices in the JSON affect how the site appears in search results.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/index.html",
+      "ux_rationale": "Most parents discover the studio via Google. Structured data lets Google show class details, FAQs, and contact info directly in search results \u2014 meaning more clicks to the site even before competitors. Invisible to designers, decisive for traffic."
     },
     {
       "id": "sitemap",
       "title": "sitemap.xml + robots",
       "category": "SEO",
       "importance": 2,
-      "files": ["sitemap.xml"],
+      "files": [
+        "sitemap.xml"
+      ],
       "screenshot": null,
       "why": "26 priority URLs with change-frequency hints for crawlers.",
-      "design_notes": "Generated by hand; should be automated post-Shopify (theme apps emit it)."
+      "design_notes": "Generated by hand; should be automated post-Shopify (theme apps emit it).",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/sitemap.xml",
+      "ux_rationale": "Telling Google which pages matter most helps ensure new programs and events get indexed quickly. Without it, search engines have to guess, and discovery suffers. Shopify will regenerate this automatically \u2014 until then, hand-maintained."
     },
     {
       "id": "footer-canonical",
       "title": "Canonical Footer + Sync Tool",
       "category": "Tooling",
       "importance": 2,
-      "files": ["tools/sync-footer.py", "47 *.html files"],
+      "files": [
+        "tools/sync-footer.py",
+        "47 *.html files"
+      ],
       "screenshot": "14-footer.png",
       "annotations": [
-        "About column — About + Programs links, h3 heading per WCAG hierarchy",
-        "Events column — Events + Support Us links matching the PDF spec",
-        "Address + socials + legal block — Maps deep-link, real social URLs, Privacy · Terms · Accessibility"
+        "About column \u2014 About + Programs links, h3 heading per WCAG hierarchy",
+        "Events column \u2014 Events + Support Us links matching the PDF spec",
+        "Address + socials + legal block \u2014 Maps deep-link, real social URLs, Privacy \u00b7 Terms \u00b7 Accessibility"
       ],
       "why": "8 distinct footer variants existed across 47 pages; collapsed to one canonical block (Brand, About / Programs, Events / Support Us, Address + socials + legal). tools/sync-footer.py keeps it in lock-step until the Shopify migration replaces it with a Liquid section.",
-      "design_notes": "Matches the PDF programs-page footer exactly. After Shopify cut-over the script retires."
+      "design_notes": "Matches the PDF programs-page footer exactly. After Shopify cut-over the script retires.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/tools/sync-footer.py",
+      "ux_rationale": "When the same footer appears on 47 pages, drift is inevitable \u2014 and inconsistent navigation across pages erodes the user's mental model. The canonical block + sync tool guarantees every page ends with the same anchors, social links, and legal block. Trust is built in repetition."
     },
     {
       "id": "data-mock",
       "title": "data-mock Interaction Layer",
       "category": "Tooling",
       "importance": 4,
-      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "files": [
+        "once-upon-a-time-assets/mock-system.js"
+      ],
       "screenshot": null,
       "why": "25 distinct data-mock=\"feature\" values registered and wired. Each click emits a toast describing the action that *will* happen post-Shopify integration. Lets the site demo end-to-end without real backends.",
-      "design_notes": "When backends land, replace toast-only mocks one-by-one. The complete list is documented in mock-system.js."
+      "design_notes": "When backends land, replace toast-only mocks one-by-one. The complete list is documented in mock-system.js.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/once-upon-a-time-assets/mock-system.js",
+      "ux_rationale": "Designers and stakeholders need to feel the site work end-to-end before backends exist. Every clickable that would do something in production triggers a friendly toast saying what would have happened. The whole site demos like a finished product, which accelerates feedback."
     },
     {
       "id": "coming-soon",
       "title": "Coming Soon Stubs",
       "category": "Content",
       "importance": 2,
-      "files": ["once-upon-a-time-assets/site.js"],
-      "screenshot": null,
+      "files": [
+        "once-upon-a-time-assets/site.js"
+      ],
+      "screenshot": "27-coming-soon.png",
       "why": "data-coming-soon attribute on any element shows a polite placeholder so partial pages still feel intentional.",
-      "design_notes": "Generic copy; replace per-page once the real content lands."
+      "design_notes": "Generic copy; replace per-page once the real content lands.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/programs.html",
+      "ux_rationale": "Empty sections look like construction zones. A friendly 'coming soon' placeholder turns a gap into intentionality \u2014 the studio is growing, here's what's next. It's a tiny piece of copy that protects the brand's polish during a launch period."
     },
     {
       "id": "header-search-icon",
       "title": "Header Search Icon-Link",
       "category": "Discovery",
       "importance": 4,
-      "files": ["all 47 pages"],
-      "screenshot": null,
+      "files": [
+        "all 47 pages"
+      ],
+      "screenshot": "21-header-search-icon.png",
       "why": "Magnifying-glass icon-button between Contact and Cart on every page header except programs.html / newsletter.html / search.html (where in-page search already exists). Single canonical entry point to /search.html.",
-      "design_notes": "Currently icon-only on desktop; hidden on mobile by existing media-query rules. Mobile users reach search via the hamburger menu — that link should be added."
+      "design_notes": "Currently icon-only on desktop; hidden on mobile by existing media-query rules. Mobile users reach search via the hamburger menu \u2014 that link should be added.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/about.html",
+      "ux_rationale": "Every page should have a one-tap path to global search. The magnifying-glass icon in the header is muscle memory at this point \u2014 every site has one. Removing the friction of 'how do I search?' is a permanent UX win."
     },
     {
       "id": "transactional-pages",
       "title": "Transactional Confirmation Pages",
       "category": "Pages",
       "importance": 4,
-      "files": ["receipt.html", "order-confirmation.html", "waiver.html", "payment-declined.html"],
-      "screenshot": null,
+      "files": [
+        "receipt.html",
+        "order-confirmation.html",
+        "waiver.html",
+        "payment-declined.html"
+      ],
+      "screenshot": "22-receipt.png",
       "why": "End-of-journey screens for enrollment, donation, and waiver flows. No PDFs cover them; they were filled in to complete the user journey end-to-end.",
-      "design_notes": "Need a unified visual treatment with the success / failure pattern. Tone should align with brand voice once the design team blesses one."
+      "design_notes": "Need a unified visual treatment with the success / failure pattern. Tone should align with brand voice once the design team blesses one.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/receipt.html",
+      "ux_rationale": "Receipts, payment-declined, and order-confirmation pages are touched at the most emotional moments of the user journey. A branded, reassuring page that names the program ('Thanks for enrolling Sofia in Seasonal Camps!') beats a generic confirmation every time. Worth more than the rest of the site combined for trust-building."
     },
     {
       "id": "account-pages",
       "title": "Account Dashboard Pages",
       "category": "Pages",
       "importance": 4,
-      "files": ["profile.html", "preferences.html", "class-history.html", "inbox.html", "inbox-message.html", "saved-articles.html", "read-later.html"],
-      "screenshot": null,
+      "files": [
+        "profile.html",
+        "preferences.html",
+        "class-history.html",
+        "inbox.html",
+        "inbox-message.html",
+        "saved-articles.html",
+        "read-later.html"
+      ],
+      "screenshot": "23-profile.png",
       "why": "Logged-in surface for managing profile, notification preferences, saved content, message threads, and class history. Some have partial PDF coverage; most do not.",
-      "design_notes": "These pages share visual language with the rest of the site but were filled in beyond the PDF set. Warrant a dedicated account-area design pass."
+      "design_notes": "These pages share visual language with the rest of the site but were filled in beyond the PDF set. Warrant a dedicated account-area design pass.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/profile.html",
+      "ux_rationale": "Logged-in parents come back to manage profiles, see class history, and message instructors. The dashboard is where the brand earns long-term loyalty \u2014 and where most studios let polish slip. Strong account UX is what turns one-time enrollers into multi-year families."
     },
     {
       "id": "support-pages",
       "title": "Support / Donation Variants",
       "category": "Pages",
       "importance": 3,
-      "files": ["scholarship.html", "sponsorship.html", "gift-donation.html", "donor-wall.html", "impact-report.html"],
+      "files": [
+        "scholarship.html",
+        "sponsorship.html",
+        "gift-donation.html",
+        "donor-wall.html",
+        "impact-report.html"
+      ],
       "screenshot": null,
       "why": "Donation flow has multiple entry points beyond the single donate.html in the PDF set: scholarships, sponsorships, gift-in-someone's-name, donor recognition wall, and the annual impact report.",
-      "design_notes": "Each is a separate funnel. Worth a strategic decision: are these distinct pages or a single multi-step flow?"
+      "design_notes": "Each is a separate funnel. Worth a strategic decision: are these distinct pages or a single multi-step flow?",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/scholarship.html",
+      "ux_rationale": "Donations don't all look the same \u2014 some donors give a one-time gift, some sponsor a child, some leave a planned gift in their will. Splitting the flow into named pages (Scholarship, Sponsorship, Gift Donation, Donor Wall) lets the studio meet each donor where they are. Generic 'Donate' pages convert worse for major gifts."
     },
     {
       "id": "people-pages",
       "title": "People & Recruitment Pages",
       "category": "Pages",
       "importance": 3,
-      "files": ["instructor.html", "instructors.html", "board.html", "jobs.html", "press.html", "partners.html"],
+      "files": [
+        "instructor.html",
+        "instructors.html",
+        "board.html",
+        "jobs.html",
+        "press.html",
+        "partners.html"
+      ],
       "screenshot": null,
-      "why": "Roster and recruiting surface — instructor list and individual bios, board of directors, open jobs, press kit, and partners directory.",
-      "design_notes": "Visual templates exist but the content model (bio fields, social links, role tags) needs a design system pass before Shopify metaobjects."
+      "why": "Roster and recruiting surface \u2014 instructor list and individual bios, board of directors, open jobs, press kit, and partners directory.",
+      "design_notes": "Visual templates exist but the content model (bio fields, social links, role tags) needs a design system pass before Shopify metaobjects.",
+      "link": "https://jerickevans-gif.github.io/Once-Upon-A-Time/instructors.html",
+      "ux_rationale": "Parents pick programs, but they enroll because of an instructor. Bios, board members, partner orgs and press kits all make the studio feel like a real organisation rooted in the community. Without these pages, the site reads as a transactional storefront \u2014 with them, as a nonprofit with a mission."
     }
   ]
 }

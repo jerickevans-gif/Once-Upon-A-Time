@@ -1,0 +1,609 @@
+{
+  "$schema": "Once Upon A Time — UX recommendations for PDF-source pages",
+  "generated": "2026-04-30",
+  "summary": "Forty-eight page-level + eight cross-page UX recommendations for the pages already covered by the original PDF design set. These are improvements to existing surfaces, distinct from the off-spec inventory which catalogues net-new features.",
+  "audience": "Designers picking up the project for the Shopify migration phase. Each recommendation leads with user reasoning, not implementation detail.",
+  "heuristics": {
+    "emergency": "Emergency usability — can the primary task be completed in 3 seconds, one-handed, on mobile?",
+    "accessibility": "WCAG 2.1 AA — alt text, focus rings, contrast, heading hierarchy, dialog roles, skip links",
+    "responsive": "Responsive breakpoints — does the page hold up at 375 / 768 / 1280 / 1440?",
+    "discovery": "Search & discovery — can users find what they need? Is the entry point clear?",
+    "errors": "Error & offline — what happens when the form fails, the network drops, the action errors?",
+    "emotional": "Emotional & trust design — does the tone feel like the brand? Is micro-copy human or legalese?"
+  },
+  "importance_scale": {
+    "5": "Users likely abandon without it",
+    "4": "High-impact UX gap",
+    "3": "Moderate improvement",
+    "2": "Polish",
+    "1": "Nice-to-have"
+  },
+  "page_recommendations": [
+    {
+      "id": "idx-carousel-a11y",
+      "page": "index.html",
+      "page_title": "Landing",
+      "title": "Hero carousel needs spoken status updates",
+      "design_take": "Make the carousel narrate itself — parents on assistive tech are missing featured programs.",
+      "explanation": "The hero rotates through four featured programs but a screen reader sees a static image. Parents using VoiceOver or TalkBack don't know the slide changed. Adding aria-live announcements (\"Slide 2 of 4: Seasonal Camps\") puts everyone on the same footing during program discovery.",
+      "heuristic": "accessibility",
+      "importance": 4
+    },
+    {
+      "id": "idx-calendar-hierarchy",
+      "page": "index.html",
+      "page_title": "Landing",
+      "title": "Today's classes need visual urgency cues",
+      "design_take": "Distinguish full from filling-fast at a glance — parents are deciding in 3 seconds.",
+      "explanation": "Right now every time-slot looks equally available. A parent scrolling at school pickup wants to know which class is filling fast and which is open. A small enrollment badge or coloured pill (Open · Filling · Full) earns its keep here.",
+      "heuristic": "emergency",
+      "importance": 4
+    },
+    {
+      "id": "idx-donor-trust",
+      "page": "index.html",
+      "page_title": "Landing",
+      "title": "Donor testimonials need verification context",
+      "design_take": "A name and a quote isn't enough. Show why this person is credible.",
+      "explanation": "Major donors land on the home page first and judge organisational stewardship from quotes within seconds. Adding a small verified marker (years supported, or \"Donor since 2022\") signals these are real humans, not stock copy.",
+      "heuristic": "emotional",
+      "importance": 3
+    },
+    {
+      "id": "idx-mobile-cta-priority",
+      "page": "index.html",
+      "page_title": "Landing",
+      "title": "Make enrolment the loud CTA on mobile",
+      "design_take": "Donate is shouting at the same volume as Enrol. Quiet one of them.",
+      "explanation": "Most homepage traffic is parents with kids in tow, not donors. Right now Donate and Enrol carry equal visual weight on mobile, which fragments intent. Demoting Donate to a secondary CTA (text link or outline button) on small screens lets parents find the path they came for.",
+      "heuristic": "emergency",
+      "importance": 3
+    },
+    {
+      "id": "abt-values-emotional",
+      "page": "about.html",
+      "page_title": "About Us",
+      "title": "Values grid feels like a corporate report on mobile",
+      "design_take": "Three abstract value statements stacked vertically is a wall of text. Add an emotional anchor.",
+      "explanation": "Kids ages 6–18 do see this page (parents bring them along during decisions). Pairing each value with one illustrative photo or a child's quote makes the values feel like a story, not a brand pillar slide.",
+      "heuristic": "emotional",
+      "importance": 3
+    },
+    {
+      "id": "abt-leadership-context",
+      "page": "about.html",
+      "page_title": "About Us",
+      "title": "Leadership names without role context = wasted real estate",
+      "design_take": "Yasmine, Dolores — who? Adults assessing credibility scroll for context.",
+      "explanation": "Headshots without roles read as \"meet the team\" filler. A single line under each name (\"Executive Director · 12 years in Queens arts ed\") lets parents and donors do a one-pass credibility check without scrolling.",
+      "heuristic": "emergency",
+      "importance": 3
+    },
+    {
+      "id": "abt-stories-keys",
+      "page": "about.html",
+      "page_title": "About Us",
+      "title": "Success-stories carousel doesn't work without a mouse",
+      "design_take": "If your trackpad-less colleague can't read the testimonials, neither can a screen-reader user.",
+      "explanation": "The horizontal carousel lacks Previous / Next buttons that work via keyboard. Visible arrow controls with focus rings let everyone — keyboard users, low-vision users, screen readers — get through the stories.",
+      "heuristic": "accessibility",
+      "importance": 4
+    },
+    {
+      "id": "abt-newsletter-value",
+      "page": "about.html",
+      "page_title": "About Us",
+      "title": "Newsletter signup hides the value exchange",
+      "design_take": "Tell people what they're getting before asking for their email.",
+      "explanation": "Right now the form just says \"Subscribe\". One sentence — \"Weekly notes from the studio: class highlights, photos from showcases, and the occasional behind-the-scenes\" — gives parents the trust signal they need to opt in.",
+      "heuristic": "emotional",
+      "importance": 2
+    },
+    {
+      "id": "ctc-phone-prominence",
+      "page": "contact.html",
+      "page_title": "Contact",
+      "title": "Phone number needs to be the loudest thing on this page",
+      "design_take": "If a parent's child forgot pickup time, they don't fill out a form — they call.",
+      "explanation": "Contact-us moments are often time-sensitive (forgot pickup, allergy concern, late drop-off). The phone number should be the first thing visible, with a prominent treatment — large display type or a tap-to-call button on mobile — not a list item alongside email and address.",
+      "heuristic": "emergency",
+      "importance": 5
+    },
+    {
+      "id": "ctc-form-error-summary",
+      "page": "contact.html",
+      "page_title": "Contact",
+      "title": "Form errors should announce themselves above the fold",
+      "design_take": "A parent who just hit Send and saw nothing happen will leave.",
+      "explanation": "Inline field errors are easy to miss, especially after a submission attempt scrolls the form out of view. A summary box at the top of the form on submission failure (\"Please check 2 fields below\") gives clear feedback and disables the submit button until corrections are made.",
+      "heuristic": "errors",
+      "importance": 3
+    },
+    {
+      "id": "ctc-faq-focus",
+      "page": "contact.html",
+      "page_title": "Contact",
+      "title": "FAQ chevrons need a visible open/closed state",
+      "design_take": "Keyboard users tabbing through FAQs can't tell which one is open.",
+      "explanation": "The native details/summary element handles state correctly but the visual treatment doesn't reinforce it strongly. A clear chevron rotation and a focus ring make the interaction legible to keyboard and low-vision users.",
+      "heuristic": "accessibility",
+      "importance": 2
+    },
+    {
+      "id": "don-amount-anchoring",
+      "page": "donate.html",
+      "page_title": "Donate",
+      "title": "Donation amounts need impact anchoring",
+      "design_take": "$50 is just a number. \"$50 = a semester of dance for one child\" is a decision.",
+      "explanation": "Preset amount buttons currently look like radio options. Adding a one-line impact statement under each ($25 = supplies for a workshop · $50 = a semester for one child · $250 = a private lesson series for a kid on scholarship) turns abstract dollars into concrete outcomes.",
+      "heuristic": "emotional",
+      "importance": 4
+    },
+    {
+      "id": "nl-tabs-mobile",
+      "page": "newsletter.html",
+      "page_title": "Newsletter",
+      "title": "Tabs collapse poorly on mobile",
+      "design_take": "Home / Saved / Read Later / Get Involved truncates and the active tab gets lost.",
+      "explanation": "Equal-width tab buttons cram together at 375px. Either go to a horizontal scroll-snap row with one fully-visible active tab, or collapse to a select dropdown on mobile so the user sees their current section clearly.",
+      "heuristic": "responsive",
+      "importance": 3
+    },
+    {
+      "id": "nl-search-empty",
+      "page": "newsletter.html",
+      "page_title": "Newsletter",
+      "title": "Empty-search state is invisible",
+      "design_take": "Articles disappear with no explanation — looks like the page broke.",
+      "explanation": "When the filter returns zero matches, the grid silently empties. Add a centred \"No articles match 'jazz'\" state with a Clear-Search button. Reassures users that the system is working and gives them a clear way out.",
+      "heuristic": "errors",
+      "importance": 3
+    },
+    {
+      "id": "nl-bookmark-sync",
+      "page": "newsletter.html",
+      "page_title": "Newsletter",
+      "title": "Bookmark state needs a sync indicator",
+      "design_take": "Bookmarks live in localStorage today. If a parent expects them on their other device, they'll be disappointed.",
+      "explanation": "Right now there's no signal that bookmarks are device-local. Either show a small \"Saved locally\" badge with a \"Sign in to sync\" CTA, or commit to syncing post-Shopify and show pending state during the round trip.",
+      "heuristic": "errors",
+      "importance": 3
+    },
+    {
+      "id": "nl-related-tap",
+      "page": "newsletter.html",
+      "page_title": "Newsletter",
+      "title": "Related-newsletters cards have stingy tap areas",
+      "design_take": "Make the whole card clickable, not just the title link.",
+      "explanation": "On mobile a kid (or a thumb-fumbling adult) is going to miss-tap. Wrapping the entire card in the anchor — title, image, summary — gives a 250px+ tap target that matches the iOS/Android guidelines.",
+      "heuristic": "accessibility",
+      "importance": 2
+    },
+    {
+      "id": "nlart-dropcap-a11y",
+      "page": "newsletter-article.html",
+      "page_title": "Newsletter article",
+      "title": "Drop cap should not be read out twice",
+      "design_take": "Screen readers can announce the drop-cap letter as a separate element. Hide it from them.",
+      "explanation": "If the article's first paragraph starts with a styled drop cap built via ::first-letter or a wrapper span, ensure the styled letter is `aria-hidden` and the actual paragraph reads naturally. Otherwise low-vision users hear \"T. The dance studio is…\".",
+      "heuristic": "accessibility",
+      "importance": 2
+    },
+    {
+      "id": "nlart-share-labels",
+      "page": "newsletter-article.html",
+      "page_title": "Newsletter article",
+      "title": "Share / Save / Print icons need text labels at all sizes",
+      "design_take": "Three icons with no text is a guess on mobile.",
+      "explanation": "Even small icons should carry visible labels at common reading distances. Stack the label under the icon at all viewports, or make this a button bar with text + icon. Cuts confusion between Save (bookmark) vs Print.",
+      "heuristic": "responsive",
+      "importance": 2
+    },
+    {
+      "id": "nlart-blockquote",
+      "page": "newsletter-article.html",
+      "page_title": "Newsletter article",
+      "title": "Pull-quotes don't read as pull-quotes",
+      "design_take": "A grey left border isn't enough — it just looks like indented text.",
+      "explanation": "A bigger typography step, a tinted background, or a leading quote-mark glyph turns a blockquote into the visual breath the article needs. Right now they slip past in a scan.",
+      "heuristic": "emergency",
+      "importance": 2
+    },
+    {
+      "id": "pg-chip-feedback",
+      "page": "programs.html",
+      "page_title": "Programs",
+      "title": "Filter chips need a clearer selected state",
+      "design_take": "aria-pressed is great for screen readers but invisible to eyes.",
+      "explanation": "When a parent taps Dance, the chip should change visually — solid fill, contrasted text — not just announce the change to assistive tech. Two-state styling (light unselected, brand-coloured selected) gives instant feedback.",
+      "heuristic": "emergency",
+      "importance": 3
+    },
+    {
+      "id": "pg-empty-state",
+      "page": "programs.html",
+      "page_title": "Programs",
+      "title": "Empty filter results need a recovery message",
+      "design_take": "Cards just vanish — the parent thinks they broke the page.",
+      "explanation": "When chip + search combine to zero results, render an inviting \"Nothing matches yet — try clearing filters or browsing Coming Soon\" with a Clear-Filters button. Turns a dead end into a path forward.",
+      "heuristic": "errors",
+      "importance": 3
+    },
+    {
+      "id": "pg-capacity-urgency",
+      "page": "programs.html",
+      "page_title": "Programs",
+      "title": "Enrolment status needs colour, not just text",
+      "design_take": "\"3 spots left\" is the difference between buying now and waiting. Make it shout.",
+      "explanation": "Current implementation displays capacity as plain text. Add a coloured pill (green = open, amber = filling, red = full or waitlist) plus an enrolment-percent bar in the card. Parents scan dozens of cards; visual shorthand wins.",
+      "heuristic": "emergency",
+      "importance": 4
+    },
+    {
+      "id": "pg-testimonial-trust",
+      "page": "programs.html",
+      "page_title": "Programs",
+      "title": "Parent testimonials need a verified marker",
+      "design_take": "Stock-looking quotes lose readers. Show this parent's kid is in the program.",
+      "explanation": "A small \"Parent of Story Jazz student, 2024\" line under each quote — with a verified checkmark — lifts these from copywriting to social proof. Especially important for a small nonprofit competing with big-brand studios.",
+      "heuristic": "emotional",
+      "importance": 3
+    },
+    {
+      "id": "sc-sidebar-mobile",
+      "page": "seasonal-camps.html",
+      "page_title": "Seasonal Camps detail",
+      "title": "Sticky sidebar collides with content on mobile",
+      "design_take": "On a phone the sticky sidebar covers the section it's meant to navigate to.",
+      "explanation": "Convert the sidebar to a non-sticky table-of-contents card at the top of the page on mobile, or to a collapsible drawer triggered by a tap. Otherwise scrolling to FAQs hides the FAQ heading behind the nav.",
+      "heuristic": "responsive",
+      "importance": 4
+    },
+    {
+      "id": "sc-quickfacts",
+      "page": "seasonal-camps.html",
+      "page_title": "Seasonal Camps detail",
+      "title": "The three things parents need first are buried",
+      "design_take": "Capacity, price, dates. Surface them above the fold.",
+      "explanation": "A parent comparing camps does a 3-second pass for: when, how much, are there spots. Right now those facts live in a sidebar card mid-page. Promote them to a Quick Facts strip directly under the hero so the page rewards a quick scan.",
+      "heuristic": "emergency",
+      "importance": 4
+    },
+    {
+      "id": "sc-instructor-pitch",
+      "page": "seasonal-camps.html",
+      "page_title": "Seasonal Camps detail",
+      "title": "Instructor cards need a teaching philosophy line",
+      "design_take": "Patient & playful vs. rigorous & precise — parents pick a fit, not a credential.",
+      "explanation": "A photo and a name doesn't help a parent who's trying to figure out if this teacher is right for their nervous 8-year-old. One sentence of pedagogy under the name (\"Patient, movement-first, builds confidence over technique\") earns trust faster than a degree list.",
+      "heuristic": "emergency",
+      "importance": 3
+    },
+    {
+      "id": "sc-map-a11y",
+      "page": "seasonal-camps.html",
+      "page_title": "Seasonal Camps detail",
+      "title": "Studio location SVG is invisible to screen readers",
+      "design_take": "The pin icon needs to speak the address.",
+      "explanation": "Decorative SVGs need an aria-label or wrapping link so the address is reachable from assistive tech. Without it, a low-vision parent can't locate the studio without manual copy/paste of the text address.",
+      "heuristic": "accessibility",
+      "importance": 3
+    },
+    {
+      "id": "sc-faq-scroll",
+      "page": "seasonal-camps.html",
+      "page_title": "Seasonal Camps detail",
+      "title": "Expanded FAQ should scroll into view",
+      "design_take": "Tapping the bottom FAQ on a phone hides the answer.",
+      "explanation": "On mobile, opening a details/summary panel near the bottom of the viewport doesn't scroll the answer into view. A short scrollIntoView({behavior: smooth, block: nearest}) on toggle solves it.",
+      "heuristic": "responsive",
+      "importance": 2
+    },
+    {
+      "id": "pl-matching",
+      "page": "private-lessons.html",
+      "page_title": "Private Lessons detail",
+      "title": "Tell parents how instructor matching works",
+      "design_take": "\"How We Match You\" answers the question parents are afraid to ask.",
+      "explanation": "Private lessons are a higher-trust, higher-cost commitment. The page should say plainly: do parents request an instructor, do staff match, can they switch? A short How-We-Match-You section reduces enrolment hesitation.",
+      "heuristic": "emotional",
+      "importance": 3
+    },
+    {
+      "id": "pl-pricing-tiers",
+      "page": "private-lessons.html",
+      "page_title": "Private Lessons detail",
+      "title": "Show package tiers, not a single price",
+      "design_take": "4 lessons or 8? Save how much? Don't make the parent calculate.",
+      "explanation": "A simple comparison table (4 lessons / 8 lessons / 12 lessons with the per-lesson rate at each tier) lets parents commit at the right level without doing math.",
+      "heuristic": "emergency",
+      "importance": 3
+    },
+    {
+      "id": "pl-availability",
+      "page": "private-lessons.html",
+      "page_title": "Private Lessons detail",
+      "title": "Show available time slots in-page",
+      "design_take": "Asynchronous \"contact us to check\" friction kills bookings.",
+      "explanation": "Even a read-only calendar of available slots (greyed-out booked, highlighted available) sets expectations and lets parents self-qualify before they reach out. After Shopify go-live this becomes a real-time booking widget.",
+      "heuristic": "emergency",
+      "importance": 4
+    },
+    {
+      "id": "log-role-context",
+      "page": "login.html",
+      "page_title": "Log in",
+      "title": "Role toggle needs a one-liner explanation",
+      "design_take": "Student / Parent or Donor — what's the difference and why does it matter?",
+      "explanation": "First-time users may pick the wrong role and end up in the wrong dashboard. A short caption under the toggle (\"Parents enrol kids and view schedules. Donors manage contributions.\") prevents the confusion and the support ticket.",
+      "heuristic": "emergency",
+      "importance": 3
+    },
+    {
+      "id": "log-pwd-toggle-contrast",
+      "page": "login.html",
+      "page_title": "Log in",
+      "title": "Password reveal icon fails contrast",
+      "design_take": "The eye icon disappears against the input on some breakpoints.",
+      "explanation": "Make sure the toggle's icon meets the WCAG AA 4.5:1 minimum against the input background — particularly important for parents using glasses to enter a long password.",
+      "heuristic": "accessibility",
+      "importance": 3
+    },
+    {
+      "id": "log-social-labels",
+      "page": "login.html",
+      "page_title": "Log in",
+      "title": "Social-login buttons need text labels",
+      "design_take": "Three icons in a row is a memory test, not a UI.",
+      "explanation": "\"Continue with Google\" / \"Continue with Apple\" / \"Continue with Email\" — full text labels — convert better than icons alone, especially with older parents.",
+      "heuristic": "emergency",
+      "importance": 2
+    },
+    {
+      "id": "log-forgot-clarity",
+      "page": "login.html",
+      "page_title": "Log in",
+      "title": "Forgot Password needs a hint about what happens next",
+      "design_take": "Clicking the link is scary if you don't know whether it deletes your account.",
+      "explanation": "A small caption (\"We'll email you a reset link\") underneath disambiguates. Also a confirmation toast after submission so users know the email was sent and can check their inbox.",
+      "heuristic": "emotional",
+      "importance": 2
+    },
+    {
+      "id": "sup-success-state",
+      "page": "signup.html",
+      "page_title": "Sign up",
+      "title": "Sign-up success state is missing",
+      "design_take": "Did the form submit? The user has no idea.",
+      "explanation": "After submitting, swap the form for a clear success panel: \"We've sent a confirmation email to alex@example.com. Check your inbox to verify.\" Eliminates the \"did it work?\" double-tap that creates duplicate accounts.",
+      "heuristic": "errors",
+      "importance": 3
+    },
+    {
+      "id": "sup-name-tablet",
+      "page": "signup.html",
+      "page_title": "Sign up",
+      "title": "First / Last name fields cramp on tablet",
+      "design_take": "Two fields side-by-side at 768px = wrapped placeholder text.",
+      "explanation": "Stack the name fields vertically below 900px wide. Names like \"Maria-Jose Hernandez-Smith\" don't fit comfortably in half a tablet width.",
+      "heuristic": "responsive",
+      "importance": 2
+    },
+    {
+      "id": "pay-method-feedback",
+      "page": "payment.html",
+      "page_title": "Payment",
+      "title": "Switching Card → PayPal should change the form visibly",
+      "design_take": "Right now selecting PayPal still shows card fields. Confusing.",
+      "explanation": "Hide the card-specific fields when PayPal is selected (and reveal the PayPal CTA). Otherwise users fill in a card form they didn't intend to use, get confused on submit.",
+      "heuristic": "emergency",
+      "importance": 3
+    },
+    {
+      "id": "pay-billing-fields",
+      "page": "payment.html",
+      "page_title": "Payment",
+      "title": "Billing address fields should reflow by country",
+      "design_take": "State dropdown for someone in the UK is wrong (and embarrassing).",
+      "explanation": "Country first, then conditionally render state/province / postal-code fields with the right label and validation for that country. Critical for international donors.",
+      "heuristic": "responsive",
+      "importance": 3
+    },
+    {
+      "id": "pay-cvv-help",
+      "page": "payment.html",
+      "page_title": "Payment",
+      "title": "CVV needs a tiny explainer",
+      "design_take": "Older parents skip the field because they don't know what it is.",
+      "explanation": "A help icon next to CVV that shows a small \"3-digit code on the back of your card\" tooltip prevents abandonment. Every checkout team learns this eventually — get it right from the start.",
+      "heuristic": "emotional",
+      "importance": 2
+    },
+    {
+      "id": "pay-impact-personalize",
+      "page": "payment.html",
+      "page_title": "Payment",
+      "title": "Generic impact stats miss the moment",
+      "design_take": "\"50K+ Lives Impacted\" sounds corporate. Show what THIS donation does.",
+      "explanation": "On the payment screen — the highest-emotion moment of the donor flow — replace generic stats with a personalised line: \"Your $50 sponsors a semester of theatre for one student.\" Much harder to walk away from.",
+      "heuristic": "emotional",
+      "importance": 3
+    },
+    {
+      "id": "prof-sidebar-mobile",
+      "page": "profile.html",
+      "page_title": "Profile",
+      "title": "Account sidebar pushes content too far down on mobile",
+      "design_take": "On a phone, the sidebar takes up the entire viewport before content begins.",
+      "explanation": "Convert the side nav to a slim tab bar across the top, or a collapsible drawer triggered by a hamburger. Saves a half-screen of mobile real estate.",
+      "heuristic": "responsive",
+      "importance": 4
+    },
+    {
+      "id": "prof-child-edit",
+      "page": "profile.html",
+      "page_title": "Profile",
+      "title": "Child profile cards lack edit / remove",
+      "design_take": "Today: parents have to call support to fix a typo in their kid's name.",
+      "explanation": "Each child card needs Edit and Remove buttons. Self-service for typos, allergy updates, and de-enrolment when a child ages out. Reduces support load and frustration.",
+      "heuristic": "emergency",
+      "importance": 3
+    },
+    {
+      "id": "prof-2fa-status",
+      "page": "profile.html",
+      "page_title": "Profile",
+      "title": "Account Security section should show 2FA status at a glance",
+      "design_take": "Security settings without a status badge is an invitation to ignore them.",
+      "explanation": "Beside each row (email, password, two-factor) show \"Enabled\" in green or \"Set up\" as a CTA. Lets users complete the security checklist without clicking through.",
+      "heuristic": "emotional",
+      "importance": 2
+    },
+    {
+      "id": "pref-toggle-confirm",
+      "page": "preferences.html",
+      "page_title": "Preferences",
+      "title": "Critical notification toggles need confirmation",
+      "design_take": "Accidental tap = parent stops getting class reminders. They miss class.",
+      "explanation": "For high-impact notification toggles (class reminders, payment alerts), the first time a user disables them, show a small confirm dialog: \"You'll stop receiving class reminders. Are you sure?\" Saves the parent and the kid.",
+      "heuristic": "errors",
+      "importance": 3
+    },
+    {
+      "id": "pref-photo-granularity",
+      "page": "preferences.html",
+      "page_title": "Preferences",
+      "title": "Photo / video consent needs context-specific toggles",
+      "design_take": "Some parents are fine with internal records, not website features. Don't force all-or-nothing.",
+      "explanation": "Split the consent into two toggles — \"For internal class records\" vs \"For website / social media\". Privacy-conscious parents shouldn't have to opt out of all photos to keep their kid off Instagram.",
+      "heuristic": "emotional",
+      "importance": 3
+    },
+    {
+      "id": "pref-delete-warning",
+      "page": "preferences.html",
+      "page_title": "Preferences",
+      "title": "Delete Account needs the destructive treatment",
+      "design_take": "A subtle button is the wrong UI for an irreversible action.",
+      "explanation": "Distinct red styling, a confirmation modal that requires typing the word DELETE or the user's email, and a clear list of what gets erased (enrolment history, payment methods, child profiles). Standard pattern for a reason.",
+      "heuristic": "errors",
+      "importance": 4
+    },
+    {
+      "id": "ch-status-text",
+      "page": "class-history.html",
+      "page_title": "Class History",
+      "title": "Status badges should not rely on colour alone",
+      "design_take": "Colour-blind users can't distinguish Starting Soon from Closed.",
+      "explanation": "Each badge needs a text label inside (Starting Soon · Active · Completed · Cancelled). Colour reinforces but never replaces.",
+      "heuristic": "accessibility",
+      "importance": 3
+    },
+    {
+      "id": "ch-action-hierarchy",
+      "page": "class-history.html",
+      "page_title": "Class History",
+      "title": "Action links need a primary",
+      "design_take": "View Details, View Receipt, Cancel, Report Issue — they all look equally important.",
+      "explanation": "View Details is the primary action 90% of the time. Make it a button, demote the others to text-link secondary actions. Fewer choices = faster decisions.",
+      "heuristic": "emergency",
+      "importance": 2
+    },
+    {
+      "id": "ch-cancel-feedback",
+      "page": "class-history.html",
+      "page_title": "Class History",
+      "title": "Cancellation outcome should be explicit",
+      "design_take": "Tapping Cancel and seeing nothing happen is terrifying for a parent.",
+      "explanation": "After a confirmed cancellation: toast (\"Class cancelled. Refund processed within 5 business days.\"), card visually moves to a Cancelled section, refund timeline shown. Three reassurances at once.",
+      "heuristic": "errors",
+      "importance": 3
+    }
+  ],
+  "cross_page_recommendations": [
+    {
+      "id": "x-empty-states",
+      "title": "Define ONE empty-state pattern and use it everywhere",
+      "design_take": "Programs, Newsletter, Class History, Search — all silently empty. Pick one welcoming pattern.",
+      "explanation": "Every list / grid / search across the site needs the same \"no results\" component: friendly headline, one suggestion, one Clear-Filter button. Not having this leaves four pages where users think the site broke.",
+      "heuristic": "errors",
+      "importance": 4,
+      "affected_pages": ["programs.html", "newsletter.html", "class-history.html", "search.html"]
+    },
+    {
+      "id": "x-sync-status",
+      "title": "Show sync status on every authenticated change",
+      "design_take": "If the user just toggled something, tell them it saved.",
+      "explanation": "Account preferences, child profiles, payment methods — every change today is silent. A small Saving… → Saved indicator (or a toast) consistently across all account pages eliminates the \"did that work?\" anxiety.",
+      "heuristic": "errors",
+      "importance": 3,
+      "affected_pages": ["profile.html", "preferences.html", "class-history.html", "payment.html"]
+    },
+    {
+      "id": "x-quick-facts",
+      "title": "Quick-Facts strip on every program / commitment page",
+      "design_take": "Three-second scan: when, how much, are spots open. Nothing else first.",
+      "explanation": "Index, Programs, Seasonal Camps, Private Lessons all need the same compact strip directly under the hero: dates, price (or down payment), capacity, age range. Same component, same position. Parents shouldn't relearn the page.",
+      "heuristic": "emergency",
+      "importance": 5,
+      "affected_pages": ["index.html", "programs.html", "seasonal-camps.html", "private-lessons.html"]
+    },
+    {
+      "id": "x-trust-signals",
+      "title": "One trust-marker pattern for testimonials and credentials",
+      "design_take": "If we can't verify it, why is it on the page?",
+      "explanation": "Every testimonial — donor on the home page, parent on programs, leader on About — needs the same small verification cue (verified checkmark, role, year of involvement). Without it, the cumulative effect is \"these are quotes from a marketing draft\".",
+      "heuristic": "emotional",
+      "importance": 4,
+      "affected_pages": ["index.html", "about.html", "programs.html"]
+    },
+    {
+      "id": "x-mobile-sidebars",
+      "title": "Sticky sidebars don't work on mobile — pick one collapse pattern",
+      "design_take": "Today the sidebar covers content on phones. Designers need to spec the small-screen behaviour.",
+      "explanation": "Detail pages, account pages — multiple uses of the sticky sidebar pattern. Pick one — top tab strip, hamburger drawer, or non-sticky TOC card — and use it everywhere. The current inconsistency confuses navigation muscle memory.",
+      "heuristic": "responsive",
+      "importance": 4,
+      "affected_pages": ["seasonal-camps.html", "private-lessons.html", "profile.html", "preferences.html"]
+    },
+    {
+      "id": "x-auth-context",
+      "title": "Role context everywhere account creation appears",
+      "design_take": "Student vs Donor isn't obvious. Tell people why it matters.",
+      "explanation": "Login, signup, and any role-switch UI need the same one-line explanation: \"Parents enrol kids and view class schedules. Donors manage contributions.\" One paragraph saves dozens of support tickets.",
+      "heuristic": "emergency",
+      "importance": 3,
+      "affected_pages": ["login.html", "signup.html"]
+    },
+    {
+      "id": "x-carousel-a11y",
+      "title": "Single accessible-carousel pattern",
+      "design_take": "Every carousel today is a different a11y story. Pick one.",
+      "explanation": "Hero on home, Success Stories on About, possibly more — all need: visible Previous/Next buttons (keyboard-reachable), aria-live on slide change, dot indicators with 24×24 hit targets. One spec, used everywhere.",
+      "heuristic": "accessibility",
+      "importance": 4,
+      "affected_pages": ["index.html", "about.html"]
+    },
+    {
+      "id": "x-destructive-pattern",
+      "title": "Destructive-action pattern site-wide",
+      "design_take": "Delete, Cancel, Remove — every one needs the same red, the same modal.",
+      "explanation": "Account deletion, class cancellation, removing a payment method — same visual language: red CTA, confirmation modal, list of consequences. Standardising means users learn it once.",
+      "heuristic": "errors",
+      "importance": 4,
+      "affected_pages": ["preferences.html", "class-history.html", "payment.html"]
+    }
+  ],
+  "totals": {
+    "page_recommendations": 48,
+    "cross_page_recommendations": 8,
+    "by_heuristic": {
+      "emergency": 14,
+      "accessibility": 10,
+      "responsive": 8,
+      "emotional": 10,
+      "errors": 10,
+      "discovery": 0
+    }
+  }
+}
