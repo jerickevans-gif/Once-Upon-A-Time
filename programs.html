@@ -41,20 +41,8 @@
     .pg-hero__photo { aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; background: var(--rose-700); position: relative; box-shadow: 0 12px 30px rgba(76, 47, 59, .12); }
     .pg-card__photo { aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: var(--rose-700); position: relative; }
     /* Pre-baked rose duotones from design — render flat */
+    .pg-hero__photo img,
     .pg-card__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    /* Hero ballet image still uses CSS duotone treatment */
-    .duotone-rose {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: grayscale(1) contrast(1.05) brightness(1.08);
-      mix-blend-mode: screen;
-    }
-    .pg-hero__photo::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(140deg, rgba(229,170,156,.18) 0%, rgba(110,63,54,.32) 100%);
-      mix-blend-mode: multiply;
-      pointer-events: none;
-    }
 
     /* Section titles */
     .pg-section { padding: 64px 0 32px; }
@@ -159,7 +147,7 @@
             <a class="btn" href="#open-enrollment">Register now! <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
           </div>
           <div class="pg-hero__photo">
-            <img src="once-upon-a-time-assets/landing/ballet-card.jpg" alt="Ballet dancers in a studio rehearsal" class="duotone-rose">
+            <img src="once-upon-a-time-assets/programs/hero-ballet.png" alt="Ballet dancers in tutus rehearsing backstage">
           </div>
         </div>
       </div>
