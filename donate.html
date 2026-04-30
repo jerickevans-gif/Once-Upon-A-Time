@@ -1012,9 +1012,12 @@
           return;
         }
 
-        status.textContent = `Thanks, ${first}! Your ${freq.toLowerCase()} ${fmt(amt)} donation is being prepared for secure checkout.`;
+        status.textContent = `Thanks, ${first}! Routing you to secure checkout for your ${freq.toLowerCase()} ${fmt(amt)} donation…`;
         status.classList.remove('sr-only');
         status.style.color = '#3b6b2c';
+
+        const params = new URLSearchParams({ amount: amt, freq, name: first, email });
+        setTimeout(() => { window.location.href = 'payment.html?' + params.toString(); }, 600);
       });
 
       updateButton();

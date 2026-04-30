@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="Log in to Once Upon A Time — manage your classes, donations, and account.">
+  <link rel="canonical" href="https://jerickevans-gif.github.io/Once-Upon-A-Time/login.html">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Log in — Once Upon A Time</title>
+  <link rel="icon" href="once-upon-a-time-assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="once-upon-a-time-assets/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="once-upon-a-time-assets/favicon/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="once-upon-a-time-assets/favicon/favicon-180.png">
+  <link rel="manifest" href="once-upon-a-time-assets/favicon/site.webmanifest">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
+
+  <style>
+    body { margin: 0; background: var(--snow); font-family: var(--sans); color: var(--ink); }
+    .auth-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .auth-page__art {
+      background:
+        linear-gradient(135deg, rgba(229,170,156,.05), rgba(139,80,68,.18)),
+        image-set(url("once-upon-a-time-assets/auth-art.webp") type("image/webp"),
+                  url("once-upon-a-time-assets/auth-art.jpg") type("image/jpeg"))
+          center/cover no-repeat;
+      background-color: var(--rose-100);
+    }
+    .auth-page__panel {
+      padding: 48px 80px;
+      display: flex; flex-direction: column;
+      max-width: 640px; margin-inline: auto;
+      width: 100%;
+    }
+    .auth-page__topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 56px;
+    }
+    .auth-back, .auth-close {
+      background: transparent; border: 0; padding: 6px 10px;
+      color: var(--ink); cursor: pointer;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 16px; font-weight: 500;
+      text-decoration: none;
+    }
+    .auth-back:hover, .auth-close:hover { background: rgba(0,0,0,.04); border-radius: 6px; }
+    .auth-page__title {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(40px, 5vw, 56px);
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--rose-700);
+      margin: 0;
+    }
+    .auth-page__lede {
+      text-align: center;
+      font-size: 14px;
+      color: var(--ink-muted);
+      margin: 8px 0 56px;
+    }
+    .role-toggle {
+      display: flex; justify-content: space-between; gap: 24px;
+      margin-bottom: 32px;
+      border: 0; padding: 0;
+    }
+    .role-toggle label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 600;
+      color: var(--ink); cursor: pointer;
+    }
+    .role-toggle input[type="radio"] {
+      appearance: none;
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 1.5px solid var(--rose);
+      background: var(--snow);
+      margin: 0;
+      display: grid; place-items: center;
+      cursor: pointer;
+    }
+    .role-toggle input[type="radio"]:checked::after {
+      content: "";
+      width: 9px; height: 9px;
+      background: var(--rose); border-radius: 50%;
+    }
+    .auth-page__form { display: grid; gap: 18px; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field__label { font-size: 14px; font-weight: 500; color: var(--ink); }
+    .field .input {
+      width: 100%;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--snow);
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .field .input::placeholder { color: var(--ink-muted); opacity: .6; }
+    .field .input:focus { outline: none; border-color: var(--rose); box-shadow: 0 0 0 3px var(--rose-100); }
+    .pw-wrap { position: relative; }
+    .pw-toggle {
+      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+      background: transparent; border: 0; color: var(--ink-muted);
+      cursor: pointer; padding: 4px; font-size: 18px;
+    }
+    .auth-page__form-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    .auth-page__form-row label {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--ink); cursor: pointer;
+    }
+    .auth-page__form-row input[type="checkbox"] {
+      appearance: none;
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 1.5px solid var(--rose);
+      background: var(--snow);
+      cursor: pointer;
+    }
+    .auth-page__form-row input[type="checkbox"]:checked { background: var(--rose); }
+    .auth-page__form-row a.link { color: #5b6caf; font-weight: 600; text-decoration: underline; }
+    .auth-submit {
+      width: 100%;
+      min-height: 52px;
+      background: var(--rose);
+      color: #fff;
+      border: 0; border-radius: 8px;
+      font-size: 16px; font-weight: 600;
+      cursor: pointer;
+      margin-top: 36px;
+    }
+    .auth-submit:hover { background: var(--rose-700); }
+    .auth-divider {
+      display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+      margin: 28px 0 16px;
+      color: var(--ink-muted); font-size: 14px;
+    }
+    .auth-divider::before, .auth-divider::after {
+      content: ""; height: 1px; background: var(--line);
+    }
+    .social-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+    .social-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 12px 16px;
+      background: var(--snow); border: 1px solid var(--line); border-radius: 8px;
+      font-size: 14px; font-weight: 500; cursor: pointer;
+      color: var(--ink);
+    }
+    .social-btn:hover { border-color: var(--rose-300); background: var(--rose-50); }
+    .social-btn .ph { font-size: 18px; }
+    .social-btn--google .ph-google-logo { color: #4285f4; }
+    .social-btn--apple .ph-apple-logo { color: var(--ink); }
+    .social-btn--email .ph-envelope { color: var(--rose); }
+    .auth-page__footer {
+      text-align: center;
+      font-size: 14px; color: var(--ink-muted);
+      margin-top: 28px;
+    }
+    .auth-page__footer a { color: #5b6caf; font-weight: 600; text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .auth-page { grid-template-columns: 1fr; }
+      .auth-page__art { display: none; }
+      .auth-page__panel { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="auth-page">
+    <div class="auth-page__art" aria-hidden="true"></div>
+    <div class="auth-page__panel">
+      <div class="auth-page__topbar">
+        <a class="auth-back" href="index.html" aria-label="Back to home">
+          <i class="ph ph-arrow-left" aria-hidden="true"></i> Back
+        </a>
+        <a class="auth-close" href="index.html" aria-label="Close">
+          <i class="ph ph-x" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <h1 class="auth-page__title">Log in</h1>
+      <p class="auth-page__lede">Please log in to continue</p>
+
+      <fieldset class="role-toggle">
+        <legend class="sr-only">I am logging in as</legend>
+        <label><input type="radio" name="role" value="student" checked> <span>Log in as a Student/Parent</span></label>
+        <label><input type="radio" name="role" value="donor"> <span>Log in as a Donor</span></label>
+      </fieldset>
+
+      <form class="auth-page__form" id="login-form" novalidate>
+        <label class="field">
+          <span class="field__label">Email</span>
+          <input class="input" type="email" placeholder="Username@gmail.com" autocomplete="email" required>
+        </label>
+
+        <label class="field">
+          <span class="field__label">Password</span>
+          <span class="pw-wrap">
+            <input class="input" type="password" placeholder="Password" autocomplete="current-password" required>
+            <button type="button" class="pw-toggle" aria-label="Show password" data-pw-toggle><i class="ph ph-eye-slash" aria-hidden="true"></i></button>
+          </span>
+        </label>
+
+        <div class="auth-page__form-row">
+          <label><input type="checkbox" name="remember"> Remember me</label>
+          <span>Forgot Password? <a class="link" href="#forgot">Click Here</a></span>
+        </div>
+
+        <button type="submit" class="auth-submit">Log in</button>
+      </form>
+
+      <div class="auth-divider"><span>Or log in with</span></div>
+
+      <div class="social-row">
+        <button type="button" class="social-btn social-btn--google"><i class="ph ph-google-logo"></i> Google</button>
+        <button type="button" class="social-btn social-btn--apple"><i class="ph ph-apple-logo"></i> Apple</button>
+        <button type="button" class="social-btn social-btn--email"><i class="ph ph-envelope"></i> Email</button>
+      </div>
+
+      <div class="auth-page__footer">
+        Don't have an account? <a href="signup.html">Sign Up Now</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      // Password show/hide
+      document.querySelectorAll('[data-pw-toggle]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const input = btn.parentElement.querySelector('input');
+          const isPassword = input.type === 'password';
+          input.type = isPassword ? 'text' : 'password';
+          const icon = btn.querySelector('i');
+          icon.classList.toggle('ph-eye-slash', !isPassword);
+          icon.classList.toggle('ph-eye', isPassword);
+          btn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+        });
+      });
+
+      // Form submit (placeholder)
+      const form = document.getElementById('login-form');
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = form.querySelector('input[type="email"]').value.trim();
+        const pw = form.querySelector('input[type="password"]').value;
+        if (!email || !pw) return;
+        // In production this would POST to /api/login or shopify customer endpoint.
+        alert('Login submitted for ' + email + ' (replace with real backend on Shopify).');
+      });
+    })();
+  </script>
+</body>
+</html>

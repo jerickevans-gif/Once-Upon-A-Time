@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="Choose a payment method to complete your donation.">
+  <link rel="canonical" href="https://jerickevans-gif.github.io/Once-Upon-A-Time/payment.html">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Payment — Once Upon A Time</title>
+  <link rel="icon" href="once-upon-a-time-assets/favicon/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="once-upon-a-time-assets/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="once-upon-a-time-assets/favicon/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="once-upon-a-time-assets/favicon/favicon-180.png">
+  <link rel="manifest" href="once-upon-a-time-assets/favicon/site.webmanifest">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+  <script src="once-upon-a-time-assets/site.js" defer></script>
+
+  <style>
+    :root { --bg: var(--beginning); --hero-rose: var(--rose-100); }
+    body { margin: 0; background: var(--bg); font-family: var(--sans); color: var(--ink); }
+    .wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+
+    /* Hero — soft horizontal gradient, mirrors donate.html */
+    .hero {
+      position: relative;
+      padding: 28px 0 0;
+      background: linear-gradient(90deg, var(--rose-100) 0%, #F8E5DC 45%, #FBEFE6 75%, var(--beginning) 100%);
+      overflow: hidden;
+    }
+    .hero__grid {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 48px; align-items: center;
+      padding-bottom: 32px;
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #E8B5A6; color: #fff;
+      padding: 10px 20px; border-radius: 999px;
+      font-size: 14px; font-weight: 500;
+    }
+    .pill::before {
+      content: ""; width: 16px; height: 16px;
+      background: #fff;
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21s-7.5-4.6-9.6-9.3C1.1 8.6 2.6 5 6.1 5c2.1 0 3.5 1.2 4.4 2.6h.6C12 6.2 13.4 5 15.5 5 19 5 20.5 8.6 19.6 11.7 17.5 16.4 12 21 12 21z'/></svg>") center/contain no-repeat;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21s-7.5-4.6-9.6-9.3C1.1 8.6 2.6 5 6.1 5c2.1 0 3.5 1.2 4.4 2.6h.6C12 6.2 13.4 5 15.5 5 19 5 20.5 8.6 19.6 11.7 17.5 16.4 12 21 12 21z'/></svg>") center/contain no-repeat;
+    }
+    h1.hero__title {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(40px, 6vw, 70px);
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin: 18px 0 20px;
+      color: var(--pillar);
+    }
+    .hero__lede { font-size: 15px; max-width: 46ch; color: var(--ink-muted); margin: 0 0 28px; line-height: 1.6; }
+    .hero__cta {
+      background: var(--rose); color: #fff;
+      padding: 13px 24px; border-radius: 10px;
+      font-weight: 600; font-size: 14px;
+      text-decoration: none; display: inline-block;
+    }
+    .hero__cta:hover { background: var(--rose-700); }
+    .hero__media { position: relative; padding: 12px 12px 40px 40px; }
+    .hero__image {
+      position: relative;
+      border-radius: 6px; overflow: hidden;
+      aspect-ratio: 5 / 4; min-height: 280px;
+      background: linear-gradient(160deg, rgba(139,80,68,.45) 0%, rgba(76,47,59,.55) 100%),
+                  url("once-upon-a-time-assets/img/hero.jpg") center/cover no-repeat;
+      background-blend-mode: multiply, normal;
+      box-shadow: 0 20px 40px rgba(76,47,59,.20);
+      transform: rotate(-2.5deg);
+    }
+    .hero__chip {
+      position: absolute; left: 0; bottom: 0;
+      background: #E8B5A6; color: var(--pillar);
+      padding: 18px 22px; border-radius: 12px;
+      font-size: 13px; line-height: 1.4;
+      box-shadow: 0 12px 24px rgba(76,47,59,.18);
+      min-width: 140px;
+    }
+    .hero__chip small { display: block; font-size: 13px; color: #fff; font-weight: 500; }
+    .hero__chip strong { display: block; font-family: var(--sans); font-size: 22px; font-weight: 700; color: var(--pillar); margin: 4px 0; }
+    .hero__divider { height: 1px; background: rgba(76,47,59,.20); margin: 8px 0 28px; }
+    .hero__stats { display: flex; gap: 64px; flex-wrap: wrap; padding: 0 0 32px; }
+    .hero__stat-num { font-family: var(--serif); font-size: 36px; font-weight: 600; line-height: 1; color: var(--pillar); }
+    .hero__stat-label { font-size: 12px; color: var(--ink-muted); margin-top: 6px; }
+
+    /* Payment panel */
+    .payment-wrap { background: var(--rose-100); padding: 56px 0 80px; }
+    .payment-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--ink-muted); text-decoration: none;
+      font-size: 14px; margin: 0 0 20px;
+      padding: 4px 8px;
+    }
+    .payment-back:hover { color: var(--ink); }
+    .payment-card {
+      max-width: 720px; margin: 0 auto;
+      background: var(--snow); border-radius: 18px;
+      padding: 40px 48px;
+      box-shadow: 0 8px 32px rgba(76,47,59,.10);
+    }
+    .payment-card h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(26px, 3vw, 32px);
+      color: var(--ink-muted);
+      margin: 0 0 28px;
+    }
+    .payment-method {
+      border: 0; padding: 0; margin: 0 0 28px;
+    }
+    .pm-row {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 16px; font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .pm-row input[type="radio"] {
+      appearance: none;
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 1.5px solid var(--rose); background: var(--snow);
+      margin: 0; display: grid; place-items: center; cursor: pointer;
+    }
+    .pm-row input[type="radio"]:checked::after {
+      content: ""; width: 9px; height: 9px;
+      background: var(--rose); border-radius: 50%;
+    }
+    .pm-row__icons {
+      margin-left: auto;
+      display: inline-flex; gap: 6px; align-items: center;
+    }
+    .pm-row__icons img { height: 22px; }
+    .card-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      height: 22px; padding: 0 6px;
+      border: 1px solid var(--line); border-radius: 4px;
+      font-size: 9px; font-weight: 700; letter-spacing: .04em;
+      background: var(--snow); color: var(--ink);
+      text-transform: uppercase;
+    }
+    .card-icon--discover { color: #ff6000; }
+    .card-icon--visa { color: #1a1f71; }
+    .card-icon--mc { background: linear-gradient(90deg, #eb001b 50%, #f79e1b 50%); color: transparent; -webkit-background-clip: text; background-clip: text; }
+    .card-icon--amex { color: #006fcf; }
+
+    .pm-fields { display: grid; gap: 16px; padding-left: 30px; margin-bottom: 28px; }
+    .pm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .pm-grid--3 { grid-template-columns: 1fr 1fr 1fr; }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field__label { font-size: 13px; color: var(--ink-muted); font-weight: 500; }
+    .input {
+      width: 100%; min-height: 40px; padding: 0 12px;
+      border: 1px solid var(--line); border-radius: 6px;
+      background: var(--snow); color: var(--ink); font-size: 14px;
+    }
+    .input:focus { outline: none; border-color: var(--rose); box-shadow: 0 0 0 3px var(--rose-100); }
+
+    .billing-title {
+      font-size: 14px; font-weight: 700; color: var(--ink);
+      margin: 4px 0 0;
+    }
+
+    .pm-monthly {
+      display: flex; align-items: center; gap: 12px;
+      padding-left: 30px;
+      font-size: 14px; color: var(--ink-muted);
+    }
+    .pm-monthly input[type="radio"] {
+      appearance: none;
+      width: 16px; height: 16px; border-radius: 50%;
+      border: 1.5px solid var(--rose); background: var(--snow);
+      margin: 0; cursor: pointer;
+      display: grid; place-items: center;
+    }
+    .pm-monthly input[type="radio"]:checked::after { content: ""; width: 8px; height: 8px; background: var(--rose); border-radius: 50%; }
+
+    .donate-submit {
+      display: block; width: calc(100% - 96px);
+      margin: 32px auto 0;
+      min-height: 56px;
+      background: #D8C2BB;
+      color: #fff;
+      border: 0; border-radius: 12px;
+      font-size: 16px; font-weight: 600;
+      cursor: pointer;
+    }
+    .donate-submit.is-active { background: var(--rose); }
+    .donate-submit:hover.is-active { background: var(--rose-700); }
+
+    @media (max-width: 1024px) {
+      .hero__grid { grid-template-columns: 1fr; gap: 28px; }
+      .pm-fields, .pm-monthly { padding-left: 0; }
+      .pm-grid, .pm-grid--3 { grid-template-columns: 1fr; }
+      .payment-card { padding: 28px 22px; }
+      .donate-submit { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ============ PROMO BAR ============ -->
+  <div class="promo-bar" role="region" aria-label="Announcement">
+    <div class="wrap promo-bar__inner">
+      <span><strong>Happening Now:</strong> Jazz Dancing (16+) &middot; Instructor: Mia Kim</span>
+      <span>Next class: Intermediate Ballet (10+) <button class="promo-bar__close" type="button" aria-label="Dismiss">&times;</button></span>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand" aria-label="Once Upon A Time, home">
+        <img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time">
+      </a>
+      <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation menu">
+        <i class="ph ph-list" aria-hidden="true"></i>
+      </button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <a href="about.html">About Us</a>
+        <a href="index.html#programs">Programs</a>
+        <a href="donate.html">Donation</a>
+        <a href="newsletter.html">Newsletter</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items">
+          <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
+          <span>Cart</span><span class="badge" aria-hidden="true">9</span>
+        </button>
+        <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings">
+          <i class="ph ph-gear" aria-hidden="true"></i>
+        </button>
+        <a href="profile.html" class="avatar" aria-label="Account, 9 notifications">
+          <i class="ph ph-user" aria-hidden="true"></i><span class="badge" aria-hidden="true">9</span>
+        </a>
+        <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <!-- HERO (mirrors donate.html) -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <span class="pill">Making a Difference Together</span>
+          <h1 id="hero-title" class="hero__title">Help us create<br>lasting impact</h1>
+          <p class="hero__lede">
+            Your donation directly supports communities in need, providing essential
+            resources, education, and hope for a better tomorrow. Join thousands of
+            supporters making a difference.
+          </p>
+          <a href="donate.html#donate" class="hero__cta">Donate Now</a>
+        </div>
+        <div class="hero__media">
+          <div class="hero__image" role="img" aria-label="Volunteers gathered together at a community event"></div>
+          <div class="hero__chip" aria-hidden="true">
+            <small>This month</small>
+            <strong>1,247</strong>
+            <small>people helped</small>
+          </div>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="hero__divider" aria-hidden="true"></div>
+        <div class="hero__stats" role="list" aria-label="Headline impact numbers">
+          <div role="listitem"><div class="hero__stat-num">50K+</div><div class="hero__stat-label">Lives Impacted</div></div>
+          <div role="listitem"><div class="hero__stat-num">$2M+</div><div class="hero__stat-label">Funds Raised</div></div>
+          <div role="listitem"><div class="hero__stat-num">100+</div><div class="hero__stat-label">Projects</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENT -->
+    <section class="payment-wrap" aria-labelledby="payment-title">
+      <div class="wrap">
+        <a class="payment-back" href="donate.html#donate"><i class="ph ph-arrow-left" aria-hidden="true"></i> Back</a>
+
+        <form class="payment-card" id="payment-form" novalidate>
+          <h1 id="payment-title">Choose a payment method</h1>
+
+          <fieldset class="payment-method">
+            <legend class="sr-only">Payment options</legend>
+
+            <label class="pm-row">
+              <input type="radio" name="method" value="card" checked>
+              <span>Credit or Debit Card</span>
+              <span class="pm-row__icons" aria-hidden="true">
+                <span class="card-icon card-icon--discover">Discover</span>
+                <span class="card-icon card-icon--visa">VISA</span>
+                <span class="card-icon card-icon--mc">MC</span>
+                <span class="card-icon card-icon--amex">AMEX</span>
+              </span>
+            </label>
+
+            <div class="pm-fields" data-method-fields="card">
+              <label class="field">
+                <span class="field__label">Name on Card</span>
+                <input class="input" name="card-name" type="text" autocomplete="cc-name" required>
+              </label>
+              <label class="field">
+                <span class="field__label">Card number</span>
+                <input class="input" name="card-number" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="1234 1234 1234 1234" required>
+              </label>
+              <div class="pm-grid">
+                <label class="field">
+                  <span class="field__label">Expiry Date (MM/YY)</span>
+                  <input class="input" name="card-exp" type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" required>
+                </label>
+                <label class="field">
+                  <span class="field__label">CVV</span>
+                  <input class="input" name="card-cvv" type="text" inputmode="numeric" autocomplete="cc-csc" placeholder="CVV" required>
+                </label>
+              </div>
+              <div class="pm-grid">
+                <label class="field">
+                  <span class="field__label">Country</span>
+                  <input class="input" name="country" type="text" autocomplete="country-name" placeholder="United States" required>
+                </label>
+                <label class="field">
+                  <span class="field__label">ZIP Code</span>
+                  <input class="input" name="zip" type="text" autocomplete="postal-code" placeholder="11418" required>
+                </label>
+              </div>
+
+              <p class="billing-title">Billing Address</p>
+
+              <label class="field">
+                <span class="field__label">Street</span>
+                <input class="input" name="street" type="text" autocomplete="address-line1" required>
+              </label>
+              <div class="pm-grid--3 pm-grid">
+                <label class="field">
+                  <span class="field__label">Apartment Number</span>
+                  <input class="input" name="apt" type="text" autocomplete="address-line2">
+                </label>
+                <label class="field">
+                  <span class="field__label">State</span>
+                  <input class="input" name="state" type="text" autocomplete="address-level1" required>
+                </label>
+                <label class="field">
+                  <span class="field__label">ZIP Code</span>
+                  <input class="input" name="billing-zip" type="text" autocomplete="postal-code" required>
+                </label>
+              </div>
+            </div>
+
+            <label class="pm-row">
+              <input type="radio" name="method" value="paypal">
+              <span>Paypal</span>
+              <span class="pm-row__icons" aria-hidden="true">
+                <span class="card-icon" style="color:#003087; font-style:italic;">PayPal</span>
+              </span>
+            </label>
+
+            <label class="pm-row">
+              <input type="radio" name="method" value="apple">
+              <span>Apple Pay</span>
+              <span class="pm-row__icons" aria-hidden="true">
+                <span class="card-icon" style="background:#000;color:#fff;border-color:#000;"><i class="ph ph-apple-logo" style="font-size:11px;margin-right:2px"></i>Pay</span>
+              </span>
+            </label>
+          </fieldset>
+
+          <label class="pm-monthly">
+            <input type="checkbox" name="monthly" style="appearance:none;width:16px;height:16px;border-radius:50%;border:1.5px solid var(--rose);background:var(--snow);cursor:pointer;display:grid;place-items:center;">
+            <span>Check the Box if you want to pay every month</span>
+          </label>
+
+          <button type="submit" class="donate-submit" id="donate-submit">Donate $100 Now</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block">
+          <div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="" loading="lazy"></div>
+        </div>
+        <div>
+          <h4>About</h4>
+          <ul><li><a href="about.html">About</a></li><li><a href="index.html#programs">Programs</a></li></ul>
+        </div>
+        <div>
+          <h4>Get Involved</h4>
+          <ul><li><a href="index.html#events">Events</a></li><li><a href="donate.html">Support Us</a></li></ul>
+        </div>
+        <div class="footer__address-block">
+          <div class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</div>
+          <div class="footer__socials">
+            <a href="#" aria-label="YouTube"><i class="ph ph-youtube-logo"></i></a>
+            <a href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+            <a href="#" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+            <a href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">Once Upon A Time Inc. &copy; 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const form = document.getElementById('payment-form');
+      const submit = document.getElementById('donate-submit');
+      if (!form) return;
+
+      const cardFields = form.querySelector('[data-method-fields="card"]');
+      const methodRadios = form.querySelectorAll('input[name="method"]');
+
+      function refreshCardFields() {
+        const card = form.querySelector('input[name="method"]:checked').value === 'card';
+        cardFields.style.display = card ? '' : 'none';
+        cardFields.querySelectorAll('input').forEach(i => i.required = card);
+      }
+
+      function refreshSubmit() {
+        const required = form.querySelectorAll('input[required]');
+        let ok = true;
+        for (const i of required) if (!i.value.trim()) { ok = false; break; }
+        submit.classList.toggle('is-active', ok);
+      }
+
+      methodRadios.forEach(r => r.addEventListener('change', () => { refreshCardFields(); refreshSubmit(); }));
+      form.addEventListener('input', refreshSubmit);
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const method = form.querySelector('input[name="method"]:checked').value;
+        const monthly = form.querySelector('input[name="monthly"]').checked;
+        if (!submit.classList.contains('is-active') && method === 'card') {
+          alert('Please complete required card fields.');
+          return;
+        }
+        alert(`Donation submitted via ${method}${monthly ? ' (monthly recurring)' : ''}.\n\nIn production, this would hand off to Stripe / PayPal / Apple Pay.`);
+      });
+
+      // Pull amount + freq from URL (set by donate form)
+      const params = new URLSearchParams(window.location.search);
+      const amount = parseFloat(params.get('amount')) || 100;
+      const freq = (params.get('freq') || 'One-time').toLowerCase();
+      submit.textContent = `Donate $${amount.toLocaleString()} Now`;
+
+      // Pre-check monthly if freq is monthly/yearly
+      if (freq === 'monthly' || freq === 'yearly') {
+        const monthlyBox = form.querySelector('input[name="monthly"]');
+        if (monthlyBox) monthlyBox.checked = true;
+      }
+
+      refreshCardFields();
+      refreshSubmit();
+    })();
+  </script>
+</body>
+</html>
