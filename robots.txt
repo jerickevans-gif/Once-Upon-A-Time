@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /once-upon-a-time-assets/_raw/
+Disallow: /once-upon-a-time-assets/_about_raw/
+
+Sitemap: https://jerickevans-gif.github.io/Once-Upon-A-Time/sitemap.xml

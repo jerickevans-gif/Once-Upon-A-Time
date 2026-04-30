@@ -360,3 +360,95 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 .card--soft { background: var(--beginning); }
 .card--rose { background: var(--rose-100); }
 .card--garden { background: var(--garden-100); }
+
+/* ===========================================================
+   ROUND-2 OPTIMIZATIONS (responsive, hover/focus, scroll, a11y)
+   =========================================================== */
+
+/* Sticky-header scroll shadow */
+.site-header.is-scrolled { border-bottom-color: var(--line); box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04); }
+
+/* Color-contrast fix: input placeholders */
+.input::placeholder, .textarea::placeholder { color: var(--ink-muted); opacity: 1; }
+
+/* Card hover/focus interactions (program cards, related newsletter cards, alt cards) */
+.program-card, .nl-card, .pd-alt {
+  transition: transform var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
+}
+.program-card:hover, .nl-card:hover, .pd-alt:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.program-card:focus-within, .nl-card:focus-within, .pd-alt:focus-within {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--rose-100), var(--shadow-md);
+}
+
+/* Tablet (1024px) — broader stack-down for sidebar-heavy pages */
+@media (max-width: 1024px) {
+  .pd-body__grid { grid-template-columns: 1fr; }
+  .pd-side { position: static; }
+  .pd-instructors, .pd-locations, .pd-alts__grid { grid-template-columns: 1fr; }
+  .donor__testimonials { grid-template-columns: 1fr 1fr; }
+  .donor__testimonials .testimonial:nth-child(3) { display: none; }
+  .nl-feature { grid-template-columns: 1fr; gap: var(--s-5); }
+  .nl-feature__body { column-count: 1; }
+  .nl-related__grid { grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+}
+
+/* Below-900 stack rules */
+@media (max-width: 900px) {
+  .donor__testimonials { grid-template-columns: 1fr; }
+  .donor__testimonials .testimonial:nth-child(3) { display: grid; }
+  .donor__stats { grid-template-columns: 1fr; }
+  .nl-related__grid { grid-template-columns: 1fr; }
+  .nl-toolbar { flex-direction: column; align-items: stretch; gap: var(--s-3); }
+  .nl-tabs { flex-wrap: wrap; }
+  .nl-tools { flex-wrap: wrap; }
+  .nl-search { min-width: 0; flex: 1 1 200px; }
+}
+
+/* Mobile (<540) — typography, padding, button stacking */
+@media (max-width: 540px) {
+  .footer-brand img { height: 48px; }
+  .site-footer { padding: var(--s-7) 0 var(--s-5); }
+  .promo-bar__inner > span:nth-child(2) { display: none; }
+  .nl-feature__body p:first-child::first-letter { font-size: 40px; }
+  .pd-help { grid-template-columns: 1fr; gap: var(--s-3); }
+  .pd-hero { height: 200px !important; }
+  .pd-components { grid-template-columns: 1fr 1fr !important; padding-left: 16px !important; }
+  .footer__grid { grid-template-columns: 1fr; }
+}
+
+/* Reduce motion globally (consolidate page-level rules into one place) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .program-card:hover, .nl-card:hover, .pd-alt:hover { transform: none; }
+}
+
+/* Loading-state class for any button (extends design-system .btn loading) */
+.btn[aria-busy="true"] { color: transparent !important; pointer-events: none; }
+.btn[aria-busy="true"]::after {
+  content: ""; position: absolute; inset: 0; margin: auto;
+  width: 18px; height: 18px;
+  border: 2px solid currentColor; border-right-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin .7s linear infinite;
+  color: var(--btn-fg);
+}
+
+/* Status message states for forms */
+[data-state="success"] { color: var(--garden-700); font-weight: 600; }
+[data-state="error"] { color: var(--danger, #C0322E); font-weight: 600; }
+
+/* Print styles */
+@media print {
+  .site-header, .site-footer, .promo-bar, .auth-modal { display: none !important; }
+  .hero, .pd-hero { padding: var(--s-3) 0 !important; }
+  body { background: white !important; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 11px; color: #777; }
+}
