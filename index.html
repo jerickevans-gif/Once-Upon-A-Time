@@ -74,8 +74,18 @@
     .hero__copy > * { transition: opacity .3s ease; }
     .hero[data-fading] .hero__copy > *, .hero[data-fading] .hero__photo { opacity: 0; }
     .hero__dots { display: flex; gap: 8px; justify-content: center; margin-top: var(--s-5); }
-    .hero__dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--rose-300); }
-    .hero__dots span[aria-current="true"] { background: var(--rose); }
+    .hero__dots span {
+      /* 24px hit-area, 8px visual using ::before — meets WCAG target-size 24×24 minimum. */
+      width: 24px; height: 24px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 0; background: transparent; padding: 0; cursor: pointer;
+    }
+    .hero__dots span::before {
+      content: ""; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--rose-300); transition: background .2s, transform .2s;
+    }
+    .hero__dots span[aria-current="true"]::before { background: var(--rose); transform: scale(1.3); }
+    .hero__dots span:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; border-radius: 50%; }
     @media (max-width: 900px) { .hero__grid { grid-template-columns: 1fr; } }
 
     /* ===== Today's Classes (rose surface, full bleed) ===== */
@@ -623,7 +633,7 @@
       ];
 
       const heroEl = document.querySelector('[data-hero]');
-      const dotsEls = Array.from(document.querySelectorAll('.hero__dots span'));
+      const dotsEls = heroEl ? Array.from(heroEl.querySelectorAll('.hero__dots span')) : [];
       const metaText = document.querySelector('[data-hero-meta-text]');
       const metaIcon = document.querySelector('[data-hero-meta] i.ph');
       const titleEl = document.querySelector('[data-hero-title]');
