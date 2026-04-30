@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "Scholarships",
+        "heading": "Make Arts Education Affordable",
+        "body": "<p>Need-based aid up to 100% of program tuition.</p>",
+        "text_align": "center"
+      }
+    },
+    "content": {
+      "type": "page-content",
+      "settings": {}
+    }
+  },
+  "order": [
+    "intro",
+    "content"
+  ]
+}

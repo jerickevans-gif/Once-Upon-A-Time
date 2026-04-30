@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "Get involved",
+        "heading": "Volunteer With Us",
+        "body": "<p>Mentor a student. Help run an event.</p>",
+        "text_align": "center"
+      }
+    },
+    "content": {
+      "type": "page-content",
+      "settings": {}
+    }
+  },
+  "order": [
+    "intro",
+    "content"
+  ]
+}

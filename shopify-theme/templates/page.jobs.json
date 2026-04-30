@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "Join the team",
+        "heading": "Work With Us",
+        "body": "<p>Open positions for teaching artists and program staff.</p>",
+        "text_align": "center"
+      }
+    },
+    "content": {
+      "type": "page-content",
+      "settings": {}
+    }
+  },
+  "order": [
+    "intro",
+    "content"
+  ]
+}

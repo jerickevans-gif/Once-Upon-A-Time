@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "All programs",
+        "heading": "Programs",
+        "body": "<p>Browse every active program.</p>",
+        "text_align": "center"
+      }
+    },
+    "content": {
+      "type": "page-content",
+      "settings": {}
+    }
+  },
+  "order": [
+    "intro",
+    "content"
+  ]
+}

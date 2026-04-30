@@ -202,6 +202,38 @@
   margin-left: auto;
 }
 
+/* ---------- Breadcrumbs ---------- */
+.breadcrumbs { padding: 16px 0 0; }
+.breadcrumbs ol {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-wrap: wrap; gap: 6px;
+  width: min(1200px, 100% - 32px); margin-inline: auto;
+  font-size: 13px;
+}
+.breadcrumbs li { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-muted); }
+.breadcrumbs a { color: var(--rose-700); text-decoration: none; font-weight: 500; }
+.breadcrumbs a:hover { text-decoration: underline; }
+.breadcrumbs__sep { color: var(--ink-muted); opacity: .5; }
+.breadcrumbs [aria-current="page"] { color: var(--ink); font-weight: 500; }
+
+/* ---------- Dark mode tokens ---------- */
+.theme-dark {
+  --beginning: #1F1A18;
+  --snow: #2A2422;
+  --ink: #F2DDD5;
+  --ink-muted: #B89E94;
+  --line: #3A2E2A;
+  --rose-50: #3A2823;
+  --rose-100: #4A2F28;
+  --rose: #C99A8E;
+  --rose-700: #E5AA9C;
+  --pillar: #F2DDD5;
+}
+.theme-dark body { background: var(--beginning); color: var(--ink); }
+.theme-dark .site-header { background: var(--beginning); border-bottom: 1px solid var(--line); }
+.theme-dark .promo-bar { background: var(--rose-100); color: var(--rose-700); }
+.theme-dark .auth-modal__art, .theme-dark .auth-page__art { filter: brightness(0.7); }
+
 /* ---------- Sibling discount banner ---------- */
 .sibling-banner {
   background: var(--rose-100); color: var(--rose-700);

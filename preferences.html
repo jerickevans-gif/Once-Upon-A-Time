@@ -185,7 +185,7 @@
           </label>
         </div>
 
-        <button class="delete-account" type="button"><i class="ph ph-trash"></i> Delete my account</button>
+        <button class="delete-account" type="button" data-confirm="Delete account?" data-confirm-body="This permanently deletes your profile, child profiles, payment methods, class history, and inbox. You can't undo this." data-confirm-cta="Delete forever" data-confirm-danger="true" data-confirm-action="mock:delete-account" data-confirm-toast="Account deletion routes to Shopify GDPR endpoint in production."><i class="ph ph-trash"></i> Delete my account</button>
       </section>
     </div>
   </main>
@@ -218,11 +218,24 @@
     (function () {
       const toggle = document.querySelector('.nav-toggle');
       const nav = document.getElementById('primary-nav');
-      if (!toggle || !nav) return;
-      toggle.addEventListener('click', () => {
-        const open = nav.dataset.open === 'true';
-        nav.dataset.open = open ? 'false' : 'true';
-        toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      if (toggle && nav) {
+        toggle.addEventListener('click', () => {
+          const open = nav.dataset.open === 'true';
+          nav.dataset.open = open ? 'false' : 'true';
+          toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+        });
+      }
+
+      // Persist preference toggles to localStorage
+      document.querySelectorAll('.toggle-row input[type="checkbox"]').forEach((cb, i) => {
+        const label = cb.closest('.toggle-row').querySelector('.toggle-row__label')?.textContent.trim() || ('pref-' + i);
+        const key = 'ouat:pref:' + label.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        const stored = localStorage.getItem(key);
+        if (stored !== null) cb.checked = stored === 'true';
+        cb.addEventListener('change', () => {
+          localStorage.setItem(key, cb.checked);
+          if (window.OUAT_toast) window.OUAT_toast(`${label}: ${cb.checked ? 'on' : 'off'} (saved locally; persists to Shopify customer metafield in production)`, { variant: 'info', duration: 2000 });
+        });
       });
     })();
   </script>

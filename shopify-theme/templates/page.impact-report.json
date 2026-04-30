@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "2025 Annual Report",
+        "heading": "Where Your Donation Went",
+        "body": "<p>Transparency is the foundation of trust.</p>",
+        "text_align": "center"
+      }
+    },
+    "content": {
+      "type": "page-content",
+      "settings": {}
+    }
+  },
+  "order": [
+    "intro",
+    "content"
+  ]
+}

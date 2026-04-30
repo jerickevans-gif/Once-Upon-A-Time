@@ -1,0 +1,17 @@
+{% comment %}
+  list-collections.liquid — All collections index
+{% endcomment %}
+{%- layout 'theme' -%}
+
+<section class="page-hero"><div class="wrap"><h1>All Programs</h1></div></section>
+
+<section class="wrap" style="padding:48px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px">
+  {%- for collection in collections -%}
+    {%- unless collection.handle == 'frontpage' -%}
+      <a href="{{ collection.url }}" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:block;text-decoration:none;color:inherit">
+        {%- if collection.image -%}<div style="aspect-ratio:16/10;background-image:url({{ collection.image | img_url: '600x' }});background-size:cover;background-position:center"></div>{%- endif -%}
+        <div style="padding:20px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0 0 6px">{{ collection.title }}</h3><p style="font-size:13px;color:var(--ink-muted)">{{ collection.products_count }} programs</p></div>
+      </a>
+    {%- endunless -%}
+  {%- endfor -%}
+</section>

@@ -1,0 +1,52 @@
+{% comment %}
+  product.liquid — Per-program/class detail with Sesami booking app stub
+{% endcomment %}
+{%- layout 'theme' -%}
+
+<section class="pd-hero" role="img" aria-label="{{ product.title }}" style="background-image:url({{ product.featured_image | img_url: '1600x' }})"></section>
+
+<section class="pd-body">
+  <div class="wrap" style="display:grid;grid-template-columns:280px 1fr;gap:48px;padding:48px 0">
+    <aside>
+      <nav class="pd-nav">
+        <a href="#program-info">Program Info</a>
+        <a href="#instructors">Instructors</a>
+        <a href="#class-location">Class Location</a>
+        <a href="#faqs">FAQs</a>
+      </nav>
+      <div class="pd-capacity">
+        <div class="pd-capacity__head"><i class="ph ph-info"></i> Class Capacity</div>
+        <p class="pd-capacity__sub">{{ product.metafields.custom.capacity | default: '5 of 10' }} slots available</p>
+        <a class="btn" href="{{ product.selected_or_first_available_variant.url }}">Register now! <i class="ph ph-arrow-right"></i></a>
+      </div>
+    </aside>
+    <div>
+      <h1>{{ product.title }}</h1>
+      <section class="pd-section" id="program-info">
+        <h2>Program Info</h2>
+        <div class="pd-content">{{ product.description }}</div>
+      </section>
+      <section class="pd-section" id="instructors">
+        <h2>Instructors</h2>
+        <p>{{ product.metafields.custom.instructors | default: 'See instructors page.' }}</p>
+      </section>
+      <section class="pd-section" id="class-location">
+        <h2>Class Location</h2>
+        <p>87-61 111th St, Richmond Hill, NY 11418</p>
+      </section>
+      <section class="pd-section" id="faqs">
+        <h2>FAQs</h2>
+        {{ product.metafields.custom.faqs }}
+      </section>
+
+      {%- form 'product', product -%}
+        <select name="id" style="display:none">
+          {%- for variant in product.variants -%}
+            <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>{{ variant.title }}</option>
+          {%- endfor -%}
+        </select>
+        <button type="submit" class="btn" name="add">Add to cart</button>
+      {%- endform -%}
+    </div>
+  </div>
+</section>

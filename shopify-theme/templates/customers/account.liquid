@@ -1,0 +1,51 @@
+{% comment %}
+  customers/account.liquid — Logged-in customer landing
+{% endcomment %}
+{%- layout 'theme' -%}
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="page-hero__eyebrow">Your account</div>
+    <h1>Welcome, {{ customer.first_name }}</h1>
+  </div>
+</section>
+
+<section class="wrap" style="max-width:880px;padding:32px 24px 80px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px">
+    <a class="account-tile" href="{{ routes.account_url }}/orders">Class history</a>
+    <a class="account-tile" href="{{ routes.account_addresses_url }}">Addresses</a>
+    <a class="account-tile" href="/pages/preferences">Preferences</a>
+    <a class="account-tile" href="/pages/inbox">Inbox</a>
+  </div>
+
+  <h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px">Recent orders</h2>
+  {%- if customer.orders.size > 0 -%}
+    <table style="width:100%;border-collapse:collapse">
+      <thead>
+        <tr>
+          <th style="text-align:left;padding:10px 0;border-bottom:1.5px solid var(--ink);font-size:12px;text-transform:uppercase">Order</th>
+          <th style="text-align:left;padding:10px 0;border-bottom:1.5px solid var(--ink);font-size:12px;text-transform:uppercase">Date</th>
+          <th style="text-align:right;padding:10px 0;border-bottom:1.5px solid var(--ink);font-size:12px;text-transform:uppercase">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for order in customer.orders -%}
+          <tr>
+            <td style="padding:14px 0;border-bottom:1px solid var(--line)"><a href="{{ order.customer_url }}">#{{ order.name }}</a></td>
+            <td style="padding:14px 0;border-bottom:1px solid var(--line)">{{ order.created_at | date: '%b %d, %Y' }}</td>
+            <td style="padding:14px 0;border-bottom:1px solid var(--line);text-align:right">{{ order.total_price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+  {%- else -%}
+    <div class="empty-state">
+      <div class="empty-state__icon"><i class="ph ph-book-open"></i></div>
+      <div class="empty-state__title">No enrollments yet</div>
+      <p class="empty-state__body">When you enroll a child in a program, your history will appear here.</p>
+      <div class="empty-state__actions">
+        <a class="btn" href="/pages/programs">Browse programs</a>
+      </div>
+    </div>
+  {%- endif -%}
+</section>

@@ -1,0 +1,27 @@
+{% comment %}
+  collection.liquid — Used for Programs collection
+{% endcomment %}
+{%- layout 'theme' -%}
+
+<section class="page-hero"><div class="wrap"><div class="page-hero__eyebrow">{{ collection.title }}</div><h1>{{ collection.description | default: collection.title }}</h1></div></section>
+
+<section class="wrap" style="padding:48px 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px">
+  {%- paginate collection.products by 24 -%}
+    {%- for product in collection.products -%}
+      <article style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
+        {%- if product.featured_image -%}<div style="aspect-ratio:16/10;background-image:url({{ product.featured_image | img_url: '600x' }});background-size:cover;background-position:center"></div>{%- endif -%}
+        <div style="padding:18px 20px;flex:1;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+            <h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">{{ product.title }}</h3>
+            <span style="font-size:13px;color:var(--ink-muted);font-weight:600">{{ product.price | money }}</span>
+          </div>
+          <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">{{ product.description | strip_html | truncatewords: 20 }}</p>
+          <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px">
+            <a class="btn btn--sm" href="{{ product.url }}">View details</a>
+          </div>
+        </div>
+      </article>
+    {%- endfor -%}
+    {{ paginate | default_pagination }}
+  {%- endpaginate -%}
+</section>

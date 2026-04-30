@@ -1,0 +1,16 @@
+{% comment %}
+  article.liquid — Single newsletter article
+{% endcomment %}
+{%- layout 'theme' -%}
+
+<article class="article-wrap" style="max-width:760px;margin:32px auto 80px;padding:0 24px">
+  <a href="{{ blog.url }}" style="font-size:14px;color:var(--ink-muted);text-decoration:none;display:inline-flex;gap:6px;align-items:center;margin-bottom:16px">
+    <i class="ph ph-arrow-left"></i> All newsletters
+  </a>
+  <div style="font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--rose-700);margin-bottom:8px">{{ article.published_at | date: '%B %Y' }}</div>
+  <h1 style="font-family:var(--serif);font-weight:600;font-size:clamp(36px,5vw,56px);margin:0 0 12px;line-height:1.05;text-transform:uppercase">{{ article.title }}</h1>
+  <p style="color:var(--ink-muted);font-size:14px;margin-bottom:32px">By {{ article.author }} · {{ article.published_at | date: '%b %d, %Y' }}</p>
+  {%- if article.image -%}<img src="{{ article.image | img_url: '1200x' }}" alt="{{ article.title }}" style="width:100%;border-radius:16px;margin-bottom:32px">{%- endif -%}
+  <div class="article-body">{{ article.content }}</div>
+  {%- if blog.comments_enabled? -%}<div style="margin-top:48px;padding-top:32px;border-top:1px solid var(--line)">{% comment %}Comments form{% endcomment %}</div>{%- endif -%}
+</article>

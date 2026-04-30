@@ -217,9 +217,18 @@
       form?.addEventListener('submit', (e) => {
         e.preventDefault();
         const fields = form.querySelectorAll('input[required]');
+        let bad = false;
         for (const f of fields) {
-          if (!f.value.trim()) { f.focus(); return; }
+          if (!f.value.trim()) {
+            const lbl = f.closest('.field')?.querySelector('.field__label')?.textContent || 'This field';
+            window.OUAT_setFieldError?.(f, lbl + ' is required');
+            bad = true;
+          } else if (f.type === 'email' && !/.+@.+\..+/.test(f.value)) {
+            window.OUAT_setFieldError?.(f, 'Enter a valid email');
+            bad = true;
+          }
         }
+        if (bad) return;
         if (window.OUAT_toast) {
           window.OUAT_toast('Account creation routes to Shopify customer accounts in production.', { variant: 'mock' });
         }

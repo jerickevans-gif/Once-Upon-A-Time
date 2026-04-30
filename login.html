@@ -261,9 +261,15 @@
       const form = document.getElementById('login-form');
       form?.addEventListener('submit', (e) => {
         e.preventDefault();
-        const email = form.querySelector('input[type="email"]').value.trim();
-        const pw = form.querySelector('input[type="password"]').value;
-        if (!email || !pw) return;
+        const emailEl = form.querySelector('input[type="email"]');
+        const pwEl = form.querySelector('input[type="password"]');
+        const email = emailEl.value.trim();
+        const pw = pwEl.value;
+        let bad = false;
+        if (!email) { window.OUAT_setFieldError?.(emailEl, 'Email is required'); bad = true; }
+        else if (!/.+@.+\..+/.test(email)) { window.OUAT_setFieldError?.(emailEl, 'Enter a valid email'); bad = true; }
+        if (!pw) { window.OUAT_setFieldError?.(pwEl, 'Password is required'); bad = true; }
+        if (bad) return;
         if (window.OUAT_toast) {
           window.OUAT_toast(`Login for ${email} routes to Shopify customer accounts in production.`, { variant: 'mock' });
         }

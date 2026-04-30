@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FFF5EE">
+  <meta name="description" content="Design system reference for Once Upon A Time.">
+  <link rel="canonical" href="https://jerickevans-gif.github.io/Once-Upon-A-Time/styleguide.html">
+  
+  <title>Style Guide — Once Upon A Time</title>
+  <link rel="icon" href="once-upon-a-time-assets/favicon/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" sizes="180x180" href="once-upon-a-time-assets/favicon/favicon-180.png">
+  <link rel="preload" href="once-upon-a-time-assets/fonts/Voltra-Normal.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="once-upon-a-time-assets/fonts/Chivo-Variable.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/design-system.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/components.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/styles/auth-modal.css">
+  <link rel="stylesheet" href="once-upon-a-time-assets/phosphor/style.css">
+  <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
+  <script src="once-upon-a-time-assets/site.js" defer></script>
+  <script src="once-upon-a-time-assets/mock-system.js" defer></script>
+  <style>
+  .page-hero {
+    padding: 60px 0 40px;
+    background: var(--rose-100);
+    text-align: center;
+  }
+  .page-hero__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--rose-700); margin-bottom: 8px; }
+  .page-hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(40px, 5vw, 60px); margin: 0 0 12px; text-transform: uppercase; color: var(--pillar); }
+  .page-hero__sub { font-size: 16px; color: var(--ink-muted); max-width: 56ch; margin: 0 auto; line-height: 1.55; }
+  .legal-body { max-width: 720px; margin: 56px auto; padding: 0 24px; font-size: 15px; line-height: 1.7; color: var(--ink); }
+  .legal-body h2 { font-family: var(--serif); font-weight: 600; font-size: 24px; margin: 32px 0 12px; color: var(--pillar); text-transform: uppercase; }
+  .legal-body h3 { font-size: 16px; font-weight: 700; margin: 20px 0 8px; color: var(--ink); }
+  .legal-body p { margin: 0 0 12px; }
+  .legal-body ul { margin: 0 0 12px; padding-left: 24px; }
+  .legal-body li { margin-bottom: 6px; }
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header" role="banner">
+    <div class="wrap site-header__inner">
+      <a href="index.html" class="brand" aria-label="Once Upon A Time, home"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></a>
+      <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle nav"><i class="ph ph-list"></i></button>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <a href="about.html">About Us</a><a href="programs.html">Programs</a><a href="donate.html">Donation</a><a href="newsletter.html">Newsletter</a><a href="contact.html">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart"><i class="ph ph-shopping-cart-simple"></i><span>Cart</span><span class="badge">9</span></button>
+        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear"></i></a>
+        <a href="profile.html" class="avatar" aria-label="Account"><i class="ph ph-user"></i><span class="badge">9</span></a>
+        <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
+      </div>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="page-hero"><div class="wrap"><div class="page-hero__eyebrow">For developers + designers</div>
+    <h1>Style Guide</h1><p class="page-hero__sub">Reference for tokens, components, and patterns used across the OUAT site.</p></div></section>
+    <section class="wrap" style="padding:48px 0;max-width:1080px;display:grid;gap:48px">
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Color tokens</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px">
+        <div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#8B5044"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">rose</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#8B5044</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#6E3F36"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">rose-700</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#6E3F36</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#C99A8E"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">rose-300</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#C99A8E</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#F2DDD5"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">rose-100</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#F2DDD5</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#FAEEE9"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">rose-50</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#FAEEE9</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#6B6D20"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">garden</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#6B6D20</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#4D4F18"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">garden-700</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#4D4F18</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#E5AA9C"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">blush</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#E5AA9C</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#4C2F3B"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">pillar</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#4C2F3B</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#FFF5EE"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">beginning</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#FFF5EE</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#FFFCFA"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">snow</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#FFFCFA</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#262422"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">ink</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#262422</div></div></div><div style="border:1px solid var(--line);border-radius:8px;overflow:hidden"><div style="aspect-ratio:16/10;background:#7B6B66"></div><div style="padding:8px 10px;font-size:11px"><div style="font-weight:600">ink-muted</div><div style="color:var(--ink-muted);font-family:Menlo,monospace;font-size:10px">#7B6B66</div></div></div></div>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Typography</h2>
+        <div style="display:grid;gap:12px">
+          <div><div style="font-family:var(--serif);font-size:64px;line-height:1;color:var(--pillar)">Voltra Display</div><div style="font-size:11px;color:var(--ink-muted)">--serif · used for h1/h2/h3 in hero/section titles</div></div>
+          <div><div style="font-family:var(--sans);font-size:24px">Chivo Variable</div><div style="font-size:11px;color:var(--ink-muted)">--sans · used for body, UI, and small caps</div></div>
+        </div>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Buttons</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn">Primary</button>
+          <button class="btn btn--ghost">Ghost</button>
+          <button class="btn btn--text">Text</button>
+          <button class="btn btn--sm">Small</button>
+          <button class="btn" disabled>Disabled</button>
+        </div>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Form fields</h2>
+        <div style="display:grid;gap:12px;max-width:480px">
+          <label class="field" style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:500">Default</span><input class="input" type="text" placeholder="Placeholder" style="min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:8px"></label>
+          <label class="field" style="display:flex;flex-direction:column;gap:6px"><span style="font-size:14px;font-weight:500">Error</span><input class="input is-error" type="text" value="invalid@" style="min-height:44px;padding:0 14px;border-radius:8px"><div class="field-error">Enter a valid email</div></label>
+        </div>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Toast types</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn--ghost btn--sm" onclick="OUAT_toast('Info message',{ variant:'info' })">Info</button>
+          <button class="btn btn--ghost btn--sm" onclick="OUAT_toast('Success!',{ variant:'success' })">Success</button>
+          <button class="btn btn--ghost btn--sm" onclick="OUAT_toast('Warning',{ variant:'warning' })">Warning</button>
+          <button class="btn btn--ghost btn--sm" onclick="OUAT_toast('Mock — this routes through Shopify in production.',{ variant:'mock' })">Mock</button>
+        </div>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Confirmation modal</h2>
+        <button class="btn" data-confirm="Are you sure?" data-confirm-body="This is just a demo of the modal component." data-confirm-cta="OK">Trigger modal</button>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Theme toggle</h2>
+        <button class="btn btn--ghost" data-theme-toggle><i class="ph ph-moon"></i> Toggle dark mode</button>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Empty state</h2>
+        <div class="empty-state"><div class="empty-state__icon"><i class="ph ph-folder-open"></i></div><div class="empty-state__title">Nothing here yet</div><p class="empty-state__body">When data is available, it will show up here.</p><div class="empty-state__actions"><button class="btn">Primary action</button></div></div>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Skeleton loaders</h2>
+        <div style="display:grid;gap:8px;max-width:400px">
+          <div class="skeleton skeleton--title"></div>
+          <div class="skeleton skeleton--text"></div>
+          <div class="skeleton skeleton--text" style="width:80%"></div>
+          <div class="skeleton skeleton--text" style="width:60%"></div>
+          <div class="skeleton skeleton--block" style="margin-top:8px"></div>
+        </div>
+      </div>
+
+    </section>
+    </main>
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__brand-block"><div class="footer-brand"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="" loading="lazy"></div></div>
+        <div><h4>About</h4><ul><li><a href="about.html">About</a></li><li><a href="programs.html">Programs</a></li><li><a href="instructors.html">Instructors</a></li></ul></div>
+        <div><h4>Get Involved</h4><ul><li><a href="events.html">Events</a></li><li><a href="donate.html">Support Us</a></li><li><a href="volunteer-dashboard.html">Volunteer</a></li></ul></div>
+        <div class="footer__address-block">
+          <div class="footer__address">87-61 111th St, Richmond Hill<br>NY 11418, United States</div>
+          <div class="footer__socials">
+            <a href="https://youtube.com/@onceuponatime" aria-label="YouTube" target="_blank" rel="noopener"><i class="ph ph-youtube-logo"></i></a>
+            <a href="https://facebook.com/onceuponatime" aria-label="Facebook" target="_blank" rel="noopener"><i class="ph ph-facebook-logo"></i></a>
+            <a href="https://twitter.com/onceuponatime" aria-label="Twitter" target="_blank" rel="noopener"><i class="ph ph-twitter-logo"></i></a>
+            <a href="https://instagram.com/onceuponatime" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
+            <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
+          </div>
+          <div style="margin-top:14px;font-size:12px;opacity:.7"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">Once Upon A Time Inc. © 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      const t = document.querySelector('.nav-toggle'), n = document.getElementById('primary-nav');
+      if (t && n) t.addEventListener('click', () => {
+        const o = n.dataset.open === 'true';
+        n.dataset.open = o ? 'false' : 'true';
+        t.setAttribute('aria-expanded', o ? 'false' : 'true');
+      });
+    })();
+    
+  </script>
+</body>
+</html>

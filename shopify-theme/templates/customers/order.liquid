@@ -1,0 +1,41 @@
+{% comment %}
+  customers/order.liquid — Single order detail (Shopify renders this for /account/orders/N)
+{% endcomment %}
+{%- layout 'theme' -%}
+
+<section class="wrap" style="max-width:820px;padding:32px 24px 80px">
+  <a href="{{ routes.account_url }}" style="font-size:14px;color:var(--ink-muted);text-decoration:none;display:inline-flex;gap:6px;align-items:center;margin-bottom:18px">
+    <i class="ph ph-arrow-left"></i> Back to account
+  </a>
+
+  <h1 style="font-family:var(--serif);font-size:36px;text-transform:uppercase;margin:0 0 8px">Order {{ order.name }}</h1>
+  <p style="font-size:14px;color:var(--ink-muted);margin:0 0 24px">Placed {{ order.created_at | date: '%B %d, %Y' }} · Status: <strong>{{ order.fulfillment_status_label }}</strong></p>
+
+  {%- for line_item in order.line_items -%}
+    <article style="display:grid;grid-template-columns:80px 1fr auto;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)">
+      {%- if line_item.image -%}<img src="{{ line_item.image | img_url: '160x160' }}" alt="{{ line_item.title }}" style="width:80px;height:80px;border-radius:8px;object-fit:cover">{%- endif -%}
+      <div>
+        <h3 style="font-family:var(--serif);font-size:18px;margin:0 0 4px">{{ line_item.product.title }}</h3>
+        {%- if line_item.variant.title != 'Default Title' -%}<p style="font-size:13px;color:var(--ink-muted);margin:0">{{ line_item.variant.title }}</p>{%- endif -%}
+        {%- if line_item.properties != blank -%}
+          {%- for p in line_item.properties -%}
+            {%- unless p.first contains '_' -%}<p style="font-size:12px;color:var(--ink-muted);margin:2px 0">{{ p.first }}: {{ p.last }}</p>{%- endunless -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+      <div style="text-align:right">
+        <div style="font-family:var(--serif);font-size:18px;font-weight:600">{{ line_item.final_line_price | money }}</div>
+      </div>
+    </article>
+  {%- endfor -%}
+
+  <div style="margin:32px 0;padding:24px;background:var(--rose-50);border-radius:14px">
+    <div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px"><span>Subtotal</span><span>{{ order.subtotal_price | money }}</span></div>
+    {%- for discount in order.cart_level_discount_applications -%}
+      <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--garden-700);margin-bottom:6px"><span>{{ discount.title }}</span><span>−{{ discount.total_allocated_amount | money }}</span></div>
+    {%- endfor -%}
+    <div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px"><span>Shipping</span><span>{{ order.shipping_price | money }}</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px"><span>Tax</span><span>{{ order.tax_price | money }}</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:18px;font-weight:600;border-top:2px solid var(--ink);padding-top:10px;margin-top:10px"><span>Total</span><span>{{ order.total_price | money }}</span></div>
+  </div>
+</section>

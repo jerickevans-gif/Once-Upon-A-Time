@@ -174,6 +174,94 @@
     });
   });
 
+  // -------------------- Confirmation modal (data-confirm) -------------------- //
+  // Usage: <button data-confirm="<title>" data-confirm-body="<msg>" data-confirm-action="<url-or-mock>" data-confirm-cta="Delete">Delete</button>
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-confirm]');
+    if (!el) return;
+    e.preventDefault();
+    const title = el.dataset.confirm;
+    const body = el.dataset.confirmBody || 'This action cannot be undone.';
+    const cta = el.dataset.confirmCta || 'Confirm';
+    const danger = el.dataset.confirmDanger === 'true';
+    const action = el.dataset.confirmAction || '';
+    showConfirm({ title, body, cta, danger, onConfirm: () => {
+      if (action.startsWith('mock:')) {
+        toast(el.dataset.confirmToast || 'Confirmed. Routes to Shopify in production.', { variant: 'mock' });
+      } else if (action) {
+        window.location.href = action;
+      } else {
+        toast('Confirmed.', { variant: 'success' });
+      }
+    }});
+  });
+  function showConfirm ({ title, body, cta, danger, onConfirm }) {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+      <div class="modal ${danger ? 'modal--danger' : ''}" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+        <h2 class="modal__title" id="confirm-title">${title}</h2>
+        <p class="modal__body">${body}</p>
+        <div class="modal__actions">
+          <button class="btn btn--ghost" data-cancel>Cancel</button>
+          <button class="btn ${danger ? 'btn-confirm' : ''}" data-ok>${cta}</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+    const close = () => overlay.remove();
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) close();
+      if (e.target.matches('[data-cancel]')) close();
+      if (e.target.matches('[data-ok]')) { close(); onConfirm(); }
+    });
+    document.addEventListener('keydown', function esc (ev) {
+      if (ev.key === 'Escape') { close(); document.removeEventListener('keydown', esc); }
+    });
+    // trap focus on the dialog's first button
+    setTimeout(() => overlay.querySelector('[data-ok]')?.focus(), 50);
+  }
+  window.OUAT_confirm = (opts) => showConfirm(opts);
+
+  // -------------------- Header search injection -------------------- //
+  // Adds a search input + dropdown to the .header-actions on every page.
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.header-actions').forEach(actions => {
+      if (actions.querySelector('[data-header-search]')) return;
+      const wrap = document.createElement('form');
+      wrap.action = 'search.html';
+      wrap.method = 'get';
+      wrap.role = 'search';
+      wrap.setAttribute('data-header-search', '');
+      wrap.style.cssText = 'flex:0 0 auto;display:none;align-items:center;gap:6px;background:var(--snow);border:1px solid var(--line);border-radius:8px;padding:4px 10px;margin-right:8px';
+      wrap.innerHTML = `
+        <i class="ph ph-magnifying-glass" style="color:var(--ink-muted);font-size:14px"></i>
+        <input type="search" name="q" placeholder="Search" aria-label="Search the site" style="border:0;background:transparent;outline:0;font-size:13px;width:140px">`;
+      actions.insertBefore(wrap, actions.firstChild);
+      // Show only on wide enough viewports
+      const mq = window.matchMedia('(min-width: 1024px)');
+      const apply = () => { wrap.style.display = mq.matches ? 'inline-flex' : 'none'; };
+      apply(); mq.addEventListener('change', apply);
+    });
+  });
+
+  // -------------------- Form error helper -------------------- //
+  // Mark inputs with .is-error and emit a .field-error sibling.
+  window.OUAT_setFieldError = function (input, msg) {
+    if (!input) return;
+    input.classList.add('is-error');
+    let err = input.parentElement.querySelector('.field-error');
+    if (!err) {
+      err = document.createElement('div');
+      err.className = 'field-error';
+      input.parentElement.appendChild(err);
+    }
+    err.textContent = msg;
+    input.addEventListener('input', () => {
+      input.classList.remove('is-error');
+      err.remove();
+    }, { once: true });
+  };
+
   // -------------------- Cookie banner (auto-injected) -------------------- //
   document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('ouat:cookies-acked')) return;
@@ -238,6 +326,77 @@
         if (!wrap.contains(e.target)) wrap.classList.remove('is-open');
       });
     });
+  });
+
+  // -------------------- Dark mode -------------------- //
+  // Toggle persists in localStorage. Add `dark` class to <html>.
+  function applyTheme (mode) {
+    document.documentElement.classList.toggle('theme-dark', mode === 'dark');
+  }
+  const savedTheme = localStorage.getItem('ouat:theme');
+  if (savedTheme) applyTheme(savedTheme);
+
+  window.OUAT_setTheme = (mode) => {
+    localStorage.setItem('ouat:theme', mode);
+    applyTheme(mode);
+  };
+
+  // Hook into [data-theme-toggle] click
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-theme-toggle]');
+    if (!el) return;
+    const cur = localStorage.getItem('ouat:theme') === 'dark' ? 'dark' : 'light';
+    window.OUAT_setTheme(cur === 'dark' ? 'light' : 'dark');
+    if (window.OUAT_toast) window.OUAT_toast(`Switched to ${cur === 'dark' ? 'light' : 'dark'} mode`, { variant: 'info', duration: 1400 });
+  });
+
+  // -------------------- Breadcrumbs (auto-injected on detail pages) -------------------- //
+  document.addEventListener('DOMContentLoaded', () => {
+    const main = document.getElementById('main');
+    if (!main) return;
+    if (document.querySelector('.breadcrumbs')) return;
+    const path = window.location.pathname.replace(/^.*\//, '').replace('.html', '');
+    const map = {
+      'newsletter-article': [['index.html', 'Home'], ['newsletter.html', 'Newsletter'], [null, 'Article']],
+      'instructor':         [['index.html', 'Home'], ['instructors.html', 'Instructors'], [null, 'Profile']],
+      'enrollment':         [['index.html', 'Home'], ['programs.html', 'Programs'], [null, 'Enrollment']],
+      'receipt':            [['index.html', 'Home'], ['class-history.html', 'Class History'], [null, 'Receipt']],
+      'inbox-message':      [['index.html', 'Home'], ['inbox.html', 'Inbox'], [null, 'Message']],
+      'order-confirmation': [['index.html', 'Home'], [null, 'Order confirmed']],
+      'waiver':             [['index.html', 'Home'], ['enrollment.html', 'Enrollment'], [null, 'Waiver']],
+      'gift-donation':      [['index.html', 'Home'], ['donate.html', 'Donate'], [null, 'In honor or memory']],
+      'scholarship':        [['index.html', 'Home'], ['programs.html', 'Programs'], [null, 'Scholarship']],
+      'sponsorship':        [['index.html', 'Home'], ['donate.html', 'Donate'], [null, 'Corporate Sponsorship']],
+      'impact-report':      [['index.html', 'Home'], ['donate.html', 'Donate'], [null, 'Impact Report']],
+      'donor-wall':         [['index.html', 'Home'], ['donate.html', 'Donate'], [null, 'Donor Wall']],
+      'volunteer-dashboard':[['index.html', 'Home'], [null, 'Volunteer']],
+      'gallery':            [['index.html', 'Home'], ['about.html', 'About'], [null, 'Gallery']],
+      'events':             [['index.html', 'Home'], [null, 'Events']],
+      'instructors':        [['index.html', 'Home'], ['about.html', 'About'], [null, 'Instructors']],
+      'programs':           [['index.html', 'Home'], [null, 'Programs']],
+    };
+    const crumbs = map[path];
+    if (!crumbs) return;
+    const nav = document.createElement('nav');
+    nav.className = 'breadcrumbs';
+    nav.setAttribute('aria-label', 'Breadcrumb');
+    nav.innerHTML = '<ol>' + crumbs.map(([href, label], i) => {
+      const sep = i < crumbs.length - 1 ? '<span class="breadcrumbs__sep">›</span>' : '';
+      return '<li>' + (href ? `<a href="${href}">${label}</a>` : `<span aria-current="page">${label}</span>`) + sep + '</li>';
+    }).join('') + '</ol>';
+    main.insertBefore(nav, main.firstChild);
+  });
+
+  // -------------------- Hero carousel auto-rotate (index.html) -------------------- //
+  document.addEventListener('DOMContentLoaded', () => {
+    const dots = document.querySelectorAll('.hero__dots span[role="button"]');
+    if (dots.length < 2) return;
+    let i = 0;
+    setInterval(() => {
+      i = (i + 1) % dots.length;
+      dots.forEach(d => d.removeAttribute('aria-current'));
+      dots[i].setAttribute('aria-current', 'true');
+    }, 6000);
   });
 
   // -------------------- FAQ accordion (data-faq) -------------------- //

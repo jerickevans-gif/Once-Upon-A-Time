@@ -1013,10 +1013,18 @@
         const first = form.querySelector('#first-name').value.trim();
         const email = form.querySelector('#email').value.trim();
 
-        if (!first || !email || amt <= 0) {
-          status.textContent = 'Please complete name, email, and a valid amount before donating.';
+        // Per-field error messages
+        let hasErr = false;
+        const firstNameEl = form.querySelector('#first-name');
+        const emailEl = form.querySelector('#email');
+        if (!first) { window.OUAT_setFieldError?.(firstNameEl, 'First name is required'); hasErr = true; }
+        if (!email) { window.OUAT_setFieldError?.(emailEl, 'Email is required'); hasErr = true; }
+        else if (!/.+@.+\..+/.test(email)) { window.OUAT_setFieldError?.(emailEl, 'Enter a valid email'); hasErr = true; }
+        if (amt <= 0) { window.OUAT_toast?.('Pick a donation amount before continuing.', { variant: 'warning' }); hasErr = true; }
+        if (hasErr) {
+          status.textContent = 'Please fix the errors above and try again.';
           status.classList.remove('sr-only');
-          status.style.color = '#a14638';
+          status.style.color = '#C0322E';
           return;
         }
 

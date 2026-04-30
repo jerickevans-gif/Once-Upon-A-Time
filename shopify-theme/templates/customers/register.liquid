@@ -1,0 +1,46 @@
+{% comment %}
+  customers/register.liquid — Shopify customer registration
+{% endcomment %}
+{%- layout 'theme' -%}
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="page-hero__eyebrow">Sign up</div>
+    <h1>Create an account</h1>
+    <p class="page-hero__sub">Save your preferences, track class history, and check out faster.</p>
+  </div>
+</section>
+
+<section class="wrap" style="max-width: 480px; padding: 32px 24px 80px;">
+  {%- form 'create_customer' -%}
+    {%- if form.errors -%}
+      <div class="form-errors" role="alert">
+        {{ form.errors | default_errors }}
+      </div>
+    {%- endif -%}
+
+    <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+      <label class="field">
+        <span class="field__label">First name</span>
+        <input class="input" type="text" name="customer[first_name]" required>
+      </label>
+      <label class="field">
+        <span class="field__label">Last name</span>
+        <input class="input" type="text" name="customer[last_name]" required>
+      </label>
+    </div>
+    <label class="field" style="margin-bottom:14px">
+      <span class="field__label">Email</span>
+      <input class="input" type="email" name="customer[email]" required>
+    </label>
+    <label class="field" style="margin-bottom:14px">
+      <span class="field__label">Password</span>
+      <input class="input" type="password" name="customer[password]" required minlength="6">
+    </label>
+    <button class="btn" type="submit" style="width:100%">Create account</button>
+  {%- endform -%}
+
+  <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--ink-muted)">
+    Already have an account? <a href="{{ routes.account_login_url }}">Log in</a>
+  </p>
+</section>

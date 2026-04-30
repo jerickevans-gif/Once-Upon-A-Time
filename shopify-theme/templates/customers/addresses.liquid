@@ -1,0 +1,45 @@
+{% comment %}
+  customers/addresses.liquid — Saved addresses CRUD
+{% endcomment %}
+{%- layout 'theme' -%}
+
+<section class="page-hero"><div class="wrap"><h1>Addresses</h1></div></section>
+
+<section class="wrap" style="max-width:760px;padding:32px 24px 80px">
+  {%- if customer.addresses.size > 0 -%}
+    <div style="display:grid;gap:14px;margin-bottom:32px">
+      {%- for address in customer.addresses -%}
+        <div style="background:var(--snow);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;grid-template-columns:1fr auto;gap:16px">
+          <div>
+            <strong style="display:block;margin-bottom:6px">{{ address.first_name }} {{ address.last_name }}</strong>
+            <div style="font-size:13px;line-height:1.5">{{ address | format_address }}</div>
+          </div>
+          <div style="display:flex;gap:6px">
+            <a class="btn btn--sm btn--ghost" href="#edit-address-{{ address.id }}">Edit</a>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    <div class="empty-state"><div class="empty-state__icon"><i class="ph ph-map-pin"></i></div><div class="empty-state__title">No saved addresses</div><p class="empty-state__body">Add an address to speed up checkout.</p></div>
+  {%- endif -%}
+
+  <h2 style="font-family:var(--serif);font-size:22px;text-transform:uppercase;margin:32px 0 16px">Add new address</h2>
+  {%- form 'customer_address', customer.new_address -%}
+    <div style="display:grid;gap:14px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <label class="field"><span class="field__label">First name</span>{{ form.first_name }}</label>
+        <label class="field"><span class="field__label">Last name</span>{{ form.last_name }}</label>
+      </div>
+      <label class="field"><span class="field__label">Address 1</span>{{ form.address1 }}</label>
+      <label class="field"><span class="field__label">Address 2</span>{{ form.address2 }}</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px">
+        <label class="field"><span class="field__label">City</span>{{ form.city }}</label>
+        <label class="field"><span class="field__label">Region</span>{{ form.province_select }}</label>
+        <label class="field"><span class="field__label">Postal code</span>{{ form.zip }}</label>
+      </div>
+      <label class="field"><span class="field__label">Phone</span>{{ form.phone }}</label>
+      <button class="btn" type="submit">Add address</button>
+    </div>
+  {%- endform -%}
+</section>
