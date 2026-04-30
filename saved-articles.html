@@ -109,17 +109,22 @@
     
     (function(){
       const list = document.getElementById('saved-list');
-      const ids = (function(){ try { return JSON.parse(localStorage.getItem('ouat:bookmarks') || '[]'); } catch { return []; } })();
       const map = {
         'newsletter:december-2025': { title:'December 2025', author:'Sydney Phelps', date:'Jan 18, 2026', url:'newsletter-article.html?issue=2025-12' },
         'newsletter:december-2025-feature': { title:'December 2025 Feature', author:'Sydney Phelps', date:'Jan 18, 2026', url:'newsletter-article.html?issue=2025-12' },
+        'newsletter:november-2025': { title:'November 2025', author:'Lara Stuart', date:'Nov 18, 2025', url:'newsletter-article.html?issue=2025-11' },
+        'newsletter:october-2025': { title:'October 2025', author:'Sydney Phelps', date:'Oct 18, 2025', url:'newsletter-article.html?issue=2025-10' },
       };
+      const userIds = (function(){ try { return JSON.parse(localStorage.getItem('ouat:bookmarks') || '[]'); } catch { return []; } })();
+      // If the user has no real bookmarks, show demo data so the page isn't empty.
+      const ids = userIds.length ? userIds : ['newsletter:december-2025', 'newsletter:november-2025', 'newsletter:october-2025'];
       const items = ids.map(id => map[id]).filter(Boolean);
       if (!items.length) {
         list.innerHTML = `<div class="empty-state"><div class="empty-state__icon"><i class="ph ph-bookmark-simple"></i></div><div class="empty-state__title">No saved articles yet</div><p class="empty-state__body">Bookmark articles from the newsletter and they'll appear here for easy reading later.</p><div class="empty-state__actions"><a class="btn" href="newsletter.html">Browse newsletters</a></div></div>`;
         return;
       }
-      list.innerHTML = items.map(it => `<article style="background:var(--snow);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:12px"><div><div style="font-family:var(--serif);font-size:18px;text-transform:uppercase">${it.title}</div><div style="font-size:13px;color:var(--ink-muted);margin-top:4px">By ${it.author} · ${it.date}</div></div><a class="btn btn--sm btn--ghost" href="${it.url}">Read</a></article>`).join('');
+      const note = userIds.length ? '' : `<p style="font-size:12px;color:var(--ink-muted);margin-bottom:14px">Showing sample issues — bookmark articles in the newsletter to see your own list here.</p>`;
+      list.innerHTML = note + items.map(it => `<article style="background:var(--snow);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:12px"><div><div style="font-family:var(--serif);font-size:18px;text-transform:uppercase">${it.title}</div><div style="font-size:13px;color:var(--ink-muted);margin-top:4px">By ${it.author} · ${it.date}</div></div><a class="btn btn--sm btn--ghost" href="${it.url}">Read</a></article>`).join('');
     })();
     
   </script>

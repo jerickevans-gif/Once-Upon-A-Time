@@ -3,4 +3,28 @@ Allow: /
 Disallow: /once-upon-a-time-assets/_raw/
 Disallow: /once-upon-a-time-assets/_about_raw/
 
+# Account, transactional, and operational pages — noindex but still crawlable for verification
+Disallow: /receipt.html
+Disallow: /payment.html
+Disallow: /payment-declined.html
+Disallow: /500.html
+Disallow: /maintenance.html
+Disallow: /offline.html
+Disallow: /unsubscribe.html
+Disallow: /forgot-password.html
+Disallow: /reset-password.html
+Disallow: /order-confirmation.html
+Disallow: /enrollment.html
+Disallow: /waiver.html
+Disallow: /inbox.html
+Disallow: /inbox-message.html
+Disallow: /profile.html
+Disallow: /preferences.html
+Disallow: /class-history.html
+Disallow: /volunteer-dashboard.html
+Disallow: /onboarding.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /cart.html
+
 Sitemap: https://jerickevans-gif.github.io/Once-Upon-A-Time/sitemap.xml

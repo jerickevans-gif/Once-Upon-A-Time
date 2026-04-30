@@ -399,6 +399,36 @@
     }, 6000);
   });
 
+  // -------------------- Lightbox (data-lightbox) -------------------- //
+  // Auto-wires gallery thumbs to a lightbox overlay. Each thumb provides
+  // its bg-image via inline style; we extract and render full-size.
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-lightbox]');
+    if (!el) return;
+    e.preventDefault();
+    const bg = el.style.backgroundImage || getComputedStyle(el).backgroundImage;
+    const m = bg.match(/url\(["']?([^"')]+)["']?\)/);
+    if (!m) return;
+    const src = m[m.length - 1] === ')' ? m[1] : m[m.length - 1];
+    const overlay = document.createElement('div');
+    overlay.className = 'lightbox-overlay';
+    overlay.style.cssText = `
+      position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.85);
+      display:grid;place-items:center;padding:24px;
+      animation:lightbox-fade .25s ease`;
+    overlay.innerHTML = `
+      <button type="button" aria-label="Close lightbox" data-close
+        style="position:absolute;top:24px;right:24px;background:rgba(255,255,255,.1);border:0;color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:18px;display:inline-flex;align-items:center;justify-content:center"><i class="ph ph-x"></i></button>
+      <img src="${src}" style="max-width:100%;max-height:90vh;border-radius:8px;box-shadow:0 16px 48px rgba(0,0,0,.5)" alt="">`;
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', (ev) => {
+      if (ev.target === overlay || ev.target.closest('[data-close]')) overlay.remove();
+    });
+    document.addEventListener('keydown', function esc (ev) {
+      if (ev.key === 'Escape') { overlay.remove(); document.removeEventListener('keydown', esc); }
+    });
+  });
+
   // -------------------- FAQ accordion (data-faq) -------------------- //
   // <button data-faq aria-expanded="false" aria-controls="answer-id">
   document.addEventListener('click', (e) => {

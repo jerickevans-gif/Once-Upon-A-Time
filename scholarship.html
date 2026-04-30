@@ -95,8 +95,20 @@
     <script>
       document.getElementById('scholarship-form')?.addEventListener('submit', e => {
         e.preventDefault();
+        const form = e.target;
+        let bad = false;
+        for (const f of form.querySelectorAll('[required]')) {
+          if (!f.value.trim()) {
+            const lbl = f.closest('.field')?.querySelector('.field__label')?.textContent || 'This field';
+            window.OUAT_setFieldError?.(f, lbl + ' is required');
+            bad = true;
+          } else if (f.type === 'email' && !/.+@.+\..+/.test(f.value)) {
+            window.OUAT_setFieldError?.(f, 'Enter a valid email'); bad = true;
+          }
+        }
+        if (bad) return;
         if (window.OUAT_toast) window.OUAT_toast('Application sent. We respond within 5 business days. (Routes to Shopify Forms / Klaviyo in production.)', { variant: 'mock', duration: 4500 });
-        e.target.reset();
+        form.reset();
       });
     </script>
     </main>
