@@ -302,28 +302,6 @@
   }
   window.OUAT_confirm = (opts) => showConfirm(opts);
 
-  // -------------------- Header search injection -------------------- //
-  // Adds a search input + dropdown to the .header-actions on every page.
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.header-actions').forEach(actions => {
-      if (actions.querySelector('[data-header-search]')) return;
-      const wrap = document.createElement('form');
-      wrap.action = 'search.html';
-      wrap.method = 'get';
-      wrap.role = 'search';
-      wrap.setAttribute('data-header-search', '');
-      wrap.style.cssText = 'flex:0 0 auto;display:none;align-items:center;gap:6px;background:var(--snow);border:1px solid var(--line);border-radius:8px;padding:4px 10px;margin-right:8px';
-      wrap.innerHTML = `
-        <i class="ph ph-magnifying-glass" style="color:var(--ink-muted);font-size:14px"></i>
-        <input type="search" name="q" placeholder="Search" aria-label="Search the site" style="border:0;background:transparent;outline:0;font-size:13px;width:140px">`;
-      actions.insertBefore(wrap, actions.firstChild);
-      // Show only on wide enough viewports
-      const mq = window.matchMedia('(min-width: 1024px)');
-      const apply = () => { wrap.style.display = mq.matches ? 'inline-flex' : 'none'; };
-      apply(); mq.addEventListener('change', apply);
-    });
-  });
-
   // -------------------- Form error helper -------------------- //
   // Mark inputs with .is-error and emit a .field-error sibling.
   window.OUAT_setFieldError = function (input, msg) {
