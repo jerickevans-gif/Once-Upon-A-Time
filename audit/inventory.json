@@ -1,0 +1,324 @@
+{
+  "$schema": "Once Upon A Time — site features built without PDF design source",
+  "generated": "2026-04-30",
+  "summary": "35+ features, components, and pages live in production but had no corresponding artifact in the original design PDF set. This inventory exists so the design team can either (a) bless the implementation as-is, (b) draft formal specs to retrofit, or (c) make explicit decisions about the Shopify migration scope.",
+  "importance_scale": {
+    "5": "Core to site functioning — removing it breaks a critical journey",
+    "4": "Important and pervasive — used across many pages",
+    "3": "Nice-to-have polish or single-page feature",
+    "2": "Tooling, SEO, or developer infrastructure",
+    "1": "Minor copy or content placeholder"
+  },
+  "items": [
+    {
+      "id": "search",
+      "title": "Site-wide Search",
+      "category": "Discovery",
+      "importance": 5,
+      "files": ["search.html"],
+      "screenshot": "02-search-results.png",
+      "why": "32-entry hand-built index with token-based scoring, exact-phrase boost, all-tokens-must-match filter, matched-term highlighting, browse-by-section quick links when no query. Header magnifying-glass icon-link on every page is the entry point.",
+      "design_notes": "Needs a dedicated SERP layout spec, suggested-query chips, recent-search history pattern, and empty-state illustration."
+    },
+    {
+      "id": "auth-modal",
+      "title": "Sign-in / Sign-up Modal",
+      "category": "Identity",
+      "importance": 5,
+      "files": ["once-upon-a-time-assets/styles/auth-modal.js", "once-upon-a-time-assets/styles/auth-modal.css"],
+      "screenshot": "08-auth-modal.png",
+      "why": "Self-injecting overlay with role toggle (student / donor), social OAuth buttons (Google, Apple, Email), password visibility toggle, remember-me, forgot-password link, focus trap, ESC-close. Triggered by every Sign-in button via data-open-signin.",
+      "design_notes": "PDFs cover login/signup as full pages; the modal pattern was added so users can authenticate without losing context. Needs spec for error states, OAuth fail recovery, and loading."
+    },
+    {
+      "id": "service-worker",
+      "title": "Service Worker + Offline Page",
+      "category": "Reliability",
+      "importance": 5,
+      "files": ["sw.js", "offline.html"],
+      "screenshot": "05-offline.png",
+      "why": "Precaches the app shell on first load, stale-while-revalidate for same-origin GETs, navigation requests fall back to offline.html when the user is disconnected. Bumped on every deploy that ships changed assets.",
+      "design_notes": "Offline page copy and illustration could use a branded pass — currently uses plain text and a single icon."
+    },
+    {
+      "id": "hero-carousel",
+      "title": "Landing Page Hero Carousel",
+      "category": "Marketing",
+      "importance": 5,
+      "files": ["index.html"],
+      "screenshot": "01-hero-carousel.png",
+      "why": "Auto-rotating 4-slide hero with keyboard navigation, dot indicators that meet WCAG target-size minimum (24×24 hit area / 8px visual), and rich slide metadata (eyebrow, title, subtitle, lede, CTA with icon, photo).",
+      "design_notes": "PDFs show a single static landing hero. Carousel was added so multiple programs can share the prime slot. Need formal specs for slide-change transitions, autoplay timing, and reduced-motion fallback."
+    },
+    {
+      "id": "programs-filter",
+      "title": "Programs Page Chip Filter + Search",
+      "category": "Discovery",
+      "importance": 4,
+      "files": ["programs.html"],
+      "screenshot": "04-programs-filter.png",
+      "why": "Chip row (All / Dance / Theater / Acting / Gardening) and live keyword search above the program cards. Filters both Open for Enrollment and Coming Soon sections; hides empty sections and shows a Clear-Filters affordance when nothing matches. Reads ?q= from URL.",
+      "design_notes": "The PDF programs page has no filtering UI. Pattern is identical to standard e-commerce category pages — would benefit from a Shopify Search & Discovery integration."
+    },
+    {
+      "id": "calendar",
+      "title": "Interactive Class Calendar",
+      "category": "Scheduling",
+      "importance": 4,
+      "files": ["index.html", "once-upon-a-time-assets/mock-system.js"],
+      "screenshot": "09-calendar.png",
+      "why": "Full month-by-month navigation with real schedule data keyed by month-year. Day cells are colour-coded by class type (rose / garden / blush) and link to enrollment. Lives on the home page next to today's classes.",
+      "design_notes": "PDFs only show a static today's-classes list. Need spec for week view, multi-class days, and time-zone behaviour."
+    },
+    {
+      "id": "toast",
+      "title": "Toast Notification System",
+      "category": "Feedback",
+      "importance": 4,
+      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "screenshot": "10-toast.png",
+      "why": "Stack-managed toasts with four variants (info / success / warning / mock). Used by every data-mock interaction so there is consistent confirmation feedback across the entire site. Auto-dismiss after 3.5s, accessible via aria-live region.",
+      "design_notes": "Variant palette and icons need explicit design tokens. Current implementation is minimal: solid pill, matching brand color, dismissible."
+    },
+    {
+      "id": "confirm-dialog",
+      "title": "Generic Confirmation Dialog",
+      "category": "Feedback",
+      "importance": 4,
+      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "screenshot": null,
+      "why": "Any element with data-confirm opens a focus-trapped modal with title, body, and labeled CTA button. Used for destructive or stateful actions (cancel program, remove profile, etc.) so users always see a confirm step.",
+      "design_notes": "Needs a destructive variant (red CTA) explicitly specced."
+    },
+    {
+      "id": "settings-dropdown",
+      "title": "Settings Dropdown Menu",
+      "category": "Navigation",
+      "importance": 4,
+      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "screenshot": null,
+      "why": "Wraps the gear icon in the header with a dropdown: My Profile, Preferences, Class history, Inbox, Search, Accessibility, Sign out. Provides account navigation without forcing a full-page detour to a profile hub.",
+      "design_notes": "Visual treatment is functional but uniform — would benefit from icons per item and section dividers."
+    },
+    {
+      "id": "bookmark",
+      "title": "Bookmark Toggle",
+      "category": "Engagement",
+      "importance": 3,
+      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "screenshot": null,
+      "why": "data-bookmark on any element toggles localStorage state, swaps the icon between hollow and filled, and emits a toast. Used on program cards, articles, instructor profiles. Persistent across sessions.",
+      "design_notes": "Icon set should be formalised (currently Phosphor bookmark-simple / -fill). Empty / saved-articles dashboards use the same key."
+    },
+    {
+      "id": "share",
+      "title": "Share Button",
+      "category": "Engagement",
+      "importance": 3,
+      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "screenshot": null,
+      "why": "data-share uses the Web Share API on mobile and falls back to copy-to-clipboard on desktop. Reads optional data-share-url and data-share-title. Used on every program card.",
+      "design_notes": "Copy-success toast copy is a placeholder."
+    },
+    {
+      "id": "cookie-banner",
+      "title": "Cookie Consent Banner",
+      "category": "Compliance",
+      "importance": 3,
+      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "screenshot": "11-cookie-banner.png",
+      "why": "Auto-injected on first visit, persists acknowledgement to localStorage (ouat:cookies-acked). Decline / Accept all actions with a Learn-more link.",
+      "design_notes": "Copy is generic; legal team should provide final wording. Categorised consent (analytics vs essential) is implied but not specced."
+    },
+    {
+      "id": "breadcrumbs",
+      "title": "Auto-Injected Breadcrumbs",
+      "category": "Wayfinding",
+      "importance": 3,
+      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "screenshot": "12-breadcrumb.png",
+      "why": "15-route map auto-injects breadcrumb HTML at the top of detail and transactional pages: newsletter article, instructor profile, enrollment, receipt, gift donation, scholarship, sponsorship, donor wall, impact report, gallery, events, programs, etc.",
+      "design_notes": "Visual treatment is plain; could have a more branded chevron and an expand-on-hover affordance for long paths."
+    },
+    {
+      "id": "skip-link",
+      "title": "Skip-to-Main Link",
+      "category": "Accessibility",
+      "importance": 3,
+      "files": ["every page"],
+      "screenshot": null,
+      "why": "First focusable element on every page jumps to #main. WCAG 2.1 bypass-blocks compliance.",
+      "design_notes": "Visible-on-focus only; uses brand rose. Designers may want a more visible treatment for low-vision users."
+    },
+    {
+      "id": "faq-accordion",
+      "title": "FAQ Accordion",
+      "category": "Information",
+      "importance": 3,
+      "files": ["contact.html", "once-upon-a-time-assets/mock-system.js"],
+      "screenshot": "13-faq.png",
+      "why": "data-faq buttons toggle aria-expanded on adjacent panels. Used across the contact / FAQ section and donation questions.",
+      "design_notes": "Open and closed states currently use a simple chevron. PDF showed pink and olive Q&A bubble illustrations that are now in place; expand transition needs spec."
+    },
+    {
+      "id": "lightbox",
+      "title": "Gallery Lightbox",
+      "category": "Media",
+      "importance": 3,
+      "files": ["gallery.html", "once-upon-a-time-assets/mock-system.js"],
+      "screenshot": null,
+      "why": "Click any data-lightbox tile to open a full-bleed overlay with the underlying CSS background-image. ESC-to-close, click outside to close.",
+      "design_notes": "Needs prev/next navigation, swipe support, and image caption treatment."
+    },
+    {
+      "id": "skeleton-loader",
+      "title": "Skeleton Loaders",
+      "category": "Feedback",
+      "importance": 3,
+      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "screenshot": null,
+      "why": "List pages with data-skeleton-list show shimmering placeholder cards for ~600ms before the real content reveals — masking layout shift on slow connections.",
+      "design_notes": "Shimmer animation timing and colour are functional defaults. Need explicit token for skeleton bg / highlight."
+    },
+    {
+      "id": "error-pages",
+      "title": "Error / Maintenance / Offline Pages",
+      "category": "Reliability",
+      "importance": 3,
+      "files": ["500.html", "maintenance.html", "offline.html"],
+      "screenshot": "06-error-500.png",
+      "why": "Branded fallback pages for server errors, scheduled downtime, and offline navigations. Each carries the canonical header + footer so users can recover or contact support.",
+      "design_notes": "Copy and illustration are placeholders. Tone (apologetic vs reassuring) needs a brand voice pass."
+    },
+    {
+      "id": "promo-bar",
+      "title": "Dismissable Promo Bar",
+      "category": "Marketing",
+      "importance": 3,
+      "files": ["index.html", "about.html", "newsletter.html", "programs.html"],
+      "screenshot": null,
+      "why": "Top-of-page strip announcing happening-now and next-class. Dismissal persists to localStorage (promo-dismissed-2026 key) so it does not nag returning visitors.",
+      "design_notes": "Currently a single static message. Needs CMS-driven content for production."
+    },
+    {
+      "id": "dark-mode",
+      "title": "Dark Mode Toggle",
+      "category": "Theme",
+      "importance": 3,
+      "files": ["once-upon-a-time-assets/mock-system.js", "once-upon-a-time-assets/styles/components.css"],
+      "screenshot": null,
+      "why": "Setting in the gear menu writes ouat:theme to localStorage; .theme-dark class restyles the surface palette. Currently only the footer and a few surfaces are mapped.",
+      "design_notes": "Dark palette is inferred from the rose/garden tokens — no formal dark spec exists. Would benefit from a full token table."
+    },
+    {
+      "id": "form-validation",
+      "title": "Inline Form Validation",
+      "category": "Forms",
+      "importance": 3,
+      "files": ["once-upon-a-time-assets/site.js", "once-upon-a-time-assets/mock-system.js"],
+      "screenshot": null,
+      "why": "Newsletter and contact forms check empty / email-shaped values before submit. OUAT_setFieldError adds .is-error to the field and emits a sibling .field-error message. Submission goes through Formspree once IDs are wired.",
+      "design_notes": "Error state pattern is consistent but minimal. Need specs for inline help, success state, and submit-pending spinner."
+    },
+    {
+      "id": "json-ld",
+      "title": "Schema.org JSON-LD",
+      "category": "SEO",
+      "importance": 2,
+      "files": ["index.html", "contact.html", "programs.html"],
+      "screenshot": null,
+      "why": "Organization, ContactPage, and Course types embedded as JSON-LD so Google can render rich results (sitelinks, FAQ rich answers, course cards in SERPs).",
+      "design_notes": "Invisible to designers but worth flagging — copy choices in the JSON affect how the site appears in search results."
+    },
+    {
+      "id": "sitemap",
+      "title": "sitemap.xml + robots",
+      "category": "SEO",
+      "importance": 2,
+      "files": ["sitemap.xml"],
+      "screenshot": null,
+      "why": "26 priority URLs with change-frequency hints for crawlers.",
+      "design_notes": "Generated by hand; should be automated post-Shopify (theme apps emit it)."
+    },
+    {
+      "id": "footer-canonical",
+      "title": "Canonical Footer + Sync Tool",
+      "category": "Tooling",
+      "importance": 2,
+      "files": ["tools/sync-footer.py", "47 *.html files"],
+      "screenshot": "14-footer.png",
+      "why": "8 distinct footer variants existed across 47 pages; collapsed to one canonical block (Brand, About / Programs, Events / Support Us, Address + socials + legal). tools/sync-footer.py keeps it in lock-step until the Shopify migration replaces it with a Liquid section.",
+      "design_notes": "Matches the PDF programs-page footer exactly. After Shopify cut-over the script retires."
+    },
+    {
+      "id": "data-mock",
+      "title": "data-mock Interaction Layer",
+      "category": "Tooling",
+      "importance": 4,
+      "files": ["once-upon-a-time-assets/mock-system.js"],
+      "screenshot": null,
+      "why": "25 distinct data-mock=\"feature\" values registered and wired. Each click emits a toast describing the action that *will* happen post-Shopify integration. Lets the site demo end-to-end without real backends.",
+      "design_notes": "When backends land, replace toast-only mocks one-by-one. The complete list is documented in mock-system.js."
+    },
+    {
+      "id": "coming-soon",
+      "title": "Coming Soon Stubs",
+      "category": "Content",
+      "importance": 2,
+      "files": ["once-upon-a-time-assets/site.js"],
+      "screenshot": null,
+      "why": "data-coming-soon attribute on any element shows a polite placeholder so partial pages still feel intentional.",
+      "design_notes": "Generic copy; replace per-page once the real content lands."
+    },
+    {
+      "id": "header-search-icon",
+      "title": "Header Search Icon-Link",
+      "category": "Discovery",
+      "importance": 4,
+      "files": ["all 47 pages"],
+      "screenshot": null,
+      "why": "Magnifying-glass icon-button between Contact and Cart on every page header except programs.html / newsletter.html / search.html (where in-page search already exists). Single canonical entry point to /search.html.",
+      "design_notes": "Currently icon-only on desktop; hidden on mobile by existing media-query rules. Mobile users reach search via the hamburger menu — that link should be added."
+    },
+    {
+      "id": "transactional-pages",
+      "title": "Transactional Confirmation Pages",
+      "category": "Pages",
+      "importance": 4,
+      "files": ["receipt.html", "order-confirmation.html", "waiver.html", "payment-declined.html"],
+      "screenshot": null,
+      "why": "End-of-journey screens for enrollment, donation, and waiver flows. No PDFs cover them; they were filled in to complete the user journey end-to-end.",
+      "design_notes": "Need a unified visual treatment with the success / failure pattern. Tone should align with brand voice once the design team blesses one."
+    },
+    {
+      "id": "account-pages",
+      "title": "Account Dashboard Pages",
+      "category": "Pages",
+      "importance": 4,
+      "files": ["profile.html", "preferences.html", "class-history.html", "inbox.html", "inbox-message.html", "saved-articles.html", "read-later.html"],
+      "screenshot": null,
+      "why": "Logged-in surface for managing profile, notification preferences, saved content, message threads, and class history. Some have partial PDF coverage; most do not.",
+      "design_notes": "These pages share visual language with the rest of the site but were filled in beyond the PDF set. Warrant a dedicated account-area design pass."
+    },
+    {
+      "id": "support-pages",
+      "title": "Support / Donation Variants",
+      "category": "Pages",
+      "importance": 3,
+      "files": ["scholarship.html", "sponsorship.html", "gift-donation.html", "donor-wall.html", "impact-report.html"],
+      "screenshot": null,
+      "why": "Donation flow has multiple entry points beyond the single donate.html in the PDF set: scholarships, sponsorships, gift-in-someone's-name, donor recognition wall, and the annual impact report.",
+      "design_notes": "Each is a separate funnel. Worth a strategic decision: are these distinct pages or a single multi-step flow?"
+    },
+    {
+      "id": "people-pages",
+      "title": "People & Recruitment Pages",
+      "category": "Pages",
+      "importance": 3,
+      "files": ["instructor.html", "instructors.html", "board.html", "jobs.html", "press.html", "partners.html"],
+      "screenshot": null,
+      "why": "Roster and recruiting surface — instructor list and individual bios, board of directors, open jobs, press kit, and partners directory.",
+      "design_notes": "Visual templates exist but the content model (bio fields, social links, role tags) needs a design system pass before Shopify metaobjects."
+    }
+  ]
+}

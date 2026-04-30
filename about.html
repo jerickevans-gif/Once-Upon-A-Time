@@ -197,32 +197,48 @@
     }
     .text-block p { font-size: 14px; color: var(--ink-2); line-height: 1.7; margin: 0; }
 
+    /* Leadership section is left-aligned and full-width per Phase-4 design */
+    .leadership { padding: 64px 0 72px; }
+    .leadership__inner { max-width: 1180px; margin: 0 auto; }
+    .leadership__title {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(40px, 5vw, 68px);
+      text-transform: uppercase; letter-spacing: .01em;
+      color: var(--rose-700);
+      margin: 0 0 28px;
+      line-height: 1.05;
+    }
+    .leadership__lede {
+      max-width: 88ch;
+      font-size: 15px; line-height: 1.65; color: var(--ink);
+      margin: 0 0 44px;
+    }
     .leadership-grid {
       display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 32px; max-width: 1080px; margin: 0 auto;
-      text-align: left;
+      gap: 36px;
     }
-    .leader { display: flex; flex-direction: column; gap: 16px; align-items: stretch; }
+    .leader { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
     .leader__avatar {
       width: 100%;
-      aspect-ratio: 16 / 10;
-      border-radius: 14px;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
       background-size: cover; background-position: center 20%;
       overflow: hidden;
       border: 1px solid var(--line);
-      filter: saturate(.9);
+      filter: saturate(.6) brightness(1.04);
     }
     .leader--yasmine .leader__avatar { background-image: url("once-upon-a-time-assets/portraits/patricia.png"); }
     .leader--dolores .leader__avatar { background-image: url("once-upon-a-time-assets/portraits/mariah.png"); }
     .leader__name {
-      font-family: var(--serif); font-weight: 600;
-      font-size: 22px; margin: 0;
+      font-family: var(--sans); font-weight: 700;
+      font-size: 20px; margin: 6px 0 0; color: var(--ink);
     }
     .leader__role {
-      color: var(--accent); font-size: 13px; font-weight: 500;
-      margin: 0 0 8px;
+      color: var(--ink-muted); font-size: 16px; font-weight: 400;
+      font-style: italic;
+      margin: 2px 0 10px;
     }
-    .leader__bio { font-size: 13px; color: var(--ink-2); line-height: 1.6; margin: 0; }
+    .leader__bio { font-size: 14px; color: var(--ink); line-height: 1.55; margin: 0; max-width: 50ch; }
 
     /* ---------- Current programs ---------- */
     .programs { padding: 24px 0 72px; position: relative; }
@@ -306,44 +322,71 @@
     }
     .expanding p { max-width: 60ch; margin: 0 auto 24px; color: #f0e3c9; font-size: 14px; }
 
-    /* ---------- Success stories ---------- */
+    /* ---------- Success stories (carousel of 3) ---------- */
     .success {
-      background: var(--hero);
-      padding: 56px 0 72px;
+      background: var(--rose-100);
+      padding: 64px 0 80px;
+      position: relative;
+      overflow: hidden;
     }
-    .success__title { color: var(--pillar); text-align: center; margin: 0 0 36px; font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 4vw, 48px); text-transform: uppercase; }
-    .success__grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-    .success-card {
-      background: var(--rose-50);
-      border-radius: var(--radius);
-      padding: 22px 22px 18px;
-      box-shadow: 0 6px 18px rgba(76,47,59,.08);
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 16px;
+    .success__title { color: var(--ink); text-align: center; margin: 0 0 48px; font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.4vw, 56px); text-transform: uppercase; letter-spacing: .01em; }
+    .success__viewport { position: relative; }
+    .success__track {
+      display: flex;
+      gap: 40px;
       align-items: center;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 8px 24px 8px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .success__track::-webkit-scrollbar { display: none; }
+    .success-card {
+      background: transparent;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 28px;
+      align-items: center;
+      flex: 0 0 calc((100% - 80px) / 3);
+      min-width: 360px;
+      scroll-snap-align: center;
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
     }
     .success-card__avatar {
-      width: 80px; height: 80px;
+      width: 160px; height: 160px;
       border-radius: 50%;
       background-size: cover; background-position: center top;
-      background-color: var(--rose-100);
+      background-color: var(--rose-300);
       flex-shrink: 0;
-      border: 3px solid #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,.10);
+      border: 0;
+      box-shadow: none;
     }
-    .success-card__body { display: flex; flex-direction: column; gap: 8px; }
+    .success-card__body { display: flex; flex-direction: column; gap: 24px; }
+    .success-card blockquote { margin: 0; }
     .success-card p {
-      font-size: 13px; color: var(--ink-2); line-height: 1.55;
+      font-size: 14px; color: var(--ink); line-height: 1.55;
       margin: 0;
     }
+    .success-card p::before { content: '"'; }
+    .success-card p::after { content: '"'; }
     .success-card--jane   .success-card__avatar { background-image: url("once-upon-a-time-assets/portraits/jane.png"); }
     .success-card--josh   .success-card__avatar { background-image: url("once-upon-a-time-assets/portraits/josh.png"); }
     .success-card--mariah .success-card__avatar { background-image: url("once-upon-a-time-assets/portraits/mariah.png"); }
-    .success-card__name { font-weight: 700; font-size: 14px; margin: 0; color: var(--pillar); }
+    .success-card__name { font-weight: 700; font-size: 15px; margin: 0; color: var(--ink); font-family: var(--sans); }
+    .success__arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--snow); border: 1px solid var(--rose-300);
+      display: inline-flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(76,47,59,.12);
+      cursor: pointer; color: var(--rose-700); z-index: 2;
+    }
+    .success__arrow:hover { background: var(--snow); border-color: var(--rose); color: var(--rose); }
+    .success__arrow--prev { left: 0; }
+    .success__arrow--next { right: 0; }
 
     /* ---------- Where your donation goes ---------- */
     .donation-goes { padding: 24px 0 80px; }
@@ -544,26 +587,29 @@
     </section>
 
     <!-- LEADERSHIP -->
-    <section class="text-block" aria-labelledby="leadership-title" style="padding-top:0">
+    <section class="leadership" aria-labelledby="leadership-title">
       <div class="wrap">
-        <h2 id="leadership-title">Our New Leadership</h2>
-        <div class="leadership-grid">
-          <article class="leader leader--yasmine">
-            <div class="leader__avatar" role="img" aria-label="Portrait of Yasmine Rodriguez"></div>
-            <div>
-              <h3 class="leader__name">Yasmine Rodriguez</h3>
-              <p class="leader__role">Executive Director</p>
-              <p class="leader__bio">Lorem ipsum dolor sit amet consectetur. Tortor quam justo ac dignissim massa lacinia mi. Senectus tristique velit elementum integer erat ante laoreet.</p>
-            </div>
-          </article>
-          <article class="leader leader--dolores">
-            <div class="leader__avatar" role="img" aria-label="Portrait of Dolores Diaz"></div>
-            <div>
-              <h3 class="leader__name">Dolores Diaz</h3>
-              <p class="leader__role">Programs Director</p>
-              <p class="leader__bio">Lorem ipsum dolor sit amet consectetur. Tortor quam justo ac dignissim massa lacinia mi. Senectus tristique velit elementum integer erat ante laoreet.</p>
-            </div>
-          </article>
+        <div class="leadership__inner">
+          <h2 id="leadership-title" class="leadership__title">Our New Leadership</h2>
+          <p class="leadership__lede">Lorem ipsum dolor sit amet consectetur. Tortor quam porta varius sed venenatis viverra magnis. Senectus tristique velit orci fermentum integer orci vel auctor aliquam. Lacus adipiscing vitae eu enim. Scelerisque eget aliquet faucibus nullam. Amet eget in sit quis malesuada non quam a odio.</p>
+          <div class="leadership-grid">
+            <article class="leader leader--yasmine">
+              <div class="leader__avatar" role="img" aria-label="Portrait of Yasmine Rodriguez"></div>
+              <div>
+                <h3 class="leader__name">Yasmine Rodriguez</h3>
+                <p class="leader__role">[Add Title here]</p>
+                <p class="leader__bio">Lorem ipsum dolor sit amet consectetur. Mollis parturient metus lectus diam integer diam dolor habitant. Mi sapien posuere pretium orci.</p>
+              </div>
+            </article>
+            <article class="leader leader--dolores">
+              <div class="leader__avatar" role="img" aria-label="Portrait of Dolores Diaz"></div>
+              <div>
+                <h3 class="leader__name">Dolores Diaz</h3>
+                <p class="leader__role">[Add Title here]</p>
+                <p class="leader__bio">Lorem ipsum dolor sit amet consectetur. Mollis parturient metus lectus diam integer diam dolor habitant. Mi sapien posuere pretium orci.</p>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -629,31 +675,48 @@
     <section class="success" aria-labelledby="success-title">
       <div class="wrap">
         <h2 id="success-title" class="success__title">Success Stories</h2>
-        <div class="success__grid">
-          <figure class="success-card success-card--jane">
-            <span class="success-card__avatar" role="img" aria-label="Portrait of Jane"></span>
-            <div class="success-card__body">
-              <blockquote><p>The classes turned my Saturday mornings into the best part of my week — I left every camp braver than I came in.</p></blockquote>
-              <figcaption class="success-card__name">Jane, 16</figcaption>
-            </div>
-          </figure>
-          <figure class="success-card success-card--josh">
-            <span class="success-card__avatar" role="img" aria-label="Portrait of Josh"></span>
-            <div class="success-card__body">
-              <blockquote><p>Private lessons gave me real confidence on stage. My instructor pushed me without ever making it feel like pressure.</p></blockquote>
-              <figcaption class="success-card__name">Josh, 13</figcaption>
-            </div>
-          </figure>
-          <figure class="success-card success-card--mariah">
-            <span class="success-card__avatar" role="img" aria-label="Portrait of Mariah"></span>
-            <div class="success-card__body">
-              <blockquote><p>OUAT is where I found my voice. I look forward to every showcase and the friends I've made along the way.</p></blockquote>
-              <figcaption class="success-card__name">Mariah, 13</figcaption>
-            </div>
-          </figure>
+        <div class="success__viewport">
+          <button class="success__arrow success__arrow--prev" type="button" aria-label="Previous story" data-success-prev>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="success__track" data-success-track>
+            <figure class="success-card success-card--jane">
+              <span class="success-card__avatar" role="img" aria-label="Portrait of Jane"></span>
+              <div class="success-card__body">
+                <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></blockquote>
+                <figcaption class="success-card__name">Jane, 16</figcaption>
+              </div>
+            </figure>
+            <figure class="success-card success-card--josh">
+              <span class="success-card__avatar" role="img" aria-label="Portrait of Josh"></span>
+              <div class="success-card__body">
+                <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></blockquote>
+                <figcaption class="success-card__name">Josh, 13</figcaption>
+              </div>
+            </figure>
+            <figure class="success-card success-card--mariah">
+              <span class="success-card__avatar" role="img" aria-label="Portrait of Mariah"></span>
+              <div class="success-card__body">
+                <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p></blockquote>
+                <figcaption class="success-card__name">Mariah, 13</figcaption>
+              </div>
+            </figure>
+          </div>
+          <button class="success__arrow success__arrow--next" type="button" aria-label="Next story" data-success-next>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
         </div>
       </div>
     </section>
+    <script>
+      (function(){
+        const track = document.querySelector('[data-success-track]');
+        if (!track) return;
+        const step = () => Math.max(280, track.querySelector('.success-card')?.offsetWidth + 40 || 380);
+        document.querySelector('[data-success-prev]')?.addEventListener('click', () => track.scrollBy({left: -step(), behavior: 'smooth'}));
+        document.querySelector('[data-success-next]')?.addEventListener('click', () => track.scrollBy({left: step(), behavior: 'smooth'}));
+      })();
+    </script>
 
     <!-- WHERE YOUR DONATION GOES -->
     <section class="donation-goes" aria-labelledby="donation-goes-title">
