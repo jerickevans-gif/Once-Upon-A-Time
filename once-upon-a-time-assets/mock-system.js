@@ -385,6 +385,22 @@
       return '<li>' + (href ? `<a href="${href}">${label}</a>` : `<span aria-current="page">${label}</span>`) + sep + '</li>';
     }).join('') + '</ol>';
     main.insertBefore(nav, main.firstChild);
+
+    // Inject matching BreadcrumbList JSON-LD for SEO
+    const ld = {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: crumbs.map(([href, label], i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: label,
+        ...(href ? { item: 'https://jerickevans-gif.github.io/Once-Upon-A-Time/' + href } : {}),
+      }))
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(ld);
+    document.head.appendChild(script);
   });
 
   // -------------------- Skeleton entrance for [data-skeleton-list] -------------------- //
