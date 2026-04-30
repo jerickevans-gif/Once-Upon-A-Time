@@ -19,7 +19,6 @@
   <meta name="twitter:description" content="All Once Upon A Time programs — dance, theater, gardening, and more.">
   <meta name="twitter:image" content="https://jerickevans-gif.github.io/Once-Upon-A-Time/once-upon-a-time-assets/landing/jazz-hero.jpg">
 
-  
   <title>Programs — Once Upon A Time</title>
   <link rel="icon" href="once-upon-a-time-assets/favicon/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" sizes="180x180" href="once-upon-a-time-assets/favicon/favicon-180.png">
@@ -33,22 +32,99 @@
   <script src="once-upon-a-time-assets/site.js" defer></script>
   <script src="once-upon-a-time-assets/mock-system.js" defer></script>
   <style>
-  .page-hero {
-    padding: 60px 0 40px;
-    background: var(--rose-100);
-    text-align: center;
-  }
-  .page-hero__eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--rose-700); margin-bottom: 8px; }
-  .page-hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(40px, 5vw, 60px); margin: 0 0 12px; text-transform: uppercase; color: var(--pillar); }
-  .page-hero__sub { font-size: 16px; color: var(--ink-muted); max-width: 56ch; margin: 0 auto; line-height: 1.55; }
-  .legal-body { max-width: 720px; margin: 56px auto; padding: 0 24px; font-size: 15px; line-height: 1.7; color: var(--ink); }
-  .legal-body h2 { font-family: var(--serif); font-weight: 600; font-size: 24px; margin: 32px 0 12px; color: var(--pillar); text-transform: uppercase; }
-  .legal-body h3 { font-size: 16px; font-weight: 700; margin: 20px 0 8px; color: var(--ink); }
-  .legal-body p { margin: 0 0 12px; }
-  .legal-body ul { margin: 0 0 12px; padding-left: 24px; }
-  .legal-body li { margin-bottom: 6px; }
-.chip-btn{padding:8px 14px;border-radius:999px;background:var(--snow);border:1px solid var(--line);font-size:13px;font-weight:600;cursor:pointer;color:var(--ink)} .chip-btn[aria-pressed="true"]{background:var(--rose);color:#fff;border-color:var(--rose)} .chip{font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;background:var(--rose-100);color:var(--rose-700)} .chip--garden{background:var(--garden);color:#fff}</style>
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Course","name":"Seasonal Camps","description":"Multi-week immersion across dance, theater, and gardening tracks. Ages 8\u201315.","provider":{"@type":"NGO","name":"Once Upon A Time, Inc."},"offers":{"@type":"Offer","price":"250","priceCurrency":"USD"}},{"@type":"Course","name":"Private Lessons","description":"One-on-one instruction with a working professional.","provider":{"@type":"NGO","name":"Once Upon A Time, Inc."},"offers":{"@type":"Offer","price":"75","priceCurrency":"USD"}},{"@type":"Course","name":"Beginner Ballet","description":"Fundamentals: posture, footwork. Ages 6\u201310.","offers":{"@type":"Offer","price":"120","priceCurrency":"USD"}},{"@type":"Course","name":"Story Jazz","description":"Narrative-driven jazz performance for stage. Ages 10+.","offers":{"@type":"Offer","price":"180","priceCurrency":"USD"}},{"@type":"Course","name":"Community Garden","description":"Hands-on plant care, harvest, and culinary basics.","offers":{"@type":"Offer","price":"95","priceCurrency":"USD"}},{"@type":"Course","name":"Visual Art Studio","description":"Drawing, painting, sculpture in a studio setting. Ages 7+.","offers":{"@type":"Offer","price":"140","priceCurrency":"USD"}}]}</script>
+    /* Hero */
+    .pg-hero { background: var(--rose-100); padding: 64px 0 80px; }
+    .pg-hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .pg-hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1.05; color: var(--rose-700); text-transform: uppercase; margin: 0 0 28px; }
+    .pg-hero p { font-size: 15px; line-height: 1.6; color: var(--ink); margin: 0 0 16px; max-width: 46ch; }
+    .pg-hero .btn { margin-top: 16px; }
+    .pg-hero__photo { aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; background: var(--rose-700); position: relative; box-shadow: 0 12px 30px rgba(76, 47, 59, .12); }
+    .pg-card__photo { aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: var(--rose-700); position: relative; }
+    .duotone-rose {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: grayscale(1) contrast(1.05) brightness(1.08);
+      mix-blend-mode: screen;
+    }
+    .pg-hero__photo::after,
+    .pg-card__photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(140deg, rgba(229,170,156,.18) 0%, rgba(110,63,54,.32) 100%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    /* Section titles */
+    .pg-section { padding: 64px 0 32px; }
+    .pg-section--soft { background: var(--rose-50); }
+    .pg-section h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 2.6vw, 34px); text-transform: uppercase; color: var(--ink); margin: 0 0 28px; letter-spacing: .01em; }
+
+    /* Program cards (enrollment + coming soon) */
+    .pg-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .pg-grid--single { grid-template-columns: repeat(2, 1fr); }
+    .pg-grid--single .pg-card { grid-column: 1 / 2; }
+    .pg-card {
+      background: var(--snow);
+      border: 1px solid var(--rose-100);
+      border-radius: 18px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 6px 18px rgba(76, 47, 59, .06);
+    }
+    .pg-card__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .pg-card__title { font-family: var(--serif); font-weight: 400; font-size: 22px; text-transform: uppercase; color: var(--ink); margin: 0; line-height: 1.1; letter-spacing: .01em; }
+    .pg-card__price { font-family: var(--sans); font-size: 12px; color: var(--ink-muted); text-align: right; line-height: 1.35; flex: 0 0 auto; max-width: 120px; }
+    .pg-card__chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pg-chip { font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 999px; font-family: var(--sans); letter-spacing: .02em; }
+    .pg-chip--rose { background: var(--rose-100); color: var(--rose-700); }
+    .pg-chip--garden { background: var(--garden-300); color: var(--garden-700); }
+    .pg-card__schedule { font-size: 13px; color: var(--ink); font-weight: 400; }
+    .pg-card__desc { font-size: 13px; line-height: 1.55; color: var(--ink-muted); margin: 0; }
+    .pg-card__meta { display: flex; flex-wrap: wrap; gap: 18px; font-size: 12px; color: var(--ink-muted); align-items: center; }
+    .pg-card__meta span { display: inline-flex; align-items: center; gap: 6px; }
+    .pg-card__meta i { color: var(--rose); font-size: 14px; }
+    .pg-card__actions { display: flex; gap: 10px; align-items: center; margin-top: 4px; }
+    .pg-card__actions .btn { padding: 8px 16px; font-size: 13px; }
+    .icon-pill { width: 36px; height: 36px; border-radius: 8px; background: var(--rose-100); color: var(--rose-700); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .15s ease; }
+    .icon-pill:hover, .icon-pill[aria-pressed="true"] { background: var(--rose); color: #fff; }
+    .icon-pill i { font-size: 16px; }
+
+    /* Growing CTA banner */
+    .pg-grow {
+      position: relative;
+      padding: 88px 0;
+      color: var(--snow);
+      text-align: center;
+      background:
+        linear-gradient(120deg, rgba(107,109,32,.92) 0%, rgba(76,47,59,.92) 100%),
+        url('once-upon-a-time-assets/landing/queens-skyline.jpg') center/cover;
+      overflow: hidden;
+    }
+    .pg-grow h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(28px, 3.4vw, 44px); text-transform: uppercase; margin: 0 0 18px; letter-spacing: .01em; color: var(--snow); }
+    .pg-grow p { font-size: 15px; line-height: 1.6; max-width: 56ch; margin: 0 auto 26px; color: rgba(255,252,250,.92); }
+    .pg-grow .btn { background: var(--snow); color: var(--rose-700); padding: 12px 28px; }
+    .pg-grow .btn:hover { background: var(--rose-100); color: var(--rose-700); }
+
+    /* Testimonials */
+    .pg-testi { background: var(--rose-100); padding: 56px 0; }
+    .pg-testi__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start; }
+    .pg-testi__card { display: grid; grid-template-columns: 88px 1fr; gap: 16px; align-items: start; }
+    .pg-testi__avatar { width: 88px; height: 88px; border-radius: 50%; background: var(--rose-300); overflow: hidden; flex: 0 0 auto; }
+    .pg-testi__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pg-testi__text { font-size: 13px; line-height: 1.55; color: var(--ink); margin: 0 0 10px; }
+    .pg-testi__name { font-size: 13px; font-weight: 700; color: var(--ink); }
+
+    @media (max-width: 860px) {
+      .pg-hero__grid { grid-template-columns: 1fr; gap: 32px; }
+      .pg-grid, .pg-grid--single { grid-template-columns: 1fr; }
+      .pg-grid--single .pg-card { grid-column: auto; }
+      .pg-testi__grid { grid-template-columns: 1fr; }
+      .pg-grow { padding: 64px 0; }
+    }
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Course","name":"Seasonal Camps","description":"Multi-week immersion across dance, theater, and gardening tracks. Ages 10+.","provider":{"@type":"NGO","name":"Once Upon A Time, Inc."},"offers":{"@type":"Offer","price":"150","priceCurrency":"USD"}},{"@type":"Course","name":"Private Lessons","description":"One-on-one instruction with a working professional.","provider":{"@type":"NGO","name":"Once Upon A Time, Inc."},"offers":{"@type":"Offer","price":"30","priceCurrency":"USD"}}]}</script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -57,7 +133,7 @@
       <a href="index.html" class="brand" aria-label="Once Upon A Time, home"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time"></a>
       <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle nav"><i class="ph ph-list"></i></button>
       <nav class="primary-nav" id="primary-nav" aria-label="Primary">
-        <a href="about.html">About Us</a><a href="programs.html">Programs</a><a href="donate.html">Donation</a><a href="newsletter.html">Newsletter</a><a href="contact.html">Contact</a>
+        <a href="about.html">About Us</a><a href="programs.html" aria-current="page">Programs</a><a href="donate.html">Donation</a><a href="newsletter.html">Newsletter</a><a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
         <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart"><i class="ph ph-shopping-cart-simple"></i><span>Cart</span><span class="badge">9</span></button>
@@ -67,85 +143,162 @@
       </div>
     </div>
   </header>
+
   <main id="main" tabindex="-1">
-    <section class="page-hero">
-      <div class="wrap"><div class="page-hero__eyebrow">All programs</div>
-      <h1>What's running this season</h1>
-      <p class="page-hero__sub">Browse every active program, filter by track or age group, and reserve a spot in seconds.</p></div>
-    </section>
-    <section class="wrap" style="padding:48px 0">
-      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:32px">
-        <div style="display:inline-flex;gap:8px;flex-wrap:wrap" role="tablist" aria-label="Filter programs">
-          <button class="chip-btn" data-pf="all" aria-pressed="true">All</button>
-          <button class="chip-btn" data-pf="dance" aria-pressed="false">Dance</button>
-          <button class="chip-btn" data-pf="theater" aria-pressed="false">Theater</button>
-          <button class="chip-btn" data-pf="garden" aria-pressed="false">Gardening</button>
-          <button class="chip-btn" data-pf="visual" aria-pressed="false">Visual Art</button>
+
+    <!-- About our program hero -->
+    <section class="pg-hero">
+      <div class="wrap">
+        <div class="pg-hero__grid">
+          <div>
+            <h1>About our<br>Program</h1>
+            <p>Lorem ipsum dolor sit amet consectetur. Tortor quam porta varius sed venenatis viverra magnis. Senectus tristique tristique velit orci fermentum integer orci vel auctor aliquam. Lacus adipiscing vitae eu enim. Scelerisque eget aliquet faucibus nullam. Amet eget in sit quis malesuada non quam a odio.</p>
+            <p>Lorem ipsum dolor sit amet consectetur. Tortor quam porta varius sed venenatis viverra magnis. Senectus tristique tristique velit orci fermentum integer orci vel auctor aliquam. Lacus adipiscing vitae eu enim. Scelerisque eget aliquet faucibus nullam. Amet eget in sit quis malesuada non quam a odio.</p>
+            <a class="btn" href="#open-enrollment">Register now! <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="pg-hero__photo">
+            <img src="once-upon-a-time-assets/landing/ballet-card.jpg" alt="Ballet dancers in a studio rehearsal" class="duotone-rose">
+          </div>
         </div>
-        <label class="nl-search" aria-label="Search programs" style="background:var(--snow);border:1px solid var(--line);border-radius:8px;padding:6px 12px;display:inline-flex;gap:8px;align-items:center">
-          <i class="ph ph-magnifying-glass"></i>
-          <input type="search" placeholder="Search programs" data-program-search style="border:0;background:transparent;outline:0;font-size:14px">
-        </label>
-      </div>
-      <div class="program-grid" data-skeleton-list="6" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px">
-        
-        <article class="prog-card" data-tracks="dance theater garden" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
-          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.45),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/jazz-hero.jpg') center/cover;background-blend-mode:multiply"></div>
-          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Seasonal Camps</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$250</span></div>
-            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">Multi-week immersion across dance, theater, and gardening tracks. Ages 8–15.</p>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip">Dance</span><span class="chip">Theater</span><span class="chip chip--garden">Garden</span></div>
-            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="seasonal-camps.html">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
-          </div>
-        </article>
-        <article class="prog-card" data-tracks="dance theater visual" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
-          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.45),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/story-jazz.jpg') center/cover;background-blend-mode:multiply"></div>
-          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Private Lessons</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$75</span></div>
-            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">One-on-one instruction with a working professional, hour-long sessions.</p>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip">Dance</span><span class="chip">Acting</span></div>
-            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="private-lessons.html">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
-          </div>
-        </article>
-        <article class="prog-card" data-tracks="dance" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
-          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.45),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/ballet-card.jpg') center/cover;background-blend-mode:multiply"></div>
-          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Beginner Ballet</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$120</span></div>
-            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">Fundamentals: posture, footwork, simple combinations. Ages 6–10.</p>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip">Dance</span><span class="chip">Beginner</span></div>
-            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="enrollment.html?class=ballet">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
-          </div>
-        </article>
-        <article class="prog-card" data-tracks="dance theater" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
-          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.45),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/story-jazz.jpg') center/cover;background-blend-mode:multiply"></div>
-          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Story Jazz</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$180</span></div>
-            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">Narrative-driven jazz performance for stage. Ages 10+.</p>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip">Dance</span><span class="chip">Theater</span></div>
-            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="enrollment.html?class=story-jazz">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
-          </div>
-        </article>
-        <article class="prog-card" data-tracks="garden" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
-          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(107,109,32,.5),rgba(107,109,32,.55)),url('once-upon-a-time-assets/landing/donor-bg.jpg') center/cover;background-blend-mode:multiply"></div>
-          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Community Garden</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$95</span></div>
-            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">Hands-on plant care, harvest, and culinary basics. Ages 8+.</p>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip chip--garden">Garden</span></div>
-            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="enrollment.html?class=garden">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
-          </div>
-        </article>
-        <article class="prog-card" data-tracks="visual" style="background:var(--snow);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column">
-          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.45),rgba(139,80,68,.5)),url('once-upon-a-time-assets/about/program-camps.jpg') center/cover;background-blend-mode:multiply"></div>
-          <div style="padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0">Visual Art Studio</h3><span style="font-size:13px;color:var(--ink-muted);font-weight:600">$140</span></div>
-            <p style="font-size:13px;color:var(--ink-muted);line-height:1.55;margin:0">Drawing, painting, sculpture in a studio setting. Ages 7+.</p>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><span class="chip">Visual Art</span></div>
-            <div style="display:flex;gap:8px;margin-top:auto;padding-top:14px"><a class="btn btn--sm" href="enrollment.html?class=visual-art">View details</a><button class="btn btn--sm btn--ghost" type="button" data-mock="add-to-cart"><i class="ph ph-plus"></i> Cart</button></div>
-          </div>
-        </article>
       </div>
     </section>
-    </main>
+
+    <!-- Open for enrollment -->
+    <section class="pg-section" id="open-enrollment">
+      <div class="wrap">
+        <h2>Open for Enrollment</h2>
+        <div class="pg-grid">
+
+          <article class="pg-card" data-tracks="dance theater garden">
+            <div class="pg-card__photo">
+              <img src="once-upon-a-time-assets/landing/jazz-hero.jpg" alt="Group of dancers rehearsing on stage" class="duotone-rose">
+            </div>
+            <div class="pg-card__head">
+              <h3 class="pg-card__title">Seasonal Camps</h3>
+              <div class="pg-card__price">Starting at<br><strong>$150/week</strong></div>
+            </div>
+            <div class="pg-card__chips">
+              <span class="pg-chip pg-chip--rose">Dance</span>
+              <span class="pg-chip pg-chip--rose">Theater</span>
+              <span class="pg-chip pg-chip--garden">Gardening</span>
+            </div>
+            <div class="pg-card__schedule">Thursdays | 4pm | Ages 10+ | Studio Room A</div>
+            <p class="pg-card__desc">Seasonal camps offer programs that combine dance, acting, and art activities. In this space, children can explore their creativity, build confidence, and connect with classmates through collaborative lessons.</p>
+            <div class="pg-card__meta">
+              <span><i class="ph ph-user" aria-hidden="true"></i>13 + Year Old</span>
+              <span><i class="ph ph-calendar-blank" aria-hidden="true"></i>Enrollment ends Feb 25th, 2026</span>
+            </div>
+            <div class="pg-card__actions">
+              <a class="btn" href="seasonal-camps.html">View More <i class="ph ph-caret-double-right" aria-hidden="true"></i></a>
+              <button class="icon-pill" type="button" aria-label="Save Seasonal Camps" data-bookmark="prog-seasonal-camps-thu"><i class="ph ph-bookmark-simple"></i></button>
+              <button class="icon-pill" type="button" aria-label="Share Seasonal Camps" data-share data-share-title="Seasonal Camps — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/seasonal-camps.html"><i class="ph ph-share-network"></i></button>
+            </div>
+          </article>
+
+          <article class="pg-card" data-tracks="acting">
+            <div class="pg-card__photo">
+              <img src="once-upon-a-time-assets/about/program-private.jpg" alt="A dancer with arms extended" class="duotone-rose">
+            </div>
+            <div class="pg-card__head">
+              <h3 class="pg-card__title">Private Lesson</h3>
+              <div class="pg-card__price">Starting at<br><strong>$30/lesson</strong></div>
+            </div>
+            <div class="pg-card__chips">
+              <span class="pg-chip pg-chip--rose">Acting</span>
+            </div>
+            <div class="pg-card__schedule">Thursdays | 4pm | Ages 10+ | Studio Room A</div>
+            <p class="pg-card__desc">Private lessons provide personalized guidance to support a child's skill development and confidence on stage. Instructors work at the child's pace, offering tailored materials, and focused instruction for learning.</p>
+            <div class="pg-card__meta">
+              <span><i class="ph ph-user" aria-hidden="true"></i>13 + Year Old</span>
+              <span><i class="ph ph-calendar-blank" aria-hidden="true"></i>Enrollment ends Feb 25th, 2026</span>
+            </div>
+            <div class="pg-card__actions">
+              <a class="btn" href="private-lessons.html">View More <i class="ph ph-caret-double-right" aria-hidden="true"></i></a>
+              <button class="icon-pill" type="button" aria-label="Save Private Lesson" data-bookmark="prog-private-lesson"><i class="ph ph-bookmark-simple"></i></button>
+              <button class="icon-pill" type="button" aria-label="Share Private Lesson" data-share data-share-title="Private Lessons — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/private-lessons.html"><i class="ph ph-share-network"></i></button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="pg-section" id="coming-soon">
+      <div class="wrap">
+        <h2>Coming Soon</h2>
+        <div class="pg-grid pg-grid--single">
+
+          <article class="pg-card" data-tracks="dance theater garden">
+            <div class="pg-card__photo">
+              <img src="once-upon-a-time-assets/about/program-camps.jpg" alt="Dancers rehearsing in formation" class="duotone-rose">
+            </div>
+            <div class="pg-card__head">
+              <h3 class="pg-card__title">Seasonal Camps</h3>
+              <div class="pg-card__price">Starting at<br><strong>$150/week</strong></div>
+            </div>
+            <div class="pg-card__chips">
+              <span class="pg-chip pg-chip--rose">Dance</span>
+              <span class="pg-chip pg-chip--rose">Theater</span>
+              <span class="pg-chip pg-chip--garden">Gardening</span>
+            </div>
+            <div class="pg-card__schedule">Fridays | 4pm | Ages 10+ | Studio Room A</div>
+            <p class="pg-card__desc">Seasonal camps offer programs that combine dance, acting, and art activities. In this space, children can explore their creativity, build confidence, and connect with classmates through collaborative lessons.</p>
+            <div class="pg-card__meta">
+              <span><i class="ph ph-user" aria-hidden="true"></i>13 + Year Old</span>
+              <span><i class="ph ph-calendar-blank" aria-hidden="true"></i>Enrollment ends Apr 25th, 2026</span>
+            </div>
+            <div class="pg-card__actions">
+              <a class="btn" href="seasonal-camps.html">View More <i class="ph ph-caret-double-right" aria-hidden="true"></i></a>
+              <button class="icon-pill" type="button" aria-label="Save Seasonal Camps Spring" data-bookmark="prog-seasonal-camps-fri"><i class="ph ph-bookmark-simple"></i></button>
+              <button class="icon-pill" type="button" aria-label="Share Seasonal Camps Spring" data-share data-share-title="Seasonal Camps Spring — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/seasonal-camps.html"><i class="ph ph-share-network"></i></button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Growing CTA banner -->
+    <section class="pg-grow">
+      <div class="wrap">
+        <h2>Once Upon A Time is Growing!</h2>
+        <p>We are committed to serving our community and helping the children of Queens grow their passion. If you don't see a program that fits your needs, let's build one together</p>
+        <a class="btn" href="contact.html">Contact Us <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="pg-testi">
+      <div class="wrap">
+        <div class="pg-testi__grid">
+          <figure class="pg-testi__card">
+            <div class="pg-testi__avatar"><img src="once-upon-a-time-assets/portraits/jane.png" alt="Jane, 16"></div>
+            <figcaption>
+              <p class="pg-testi__text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+              <div class="pg-testi__name">Jane, 16</div>
+            </figcaption>
+          </figure>
+          <figure class="pg-testi__card">
+            <div class="pg-testi__avatar"><img src="once-upon-a-time-assets/portraits/josh.png" alt="Josh, 13"></div>
+            <figcaption>
+              <p class="pg-testi__text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+              <div class="pg-testi__name">Josh, 13</div>
+            </figcaption>
+          </figure>
+          <figure class="pg-testi__card">
+            <div class="pg-testi__avatar"><img src="once-upon-a-time-assets/portraits/mariah.png" alt="Mariah, 13"></div>
+            <figcaption>
+              <p class="pg-testi__text">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+              <div class="pg-testi__name">Mariah, 13</div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
   <footer class="site-footer" role="contentinfo">
     <div class="wrap">
       <div class="footer__grid">
@@ -167,6 +320,7 @@
       <div class="site-footer__bottom">Once Upon A Time Inc. © 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>
     </div>
   </footer>
+
   <script>
     (function () {
       const t = document.querySelector('.nav-toggle'), n = document.getElementById('primary-nav');
@@ -176,29 +330,27 @@
         t.setAttribute('aria-expanded', o ? 'false' : 'true');
       });
     })();
-    
     (function(){
-      const filters = document.querySelectorAll('[data-pf]');
-      const cards = document.querySelectorAll('.prog-card');
-      let active = 'all';
-      filters.forEach(b => b.addEventListener('click', () => {
-        filters.forEach(f => f.setAttribute('aria-pressed','false'));
-        b.setAttribute('aria-pressed','true');
-        active = b.dataset.pf;
-        cards.forEach(c => {
-          c.style.display = (active === 'all' || c.dataset.tracks.includes(active)) ? '' : 'none';
-        });
-      }));
-      const s = document.querySelector('[data-program-search]');
-      if (s) s.addEventListener('input', () => {
-        const q = s.value.toLowerCase().trim();
-        cards.forEach(c => {
-          if (!q) { c.style.display = (active === 'all' || c.dataset.tracks.includes(active)) ? '' : 'none'; return; }
-          c.style.display = c.textContent.toLowerCase().includes(q) ? '' : 'none';
+      // Swap bookmark icon to filled when toggled by mock-system data-bookmark
+      document.addEventListener('click', (e) => {
+        const el = e.target.closest('[data-bookmark]');
+        if (!el) return;
+        const icon = el.querySelector('i.ph');
+        if (!icon) return;
+        // Defer until after mock-system flips aria-pressed
+        setTimeout(() => {
+          const pressed = el.getAttribute('aria-pressed') === 'true';
+          icon.className = pressed ? 'ph ph-bookmark-simple-fill' : 'ph ph-bookmark-simple';
+        }, 0);
+      });
+      // Restore filled icon on load if persisted
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('[data-bookmark][aria-pressed="true"]').forEach(el => {
+          const icon = el.querySelector('i.ph');
+          if (icon) icon.className = 'ph ph-bookmark-simple-fill';
         });
       });
     })();
-    
   </script>
 </body>
 </html>
