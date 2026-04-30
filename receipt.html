@@ -163,8 +163,13 @@
       .receipt__meta { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 480px) {
+      .receipt-wrap { padding: 0 12px; }
+      .receipt { padding: 20px 16px; }
       .receipt__meta { grid-template-columns: 1fr; }
-      .receipt__title { font-size: 26px; }
+      .receipt__title { font-size: 22px; }
+      .receipt__brand img { height: 56px; }
+      .receipt__items th, .receipt__items td { padding: 10px 6px; }
+      .receipt__items td .item-meta { font-size: 11px; }
     }
   </style>
 </head>
