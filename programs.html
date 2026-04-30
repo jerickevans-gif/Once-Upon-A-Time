@@ -40,13 +40,15 @@
     .pg-hero .btn { margin-top: 16px; }
     .pg-hero__photo { aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; background: var(--rose-700); position: relative; box-shadow: 0 12px 30px rgba(76, 47, 59, .12); }
     .pg-card__photo { aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: var(--rose-700); position: relative; }
+    /* Pre-baked rose duotones from design — render flat */
+    .pg-card__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Hero ballet image still uses CSS duotone treatment */
     .duotone-rose {
       width: 100%; height: 100%; object-fit: cover; display: block;
       filter: grayscale(1) contrast(1.05) brightness(1.08);
       mix-blend-mode: screen;
     }
-    .pg-hero__photo::after,
-    .pg-card__photo::after {
+    .pg-hero__photo::after {
       content: '';
       position: absolute; inset: 0;
       background: linear-gradient(140deg, rgba(229,170,156,.18) 0%, rgba(110,63,54,.32) 100%);
@@ -171,7 +173,7 @@
 
           <article class="pg-card" data-tracks="dance theater garden">
             <div class="pg-card__photo">
-              <img src="once-upon-a-time-assets/landing/jazz-hero.jpg" alt="Group of dancers rehearsing on stage" class="duotone-rose">
+              <img src="once-upon-a-time-assets/programs/enroll-seasonal-camps.png" alt="Group of dancers rehearsing on stage" loading="lazy">
             </div>
             <div class="pg-card__head">
               <h3 class="pg-card__title">Seasonal Camps</h3>
@@ -197,7 +199,7 @@
 
           <article class="pg-card" data-tracks="acting">
             <div class="pg-card__photo">
-              <img src="once-upon-a-time-assets/about/program-private.jpg" alt="A dancer with arms extended" class="duotone-rose">
+              <img src="once-upon-a-time-assets/programs/enroll-private-lesson.png" alt="A dancer with arms extended" loading="lazy">
             </div>
             <div class="pg-card__head">
               <h3 class="pg-card__title">Private Lesson</h3>
@@ -231,7 +233,7 @@
 
           <article class="pg-card" data-tracks="dance theater garden">
             <div class="pg-card__photo">
-              <img src="once-upon-a-time-assets/about/program-camps.jpg" alt="Dancers rehearsing in formation" class="duotone-rose">
+              <img src="once-upon-a-time-assets/programs/coming-seasonal-camps.png" alt="Dancers rehearsing in formation, aerial view" loading="lazy">
             </div>
             <div class="pg-card__head">
               <h3 class="pg-card__title">Seasonal Camps</h3>
