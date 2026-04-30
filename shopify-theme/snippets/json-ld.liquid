@@ -1,0 +1,25 @@
+{%- comment -%}
+  schema.org NGO + LocalBusiness structured data for Once Upon A Time.
+  Renders on every page via theme.liquid.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "{{ shop.name }}",
+  "alternateName": "{{ settings.alt_name | default: 'Once Upon A Time, Inc.' }}",
+  "url": "{{ shop.url }}",
+  "logo": "{{ 'logo-full-icon.png' | asset_url }}",
+  "description": "{{ shop.description | default: 'Nonprofit arts education for children — dance, music, theater, and visual art.' | escape }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ settings.street | default: '87-61 111th St' }}",
+    "addressLocality": "{{ settings.city | default: 'Richmond Hill' }}",
+    "addressRegion": "{{ settings.region | default: 'NY' }}",
+    "postalCode": "{{ settings.postal | default: '11418' }}",
+    "addressCountry": "{{ settings.country | default: 'US' }}"
+  },
+  "email": "{{ settings.email | default: 'contact@onceuponatime.org' }}",
+  "telephone": "{{ settings.phone | default: '+1-718-380-6929' }}"
+}
+</script>

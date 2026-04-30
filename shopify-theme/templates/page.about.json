@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "vision": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Our Vision & Mission",
+        "body": "<p>OUAT envisions a community where children feel welcome and free to dance, sing, and tell stories that bring people together. We exist to provide children and families across Queens with accessible, creative arts education.</p>",
+        "text_align": "left"
+      }
+    },
+    "values": {
+      "type": "feature-grid",
+      "settings": {
+        "eyebrow": "Our Values",
+        "heading": "OUAT dedicates its support through core programs and community engagement.",
+        "columns": 3
+      },
+      "blocks": {
+        "v1": { "type": "feature", "settings": { "icon": "ph-star", "title": "Creative Programs", "body": "Programs and seasonal courses in dance, theatre, and art that inspire creativity in young people." } },
+        "v2": { "type": "feature", "settings": { "icon": "ph-users-three", "title": "Community Engagement", "body": "Engaging with communities through performances, workshops, and cultural arts experiences across Queens." } },
+        "v3": { "type": "feature", "settings": { "icon": "ph-sparkle", "title": "Personal Growth", "body": "Supporting children's growth with skilled instructors who foster discipline, mastery, and personal growth." } }
+      },
+      "block_order": ["v1", "v2", "v3"]
+    }
+  },
+  "order": ["vision", "values"]
+}

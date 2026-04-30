@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "Making a Difference Together",
+        "heading": "Help Us Create Lasting Impact",
+        "body": "<p>Your donation directly funds arts education programs for children in Queens — from seasonal camps and private lessons to scholarships and instruments.</p>",
+        "text_align": "center"
+      }
+    },
+    "feature-impact": {
+      "type": "feature-grid",
+      "settings": {
+        "eyebrow": "Our Impact in Action",
+        "columns": 4
+      },
+      "blocks": {
+        "i1": { "type": "feature", "settings": { "icon": "ph-heartbeat", "title": "Healthcare Access", "body": "Mental health support and physical-wellness programming." } },
+        "i2": { "type": "feature", "settings": { "icon": "ph-book-open", "title": "Education Programs", "body": "Year-round arts curriculum reaching 100+ students." } },
+        "i3": { "type": "feature", "settings": { "icon": "ph-hand-heart", "title": "Emergency Relief", "body": "Direct family assistance during crises." } },
+        "i4": { "type": "feature", "settings": { "icon": "ph-house-line", "title": "Housing Support", "body": "Tutoring, food, and after-school care." } }
+      },
+      "block_order": ["i1", "i2", "i3", "i4"]
+    }
+  },
+  "order": ["intro", "feature-impact"]
+}

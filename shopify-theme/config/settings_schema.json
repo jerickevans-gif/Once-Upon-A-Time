@@ -1,0 +1,29 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Once Upon A Time",
+    "theme_version": "1.0.0",
+    "theme_author": "Once Upon A Time, Inc.",
+    "theme_documentation_url": "https://github.com/jerickevans-gif/Once-Upon-A-Time",
+    "theme_support_url": "mailto:contact@onceuponatime.org"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "header", "content": "Identity" },
+      { "type": "text", "id": "alt_name", "label": "Legal name", "default": "Once Upon A Time, Inc." },
+      { "type": "image_picker", "id": "share_image", "info": "Used in social-share previews. 1200x630 recommended." },
+
+      { "type": "header", "content": "Address" },
+      { "type": "text", "id": "street", "label": "Street", "default": "87-61 111th St" },
+      { "type": "text", "id": "city", "label": "City", "default": "Richmond Hill" },
+      { "type": "text", "id": "region", "label": "Region", "default": "NY" },
+      { "type": "text", "id": "postal", "label": "Postal code", "default": "11418" },
+      { "type": "text", "id": "country", "label": "Country", "default": "US" },
+
+      { "type": "header", "content": "Contact" },
+      { "type": "text", "id": "email", "label": "Email", "default": "contact@onceuponatime.org" },
+      { "type": "text", "id": "phone", "label": "Phone", "default": "+1-718-380-6929" }
+    ]
+  }
+]

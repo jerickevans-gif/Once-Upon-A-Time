@@ -1,0 +1,36 @@
+{%- comment -%}
+  Open Graph + Twitter Card meta tags. Renders different content
+  per template / page resource. Drop into <head>.
+{%- endcomment -%}
+
+{%- if template == 'index' -%}
+  {%- assign meta_title = shop.name -%}
+  {%- assign meta_desc = shop.description | default: 'Nonprofit arts education for children — dance, music, theater, and visual art in Queens, NY.' -%}
+{%- elsif page_title -%}
+  {%- assign meta_title = page_title | append: ' — ' | append: shop.name -%}
+  {%- assign meta_desc = page_description | default: shop.description -%}
+{%- else -%}
+  {%- assign meta_title = shop.name -%}
+  {%- assign meta_desc = shop.description -%}
+{%- endif -%}
+
+{%- assign meta_image = settings.share_image | default: '' -%}
+{%- if meta_image == blank -%}
+  {%- assign meta_image_url = 'landing-jazz-hero.jpg' | asset_url -%}
+{%- else -%}
+  {%- assign meta_image_url = meta_image | image_url: width: 1200 -%}
+{%- endif -%}
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:title" content="{{ meta_title | escape }}">
+<meta property="og:description" content="{{ meta_desc | escape }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:image" content="{{ meta_image_url }}">
+<meta property="og:image:alt" content="{{ shop.name }}">
+<meta property="og:locale" content="{{ request.locale.iso_code | default: 'en_US' }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ meta_title | escape }}">
+<meta name="twitter:description" content="{{ meta_desc | escape }}">
+<meta name="twitter:image" content="{{ meta_image_url }}">

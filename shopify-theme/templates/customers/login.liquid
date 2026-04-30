@@ -1,0 +1,22 @@
+<section class="wrap" style="padding: var(--s-9) 0; max-width: 480px;">
+  <h1 style="text-align: center; margin-bottom: var(--s-5);">Sign In</h1>
+
+  {% form 'customer_login', class: 'form-card' %}
+    {% if form.errors %}
+      <p data-state="error">{{ form.errors | default_errors }}</p>
+    {% endif %}
+    <label class="field" for="customer-email" style="display: block; margin-bottom: var(--s-3);">
+      <span class="sr-only">Email</span>
+      <input id="customer-email" class="input" type="email" name="customer[email]" placeholder="Email" autocomplete="email" required>
+    </label>
+    <label class="field" for="customer-password" style="display: block; margin-bottom: var(--s-3);">
+      <span class="sr-only">Password</span>
+      <input id="customer-password" class="input" type="password" name="customer[password]" placeholder="Password" autocomplete="current-password" required>
+    </label>
+    <button class="btn btn--block" type="submit" style="width: 100%;">Sign In</button>
+  {% endform %}
+
+  <p style="text-align: center; margin-top: var(--s-4);">
+    <a href="{{ routes.account_register_url }}" class="link">Create an account</a>
+  </p>
+</section>

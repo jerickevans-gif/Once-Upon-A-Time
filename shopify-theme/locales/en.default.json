@@ -1,0 +1,17 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to main content",
+      "close": "Close",
+      "open_menu": "Open menu",
+      "close_menu": "Close menu"
+    },
+    "search": { "placeholder": "Search" },
+    "social": { "follow_us": "Follow us", "share": "Share" },
+    "newsletter_form": { "label": "Email", "newsletter_email": "Email" }
+  },
+  "templates": {
+    "cart": { "title": "Your Cart", "empty": "Your cart is empty.", "subtotal": "Subtotal", "checkout": "Checkout" },
+    "404": { "title": "Page not found", "subtext": "The page you're looking for doesn't exist or has moved." }
+  }
+}

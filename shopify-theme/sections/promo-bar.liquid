@@ -1,0 +1,20 @@
+{%- if section.settings.show_promo -%}
+<div class="promo-bar" role="region" aria-label="Announcement">
+  <div class="wrap promo-bar__inner">
+    <span><strong>{{ section.settings.label | default: 'Happening Now:' }}</strong> {{ section.settings.message }}</span>
+    <span>{{ section.settings.message_secondary }} <button class="promo-bar__close" type="button" aria-label="Dismiss announcement"><span aria-hidden="true">&times;</span></button></span>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Promo bar",
+  "settings": [
+    { "type": "checkbox", "id": "show_promo", "label": "Show promo bar", "default": true },
+    { "type": "text", "id": "label", "label": "Eyebrow label", "default": "Happening Now:" },
+    { "type": "text", "id": "message", "label": "Primary message", "default": "Jazz Dancing (16+) · Instructor: Mia Kim" },
+    { "type": "text", "id": "message_secondary", "label": "Secondary message", "default": "Next class: Intermediate Ballet (10+)" }
+  ]
+}
+{% endschema %}

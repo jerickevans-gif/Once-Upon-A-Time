@@ -1,0 +1,57 @@
+<header class="site-header" role="banner">
+  <div class="wrap site-header__inner">
+
+    <a href="{{ routes.root_url }}" class="brand" aria-label="{{ shop.name }}, home">
+      <img src="{{ 'logo-full-icon.png' | asset_url }}" alt="{{ shop.name }}" loading="eager" width="180" height="48">
+    </a>
+
+    <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation menu">
+      <i class="ph ph-list" aria-hidden="true"></i>
+    </button>
+
+    <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="header-actions">
+      <a href="{{ routes.cart_url }}" class="icon-btn" aria-label="Cart, {{ cart.item_count }} items">
+        <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
+        <span>Cart</span>
+        {%- if cart.item_count > 0 -%}
+          <span class="badge" aria-hidden="true">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+
+      <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings">
+        <i class="ph ph-gear" aria-hidden="true"></i>
+      </button>
+
+      {%- if customer -%}
+        <a href="{{ routes.account_url }}" class="avatar" aria-label="Account">
+          <i class="ph ph-user" aria-hidden="true"></i>
+        </a>
+      {%- else -%}
+        <a href="{{ routes.account_login_url }}" class="avatar" aria-label="Sign in">
+          <i class="ph ph-user" aria-hidden="true"></i>
+        </a>
+      {%- endif -%}
+
+      {%- if customer -%}
+        <a class="btn btn--signin" href="{{ routes.account_logout_url }}">Sign out</a>
+      {%- else -%}
+        <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
+      {%- endif -%}
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Primary navigation", "default": "main-menu" }
+  ]
+}
+{% endschema %}

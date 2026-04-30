@@ -1,0 +1,71 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand-block">
+        <div class="footer-brand"><img src="{{ 'logo-full-icon.png' | asset_url }}" alt="" loading="lazy"></div>
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'links' -%}
+          <div {{ block.shopify_attributes }}>
+            <h4>{{ block.settings.heading }}</h4>
+            <ul>
+              {%- for link in block.settings.menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+      <div class="footer__address-block">
+        <div class="footer__address">
+          {{ section.settings.street | default: '87-61 111th St, Richmond Hill' }}<br>
+          {{ section.settings.city_state | default: 'NY 11418, United States' }}
+        </div>
+        <nav class="footer__socials" aria-label="Social media">
+          {%- if section.settings.youtube != blank -%}<a href="{{ section.settings.youtube }}" aria-label="YouTube" target="_blank" rel="noopener"><i class="ph ph-youtube-logo"></i></a>{%- endif -%}
+          {%- if section.settings.facebook != blank -%}<a href="{{ section.settings.facebook }}" aria-label="Facebook" target="_blank" rel="noopener"><i class="ph ph-facebook-logo"></i></a>{%- endif -%}
+          {%- if section.settings.twitter != blank -%}<a href="{{ section.settings.twitter }}" aria-label="Twitter" target="_blank" rel="noopener"><i class="ph ph-twitter-logo"></i></a>{%- endif -%}
+          {%- if section.settings.instagram != blank -%}<a href="{{ section.settings.instagram }}" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>{%- endif -%}
+          {%- if section.settings.email != blank -%}<a href="mailto:{{ section.settings.email }}" aria-label="Email"><i class="ph ph-envelope"></i></a>{%- endif -%}
+        </nav>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      {{ shop.name }} &copy; {{ 'now' | date: '%Y' }}. All rights reserved. {{ section.settings.legal_line }}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "street", "label": "Street", "default": "87-61 111th St, Richmond Hill" },
+    { "type": "text", "id": "city_state", "label": "City / State / Country", "default": "NY 11418, United States" },
+    { "type": "url", "id": "youtube", "label": "YouTube" },
+    { "type": "url", "id": "facebook", "label": "Facebook" },
+    { "type": "url", "id": "twitter", "label": "Twitter / X" },
+    { "type": "url", "id": "instagram", "label": "Instagram" },
+    { "type": "email", "id": "email", "label": "Email", "default": "contact@onceuponatime.org" },
+    { "type": "text", "id": "legal_line", "label": "Legal disclaimer", "default": "Nonprofit legal disclaimer and tax ID." }
+  ],
+  "blocks": [
+    {
+      "type": "links",
+      "name": "Link list",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "About" },
+        { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "links", "settings": { "heading": "About" } },
+      { "type": "links", "settings": { "heading": "Get Involved" } }
+    ]
+  }
+}
+{% endschema %}

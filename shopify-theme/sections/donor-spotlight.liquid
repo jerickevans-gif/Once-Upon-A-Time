@@ -1,0 +1,70 @@
+<section class="donor" style="background-image: linear-gradient(rgba(139,80,68,.55), rgba(139,80,68,.62)), url('{{ section.settings.bg_image | default: 'landing-queens-skyline.jpg' | asset_url }}'); background-size: cover; background-position: center;">
+  <div class="wrap">
+    <h2>{{ section.settings.heading | default: 'Donor Spotlight' }}</h2>
+    <p class="donor__lede">{{ section.settings.lede }}</p>
+
+    <div class="donor__stats">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'stat' -%}
+          <div class="donor__stat" {{ block.shopify_attributes }}>
+            <strong>{{ block.settings.value }}</strong>
+            <span>{{ block.settings.label }}</span>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- assign quote_blocks = section.blocks | where: 'type', 'quote' -%}
+    {%- if quote_blocks.size > 0 -%}
+    <div class="donor__testimonials">
+      {%- for block in quote_blocks -%}
+        <figure class="testimonial" {{ block.shopify_attributes }}>
+          {%- if block.settings.avatar != blank -%}
+            <div class="testimonial__avatar" style="background-image:url('{{ block.settings.avatar | image_url: width: 192 }}')"></div>
+          {%- endif -%}
+          <p>&ldquo;{{ block.settings.quote }}&rdquo;</p>
+          <cite>{{ block.settings.cite }}</cite>
+        </figure>
+      {%- endfor -%}
+    </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Donor Spotlight",
+  "settings": [
+    { "type": "image_picker", "id": "bg_image", "label": "Background image (skyline)" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Donor Spotlight" },
+    { "type": "textarea", "id": "lede", "label": "Lede paragraph" }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "value", "label": "Value", "default": "100+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Students served each year" }
+      ]
+    },
+    {
+      "type": "quote",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "image_picker", "id": "avatar", "label": "Portrait" },
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "cite", "label": "Attribution", "default": "Name, age" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Donor Spotlight",
+      "blocks": [
+        { "type": "stat" }, { "type": "stat" }, { "type": "stat" },
+        { "type": "quote" }, { "type": "quote" }, { "type": "quote" }
+      ]
+    }
+  ]
+}
+{% endschema %}

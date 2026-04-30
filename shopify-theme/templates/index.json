@@ -1,0 +1,63 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-card",
+      "settings": {
+        "eyebrow": "10 spots left",
+        "heading": "Jazz Class — Winter 2026",
+        "subhead": "Thursdays | 4pm | Ages 10+ | Studio Room A",
+        "lede": "A six-week immersion in jazz fundamentals — rhythm, articulation, and stagecraft — taught by working professionals.",
+        "cta1_label": "Enroll Now",
+        "cta1_icon": "ph-ticket",
+        "cta2_label": "Add to Cart",
+        "cta2_icon": "ph-shopping-cart-simple",
+        "cta3_label": "Learn More"
+      }
+    },
+    "who-we-are": {
+      "type": "feature-grid",
+      "settings": {
+        "eyebrow": "Our Story",
+        "heading": "Who We Are",
+        "columns": 3
+      },
+      "blocks": {
+        "f1": { "type": "feature", "settings": { "icon": "ph-smiley", "body": "Empowering children through dance and theatre programs" } },
+        "f2": { "type": "feature", "settings": { "icon": "ph-users-three", "body": "Year-round performances that establish teamwork and skill development" } },
+        "f3": { "type": "feature", "settings": { "icon": "ph-leaf", "body": "Community-driven arts education rooted in inclusivity and care" } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    },
+    "donor": {
+      "type": "donor-spotlight",
+      "settings": {
+        "heading": "Donor Spotlight",
+        "lede": "Rhoncus morbi et augue nec, in id ullamcorper at sit. Condimentum sit nunc in eros scelerisque sed."
+      },
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "value": "100+", "label": "Students served each year" } },
+        "s2": { "type": "stat", "settings": { "value": "100+", "label": "Students served each year" } },
+        "s3": { "type": "stat", "settings": { "value": "100+", "label": "Students served each year" } },
+        "q1": { "type": "quote", "settings": { "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "cite": "Jimin, 17" } },
+        "q2": { "type": "quote", "settings": { "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "cite": "Mary, 19" } },
+        "q3": { "type": "quote", "settings": { "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", "cite": "Noelle, 18" } }
+      },
+      "block_order": ["s1", "s2", "s3", "q1", "q2", "q3"]
+    },
+    "mission": {
+      "type": "feature-grid",
+      "settings": {
+        "eyebrow": "Get Involved",
+        "heading": "Support Our Mission",
+        "columns": 3
+      },
+      "blocks": {
+        "m1": { "type": "feature", "settings": { "icon": "ph-hand-heart", "title": "What drives us to do the work that we do?", "body": "To provide a learning experience space to empower children through creative art, playing in the big stage, and rhythm dance that expresses emotion." } },
+        "m2": { "type": "feature", "settings": { "icon": "ph-flower-lotus", "title": "Who benefits?", "body": "To provide a learning experience space to empower children through creative art, playing in the big stage, and rhythm dance that expresses emotion." } },
+        "m3": { "type": "feature", "settings": { "icon": "ph-handshake", "title": "What changes because they exist?", "body": "The outcome is reflected based on our programs and seasonal camps, allowing children to establish teamwork, being driven through creativity, and engaging experiences for families to share across the communities in Queens." } }
+      },
+      "block_order": ["m1", "m2", "m3"]
+    }
+  },
+  "order": ["hero", "who-we-are", "donor", "mission"]
+}

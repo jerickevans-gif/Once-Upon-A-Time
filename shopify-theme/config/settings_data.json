@@ -1,0 +1,24 @@
+{
+  "current": {
+    "alt_name": "Once Upon A Time, Inc.",
+    "street": "87-61 111th St",
+    "city": "Richmond Hill",
+    "region": "NY",
+    "postal": "11418",
+    "country": "US",
+    "email": "contact@onceuponatime.org",
+    "phone": "+1-718-380-6929"
+  },
+  "presets": {
+    "Default": {
+      "alt_name": "Once Upon A Time, Inc.",
+      "street": "87-61 111th St",
+      "city": "Richmond Hill",
+      "region": "NY",
+      "postal": "11418",
+      "country": "US",
+      "email": "contact@onceuponatime.org",
+      "phone": "+1-718-380-6929"
+    }
+  }
+}

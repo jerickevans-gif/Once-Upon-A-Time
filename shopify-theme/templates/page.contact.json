@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "form": {
+      "type": "contact-form",
+      "settings": {
+        "heading": "Contact Us",
+        "copy_heading": "Let's Talk With Us",
+        "copy_lede": "Questions, comments, or suggestions? Simply fill in the form and we'll be in touch shortly.",
+        "address": "87-61 111th St, Richmond Hill, NY 11418",
+        "phone": "+1 718-380-6929",
+        "email": "contact@onceuponatime.org"
+      }
+    }
+  },
+  "order": ["form"]
+}

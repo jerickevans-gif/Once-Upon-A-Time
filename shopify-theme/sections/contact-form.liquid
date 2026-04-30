@@ -1,0 +1,86 @@
+<section class="wrap">
+  <div class="hero" style="background: var(--beginning); padding: var(--s-7) 0;">
+    <div class="wrap" style="display: grid; grid-template-columns: 1.05fr 1fr; gap: var(--s-5); align-items: stretch;">
+      <div style="background: url('{{ section.settings.image | default: 'landing-queens-skyline.jpg' | asset_url }}') center/cover no-repeat; aspect-ratio: 3/2; border-radius: var(--radius-lg);"></div>
+      <div style="position: relative; display: grid; place-items: center; min-height: 320px; overflow: hidden; border-radius: var(--radius-lg);">
+        <div style="position: absolute; inset: 0; background: linear-gradient(315deg, #b8b779 0%, var(--garden) 55%, #4a4d12 100%); clip-path: polygon(0% 50%, 12% 0%, 88% 0%, 100% 50%, 88% 100%, 12% 100%);"></div>
+        <h1 style="position: relative; z-index: 1; font-family: var(--serif); font-weight: 400; font-size: clamp(32px, 4.4vw, 54px); letter-spacing: .05em; color: var(--ink); text-transform: uppercase; margin: 0; padding: 0 var(--s-7); text-align: center;">
+          {{ section.settings.heading | default: 'Contact Us' }}
+        </h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div style="display: grid; grid-template-columns: 1fr 1.05fr; gap: var(--s-7); padding: var(--s-8) 0; align-items: start;">
+    <div>
+      <h2 style="margin-bottom: var(--s-4); text-transform: uppercase;">{{ section.settings.copy_heading | default: "Let's Talk With Us" }}</h2>
+      <p style="color: var(--ink); margin-bottom: var(--s-6); max-width: 42ch; font-size: var(--t-lg);">{{ section.settings.copy_lede }}</p>
+      <div style="display: grid; gap: var(--s-3); margin-top: var(--s-5);">
+        <div style="display: flex; gap: var(--s-3); align-items: center;">
+          <i class="ph ph-map-pin" aria-hidden="true" style="font-size: 14px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; color: var(--rose-700); border: 1.5px solid var(--rose); border-radius: 50%;"></i>
+          <span style="font-size: var(--t-base);">{{ section.settings.address }}</span>
+        </div>
+        <div style="display: flex; gap: var(--s-3); align-items: center;">
+          <i class="ph ph-phone" aria-hidden="true" style="font-size: 14px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; color: var(--rose-700); border: 1.5px solid var(--rose); border-radius: 50%;"></i>
+          <span style="font-size: var(--t-base);">{{ section.settings.phone }}</span>
+        </div>
+        <div style="display: flex; gap: var(--s-3); align-items: center;">
+          <i class="ph ph-envelope-simple" aria-hidden="true" style="font-size: 14px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; color: var(--rose-700); border: 1.5px solid var(--rose); border-radius: 50%;"></i>
+          <span style="font-size: var(--t-base);">{{ section.settings.email }}</span>
+        </div>
+      </div>
+    </div>
+
+    {% form 'contact', class: 'form-card' %}
+      {% if form.posted_successfully? %}
+        <p data-state="success">Thanks — we'll be in touch shortly.</p>
+      {% endif %}
+      {% if form.errors %}
+        <p data-state="error">{{ form.errors | default_errors }}</p>
+      {% endif %}
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-3); margin-bottom: var(--s-3);">
+        <label class="field" for="contact-first">
+          <span class="sr-only">First name</span>
+          <input id="contact-first" class="input" type="text" name="contact[first-name]" placeholder="First Name*" autocomplete="given-name" required>
+        </label>
+        <label class="field" for="contact-last">
+          <span class="sr-only">Last name</span>
+          <input id="contact-last" class="input" type="text" name="contact[last-name]" placeholder="Last Name*" autocomplete="family-name" required>
+        </label>
+      </div>
+      <label class="field" for="contact-email" style="margin-bottom: var(--s-3); display:block;">
+        <span class="sr-only">Email</span>
+        <input id="contact-email" class="input" type="email" name="contact[email]" placeholder="Email*" autocomplete="email" required>
+      </label>
+      <label class="field" for="contact-phone" style="margin-bottom: var(--s-3); display:block;">
+        <span class="sr-only">Phone</span>
+        <input id="contact-phone" class="input" type="tel" name="contact[phone]" placeholder="Phone Number" autocomplete="tel">
+      </label>
+      <label class="field" for="contact-message" style="display:block;">
+        <span class="sr-only">Message</span>
+        <textarea id="contact-message" class="textarea" name="contact[body]" placeholder="Your message..." rows="5" required></textarea>
+      </label>
+      <div style="display: flex; justify-content: flex-end; margin-top: var(--s-4);">
+        <button class="btn" type="submit">Send Message</button>
+      </div>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact form",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Hero photo (left)" },
+    { "type": "text", "id": "heading", "label": "Hero heading", "default": "Contact Us" },
+    { "type": "text", "id": "copy_heading", "label": "Copy heading", "default": "Let's Talk With Us" },
+    { "type": "textarea", "id": "copy_lede", "label": "Copy lede", "default": "Questions, comments, or suggestions? Simply fill in the form and we'll be in touch shortly." },
+    { "type": "text", "id": "address", "label": "Address", "default": "87-61 111th St, Richmond Hill, NY 11418" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "+1 718-380-6929" },
+    { "type": "text", "id": "email", "label": "Email", "default": "contact@onceuponatime.org" }
+  ],
+  "presets": [{ "name": "Contact form" }]
+}
+{% endschema %}
