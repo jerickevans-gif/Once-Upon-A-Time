@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Olive Q&A speech-bubble illustration matching contact PDF Iteration B.
+     Used in the "Answer to common questions!" section. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 320" role="img" aria-labelledby="qa-title" preserveAspectRatio="xMidYMid meet">
+  <title id="qa-title">Q and A speech bubbles</title>
+  <!-- Olive amorphous splat backdrop -->
+  <path fill="#A6A968" opacity="0.95"
+        d="M 60 110
+           C 38 75, 92 38, 138 48
+           C 168 24, 240 30, 268 70
+           C 314 80, 332 138, 308 188
+           C 320 238, 280 286, 232 286
+           C 196 320, 124 320, 90 280
+           C 40 270, 26 218, 50 168
+           C 30 140, 38 118, 60 110 Z" />
+
+  <!-- Q speech bubble (cream / blush) -->
+  <g transform="translate(78 90)">
+    <!-- Bubble body with tail -->
+    <path fill="#F4E0DA" stroke="#7A5A50" stroke-width="2" stroke-linejoin="round"
+          d="M 0 18
+             Q 0 0, 18 0
+             L 132 0
+             Q 150 0, 150 18
+             L 150 92
+             Q 150 110, 132 110
+             L 78 110
+             L 70 132
+             L 64 110
+             L 18 110
+             Q 0 110, 0 92 Z" />
+    <!-- "Q" letter -->
+    <text x="75" y="78" text-anchor="middle"
+          font-family="Voltra, Georgia, serif"
+          font-size="78" font-weight="400"
+          fill="#7A2E1F">Q</text>
+  </g>
+
+  <!-- A speech bubble (dark olive) -->
+  <g transform="translate(174 158)">
+    <!-- Bubble body with tail -->
+    <path fill="#5A5C12" stroke="#3F4108" stroke-width="2" stroke-linejoin="round"
+          d="M 0 18
+             Q 0 0, 18 0
+             L 122 0
+             Q 140 0, 140 18
+             L 140 80
+             Q 140 98, 122 98
+             L 60 98
+             L 52 116
+             L 48 98
+             L 18 98
+             Q 0 98, 0 80 Z" />
+    <!-- "A" letter -->
+    <text x="70" y="72" text-anchor="middle"
+          font-family="Voltra, Georgia, serif"
+          font-size="68" font-weight="400"
+          fill="#F4E0DA">A</text>
+  </g>
+</svg>

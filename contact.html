@@ -63,11 +63,14 @@
       min-height: 320px;
       overflow: hidden;
     }
+    /* Marquee/hourglass shape with concave left+right edges, per PDF design.
+       Built as inline SVG so the curves stay smooth at any size. */
     .hero__rhombus::before {
       content: "";
       position: absolute; inset: 0;
-      background: linear-gradient(315deg, #b8b779 0%, var(--garden) 55%, #4a4d12 100%);
-      clip-path: polygon(0% 50%, 12% 0%, 88% 0%, 100% 50%, 88% 100%, 12% 100%);
+      background:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 320' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%23b8b779'/><stop offset='55%25' stop-color='%236B6D20'/><stop offset='100%25' stop-color='%234a4d12'/></linearGradient></defs><path fill='url(%23g)' d='M 0 0 L 600 0 Q 540 160, 600 320 L 0 320 Q 60 160, 0 0 Z'/></svg>")
+        no-repeat center / 100% 100%;
     }
     .hero__rhombus h1 {
       position: relative; z-index: 1;
@@ -304,7 +307,7 @@
     <section class="wrap">
       <div class="faq-block">
         <div class="faq-block__art">
-          <img src="once-upon-a-time-assets/contact/qa-illustration.png" alt="" aria-hidden="true">
+          <img src="once-upon-a-time-assets/contact/qa-bubbles.svg" alt="" aria-hidden="true" width="360" height="320">
         </div>
         <div>
           <h2 class="faq-block__title">Answer to common questions!</h2>
@@ -369,7 +372,7 @@
           <h3>Still have questions?</h3>
           <p>Please write to our friendly support team or call us at +1 — 123-456-789.</p>
         </div>
-        <a class="btn btn--garden" href="mailto:contact@onceuponatime.org">
+        <a class="btn" href="mailto:contact@onceuponatime.org">
           Send Email <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
         </a>
       </div>
