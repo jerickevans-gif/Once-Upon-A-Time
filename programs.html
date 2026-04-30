@@ -97,6 +97,22 @@
     .pg-grow .btn { background: var(--snow); color: var(--rose-700); padding: 12px 28px; }
     .pg-grow .btn:hover { background: var(--rose-100); color: var(--rose-700); }
 
+    /* Filter bar */
+    .pg-filter { padding: 32px 0 0; }
+    .pg-filter__row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+    .pg-filter__chips { display: inline-flex; gap: 8px; flex-wrap: wrap; }
+    .pg-chipbtn { background: var(--snow); border: 1px solid var(--rose-100); color: var(--ink); font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: 999px; cursor: pointer; font-family: var(--sans); transition: background .15s ease, color .15s ease, border-color .15s ease; }
+    .pg-chipbtn:hover { border-color: var(--rose-300); }
+    .pg-chipbtn[aria-pressed="true"] { background: var(--rose); color: var(--snow); border-color: var(--rose); }
+    .pg-search { display: inline-flex; align-items: center; gap: 8px; background: var(--snow); border: 1px solid var(--rose-100); border-radius: 999px; padding: 8px 16px; min-width: 240px; }
+    .pg-search:focus-within { border-color: var(--rose); box-shadow: 0 0 0 3px var(--rose-100); }
+    .pg-search i { color: var(--ink-muted); font-size: 16px; }
+    .pg-search input { border: 0; background: transparent; outline: 0; font-size: 14px; flex: 1; font-family: var(--sans); color: var(--ink); }
+    .pg-search input::placeholder { color: var(--ink-muted); }
+    .pg-empty { padding: 36px 24px; text-align: center; background: var(--rose-50); border-radius: 14px; color: var(--ink-muted); font-size: 14px; }
+    .pg-empty strong { color: var(--ink); }
+    .pg-section[hidden] { display: none; }
+
     /* Testimonials */
     .pg-testi { background: var(--rose-100); padding: 56px 0; }
     .pg-testi__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start; }
@@ -126,7 +142,7 @@
         <a href="about.html">About Us</a><a href="programs.html" aria-current="page">Programs</a><a href="donate.html">Donation</a><a href="newsletter.html">Newsletter</a><a href="contact.html">Contact</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart"><i class="ph ph-shopping-cart-simple"></i><span>Cart</span><span class="badge">9</span></button>
+        <a href="search.html" class="icon-btn icon-btn--icon-only" aria-label="Search"><i class="ph ph-magnifying-glass"></i></a><button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart"><i class="ph ph-shopping-cart-simple"></i><span>Cart</span><span class="badge">9</span></button>
         <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear"></i></a>
         <a href="profile.html" class="avatar" aria-label="Account"><i class="ph ph-user"></i><span class="badge">9</span></a>
         <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
@@ -153,8 +169,28 @@
       </div>
     </section>
 
+    <!-- Filter / search bar -->
+    <section class="pg-filter" aria-label="Filter programs">
+      <div class="wrap">
+        <div class="pg-filter__row">
+          <div class="pg-filter__chips" role="tablist" aria-label="Filter by track">
+            <button class="pg-chipbtn" type="button" data-track="all" aria-pressed="true">All</button>
+            <button class="pg-chipbtn" type="button" data-track="dance" aria-pressed="false">Dance</button>
+            <button class="pg-chipbtn" type="button" data-track="theater" aria-pressed="false">Theater</button>
+            <button class="pg-chipbtn" type="button" data-track="acting" aria-pressed="false">Acting</button>
+            <button class="pg-chipbtn" type="button" data-track="garden" aria-pressed="false">Gardening</button>
+          </div>
+          <label class="pg-search">
+            <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+            <input type="search" data-program-search placeholder="Search programs" aria-label="Search programs">
+          </label>
+        </div>
+        <p class="pg-filter__count" data-program-count style="margin:14px 0 0;font-size:13px;color:var(--ink-muted);min-height:1em" aria-live="polite"></p>
+      </div>
+    </section>
+
     <!-- Open for enrollment -->
-    <section class="pg-section" id="open-enrollment">
+    <section class="pg-section" id="open-enrollment" data-program-section>
       <div class="wrap">
         <h2>Open for Enrollment</h2>
         <div class="pg-grid">
@@ -214,7 +250,7 @@
     </section>
 
     <!-- Coming Soon -->
-    <section class="pg-section" id="coming-soon">
+    <section class="pg-section" id="coming-soon" data-program-section>
       <div class="wrap">
         <h2>Coming Soon</h2>
         <div class="pg-grid pg-grid--single">
@@ -340,6 +376,66 @@
           if (icon) icon.className = 'ph ph-bookmark-simple-fill';
         });
       });
+    })();
+
+    /* Programs filter + search */
+    (function(){
+      const chips = document.querySelectorAll('.pg-chipbtn');
+      const search = document.querySelector('[data-program-search]');
+      const cards = document.querySelectorAll('.pg-card');
+      const sections = document.querySelectorAll('[data-program-section]');
+      const countEl = document.querySelector('[data-program-count]');
+      let activeTrack = 'all';
+
+      function applyFilters() {
+        const q = (search?.value || '').toLowerCase().trim();
+        let visible = 0;
+        cards.forEach(card => {
+          const tracks = (card.dataset.tracks || '').toLowerCase();
+          const text = card.textContent.toLowerCase();
+          const trackOk = activeTrack === 'all' || tracks.split(/\s+/).includes(activeTrack);
+          const searchOk = !q || text.includes(q);
+          const show = trackOk && searchOk;
+          card.hidden = !show;
+          if (show) visible++;
+        });
+        // Hide entire sections that have no visible cards (and remove their empty-state if any)
+        sections.forEach(sec => {
+          const any = Array.from(sec.querySelectorAll('.pg-card')).some(c => !c.hidden);
+          sec.hidden = !any;
+        });
+        // Empty-state below the chips when nothing matches
+        if (countEl) {
+          if (!visible) {
+            countEl.innerHTML = `<span class="pg-empty" style="display:inline-block">No programs match <strong>${q ? '“' + q.replace(/[<>&"']/g, '') + '”' : 'your filter'}</strong>. <button type="button" class="btn btn--text" data-clear style="padding:0 6px">Clear filters</button></span>`;
+          } else if (activeTrack !== 'all' || q) {
+            countEl.textContent = `Showing ${visible} program${visible===1?'':'s'}.`;
+          } else {
+            countEl.textContent = '';
+          }
+        }
+      }
+
+      chips.forEach(b => b.addEventListener('click', () => {
+        chips.forEach(c => c.setAttribute('aria-pressed','false'));
+        b.setAttribute('aria-pressed','true');
+        activeTrack = b.dataset.track;
+        applyFilters();
+      }));
+      if (search) search.addEventListener('input', applyFilters);
+
+      // "Clear filters" link in empty-state
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('[data-clear]')) return;
+        if (search) search.value = '';
+        chips.forEach(c => c.setAttribute('aria-pressed', c.dataset.track === 'all' ? 'true' : 'false'));
+        activeTrack = 'all';
+        applyFilters();
+      });
+
+      // Initial state — populates count if URL has ?q=
+      const urlQ = new URLSearchParams(location.search).get('q');
+      if (urlQ && search) { search.value = urlQ; applyFilters(); }
     })();
   </script>
 </body>

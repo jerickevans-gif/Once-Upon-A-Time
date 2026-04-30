@@ -113,37 +113,104 @@
     })();
     
     (function(){
+      // Site-wide search index. Mirrors sitemap.xml; richer body keywords improve recall.
+      const INDEX = [
+        { title: 'Programs', tag: 'Programs', url: 'programs.html', body: 'All active programs across tracks. Dance, theater, gardening, acting, visual art. Seasonal camps and private lessons. Open for enrollment. Coming soon.' },
+        { title: 'Seasonal Camps', tag: 'Program', url: 'seasonal-camps.html', body: 'Multi-week immersion across dance, theater, and gardening tracks. Ages 10+. Thursdays Studio Room A. Enrollment fall winter spring summer camp.' },
+        { title: 'Private Lessons', tag: 'Program', url: 'private-lessons.html', body: 'One-on-one instruction with a working professional. Personalized acting coaching. Tailored materials and focused instruction.' },
+        { title: 'About Us', tag: 'Page', url: 'about.html', body: 'Mission vision team leadership history Once Upon A Time nonprofit Queens children arts education.' },
+        { title: 'Donate', tag: 'Support Us', url: 'donate.html', body: 'Support our mission with a one-time gift or monthly donation. Fund scholarships, instructors, supplies. 501(c)(3) nonprofit.' },
+        { title: 'Scholarship', tag: 'Support Us', url: 'scholarship.html', body: 'Need-based scholarships for students. Apply for tuition assistance. Eligibility and application info.' },
+        { title: 'Sponsorship', tag: 'Support Us', url: 'sponsorship.html', body: 'Sponsor a program, a child, or an event. Corporate and individual sponsorship tiers.' },
+        { title: 'Gift a Donation', tag: 'Support Us', url: 'gift-donation.html', body: 'Give a donation in someone’s name. Honor a friend or family with a gift card and certificate.' },
+        { title: 'Newsletter', tag: 'Stories', url: 'newsletter.html', body: 'Stories from the studio, community garden updates, monthly newsletter, articles, volunteer spotlight.' },
+        { title: 'Newsletter Article', tag: 'Stories', url: 'newsletter-article.html', body: 'Single article view: read in full, share, browse related newsletters.' },
+        { title: 'Contact', tag: 'Page', url: 'contact.html', body: 'Get in touch: phone, email, address, FAQ, donation questions, common questions, hours, directions, Richmond Hill Queens NY.' },
+        { title: 'Events', tag: 'Calendar', url: 'events.html', body: 'Upcoming showcases, fundraisers, recitals, performances, open house dates and tickets.' },
+        { title: 'Instructors', tag: 'Team', url: 'instructors.html', body: 'Meet the working professionals teaching at Once Upon A Time. Faculty bios, dance teachers, acting coaches.' },
+        { title: 'Instructor Profile', tag: 'Team', url: 'instructor.html', body: 'Single instructor bio page with credits, training, and current classes.' },
+        { title: 'Board of Directors', tag: 'Team', url: 'board.html', body: 'Board members, governance, leadership team and advisors.' },
+        { title: 'Jobs', tag: 'Careers', url: 'jobs.html', body: 'Open positions, employment, hiring, careers at Once Upon A Time. Teaching artists, admin, internships.' },
+        { title: 'Press', tag: 'About', url: 'press.html', body: 'Press mentions, news coverage, media kit, logo, photo assets for journalists.' },
+        { title: 'Partners', tag: 'About', url: 'partners.html', body: 'Community and corporate partners. Schools, foundations, sponsors that make our work possible.' },
+        { title: 'Gallery', tag: 'Media', url: 'gallery.html', body: 'Photos from past performances, classes, garden harvests and community events.' },
+        { title: 'Donor Wall', tag: 'Support Us', url: 'donor-wall.html', body: 'Recognition for supporters. Donor wall, named gifts, in-kind contributors.' },
+        { title: 'Impact Report', tag: 'About', url: 'impact-report.html', body: 'Annual impact report. Outcomes, students served, financials, programs delivered.' },
+        { title: 'Style Guide', tag: 'Design', url: 'styleguide.html', body: 'Internal design system, components, tokens, color, type, buttons.' },
+        { title: 'Privacy Policy', tag: 'Legal', url: 'privacy.html', body: 'How we collect and use your information, cookies, GDPR, CCPA, data retention.' },
+        { title: 'Terms of Service', tag: 'Legal', url: 'terms.html', body: 'Terms of service for using the website and enrolling in programs.' },
+        { title: 'Accessibility', tag: 'Legal', url: 'accessibility.html', body: 'Accessibility statement, WCAG conformance, contact for accessibility issues.' },
+        { title: 'Class History', tag: 'Account', url: 'class-history.html', body: 'View past and current enrollments, attendance, certificates.' },
+        { title: 'Profile', tag: 'Account', url: 'profile.html', body: 'Your account profile, name, photo, child profiles.' },
+        { title: 'Preferences', tag: 'Account', url: 'preferences.html', body: 'Notification preferences, email frequency, communication settings.' },
+        { title: 'Inbox', tag: 'Account', url: 'inbox.html', body: 'Your messages from instructors and Once Upon A Time staff.' },
+        { title: 'Cart', tag: 'Checkout', url: 'cart.html', body: 'Your shopping cart, enrolled programs, checkout.' },
+        { title: 'Sign In', tag: 'Account', url: 'login.html', body: 'Login, sign in, forgot password.' },
+        { title: 'Sign Up', tag: 'Account', url: 'signup.html', body: 'Create an account, register, signup.' }
+      ];
+
       const params = new URLSearchParams(location.search);
       const q = (params.get('q') || '').trim();
       document.getElementById('q').value = q;
       const out = document.getElementById('results');
-      if (!q) return;
-      // tiny client-side fuzzy index — would query Shopify Search & Discovery in prod.
-      const index = [
-        { title: 'Seasonal Camps', body: 'Multi-week program: dance, theater, gardening', url: 'seasonal-camps.html' },
-        { title: 'Private Lessons', body: 'One-on-one with an instructor', url: 'private-lessons.html' },
-        { title: 'Donate', body: 'Support our mission with a one-time or monthly gift', url: 'donate.html' },
-        { title: 'About Us', body: 'Vision, leadership, and current programs', url: 'about.html' },
-        { title: 'Newsletter', body: 'Stories from the studio, community garden updates', url: 'newsletter.html' },
-        { title: 'Contact', body: 'Get in touch: phone, email, address', url: 'contact.html' },
-        { title: 'Events', body: 'Upcoming showcases and fundraisers', url: 'events.html' },
-        { title: 'Instructors', body: 'Meet the working professionals teaching at OUAT', url: 'instructors.html' },
-        { title: 'Gallery', body: 'Photos from past performances and classes', url: 'gallery.html' },
-        { title: 'Programs', body: 'All active programs across tracks', url: 'programs.html' },
-        { title: 'Privacy Policy', body: 'How we collect and use your information', url: 'privacy.html' },
-        { title: 'Class History', body: 'Past and current enrollments', url: 'class-history.html' },
-      ];
-      const ql = q.toLowerCase();
-      const hits = index.filter(i => (i.title + ' ' + i.body).toLowerCase().includes(ql));
-      if (!hits.length) {
-        out.innerHTML = `<div class="empty-state"><div class="empty-state__icon"><i class="ph ph-magnifying-glass"></i></div><div class="empty-state__title">No matches for "${q}"</div><p class="empty-state__body">Try a shorter or different search term, or browse the home page.</p><div class="empty-state__actions"><a class="btn" href="index.html">Back to home</a><a class="btn btn--ghost" href="contact.html">Ask us anything</a></div></div>`;
+      if (!q) {
+        // Render quick-link tiles by tag when no query is set
+        const groups = {};
+        INDEX.forEach(i => { (groups[i.tag] ||= []).push(i); });
+        const order = ['Programs', 'Program', 'Support Us', 'Stories', 'Team', 'Calendar', 'Page', 'Account', 'Media', 'About', 'Careers', 'Legal', 'Checkout', 'Design'];
+        out.innerHTML = '<p style="font-size:13px;color:var(--ink-muted);margin-bottom:24px">Or browse by section:</p>' + order.filter(k => groups[k]).map(k => `
+          <details style="margin-bottom:14px;border:1px solid var(--line);border-radius:8px;padding:12px 16px;background:var(--snow)">
+            <summary style="cursor:pointer;font-weight:600;color:var(--pillar)">${k} <span style="color:var(--ink-muted);font-weight:400">(${groups[k].length})</span></summary>
+            <ul style="margin:10px 0 0;padding-left:18px;font-size:14px;line-height:1.9">${groups[k].map(h => `<li><a href="${h.url}" style="color:var(--ink)">${h.title}</a></li>`).join('')}</ul>
+          </details>`).join('');
         return;
       }
-      out.innerHTML = `<p style="font-size:13px;color:var(--ink-muted);margin-bottom:24px">${hits.length} result${hits.length===1?'':'s'} for "${q}"</p>` + hits.map(h => `
-        <a href="${h.url}" style="display:block;padding:18px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit">
-          <div style="font-family:var(--serif);font-size:18px;color:var(--pillar);margin-bottom:4px">${h.title}</div>
-          <div style="font-size:13px;color:var(--ink-muted)">${h.body}</div>
-          <div style="font-size:12px;color:var(--rose-700);margin-top:6px">/${h.url}</div>
+
+      // Tokenized scoring: each query word contributes to title (×3) and body (×1) match.
+      const escapeHtml = (s) => s.replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+      const tokens = q.toLowerCase().split(/\s+/).filter(Boolean);
+      const scored = INDEX.map(item => {
+        const titleL = item.title.toLowerCase();
+        const bodyL = item.body.toLowerCase();
+        let score = 0, allTokensMatched = true;
+        for (const t of tokens) {
+          let tokenScore = 0;
+          if (titleL.includes(t)) tokenScore += 3;
+          if (bodyL.includes(t)) tokenScore += 1;
+          if (tokenScore === 0) allTokensMatched = false;
+          score += tokenScore;
+        }
+        // Boost exact phrase match in title
+        if (titleL.includes(q.toLowerCase())) score += 5;
+        return { item, score, allTokensMatched };
+      })
+      .filter(r => r.allTokensMatched && r.score > 0)
+      .sort((a, b) => b.score - a.score);
+
+      if (!scored.length) {
+        out.innerHTML = `<div class="empty-state" style="text-align:center;padding:48px 24px"><div class="empty-state__icon" style="font-size:48px;color:var(--rose-300);margin-bottom:12px"><i class="ph ph-magnifying-glass"></i></div><div class="empty-state__title" style="font-family:var(--serif);font-size:22px;color:var(--pillar);margin-bottom:8px">No matches for "${escapeHtml(q)}"</div><p class="empty-state__body" style="font-size:14px;color:var(--ink-muted);margin-bottom:20px">Try a shorter or different search term, or browse the home page.</p><div class="empty-state__actions" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap"><a class="btn" href="index.html">Back to home</a><a class="btn btn--ghost" href="contact.html">Ask us anything</a></div></div>`;
+        return;
+      }
+
+      // Highlight all matched tokens in title + body
+      const highlight = (text) => {
+        let html = escapeHtml(text);
+        for (const t of tokens) {
+          if (!t) continue;
+          const re = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+          html = html.replace(re, '<mark style="background:var(--rose-100);color:var(--rose-700);padding:0 2px;border-radius:3px">$1</mark>');
+        }
+        return html;
+      };
+
+      out.innerHTML = `<p style="font-size:13px;color:var(--ink-muted);margin-bottom:24px">${scored.length} result${scored.length===1?'':'s'} for "${escapeHtml(q)}"</p>` + scored.map(({item}) => `
+        <a href="${item.url}" style="display:block;padding:18px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:4px">
+            <div style="font-family:var(--serif);font-size:18px;color:var(--pillar)">${highlight(item.title)}</div>
+            <span style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--rose-700);background:var(--rose-100);padding:3px 8px;border-radius:999px;flex:0 0 auto">${item.tag}</span>
+          </div>
+          <div style="font-size:13px;color:var(--ink-muted);line-height:1.5">${highlight(item.body.length > 180 ? item.body.slice(0,180)+'…' : item.body)}</div>
+          <div style="font-size:12px;color:var(--rose-700);margin-top:6px">/${item.url}</div>
         </a>`).join('');
     })();
     
