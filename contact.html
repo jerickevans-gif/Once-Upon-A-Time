@@ -57,10 +57,11 @@
     }
     .hero__rhombus {
       position: relative;
-      display: grid; place-items: center;
+      display: flex; align-items: center; justify-content: center;
       background: var(--beginning);
       border-radius: var(--radius-lg);
       min-height: 320px;
+      padding: 0 var(--s-7);
       overflow: hidden;
     }
     /* Marquee/hourglass shape with concave left+right edges, per PDF design.
@@ -76,10 +77,13 @@
       position: relative; z-index: 1;
       font-family: var(--serif); font-weight: 400;
       font-size: clamp(32px, 4.4vw, 54px);
-      letter-spacing: .05em; color: var(--ink);
+      /* Negative text-indent compensates for trailing letter-spacing
+         so optical center matches geometric center of the marquee. */
+      letter-spacing: .05em; text-indent: -.05em;
+      color: var(--ink);
       text-transform: uppercase;
       margin: 0;
-      padding: 0 var(--s-7);
+      padding: 0;
       text-align: center;
     }
     @media (max-width: 720px) {
