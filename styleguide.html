@@ -126,6 +126,54 @@
         </div>
       </div>
 
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Form card</h2>
+        <p style="font-size:13px;color:var(--ink-muted);margin:0 0 12px;max-width:60ch">Standalone form surface — Figma "Email form" pattern. Use for contact, signup, scholarship, and any page where the form is the primary content. <code>.field[data-stack]</code> stacks single-column inputs; <code>.form-row</code> creates a 2-up row.</p>
+        <form class="form-card" style="max-width:560px" onsubmit="event.preventDefault();OUAT_toast?.('Form-card demo — no real submission.',{variant:'mock'})">
+          <div class="form-row">
+            <label class="field"><span class="sr-only">First name</span><input class="input" type="text" placeholder="John"></label>
+            <label class="field"><span class="sr-only">Last name</span><input class="input" type="text" placeholder="Last Name*"></label>
+          </div>
+          <label class="field" data-stack><span class="sr-only">Email</span><input class="input" type="email" placeholder="Email*"></label>
+          <label class="field" data-stack><span class="sr-only">Phone</span><input class="input" type="tel" placeholder="Phone Number*"></label>
+          <label class="field" data-stack><span class="sr-only">Message</span><textarea class="textarea" rows="4" placeholder="Your message..."></textarea></label>
+          <div class="form-card__actions"><button class="btn" type="submit">Send Message</button></div>
+        </form>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">FAQ list</h2>
+        <p style="font-size:13px;color:var(--ink-muted);margin:0 0 12px;max-width:60ch">Native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> accordion. Open state fills with rose-100 and a 2px primary-500 border, per Figma.</p>
+        <div class="faq-list" style="max-width:680px">
+          <details class="faq-item" open>
+            <summary>How do I book a class?</summary>
+            <div class="faq-item__body">Browse the schedule on Programs, pick a class, and click Enroll Now. Confirmation arrives by email.</div>
+          </details>
+          <details class="faq-item">
+            <summary>What is the cancellation policy?</summary>
+            <div class="faq-item__body">Cancellations made at least 24 hours before class start receive a full credit.</div>
+          </details>
+        </div>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">CTA banner</h2>
+        <p style="font-size:13px;color:var(--ink-muted);margin:0 0 12px;max-width:60ch">Tail-banner pattern: heading + subtext on the left, primary CTA on the right. Use at the end of long pages (about, donate, jobs) for a clear next step.</p>
+        <div class="cta-banner">
+          <div class="cta-banner__copy">
+            <h3>Still have questions?</h3>
+            <p>Please write to our friendly support team or call us at +1&nbsp;718-380-6929.</p>
+          </div>
+          <a class="btn" href="mailto:contact@onceuponatime.org">Send Email <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div><h2 style="font-family:var(--serif);font-size:24px;text-transform:uppercase;margin:0 0 16px;color:var(--pillar)">Contact info list</h2>
+        <p style="font-size:13px;color:var(--ink-muted);margin:0 0 12px;max-width:60ch">Vertical stack of icon + text rows. 32px Phosphor Regular icons in primary-600.</p>
+        <ul class="contact-info" style="max-width:480px">
+          <li><i class="ph ph-map-pin" aria-hidden="true"></i><a href="https://maps.app.goo.gl/d8kfjpDiRvw9ZKt47" target="_blank" rel="noopener">87-61 111th St, Richmond Hill<br>NY 11418, United States</a></li>
+          <li><i class="ph ph-phone" aria-hidden="true"></i><span>+1 718-380-6929</span></li>
+          <li><i class="ph ph-envelope-simple" aria-hidden="true"></i><span>contact@onceuponatime.org</span></li>
+        </ul>
+      </div>
+
     </section>
     </main>
   <footer class="site-footer" role="contentinfo">

@@ -92,7 +92,7 @@
       .hero__rhombus { padding: var(--s-7) var(--s-5); }
     }
 
-    /* "Let's talk" + form */
+    /* "Let's talk" + form layout (form-card + contact-info live in components.css) */
     .talk {
       display: grid; grid-template-columns: 1fr 1.05fr; gap: var(--s-7);
       padding: var(--s-8) 0;
@@ -104,55 +104,16 @@
       color: var(--ink);
       margin-bottom: var(--s-6);
       max-width: 42ch;
-      font-size: var(--t-subtitle);   /* 24px — Figma "Subtitle Semi bold" */
+      font-size: var(--t-subtitle);
       font-weight: 600;
       line-height: 1.17;
     }
-    .talk__contacts { display: grid; gap: var(--s-4); margin-top: var(--s-5); }
-    .talk__contact { display: flex; gap: var(--s-4); align-items: flex-start; }
-    /* Figma: 32px Phosphor Regular in primary-600, no circle */
-    .talk__contact .ph {
-      font-size: var(--icon-xl);   /* 32px */
-      width: var(--icon-xl); height: var(--icon-xl);
-      display: inline-flex; align-items: center; justify-content: center;
-      color: var(--rose-700);       /* primary-600 */
-      flex: 0 0 auto;
-    }
-    .talk__contact span,
-    .talk__contact a { font-size: var(--t-base); color: var(--ink); line-height: 1.5; }
-
-    /* Email form card — Figma: primary-50 bg, primary-600 border, 10px radius, 50px pad */
-    .form-card {
-      background: var(--rose-50);
-      border: 1px solid var(--rose-700);
-      border-radius: 10px;
-      padding: 50px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, .10);
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); margin-bottom: var(--s-4); }
-    /* Inputs: snow bg, primary-500 border, 10px radius, 50px tall */
-    .form-card .input,
-    .form-card .textarea {
-      background: var(--snow);
-      border: 1px solid var(--rose);
-      border-radius: 10px;
-      min-height: 50px;
-      padding: 12px 20px;
-    }
-    .form-card .textarea { min-height: 140px; padding: 14px 20px; }
-    .form-card .input::placeholder,
-    .form-card .textarea::placeholder { color: var(--rose); opacity: 1; font-weight: 400; }
-    .form-card__actions { display: flex; justify-content: flex-end; margin-top: var(--s-6); }
-    /* Figma "L Button text" — 20px semibold, 222px wide */
-    .form-card__actions .btn { min-width: 222px; font-size: var(--t-lg); }
+    .talk__copy .contact-info { margin-top: var(--s-5); }
     @media (max-width: 720px) {
       .talk { grid-template-columns: 1fr; gap: var(--s-6); }
-      .form-row { grid-template-columns: 1fr; }
-      .form-card { padding: var(--s-6); }
-      .form-card__actions .btn { min-width: 0; width: 100%; }
     }
 
-    /* FAQ blocks */
+    /* FAQ block layout (faq-list lives in components.css) */
     .faq-block {
       display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--s-7);
       align-items: start;
@@ -165,72 +126,13 @@
     }
     .faq-block__art img { max-width: 100%; height: auto; max-height: 360px; }
     .faq-block__title { margin-bottom: var(--s-5); }
-    .faq-list { display: grid; gap: var(--s-5); }
-    .faq-item {
-      background: var(--snow);
-      border: 1px solid var(--rose);
-      border-radius: 10px;
-      overflow: hidden;
-      transition: background var(--dur-1) var(--ease), border-width var(--dur-1) var(--ease);
-    }
-    /* Figma open: primary-100 fill, 2px primary-500 border */
-    .faq-item[open] {
-      background: var(--rose-100);
-      border-width: 2px;
-    }
-    .faq-item summary {
-      display: flex; align-items: center; justify-content: space-between; gap: var(--s-5);
-      padding: 25px;
-      cursor: pointer; list-style: none;
-      /* Figma "Subtitle Semi bold" — Chivo 600, 24px */
-      font-family: var(--sans); font-size: var(--t-subtitle); font-weight: 600;
-      color: var(--ink);
-      line-height: 1.17;
-    }
-    .faq-item summary::-webkit-details-marker { display: none; }
-    .faq-item summary::after {
-      content: "\002B";  /* + */
-      font-family: var(--sans); font-weight: 400; font-size: 28px;
-      color: var(--rose-700);
-      flex: 0 0 auto;
-      transition: transform var(--dur-1) var(--ease);
-    }
-    .faq-item[open] summary::after { content: "\2212"; /* − */ }
-    .faq-item__body {
-      padding: 0 25px 25px;
-      color: var(--ink);
-      font-size: var(--t-base);
-      font-weight: 500;
-      line-height: var(--lh-body);
-    }
     @media (max-width: 720px) {
       .faq-block, .faq-block--reverse { grid-template-columns: 1fr; }
       .faq-block--reverse .faq-block__art { order: -1; }
     }
 
-    /* Still have questions banner — Figma: garden-50 bg, 1px primary-500 border, shadow-lg */
-    .cta-banner {
-      background: #EAEBD8;            /* Figma P3/Secondary/Garden/garden-50 */
-      border: 1px solid var(--rose);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
-      padding: 30px;
-      display: flex; align-items: center; justify-content: space-between; gap: var(--s-5);
-      margin: var(--s-7) 0 var(--s-9);
-    }
-    .cta-banner__copy h3 {
-      /* Figma "Header 3" — Voltra 40px, primary-700 */
-      font-size: var(--t-h3);
-      color: var(--rose-700);
-      margin-bottom: 6px;
-      text-transform: uppercase;
-    }
-    .cta-banner__copy p { margin: 0; color: var(--ink); font-size: var(--t-base); }
-    .cta-banner .btn { min-width: 222px; font-size: var(--t-lg); }
-    @media (max-width: 720px) {
-      .cta-banner { flex-direction: column; align-items: flex-start; padding: var(--s-5); }
-      .cta-banner .btn { min-width: 0; width: 100%; justify-content: center; }
-    }
+    /* Page-scoped tail spacing for the banner */
+    .cta-banner { margin: var(--s-7) 0 var(--s-9); }
   </style>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "NGO", "name": "Once Upon A Time", "alternateName": "Once Upon A Time, Inc.", "url": "https://jerickevans-gif.github.io/Once-Upon-A-Time/", "logo": "https://jerickevans-gif.github.io/Once-Upon-A-Time/once-upon-a-time-assets/logo/full-icon.png", "description": "Nonprofit arts education for children \u2014 dance, music, theater, and visual art.", "address": {"@type": "PostalAddress", "streetAddress": "87-61 111th St", "addressLocality": "Richmond Hill", "addressRegion": "NY", "postalCode": "11418", "addressCountry": "US"}, "email": "contact@onceuponatime.org"}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"ContactPage","mainEntity":{"@type":"NGO","name":"Once Upon A Time, Inc.","telephone":"+1-718-380-6929","email":"contact@onceuponatime.org","address":"87-61 111th St, Richmond Hill, NY 11418"}}</script>
@@ -296,20 +198,20 @@
         <div class="talk__copy">
           <h2>Let's Talk With&nbsp;Us</h2>
           <p>Questions, comments, or suggestions? Simply fill in the form and we'll be in touch shortly.</p>
-          <div class="talk__contacts">
-            <div class="talk__contact">
+          <ul class="contact-info">
+            <li>
               <i class="ph ph-map-pin" aria-hidden="true"></i>
-              <a href="https://maps.app.goo.gl/d8kfjpDiRvw9ZKt47" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">87-61 111th St, Richmond Hill<br>NY 11418, United States</a>
-            </div>
-            <div class="talk__contact">
+              <a href="https://maps.app.goo.gl/d8kfjpDiRvw9ZKt47" target="_blank" rel="noopener">87-61 111th St, Richmond Hill<br>NY 11418, United States</a>
+            </li>
+            <li>
               <i class="ph ph-phone" aria-hidden="true"></i>
               <span>+1 718-380-6929</span>
-            </div>
-            <div class="talk__contact">
+            </li>
+            <li>
               <i class="ph ph-envelope-simple" aria-hidden="true"></i>
               <span>contact@onceuponatime.org</span>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
 
         <!-- Replace REPLACE_ME with a Formspree form ID (https://formspree.io) to submit real messages. -->
@@ -324,15 +226,15 @@
               <input id="contact-last" class="input" type="text" name="last" placeholder="Last Name*" autocomplete="family-name" required aria-required="true">
             </label>
           </div>
-          <label class="field" for="contact-email" style="margin-bottom: var(--s-3); display:block;">
+          <label class="field" data-stack for="contact-email">
             <span class="sr-only">Email</span>
             <input id="contact-email" class="input" type="email" name="email" placeholder="Email*" autocomplete="email" required aria-required="true">
           </label>
-          <label class="field" for="contact-phone" style="margin-bottom: var(--s-3); display:block;">
+          <label class="field" data-stack for="contact-phone">
             <span class="sr-only">Phone number</span>
             <input id="contact-phone" class="input" type="tel" name="phone" placeholder="Phone Number*" autocomplete="tel">
           </label>
-          <label class="field" for="contact-message" style="display:block;">
+          <label class="field" data-stack for="contact-message">
             <span class="sr-only">Your message</span>
             <textarea id="contact-message" class="textarea" name="message" placeholder="Your message..." rows="5" required aria-required="true"></textarea>
           </label>

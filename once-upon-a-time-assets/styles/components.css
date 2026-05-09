@@ -343,3 +343,171 @@
   margin-bottom: 16px;
 }
 .sibling-banner .ph { font-size: 20px; flex-shrink: 0; }
+
+/* ==========================================================================
+   FIGMA DESIGN-SYSTEM PATTERNS — promoted from contact.html so other pages
+   can adopt them without copy-pasting inline styles. Source: OUAT Figma file.
+   ========================================================================== */
+
+/* ---------- Form card ----------
+   Surface for any standalone form (contact, signup, scholarship, etc.).
+   Markup:
+     <form class="form-card">
+       <div class="form-row">
+         <label class="field"><span class="sr-only">…</span><input class="input" …></label>
+         <label class="field"><span class="sr-only">…</span><input class="input" …></label>
+       </div>
+       <label class="field" data-stack><span class="sr-only">…</span><input class="input" …></label>
+       <label class="field" data-stack><span class="sr-only">…</span><textarea class="textarea" …></textarea></label>
+       <div class="form-card__actions"><button class="btn" type="submit">Send</button></div>
+     </form>
+*/
+.form-card {
+  background: var(--rose-50);
+  border: 1px solid var(--rose-700);
+  border-radius: 10px;
+  padding: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .10);
+}
+.form-card .form-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--s-4); margin-bottom: var(--s-4);
+}
+.form-card .field[data-stack] { display: block; margin-bottom: var(--s-4); }
+.form-card .field[data-stack]:last-of-type { margin-bottom: 0; }
+.form-card .input,
+.form-card .textarea {
+  background: var(--snow);
+  border: 1px solid var(--rose);
+  border-radius: 10px;
+  min-height: 50px;
+  padding: 12px 20px;
+}
+.form-card .textarea { min-height: 140px; padding: 14px 20px; }
+.form-card .input::placeholder,
+.form-card .textarea::placeholder {
+  color: var(--rose); opacity: 1; font-weight: 400;
+}
+.form-card__actions {
+  display: flex; justify-content: flex-end;
+  margin-top: var(--s-6);
+}
+.form-card__actions .btn { min-width: 222px; font-size: var(--t-lg); }
+@media (max-width: 720px) {
+  .form-card { padding: var(--s-6); }
+  .form-card .form-row { grid-template-columns: 1fr; }
+  .form-card__actions .btn { min-width: 0; width: 100%; }
+}
+
+/* ---------- FAQ list ----------
+   Accordion of questions. Use native <details>/<summary> for accessibility.
+   Markup:
+     <div class="faq-list">
+       <details class="faq-item" open>
+         <summary>Question?</summary>
+         <div class="faq-item__body">Answer copy.</div>
+       </details>
+       …
+     </div>
+*/
+.faq-list { display: grid; gap: var(--s-5); }
+.faq-item {
+  background: var(--snow);
+  border: 1px solid var(--rose);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: background var(--dur-1) var(--ease), border-width var(--dur-1) var(--ease);
+}
+.faq-item[open] {
+  background: var(--rose-100);
+  border-width: 2px;
+}
+.faq-item summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-5);
+  padding: 25px;
+  cursor: pointer; list-style: none;
+  font-family: var(--sans);
+  font-size: var(--t-subtitle);   /* 24px — Figma "Subtitle Semi bold" */
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.17;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "\002B";  /* + */
+  font-family: var(--sans); font-weight: 400; font-size: 28px;
+  color: var(--rose-700);
+  flex: 0 0 auto;
+  transition: transform var(--dur-1) var(--ease);
+}
+.faq-item[open] summary::after { content: "\2212"; /* − */ }
+.faq-item__body {
+  padding: 0 25px 25px;
+  color: var(--ink);
+  font-size: var(--t-base);
+  font-weight: 500;
+  line-height: var(--lh-body);
+}
+
+/* ---------- CTA banner ----------
+   Tail-banner pattern: heading + subtext on the left, primary CTA on the right.
+   Markup:
+     <div class="cta-banner">
+       <div class="cta-banner__copy">
+         <h3>Still have questions?</h3>
+         <p>Write to our friendly support team.</p>
+       </div>
+       <a class="btn" href="mailto:…">Send Email</a>
+     </div>
+*/
+.cta-banner {
+  background: var(--garden-50);
+  border: 1px solid var(--rose);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 30px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-5);
+}
+.cta-banner__copy h3 {
+  font-size: var(--t-h3);
+  color: var(--rose-700);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.cta-banner__copy p { margin: 0; color: var(--ink); font-size: var(--t-base); }
+.cta-banner .btn { min-width: 222px; font-size: var(--t-lg); }
+@media (max-width: 720px) {
+  .cta-banner { flex-direction: column; align-items: flex-start; padding: var(--s-5); }
+  .cta-banner .btn { min-width: 0; width: 100%; justify-content: center; }
+}
+
+/* ---------- Contact info list ----------
+   Vertical list of icon + text rows (address / phone / email).
+   Markup:
+     <ul class="contact-info">
+       <li><i class="ph ph-map-pin" aria-hidden="true"></i><span>Address</span></li>
+       <li><i class="ph ph-phone" aria-hidden="true"></i><span>+1 …</span></li>
+       <li><i class="ph ph-envelope-simple" aria-hidden="true"></i><span>email@…</span></li>
+     </ul>
+*/
+.contact-info {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; gap: var(--s-4);
+}
+.contact-info li {
+  display: flex; gap: var(--s-4); align-items: flex-start;
+}
+.contact-info .ph {
+  font-size: var(--icon-xl);   /* 32px */
+  width: var(--icon-xl); height: var(--icon-xl);
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--rose-700);       /* primary-600 */
+  flex: 0 0 auto;
+}
+.contact-info span,
+.contact-info a {
+  font-size: var(--t-base); color: var(--ink); line-height: 1.5;
+  text-decoration: none;
+}
+.contact-info a:hover { text-decoration: underline; }
