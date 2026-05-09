@@ -196,6 +196,30 @@
     .program-card__copy { font-size: var(--t-base); color: var(--ink); margin: 0; }
     .program-card__footer { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; padding-top: var(--s-3); }
     .program-card__age { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-label); color: var(--ink-muted); }
+    .program-card__cta { display: inline-flex; align-items: center; gap: var(--s-2); }
+    .program-card__icon-btn {
+      width: 40px; height: 40px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--beginning);
+      border: 1px solid var(--rose);
+      border-radius: var(--radius-sm);
+      color: var(--rose);
+      cursor: pointer;
+      box-shadow: var(--shadow-xs-skeuo);
+      transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
+    }
+    .program-card__icon-btn .ph { font-size: var(--icon-md); }
+    .program-card__icon-btn:hover { background: var(--rose-50); }
+    .program-card__icon-btn:focus-visible {
+      outline: none;
+      box-shadow:
+        0 1px 2px rgba(10,13,18,.05),
+        0 0 0 2px #fff,
+        0 0 0 4px var(--rose),
+        inset 0 0 0 1px rgba(10,13,18,.18),
+        inset 0 -2px 0 rgba(10,13,18,.05);
+    }
+    .program-card__icon-btn[aria-pressed="true"] { background: var(--rose); color: var(--snow); }
     @media (max-width: 720px) { .programs__grid { grid-template-columns: 1fr; } }
 
     /* ===== Donor Spotlight (single continuous band) ===== */
@@ -445,7 +469,11 @@
             <p class="program-card__copy">One of our most beloved Jazz sessions will be conducted this Winter, where children get to experience live Jazz music from the ground up. Across various instruments to master and play in a stage to showcase their skills.</p>
             <div class="program-card__footer">
               <span class="program-card__age"><i class="ph ph-baby"></i> 13 + Year Old &nbsp;·&nbsp; <i class="ph ph-calendar-check"></i> Enrollment ends Feb 25th, 2026</span>
-              <a class="btn btn--sm" href="seasonal-camps.html">View More <i class="ph ph-arrow-right"></i></a>
+              <div class="program-card__cta">
+                <a class="btn btn--sm" href="seasonal-camps.html">View More <i class="ph ph-arrow-right"></i></a>
+                <button class="program-card__icon-btn" type="button" aria-label="Bookmark Story Jazz" aria-pressed="false" data-bookmark="story-jazz"><i class="ph ph-bookmark-simple" aria-hidden="true"></i></button>
+                <button class="program-card__icon-btn" type="button" aria-label="Share Story Jazz" data-share="story-jazz"><i class="ph ph-share-fat" aria-hidden="true"></i></button>
+              </div>
             </div>
           </div>
         </article>
@@ -465,7 +493,11 @@
             <p class="program-card__copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue eget ligula vel orci. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut consequat velit non pellentesque venenatis.</p>
             <div class="program-card__footer">
               <span class="program-card__age"><i class="ph ph-baby"></i> 4 + Year Old &nbsp;·&nbsp; <i class="ph ph-calendar-check"></i> Enrollment ends Feb 25th, 2026</span>
-              <a class="btn btn--sm" href="private-lessons.html">View More <i class="ph ph-arrow-right"></i></a>
+              <div class="program-card__cta">
+                <a class="btn btn--sm" href="private-lessons.html">View More <i class="ph ph-arrow-right"></i></a>
+                <button class="program-card__icon-btn" type="button" aria-label="Bookmark Beginner's Ballet" aria-pressed="false" data-bookmark="beginners-ballet"><i class="ph ph-bookmark-simple" aria-hidden="true"></i></button>
+                <button class="program-card__icon-btn" type="button" aria-label="Share Beginner's Ballet" data-share="beginners-ballet"><i class="ph ph-share-fat" aria-hidden="true"></i></button>
+              </div>
             </div>
           </div>
         </article>
