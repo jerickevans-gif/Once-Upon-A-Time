@@ -14,6 +14,10 @@
         "cta3_label": "Learn More"
       }
     },
+    "classes-today": {
+      "type": "page-content",
+      "settings": {}
+    },
     "who-we-are": {
       "type": "feature-grid",
       "settings": {
@@ -27,6 +31,10 @@
         "f3": { "type": "feature", "settings": { "icon": "ph-leaf", "body": "Community-driven arts education rooted in inclusivity and care" } }
       },
       "block_order": ["f1", "f2", "f3"]
+    },
+    "programs": {
+      "type": "page-content",
+      "settings": {}
     },
     "donor": {
       "type": "donor-spotlight",
@@ -59,5 +67,5 @@
       "block_order": ["m1", "m2", "m3"]
     }
   },
-  "order": ["hero", "who-we-are", "donor", "mission"]
+  "order": ["hero", "classes-today", "who-we-are", "programs", "donor", "mission"]
 }

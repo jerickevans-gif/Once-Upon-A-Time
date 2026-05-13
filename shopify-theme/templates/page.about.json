@@ -22,7 +22,50 @@
         "v3": { "type": "feature", "settings": { "icon": "ph-sparkle", "title": "Personal Growth", "body": "Supporting children's growth with skilled instructors who foster discipline, mastery, and personal growth." } }
       },
       "block_order": ["v1", "v2", "v3"]
+    },
+    "founder": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Our Founder Legacy",
+        "body": "<p>Lorem ipsum dolor sit amet consectetur. Tortor quam justo ac dignissim massa lacinia mi. Senectus tristique velit elementum integer erat ante laoreet. Lacus adipiscing vitae eu lectus. Sed felis eget eget ac risus eu. Cras nibh quam ac quam mauris commodo amet. Ac ut aliquam et a sapien.</p><p>Lorem ipsum dolor sit amet consectetur. Tortor quam justo ac dignissim massa lacinia mi. Senectus tristique velit elementum integer erat ante laoreet. Lacus adipiscing vitae eu lectus. Sed felis. Eget eget ac risus eu. Cras nibh quam ac quam mauris commodo amet. Ac ut aliquam et a sapien.</p>",
+        "text_align": "left"
+      }
+    },
+    "leadership": {
+      "type": "page-content",
+      "settings": {}
+    },
+    "programs": {
+      "type": "page-content",
+      "settings": {}
+    },
+    "expanding": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Expanding Our Platform",
+        "body": "<p>Our support helps expand local programs to reach more children across communities. Donations meaningfully advance opportunities and create experiences for families.</p>",
+        "text_align": "left"
+      }
+    },
+    "success": {
+      "type": "page-content",
+      "settings": {}
+    },
+    "donation-goes": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Where Your Donation Goes",
+        "body": "<p>Every donation contributed to OUAT directly supports our programs and students. Funds are allocated toward instructional materials, program supplies, and operational needs to help classes run effectively. The clearest evidence of your engaged support — children with growing experience while maintaining transparency and outcomes.</p>",
+        "text_align": "left"
+      }
+    },
+    "newsletter": {
+      "type": "page-content",
+      "settings": {}
     }
   },
-  "order": ["vision", "values"]
+  "order": ["vision", "values", "founder", "leadership", "programs", "expanding", "success", "donation-goes", "newsletter"]
 }

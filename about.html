@@ -242,10 +242,6 @@
 
     /* ---------- Current programs ---------- */
     .programs { padding: 24px 0 72px; position: relative; }
-    .programs__grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-    }
     .program-card {
       background: var(--card);
       border-radius: var(--radius);
@@ -431,9 +427,7 @@
     @media (max-width: 1024px) {
       .vision__grid, .donation-goes__grid { grid-template-columns: 1fr; gap: 32px; }
       .text-block .columns, .leadership-grid { grid-template-columns: 1fr; gap: 24px; }
-      .values__grid, .success__grid { grid-template-columns: 1fr; }
-      .programs__grid { grid-template-columns: 1fr; }
-      .program-arrow { display: none; }
+      .values__grid { grid-template-columns: 1fr; }
       .value__quote { display: block !important; }
     }
     @media (max-width: 720px) {
@@ -453,7 +447,6 @@
       .vision__copy h1 { font-size: clamp(32px, 8vw, 60px); }
       .values__grid { grid-template-columns: 1fr; gap: var(--s-5); }
       .leadership__grid, .leadership .team-grid { grid-template-columns: 1fr; }
-      .success-cards { grid-template-columns: 1fr; }
       .donation-goes__grid { grid-template-columns: 1fr; gap: var(--s-5); }
       .stay-connected__actions { flex-direction: column; }
       .stay-connected__actions .btn { width: 100%; }
