@@ -17,14 +17,14 @@
     <div>
       <h2 style="margin-bottom: var(--s-4); text-transform: uppercase;">{{ section.settings.copy_heading | default: "Let's Talk With Us" }}</h2>
       <p style="color: var(--ink); margin-bottom: var(--s-6); max-width: 42ch; font-size: var(--t-lg);">{{ section.settings.copy_lede }}</p>
+      <a class="phone-hero" href="tel:{{ section.settings.phone | remove: ' ' | remove: '(' | remove: ')' }}" style="display:inline-flex;align-items:center;gap:var(--s-3);font-family:var(--serif);font-size:clamp(28px,4vw,40px);font-weight:400;color:var(--rose-700);text-decoration:none;padding:var(--s-4) var(--s-5);border-radius:var(--radius);background:var(--rose-50);margin-bottom:var(--s-5)">
+        <i class="ph ph-phone" aria-hidden="true" style="font-size:28px;color:var(--rose)"></i>
+        <span>{{ section.settings.phone | default: '+1 (718) 380-6929' }}</span>
+      </a>
       <div style="display: grid; gap: var(--s-3); margin-top: var(--s-5);">
         <div style="display: flex; gap: var(--s-3); align-items: center;">
           <i class="ph ph-map-pin" aria-hidden="true" style="font-size: 14px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; color: var(--rose-700); border: 1.5px solid var(--rose); border-radius: 50%;"></i>
           <span style="font-size: var(--t-base);">{{ section.settings.address }}</span>
-        </div>
-        <div style="display: flex; gap: var(--s-3); align-items: center;">
-          <i class="ph ph-phone" aria-hidden="true" style="font-size: 14px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; color: var(--rose-700); border: 1.5px solid var(--rose); border-radius: 50%;"></i>
-          <span style="font-size: var(--t-base);">{{ section.settings.phone }}</span>
         </div>
         <div style="display: flex; gap: var(--s-3); align-items: center;">
           <i class="ph ph-envelope-simple" aria-hidden="true" style="font-size: 14px; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; color: var(--rose-700); border: 1.5px solid var(--rose); border-radius: 50%;"></i>

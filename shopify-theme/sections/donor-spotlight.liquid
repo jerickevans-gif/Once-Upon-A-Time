@@ -1,4 +1,4 @@
-<section class="donor" style="background-image: linear-gradient(rgba(139,80,68,.55), rgba(139,80,68,.62)), url('{{ section.settings.bg_image | default: 'landing-queens-skyline.jpg' | asset_url }}'); background-size: cover; background-position: center;">
+<section class="donor" style="background-image: linear-gradient(rgba(139,80,68,.65), rgba(139,80,68,.72)), url('{{ section.settings.bg_image | default: 'landing-queens-skyline.jpg' | asset_url }}'); background-size: cover; background-position: center;">
   <div class="wrap">
     <h2>{{ section.settings.heading | default: 'Donor Spotlight' }}</h2>
     <p class="donor__lede">{{ section.settings.lede }}</p>
@@ -24,6 +24,9 @@
           {%- endif -%}
           <p>&ldquo;{{ block.settings.quote }}&rdquo;</p>
           <cite>{{ block.settings.cite }}</cite>
+          {%- if block.settings.role != blank -%}
+            {% render 'trust-signal', role: block.settings.role, year: block.settings.year %}
+          {%- endif -%}
         </figure>
       {%- endfor -%}
     </div>
@@ -54,7 +57,9 @@
       "settings": [
         { "type": "image_picker", "id": "avatar", "label": "Portrait" },
         { "type": "textarea", "id": "quote", "label": "Quote" },
-        { "type": "text", "id": "cite", "label": "Attribution", "default": "Name, age" }
+        { "type": "text", "id": "cite", "label": "Attribution", "default": "Name, age" },
+        { "type": "text", "id": "role", "label": "Role (e.g. Donor, Parent, Volunteer)" },
+        { "type": "text", "id": "year", "label": "Since year (e.g. 2019)" }
       ]
     }
   ],
