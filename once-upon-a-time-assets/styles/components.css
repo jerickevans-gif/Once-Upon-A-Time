@@ -572,3 +572,26 @@
   text-decoration: none;
 }
 .contact-info a:hover { text-decoration: underline; }
+
+/* ---------- Sidebar collapse (mobile <details> → desktop open) ---------- */
+.sidebar-collapse summary {
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer; font-family: var(--sans); font-size: var(--t-base);
+  font-weight: 600; color: var(--ink); list-style: none;
+  padding: var(--s-3) var(--s-4);
+  background: var(--rose-50); border: 1px solid var(--rose-300);
+  border-radius: var(--radius);
+}
+.sidebar-collapse summary::-webkit-details-marker { display: none; }
+.sidebar-collapse summary .ph { transition: transform 0.2s ease; }
+.sidebar-collapse[open] summary .ph { transform: rotate(180deg); }
+.sidebar-collapse summary:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; }
+.sidebar-collapse__nav { padding: var(--s-3) var(--s-4); }
+.sidebar-collapse__nav a { display: block; padding: var(--s-2) 0; color: var(--ink); text-decoration: none; font-size: var(--t-label); border-bottom: 1px solid var(--line); }
+.sidebar-collapse__nav a.is-active { color: var(--rose-700); font-weight: 700; }
+.sidebar-collapse__nav a:last-child { border-bottom: 0; }
+
+@media (min-width: 769px) {
+  .sidebar-collapse summary { display: none; }
+  .sidebar-collapse { border: 0; padding: 0; }
+}
