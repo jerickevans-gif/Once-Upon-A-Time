@@ -249,7 +249,7 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
   border-radius: var(--radius-sm);
   background: var(--btn-bg);
   color: var(--btn-fg);
-  box-shadow: var(--shadow-xs-skeuo);
+  box-shadow: var(--shadow-xs);
   transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease), transform var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
   white-space: nowrap;
 }
@@ -274,8 +274,8 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 }
 
 /* Sizes */
-.btn--sm { min-height: 36px; padding: 0 var(--s-4); font-size: var(--t-base); }
-.btn--lg { min-height: 52px; padding: 0 var(--s-7); font-size: var(--t-lg); }
+.btn--sm { min-height: 40px; padding: 0 var(--s-4); font-size: var(--t-base); }
+.btn--lg { min-height: 56px; padding: 0 var(--s-7); font-size: var(--t-lg); }
 
 /* Variant: brand (default) — rose */
 /* Variant: garden */
@@ -308,9 +308,25 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 }
 @keyframes btn-spin { to { transform: rotate(360deg); } }
 
+/* Button group (View More / Save / Share clusters) */
+.btn-group { display: inline-flex; gap: var(--s-2); align-items: center; flex-wrap: wrap; }
+.btn-group--stretch { width: 100%; }
+.btn-group--stretch .btn { flex: 1; }
+
+/* Donation amount selector */
+.btn--amount { --btn-bg: var(--rose-700); --btn-fg: var(--snow); --btn-bg-hover: var(--pillar); }
+.btn--amount[aria-pressed="true"] { --btn-bg: var(--pillar); box-shadow: 0 0 0 2px var(--pillar), inset 0 0 0 1px var(--snow); }
+
+/* Danger standalone (for destructive action buttons outside modals) */
+.btn--danger { --btn-bg: var(--danger); --btn-bg-hover: var(--danger-700); --btn-ring: var(--danger); }
+
+/* ---------- Utilities ---------- */
+.img-border { box-shadow: 0 0 0 1px var(--line); border-radius: var(--radius); }
+.text-on-pattern { font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,.08); }
+
 /* ---------- Form fields ---------- */
 .field { display: grid; gap: 6px; }
-.field__label { font-size: var(--t-label); font-weight: 600; color: var(--ink); }
+.field__label { font-size: var(--t-label); font-weight: 600; color: var(--label-color); }
 .field__hint  { font-size: var(--t-label); color: var(--ink-muted); }
 .input, .textarea, .select {
   width: 100%;
