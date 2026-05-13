@@ -108,6 +108,15 @@
       font-weight: 600;
       line-height: 1.17;
     }
+    .phone-hero {
+      display: inline-flex; align-items: center; gap: var(--s-3);
+      font-family: var(--serif); font-size: clamp(28px, 4vw, 40px); font-weight: 400;
+      color: var(--rose-700); text-decoration: none;
+      padding: var(--s-4) var(--s-5); border-radius: var(--radius); background: var(--rose-50);
+      margin-bottom: var(--s-5);
+    }
+    .phone-hero .ph { font-size: 28px; color: var(--rose); }
+    .phone-hero:hover { background: var(--rose-100); }
     .talk__copy .contact-info { margin-top: var(--s-5); }
     @media (max-width: 720px) {
       .talk { grid-template-columns: 1fr; gap: var(--s-6); }
@@ -198,14 +207,14 @@
         <div class="talk__copy">
           <h2>Let's Talk With&nbsp;Us</h2>
           <p>Questions, comments, or suggestions? Simply fill in the form and we'll be in touch shortly.</p>
+          <a class="phone-hero" href="tel:+17183806929">
+            <i class="ph ph-phone" aria-hidden="true"></i>
+            <span>+1 (718) 380-6929</span>
+          </a>
           <ul class="contact-info">
             <li>
               <i class="ph ph-map-pin" aria-hidden="true"></i>
               <a href="https://maps.app.goo.gl/d8kfjpDiRvw9ZKt47" target="_blank" rel="noopener">87-61 111th St, Richmond Hill<br>NY 11418, United States</a>
-            </li>
-            <li>
-              <i class="ph ph-phone" aria-hidden="true"></i>
-              <span>+1 718-380-6929</span>
             </li>
             <li>
               <i class="ph ph-envelope-simple" aria-hidden="true"></i>
