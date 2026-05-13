@@ -641,6 +641,26 @@
     </div>
   </footer>
 
+  <!-- Bookmark sync nudge — first bookmark per session shows a sign-in hint -->
+  <script>
+  (function() {
+    var shown = sessionStorage.getItem('ouat:bookmark-sync-nudge');
+    if (shown) return;
+    document.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-bookmark]');
+      if (!btn) return;
+      setTimeout(function() {
+        if (btn.getAttribute('aria-pressed') === 'true' && !sessionStorage.getItem('ouat:bookmark-sync-nudge')) {
+          sessionStorage.setItem('ouat:bookmark-sync-nudge', '1');
+          if (window.OUAT_toast) {
+            window.OUAT_toast('Saved locally on this device. Sign in to sync across devices.', { variant: 'info', duration: 4000 });
+          }
+        }
+      }, 100);
+    });
+  })();
+  </script>
+
   <script>
     (function () {
       const toggle = document.querySelector('.nav-toggle');

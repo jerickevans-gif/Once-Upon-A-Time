@@ -219,14 +219,33 @@
       }
 
       // Persist preference toggles to localStorage
-      document.querySelectorAll('.toggle-row input[type="checkbox"]').forEach((cb, i) => {
-        const label = cb.closest('.toggle-row').querySelector('.toggle-row__label')?.textContent.trim() || ('pref-' + i);
-        const key = 'ouat:pref:' + label.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-        const stored = localStorage.getItem(key);
+      document.querySelectorAll('.toggle-row input[type="checkbox"]').forEach(function(cb, i) {
+        var label = (cb.closest('.toggle-row').querySelector('.toggle-row__label') || {}).textContent;
+        label = label ? label.trim() : ('pref-' + i);
+        var key = 'ouat:pref:' + label.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        var stored = localStorage.getItem(key);
         if (stored !== null) cb.checked = stored === 'true';
-        cb.addEventListener('change', () => {
+        cb.addEventListener('change', function() {
+          // Confirmation gate for email notifications
+          if (!cb.checked && label === 'Receive Email Notifications') {
+            cb.checked = true; // re-check immediately
+            if (window.OUAT_confirm) {
+              window.OUAT_confirm({
+                title: 'Turn off email notifications?',
+                body: 'You will no longer receive class reminders, schedule changes, or enrollment confirmations by email.',
+                cta: 'Turn off',
+                danger: true,
+                onConfirm: function() {
+                  cb.checked = false;
+                  localStorage.setItem(key, 'false');
+                  if (window.OUAT_toast) window.OUAT_toast('Email notifications turned off.', { variant: 'info', duration: 2000 });
+                }
+              });
+              return;
+            }
+          }
           localStorage.setItem(key, cb.checked);
-          if (window.OUAT_toast) window.OUAT_toast(`${label}: ${cb.checked ? 'on' : 'off'} (saved locally; persists to Shopify customer metafield in production)`, { variant: 'info', duration: 2000 });
+          if (window.OUAT_toast) window.OUAT_toast(label + ': ' + (cb.checked ? 'on' : 'off') + ' (saved locally; persists to Shopify customer metafield in production)', { variant: 'info', duration: 2000 });
         });
       });
     })();
