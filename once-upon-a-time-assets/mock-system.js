@@ -359,6 +359,65 @@
     }, delay);
   };
 
+  // -------------------- Accessible carousel (OUAT_carousel) -------------------- //
+  window.OUAT_carousel = function (container) {
+    var track = container.querySelector('.carousel__track');
+    var slides = container.querySelectorAll('.carousel__slide');
+    var prevBtn = container.querySelector('.carousel__arrow--prev');
+    var nextBtn = container.querySelector('.carousel__arrow--next');
+    var dots = container.querySelectorAll('.carousel__dot');
+    if (!track || slides.length === 0) return;
+
+    var current = 0;
+    var total = slides.length;
+
+    function goTo(idx) {
+      if (idx < 0) idx = total - 1;
+      if (idx >= total) idx = 0;
+      current = idx;
+      slides[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      slides.forEach(function (s, i) {
+        s.setAttribute('aria-label', (i + 1) + ' of ' + total);
+      });
+      dots.forEach(function (d, i) {
+        d.setAttribute('aria-selected', i === current ? 'true' : 'false');
+      });
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
+    if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
+    dots.forEach(function (d, i) {
+      d.addEventListener('click', function () { goTo(i); });
+    });
+
+    container.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { goTo(current - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { goTo(current + 1); e.preventDefault(); }
+    });
+
+    var autoTimer;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      autoTimer = setInterval(function () { goTo(current + 1); }, 6000);
+      container.addEventListener('mouseenter', function () { clearInterval(autoTimer); });
+      container.addEventListener('mouseleave', function () {
+        autoTimer = setInterval(function () { goTo(current + 1); }, 6000);
+      });
+      container.addEventListener('focusin', function () { clearInterval(autoTimer); });
+      container.addEventListener('focusout', function () {
+        autoTimer = setInterval(function () { goTo(current + 1); }, 6000);
+      });
+    }
+
+    goTo(0);
+  };
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.carousel').forEach(function (c) {
+      window.OUAT_carousel(c);
+    });
+  });
+
   // -------------------- Cookie banner (auto-injected) -------------------- //
   document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem('ouat:cookies-acked')) return;
