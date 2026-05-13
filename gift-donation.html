@@ -47,6 +47,10 @@
   .legal-body p { margin: 0 0 12px; }
   .legal-body ul { margin: 0 0 12px; padding-left: 24px; }
   .legal-body li { margin-bottom: 6px; }
+  @media (max-width: 540px) {
+    .gift-type-grid, .form-row-2col { grid-template-columns: 1fr !important; }
+    .gift-amounts { grid-template-columns: 1fr 1fr !important; }
+  }
 </style>
 </head>
 <body>
@@ -76,7 +80,7 @@
       <form id="gift-form" style="display:grid;gap:20px" novalidate>
         <fieldset style="border:0;padding:0">
           <legend style="font-size:14px;font-weight:700;margin-bottom:10px">This gift is</legend>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div class="gift-type-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
             <label style="display:inline-flex;gap:10px;padding:14px 18px;border:1.5px solid var(--rose);border-radius:10px;cursor:pointer;font-weight:600;align-items:center"><input type="radio" name="gift-type" value="honor" checked> In honor of</label>
             <label style="display:inline-flex;gap:10px;padding:14px 18px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;font-weight:600;align-items:center"><input type="radio" name="gift-type" value="memory"> In memory of</label>
           </div>
@@ -84,7 +88,7 @@
         <label class="field"><span class="field__label">Honoree&#39;s name</span><input class="input" name="honoree" type="text" placeholder="e.g. Grandma Rose" required aria-required="true"></label>
         <label class="field"><span class="field__label">Personal message (optional)</span><textarea class="textarea" name="message" rows="3" style="width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--snow)" placeholder="Happy 80th birthday from Claire and Daisy"></textarea></label>
         <h3 style="font-family:var(--serif);font-size:18px;text-transform:uppercase;margin:8px 0 0">Send notification to</h3>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="form-row-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
           <label class="field"><span class="field__label">Recipient name</span><input class="input" name="recipient-name" type="text" required aria-required="true"></label>
           <label class="field"><span class="field__label">Email</span><input class="input" name="recipient-email" type="email" required aria-required="true"></label>
         </div>

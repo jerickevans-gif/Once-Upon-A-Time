@@ -47,6 +47,7 @@
   .legal-body p { margin: 0 0 12px; }
   .legal-body ul { margin: 0 0 12px; padding-left: 24px; }
   .legal-body li { margin-bottom: 6px; }
+  @media (max-width: 540px) { .form-row-2col { grid-template-columns: 1fr !important; } }
 </style>
 </head>
 <body>
@@ -77,7 +78,7 @@
         <strong>Confidentiality:</strong> Your application is reviewed only by the scholarship committee. Information is never shared with instructors or other families.
       </div>
       <form id="scholarship-form" style="display:grid;gap:20px" novalidate>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="form-row-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
           <label class="field"><span class="field__label">Parent / Guardian First Name</span><input class="input" type="text" required></label>
           <label class="field"><span class="field__label">Last Name</span><input class="input" type="text" required></label>
         </div>

@@ -47,6 +47,10 @@
   .legal-body p { margin: 0 0 12px; }
   .legal-body ul { margin: 0 0 12px; padding-left: 24px; }
   .legal-body li { margin-bottom: 6px; }
+  @media (max-width: 540px) {
+    .impact-stats-grid { grid-template-columns: 1fr 1fr !important; }
+    .impact-stories-grid { grid-template-columns: 1fr !important; }
+  }
 </style>
 </head>
 <body>
@@ -89,7 +93,7 @@
 
     <section class="wrap" style="padding:48px 0;max-width:880px">
       <h2 style="font-family:var(--serif);font-size:32px;text-transform:uppercase;margin-bottom:20px;color:var(--pillar)">Stories from this year</h2>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px">
+      <div class="impact-stories-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px">
         <div style="background:var(--rose-50);border-radius:14px;padding:24px"><div style="font-family:var(--serif);font-size:20px;color:var(--rose-700);margin-bottom:8px">Our community garden grew 480 lbs of produce</div><p style="font-size:13px;color:var(--ink-muted);line-height:1.6;margin:0">Donated to families and the local food pantry.</p></div>
         <div style="background:var(--rose-50);border-radius:14px;padding:24px"><div style="font-family:var(--serif);font-size:20px;color:var(--rose-700);margin-bottom:8px">48 scholarships awarded</div><p style="font-size:13px;color:var(--ink-muted);line-height:1.6;margin:0">Up from 31 last year. Every applying family with documented need received support.</p></div>
         <div style="background:var(--rose-50);border-radius:14px;padding:24px"><div style="font-family:var(--serif);font-size:20px;color:var(--rose-700);margin-bottom:8px">200+ family members at end-of-year showcase</div><p style="font-size:13px;color:var(--ink-muted);line-height:1.6;margin:0">Our largest audience to date — and our students rose to meet it.</p></div>

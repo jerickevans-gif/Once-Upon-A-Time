@@ -47,6 +47,10 @@
   .legal-body p { margin: 0 0 12px; }
   .legal-body ul { margin: 0 0 12px; padding-left: 24px; }
   .legal-body li { margin-bottom: 6px; }
+  @media (max-width: 540px) {
+    .event-card { grid-template-columns: 1fr !important; text-align: center; }
+    .event-card .btn { justify-self: center; }
+  }
 </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Event","name":"Spring Showcase 2026","startDate":"2026-05-28T18:00","location":{"@type":"Place","name":"Studio A","address":"87-61 111th St, Richmond Hill, NY 11418"},"organizer":{"@type":"NGO","name":"Once Upon A Time, Inc."}},{"@type":"Event","name":"Open Studio Saturday","startDate":"2026-06-15T10:00","location":{"@type":"Place","name":"OUAT Studios","address":"87-61 111th St, Richmond Hill, NY 11418"}},{"@type":"Event","name":"Fall Gala Fundraiser","startDate":"2026-09-20T19:00","location":{"@type":"Place","name":"Queens Botanical Garden"}},{"@type":"Event","name":"Donor Appreciation Reception","startDate":"2026-10-12T16:00"},{"@type":"Event","name":"Winter Showcase 2026","startDate":"2026-12-18T18:00"}]}</script>
 </head>
@@ -75,7 +79,7 @@
     </section>
     <section class="wrap" data-skeleton-list="5" style="padding:48px 0;display:grid;gap:18px;max-width:880px">
       
-      <article style="display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:20px 24px">
+      <article class="event-card" style="display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:20px 24px">
         <div style="text-align:center;padding:10px 0;background:var(--rose-100);border-radius:10px;color:var(--rose-700)">
           <div style="font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase">May</div>
           <div style="font-family:var(--serif);font-size:30px;font-weight:600;line-height:1">28</div>
@@ -88,7 +92,7 @@
         </div>
         <a class="btn btn--sm" href="#" data-mock="rsvp" data-mock-toast="RSVP recorded via Shopify customer metaobject in production.">RSVP</a>
       </article>
-      <article style="display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:20px 24px">
+      <article class="event-card" style="display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:20px 24px">
         <div style="text-align:center;padding:10px 0;background:var(--rose-100);border-radius:10px;color:var(--rose-700)">
           <div style="font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase">Jun</div>
           <div style="font-family:var(--serif);font-size:30px;font-weight:600;line-height:1">15</div>
@@ -101,7 +105,7 @@
         </div>
         <a class="btn btn--sm" href="#" data-mock="rsvp" data-mock-toast="RSVP recorded via Shopify customer metaobject in production.">Add to calendar</a>
       </article>
-      <article style="display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:20px 24px">
+      <article class="event-card" style="display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:20px 24px">
         <div style="text-align:center;padding:10px 0;background:var(--rose-100);border-radius:10px;color:var(--rose-700)">
           <div style="font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase">Sep</div>
           <div style="font-family:var(--serif);font-size:30px;font-weight:600;line-height:1">20</div>
@@ -114,7 +118,7 @@
         </div>
         <a class="btn btn--sm" href="donate.html" data-mock="rsvp" data-mock-toast="RSVP recorded via Shopify customer metaobject in production.">Buy tickets</a>
       </article>
-      <article style="display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:20px 24px">
+      <article class="event-card" style="display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:20px 24px">
         <div style="text-align:center;padding:10px 0;background:var(--rose-100);border-radius:10px;color:var(--rose-700)">
           <div style="font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase">Oct</div>
           <div style="font-family:var(--serif);font-size:30px;font-weight:600;line-height:1">12</div>
@@ -127,7 +131,7 @@
         </div>
         <a class="btn btn--sm" href="#" data-mock="rsvp" data-mock-toast="RSVP recorded via Shopify customer metaobject in production.">RSVP</a>
       </article>
-      <article style="display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:20px 24px">
+      <article class="event-card" style="display:grid;grid-template-columns:90px 1fr auto;gap:20px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:14px;padding:20px 24px">
         <div style="text-align:center;padding:10px 0;background:var(--rose-100);border-radius:10px;color:var(--rose-700)">
           <div style="font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase">Dec</div>
           <div style="font-family:var(--serif);font-size:30px;font-weight:600;line-height:1">18</div>
