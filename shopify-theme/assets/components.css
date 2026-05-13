@@ -323,37 +323,67 @@
 
 /* ---------- Dark mode tokens ---------- */
 .theme-dark {
+  /* Base surfaces */
   --beginning: #1F1A18;
   --snow: #2A2422;
-  --ink: #F2DDD5;
+  --ink: #F2DCD8;
   --ink-muted: #B89E94;
   --line: #3A2E2A;
+
+  /* Rose (primary) dark ramp */
   --rose-50: #3A2823;
   --rose-100: #4A2F28;
   --rose-300: #6E4C44;
   --rose: #C99A8E;
+  --rose-600: #D9A99E;
   --rose-700: #E5AA9C;
-  --pillar: #F2DDD5;
+
+  /* Garden dark ramp */
   --garden-50: #2D2E16;
   --garden-100: #3A3C18;
   --garden-300: #5C5F25;
   --garden: #A6A968;
   --garden-700: #C7CB8A;
-  --shadow-sm: 0 2px 6px rgba(0,0,0,.5);
-  --shadow-md: 0 8px 24px rgba(0,0,0,.6);
 
-  /* New token dark overrides (FEAT-001 T002) */
-  --danger-100:  #3A1A16;
+  /* Pillar dark ramp */
+  --pillar: #F2DCD8;
+  --pillar-100: #4A3842;
+  --pillar-700: #D9A99E;
+  --pillar-800: #F2DCD8;
+
+  /* Semantic colors — dark overrides */
   --danger-50:   #2E1512;
-  --n-50:        #2A2422;
-  --pillar-800:  #F2DDD5;
+  --danger-100:  #3A1A16;
+  --danger:      #F09690;
+  --danger-700:  #E57067;
+
+  --warning-50:  #2E2010;
+  --warning:     #F7B256;
+  --warning-700: #F7C27C;
+
+  --success-50:  #0D2E1E;
+  --success:     #67E5AB;
+  --success-700: #7EE5B6;
+
+  --info-50:     #0F1E2E;
+  --info:        #71B3FA;
+  --info-700:    #96C6FA;
+
+  /* Neutral */
+  --n-50: #2A2422;
+
+  /* Functional */
   --label-color: var(--ink-muted);
-  --toast-success: var(--garden);
+  --toast-success: var(--success);
   --toast-error:   var(--danger);
-  --toast-info:    var(--pillar);
-  --toast-warning: #D4923A;
+  --toast-info:    var(--info);
+  --toast-warning: var(--warning);
   --skeleton-from: var(--rose-50);
   --skeleton-via:  var(--rose-100);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 6px rgba(0,0,0,.5);
+  --shadow-md: 0 8px 24px rgba(0,0,0,.6);
 }
 .theme-dark body { background: var(--beginning); color: var(--ink); }
 .theme-dark .site-header { background: var(--beginning); border-bottom: 1px solid var(--line); }

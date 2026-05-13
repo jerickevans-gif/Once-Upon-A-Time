@@ -31,25 +31,40 @@
 
 /* ---------- Tokens ---------- */
 :root {
-  /* Brand colors — P3 Primary (rose) ramp from Figma */
-  --rose-50:     #F2E8E6;   /* very faint tint */
-  --rose-100:    #F2DDD5;   /* tonal background (OUAT-specific) */
+  /* Brand colors — P3 Primary (rose) ramp from OUAT Design System Figma */
+  --rose-50:     #F2E8E6;
+  --rose-100:    #F2DCD8;   /* aligned to Figma primary-100 (was #F2DDD5) */
   --rose-200:    #D9B3AB;
   --rose-300:    #BF8E84;
   --rose-400:    #A66D62;
-  --rose:        #8B5044;   /* Primary (primary-500) */
-  --rose-700:    #59332B;   /* hover/pressed */
+  --rose:        #8B5044;   /* primary-500 */
+  --rose-600:    #734238;   /* NEW from Figma */
+  --rose-700:    #59332B;
   --rose-800:    #40251F;
+  --rose-900:    #261613;   /* NEW from Figma */
 
-  --garden:      #6B6D20;   /* Secondary — olive */
-  --garden-700:  #54561A;
-  --garden-300:  #B5B679;
-  --garden-100:  #E3E4C5;
-  --garden-50:   #F1F2DF;
+  /* Secondary — Garden (olive) — aligned to Figma garden ramp */
+  --garden-50:   #EAEBD8;   /* was #F1F2DF */
+  --garden-100:  #E0E0BF;   /* was #E3E4C5 */
+  --garden-200:  #C5C789;   /* NEW */
+  --garden-300:  #B8BA6E;   /* was #B5B679 */
+  --garden-400:  #9FA14F;   /* NEW */
+  --garden-500:  #858735;   /* NEW — Figma's garden-500 */
+  --garden:      #6B6D20;   /* garden-600 in Figma, canonical brand green */
+  --garden-700:  #535419;   /* was #54561A */
+  --garden-800:  #3A3B11;   /* NEW */
+  --garden-900:  #262611;   /* NEW */
 
-  --pillar:      #4C2F3B;   /* Secondary — aubergine */
-  --pillar-700:  #371F2A;
-  --pillar-100:  #DDC9D1;
+  /* Secondary — Pillar (aubergine) — aligned to Figma pillar ramp */
+  --pillar-50:   #D5CDD0;   /* NEW */
+  --pillar-100:  #C6BEC1;   /* was #DDC9D1 */
+  --pillar-200:  #AA9DA2;   /* NEW */
+  --pillar-300:  #837178;   /* NEW */
+  --pillar-400:  #6C565F;   /* NEW */
+  --pillar:      #4C2F3B;   /* pillar-500 in Figma (unchanged) */
+  --pillar-600:  #402731;   /* NEW */
+  --pillar-700:  #321F27;   /* was #371F2A */
+  --pillar-900:  #1C1216;   /* NEW */
 
   --sky:         #E2F6FE;   /* Accent */
   --blush:       #E5AA9C;   /* Accent */
@@ -73,23 +88,53 @@
   /* Stone — icon neutral, slightly warmer than --ink */
   --stone:       #343330;
 
-  --danger:      #B83A2B;
-  --danger-700:  #8E2A1E;
-  --danger-100:  #FDECEA;
-  --danger-50:   #FEF5F4;
+  /* Error ramp — aligned to Figma error palette */
+  --danger-50:   #F0E4E4;   /* was #FEF5F4 */
+  --danger-100:  #F0C3C0;   /* was #FDECEA */
+  --danger-200:  #F09690;   /* NEW */
+  --danger-300:  #E57067;   /* NEW */
+  --danger:      #D63D32;   /* was #B83A2B — aligned to Figma error-600 */
+  --danger-700:  #BD352C;   /* was #8E2A1E — aligned to Figma error-700 */
+  --danger-800:  #A32E26;   /* NEW */
+  --danger-900:  #8A2720;   /* NEW */
+
+  /* Warning ramp — from Figma Design System */
+  --warning-50:  #F7E4CB;
+  --warning-100: #F7D7AD;
+  --warning-300: #F7B256;
+  --warning:     #F79009;   /* warning-500 */
+  --warning-700: #C47207;
+  --warning-900: #915505;
+
+  /* Success ramp — from Figma Design System */
+  --success-50:  #D3EBE0;
+  --success-100: #A4EBCA;
+  --success-300: #67E5AB;
+  --success:     #17B26A;   /* success-500 */
+  --success-700: #10804C;
+  --success-900: #0A4D2E;
+
+  /* Info ramp — from Figma Design System */
+  --info-50:     #D4E6FA;
+  --info-100:    #BBDAFA;
+  --info-300:    #71B3FA;
+  --info:        #2E90FA;   /* info-500 */
+  --info-700:    #2573C7;
+  --info-900:    #1B5594;
 
   /* Neutral additions */
-  --n-50:        #F5F2EF;
-  --pillar-800:  #20131A;
+  --n-50:        #F2ECE7;   /* was #F5F2EF — aligned to Figma neutral-50 */
+  --n-900:       #262422;   /* alias for --ink, matches Figma neutral-900 */
+  --pillar-800:  #27181E;   /* was #20131A — aligned to Figma */
 
   /* Form labels */
   --label-color: var(--n-500);
 
-  /* Toast variants */
-  --toast-success: var(--garden);
+  /* Toast variants — now reference semantic ramps */
+  --toast-success: var(--success);
   --toast-error:   var(--danger);
-  --toast-info:    var(--pillar);
-  --toast-warning: #C4760B;
+  --toast-info:    var(--info);
+  --toast-warning: var(--warning);
 
   /* Skeleton shimmer */
   --skeleton-from: var(--rose-50);
