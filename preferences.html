@@ -152,6 +152,7 @@
             <div></div>
             <button class="btn btn--sm btn--outline" type="button" data-mock="add-payment">Add a new payment method</button>
           </div>
+          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
         </div>
 
         <div class="acc-section">
@@ -164,6 +165,7 @@
             <span class="toggle-row__label">Subscribe Newsletters</span>
             <input type="checkbox" checked>
           </label>
+          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
         </div>
 
         <div class="acc-section">
@@ -176,6 +178,7 @@
             <span class="toggle-row__label">Allow photos for website and social media</span>
             <input type="checkbox">
           </label>
+          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
         </div>
 
         <button class="delete-account" type="button" data-confirm="Delete account?" data-confirm-body="This action is permanent and cannot be undone." data-confirm-consequences="Your profile and all child profiles will be deleted|Payment methods will be removed|Class history and receipts will be lost|Inbox messages will be permanently deleted" data-confirm-cta="Delete forever" data-confirm-danger="true" data-confirm-action="mock:delete-account" data-confirm-toast="Account deletion routes to Shopify GDPR endpoint in production."><i class="ph ph-trash"></i> Delete my account</button>
@@ -246,6 +249,18 @@
           }
           localStorage.setItem(key, cb.checked);
           if (window.OUAT_toast) window.OUAT_toast(label + ': ' + (cb.checked ? 'on' : 'off') + ' (saved locally; persists to Shopify customer metafield in production)', { variant: 'info', duration: 2000 });
+
+          // Fire sync-status indicator
+          var status = cb.closest('.acc-section')?.querySelector('.sync-status');
+          if (status && window.OUAT_syncStatus) window.OUAT_syncStatus(status);
+        });
+      });
+
+      // Sync-status wiring for mock action buttons
+      document.querySelectorAll('[data-mock]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var status = btn.closest('.acc-section')?.querySelector('.sync-status');
+          if (status && window.OUAT_syncStatus) window.OUAT_syncStatus(status);
         });
       });
     })();

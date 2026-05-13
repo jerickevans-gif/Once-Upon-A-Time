@@ -164,6 +164,7 @@
                 <div class="class-card__links">
                   <a href="#" data-confirm="Cancel this program?" data-confirm-body="Refunds are full up to 14 days before the start date; partial credit after. Anyone in the class roster will be notified." data-confirm-cta="Cancel program" data-confirm-danger="true" data-confirm-action="mock:cancel-program">Cancel program</a>
                   <a href="mailto:contact@onceuponatime.org?subject=Report%20issue%20-%20Seasonal%20Camps%202026&body=Order%20%23OUAT-2026-001%0A%0AIssue%20description%3A">Report an issue</a>
+                  <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
                 </div>
                 <div class="class-card__footer">
                   <a class="btn btn--sm" href="seasonal-camps.html">View Details</a>
@@ -226,6 +227,12 @@
             </article>
           </div>
         </div>
+
+        <div class="empty-state" role="status" hidden>
+          <div class="empty-state__icon"><i class="ph ph-book-open" aria-hidden="true"></i></div>
+          <h3 class="empty-state__title">No class history yet</h3>
+          <p class="empty-state__body">Your enrolled classes will appear here after your first session.</p>
+        </div>
       </section>
     </div>
   </main>
@@ -262,6 +269,14 @@
         const open = nav.dataset.open === 'true';
         nav.dataset.open = open ? 'false' : 'true';
         toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+
+      // Sync-status wiring for cancel-program confirm action
+      document.querySelectorAll('[data-confirm]').forEach(function(el) {
+        el.addEventListener('click', function() {
+          var status = el.closest('.class-card__links, .class-card__body')?.querySelector('.sync-status');
+          if (status && window.OUAT_syncStatus) window.OUAT_syncStatus(status);
+        });
       });
     })();
   </script>

@@ -194,6 +194,7 @@
               <input class="input" id="prefName" type="text" value="CLAIRE SHERLOCK">
             </div>
           </div>
+          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
         </div>
 
         <div class="acc-section">
@@ -226,6 +227,7 @@
                 data-confirm-action="mock:remove-child">
                 <i class="ph ph-trash" aria-hidden="true"></i> Remove
               </button>
+              <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
             </div>
           </article>
 
@@ -250,6 +252,7 @@
                 data-confirm-action="mock:remove-child">
                 <i class="ph ph-trash" aria-hidden="true"></i> Remove
               </button>
+              <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
             </div>
           </article>
 
@@ -279,6 +282,7 @@
             </div>
             <button class="security-row__action" type="button" data-mock="enable-2fa">Set up</button>
           </div>
+          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
         </div>
 
       </section>
@@ -318,6 +322,14 @@
         const open = nav.dataset.open === 'true';
         nav.dataset.open = open ? 'false' : 'true';
         toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+      });
+
+      // Sync-status wiring for mock actions
+      document.querySelectorAll('[data-mock]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var status = btn.closest('.acc-section, .child-card, .child-card__actions, .actions')?.querySelector('.sync-status');
+          if (status && window.OUAT_syncStatus) window.OUAT_syncStatus(status);
+        });
       });
     })();
   </script>
