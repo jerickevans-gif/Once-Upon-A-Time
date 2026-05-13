@@ -245,6 +245,21 @@
     });
   });
 
+  // -------------------- Clear filters (data-clear-filters) -------------------- //
+  // Resets all filter chips and search inputs in the page.
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-clear-filters]');
+    if (!el) return;
+    document.querySelectorAll('[aria-pressed="true"]').forEach(function (chip) {
+      chip.setAttribute('aria-pressed', 'false');
+      chip.classList.remove('is-active');
+    });
+    document.querySelectorAll('input[type="search"], input[type="text"][data-filter]').forEach(function (input) {
+      input.value = '';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+  });
+
   // -------------------- Sign-in launcher (data-open-signin) -------------------- //
   // The Sign-in button in the header uses data-open-signin. Route it to login.html.
   document.addEventListener('click', (e) => {
@@ -265,7 +280,8 @@
     const cta = el.dataset.confirmCta || 'Confirm';
     const danger = el.dataset.confirmDanger === 'true';
     const action = el.dataset.confirmAction || '';
-    showConfirm({ title, body, cta, danger, onConfirm: () => {
+    const consequences = el.dataset.confirmConsequences || '';
+    showConfirm({ title, body, cta, danger, consequences, onConfirm: () => {
       if (action.startsWith('mock:')) {
         toast(el.dataset.confirmToast || 'Confirmed. Routes to Shopify in production.', { variant: 'mock' });
       } else if (action) {
@@ -275,13 +291,20 @@
       }
     }});
   });
-  function showConfirm ({ title, body, cta, danger, onConfirm }) {
+  function showConfirm ({ title, body, cta, danger, consequences, onConfirm }) {
+    var consHtml = '';
+    if (consequences) {
+      consHtml = '<ul class="modal__consequences">' +
+        consequences.split('|').map(function (c) { return '<li>' + c + '</li>'; }).join('') +
+        '</ul>';
+    }
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
     overlay.innerHTML = `
       <div class="modal ${danger ? 'modal--danger' : ''}" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
         <h2 class="modal__title" id="confirm-title">${title}</h2>
         <p class="modal__body">${body}</p>
+        ${consHtml}
         <div class="modal__actions">
           <button class="btn btn--ghost" data-cancel>Cancel</button>
           <button class="btn ${danger ? 'btn-confirm' : ''}" data-ok>${cta}</button>
@@ -318,6 +341,22 @@
       input.classList.remove('is-error');
       err.remove();
     }, { once: true });
+  };
+
+  // -------------------- Sync status indicator (OUAT_syncStatus) -------------------- //
+  // Shows a "Saving... → Saved" indicator on a status element.
+  window.OUAT_syncStatus = function (statusEl, opts) {
+    opts = opts || {};
+    var delay = opts.delay || 800;
+    statusEl.setAttribute('data-state', 'saving');
+    statusEl.innerHTML = '<span class="sync-status__spinner"></span> Saving…';
+    setTimeout(function () {
+      statusEl.setAttribute('data-state', 'saved');
+      statusEl.innerHTML = '<i class="ph ph-check" aria-hidden="true"></i> Saved';
+      setTimeout(function () {
+        statusEl.setAttribute('data-state', 'idle');
+      }, 2000);
+    }, delay);
   };
 
   // -------------------- Cookie banner (auto-injected) -------------------- //
