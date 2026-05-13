@@ -118,12 +118,15 @@
           <span class="account-user__avatar"><i class="ph ph-user"></i></span>
           <span class="account-user__name">Claire Sherlock</span>
         </div>
-        <nav class="account-nav" aria-label="Account sections">
-          <a href="profile.html"><i class="ph ph-user-circle"></i><span>My Profile</span><span></span></a>
-          <a href="preferences.html" aria-current="page"><i class="ph ph-sliders-horizontal"></i><span>Preferences</span><span></span></a>
-          <a href="class-history.html"><i class="ph ph-book-open"></i><span>Class history</span><span></span></a>
-          <a href="inbox.html"><i class="ph ph-envelope"></i><span>Inbox</span><span class="account-nav__badge">3</span></a>
-        </nav>
+        <details class="sidebar-collapse">
+          <summary>Account Menu <i class="ph ph-caret-down" aria-hidden="true"></i></summary>
+          <nav class="sidebar-collapse__nav account-nav" aria-label="Account sections">
+            <a href="profile.html"><i class="ph ph-user-circle"></i><span>My Profile</span><span></span></a>
+            <a href="preferences.html" aria-current="page"><i class="ph ph-sliders-horizontal"></i><span>Preferences</span><span></span></a>
+            <a href="class-history.html"><i class="ph ph-book-open"></i><span>Class history</span><span></span></a>
+            <a href="inbox.html"><i class="ph ph-envelope"></i><span>Inbox</span><span class="account-nav__badge">3</span></a>
+          </nav>
+        </details>
         <div class="account-side-card">
           <span class="account-side-card__title">Browse more classes?</span>
           <a class="btn btn--sm" href="programs.html">See more</a>

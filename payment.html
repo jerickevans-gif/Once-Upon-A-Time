@@ -316,7 +316,7 @@
                   <input class="input" name="card-exp" type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" required>
                 </label>
                 <label class="field">
-                  <span class="field__label">CVV</span>
+                  <span class="field__label">CVV <button type="button" class="cvv-help" aria-label="What is CVV?" data-mock-toast="The CVV is the 3-digit code on the back of your card (4 digits on the front for Amex)." style="background:transparent;border:0;color:var(--ink-muted);cursor:pointer;padding:2px;font-size:14px;vertical-align:middle"><i class="ph ph-question" aria-hidden="true"></i></button></span>
                   <input class="input" name="card-cvv" type="text" inputmode="numeric" autocomplete="cc-csc" placeholder="CVV" required>
                 </label>
               </div>
@@ -361,6 +361,13 @@
               </span>
             </label>
 
+            <div class="pm-fields" data-method-fields="paypal" style="display:none;padding:var(--s-4) 0">
+              <p style="font-size:14px;color:var(--ink-muted);margin:0 0 16px">You'll be redirected to PayPal to complete your donation securely.</p>
+              <button type="button" class="btn" data-mock="paypal-redirect" style="background:#003087;color:var(--snow)">
+                <i class="ph ph-paypal-logo" aria-hidden="true"></i> Continue with PayPal
+              </button>
+            </div>
+
             <label class="pm-row">
               <input type="radio" name="method" value="apple">
               <span>Apple Pay</span>
@@ -374,6 +381,10 @@
             <input type="checkbox" name="monthly" style="appearance:none;width:16px;height:16px;border-radius:50%;border:1.5px solid var(--rose);background:var(--snow);cursor:pointer;display:grid;place-items:center;">
             <span>Check the Box if you want to pay every month</span>
           </label>
+
+          <p id="impact-personal" style="text-align:center;font-size:13px;color:var(--garden-700);margin:16px 0 0;font-weight:500">
+            Your $100 sponsors a full program enrollment for one child.
+          </p>
 
           <button type="submit" class="donate-submit" id="donate-submit">Donate $100 Now</button>
         </form>
@@ -411,12 +422,15 @@
       if (!form) return;
 
       const cardFields = form.querySelector('[data-method-fields="card"]');
+      const paypalFields = form.querySelector('[data-method-fields="paypal"]');
       const methodRadios = form.querySelectorAll('input[name="method"]');
 
       function refreshCardFields() {
-        const card = form.querySelector('input[name="method"]:checked').value === 'card';
+        const selected = form.querySelector('input[name="method"]:checked').value;
+        const card = selected === 'card';
         cardFields.style.display = card ? '' : 'none';
         cardFields.querySelectorAll('input').forEach(i => i.required = card);
+        if (paypalFields) paypalFields.style.display = selected === 'paypal' ? '' : 'none';
       }
 
       function refreshSubmit() {
@@ -450,6 +464,21 @@
       const amount = parseFloat(params.get('amount')) || 100;
       const freq = (params.get('freq') || 'One-time').toLowerCase();
       submit.textContent = `Donate $${amount.toLocaleString()} Now`;
+
+      // Dynamic impact statement
+      const impactEl = document.getElementById('impact-personal');
+      if (impactEl) {
+        const impacts = [
+          [500, 'Your $%s funds an entire semester of classes for five children.'],
+          [250, 'Your $%s covers costumes and supplies for a full recital.'],
+          [100, 'Your $%s sponsors a full program enrollment for one child.'],
+          [50,  'Your $%s provides a month of art supplies for a classroom.'],
+          [25,  'Your $%s buys sheet music and practice materials for a student.'],
+          [0,   'Every dollar brings arts education closer to a child in Queens.']
+        ];
+        const msg = impacts.find(function (t) { return amount >= t[0]; })[1];
+        impactEl.textContent = msg.replace('%s', amount.toLocaleString());
+      }
 
       // Pre-check monthly if freq is monthly/yearly
       if (freq === 'monthly' || freq === 'yearly') {
