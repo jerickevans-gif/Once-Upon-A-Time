@@ -454,6 +454,14 @@
   </footer>
 
   <script>
+    // FAQ smooth scroll on expand (T122)
+    document.querySelectorAll('#faqs details').forEach(function(d) {
+      d.addEventListener('toggle', function() {
+        if (d.open) d.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+  </script>
+  <script>
     // Active section tracking on the sidebar
     (function () {
       const links = document.querySelectorAll('.pd-side__nav a');
