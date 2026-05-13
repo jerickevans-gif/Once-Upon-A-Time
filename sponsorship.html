@@ -118,6 +118,9 @@
       #sponsor-form .input { width: 100%; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--snow); font-size: 14px; }
       #sponsor-form textarea.input { padding-top: 12px; }
       #sponsor-form .input:focus { outline: none; border-color: var(--rose); box-shadow: 0 0 0 3px var(--rose-100); }
+      @media (max-width: 540px) {
+        #sponsor-form div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+      }
     </style>
 
     <script>

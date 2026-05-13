@@ -76,6 +76,11 @@
       padding: var(--s-3) 0;
     }
     .delete-account:hover { color: var(--danger-700); text-decoration: underline; }
+
+    @media (max-width: 540px) {
+      .payment-row { grid-template-columns: auto 1fr; }
+      .payment-row__icon + * + .btn { grid-column: 1 / -1; }
+    }
   </style>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "NGO", "name": "Once Upon A Time", "alternateName": "Once Upon A Time, Inc.", "url": "https://jerickevans-gif.github.io/Once-Upon-A-Time/", "logo": "https://jerickevans-gif.github.io/Once-Upon-A-Time/once-upon-a-time-assets/logo/full-icon.png", "description": "Nonprofit arts education for children \u2014 dance, music, theater, and visual art.", "address": {"@type": "PostalAddress", "streetAddress": "87-61 111th St", "addressLocality": "Richmond Hill", "addressRegion": "NY", "postalCode": "11418", "addressCountry": "US"}, "email": "contact@onceuponatime.org"}</script>
 </head>
