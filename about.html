@@ -483,6 +483,19 @@
       .vision-wrap { padding: 48px 0 40px; }
       .values__inner { padding: 28px 22px; }
     }
+
+    /* ---------- Small-phone refinements ---------- */
+    @media (max-width: 540px) {
+      .vision__grid { grid-template-columns: 1fr; gap: var(--s-5); }
+      .vision__copy h1 { font-size: clamp(32px, 8vw, 60px); }
+      .values__grid { grid-template-columns: 1fr; gap: var(--s-5); }
+      .leadership__grid, .leadership .team-grid { grid-template-columns: 1fr; }
+      .success-cards { grid-template-columns: 1fr; }
+      .donation-goes__grid { grid-template-columns: 1fr; gap: var(--s-5); }
+      .stay-connected__actions { flex-direction: column; }
+      .stay-connected__actions .btn { width: 100%; }
+      .expanding__grid { grid-template-columns: 1fr; }
+    }
   </style>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "NGO", "name": "Once Upon A Time", "alternateName": "Once Upon A Time, Inc.", "url": "https://jerickevans-gif.github.io/Once-Upon-A-Time/", "logo": "https://jerickevans-gif.github.io/Once-Upon-A-Time/once-upon-a-time-assets/logo/full-icon.png", "description": "Nonprofit arts education for children \u2014 dance, music, theater, and visual art.", "address": {"@type": "PostalAddress", "streetAddress": "87-61 111th St", "addressLocality": "Richmond Hill", "addressRegion": "NY", "postalCode": "11418", "addressCountry": "US"}, "email": "contact@onceuponatime.org"}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","mainEntity":{"@type":"NGO","name":"Once Upon A Time, Inc.","foundingDate":"1980","description":"Nonprofit arts education for children \u2014 dance, music, theater, and visual art in Queens, NY."}}</script>

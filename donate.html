@@ -618,6 +618,15 @@
       .stories { padding: 48px 0 56px; margin-bottom: 56px; }
     }
 
+    /* ---------- Small-phone refinements ---------- */
+    @media (max-width: 540px) {
+      .amounts { grid-template-columns: 1fr 1fr; gap: var(--s-3); }
+      .impact__grid { grid-template-columns: 1fr; }
+      .global-impact__grid { grid-template-columns: 1fr; gap: var(--s-4); }
+      .stories__grid { grid-template-columns: 1fr; }
+      .panel { padding: var(--s-4); }
+    }
+
     /* Hi-contrast preference */
     @media (prefers-contrast: more) {
       :root { --line: #4a3422; --ink-2: #2a1810; }
