@@ -224,6 +224,9 @@
         </div>
 
         <!-- Replace REPLACE_ME with a Formspree form ID (https://formspree.io) to submit real messages. -->
+        <div id="contact-error-summary" class="error-summary" role="alert" hidden style="background:var(--danger-50);border:1px solid var(--danger-100);border-radius:var(--radius);padding:var(--s-4);margin-bottom:var(--s-4);color:var(--danger)">
+          <p style="margin:0;font-size:var(--t-label);font-weight:600"><strong>Please check <span data-error-count></span> field(s) below</strong></p>
+        </div>
         <form id="contact-form" class="form-card" novalidate aria-label="Contact form" data-formspree-id="REPLACE_ME">
           <div class="form-row">
             <label class="field" for="contact-first">
@@ -387,7 +390,17 @@
             bad = true;
           }
         });
-        if (bad) return;
+        const errorSummary = document.getElementById('contact-error-summary');
+        if (bad) {
+          const count = form.querySelectorAll('.is-error').length || 1;
+          if (errorSummary) {
+            errorSummary.querySelector('[data-error-count]').textContent = count;
+            errorSummary.hidden = false;
+            errorSummary.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+          return;
+        }
+        if (errorSummary) errorSummary.hidden = true;
 
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalLabel = submitBtn?.textContent;
