@@ -620,6 +620,90 @@ img, video { max-width: 100%; height: auto; }
   .child-grid { grid-template-columns: 1fr; }
 }
 
+/* ---------- Mobile-first overrides (375px primary target) ---------- */
+@media (max-width: 540px) {
+  /* Header compact */
+  .site-header__inner { min-height: 56px; padding: var(--s-2) 0; }
+  .brand img { height: 32px; }
+
+  /* Typography: prevent iOS zoom on inputs */
+  .input, .textarea, .select { font-size: 16px; }
+
+  /* Grid collapse: everything single-column */
+  .hero__grid,
+  .who__grid,
+  .talk,
+  .vision__grid,
+  .donation-goes__grid,
+  .pd-locations,
+  .pd-instructors,
+  .values__grid,
+  .leadership__grid,
+  .success-cards,
+  .donor__stats { grid-template-columns: 1fr; }
+
+  /* Cards full-width */
+  .program-card,
+  .class-card,
+  .nl-card,
+  .member-card,
+  .offer-card,
+  .nl-involved-card { width: 100%; }
+
+  /* Buttons stack vertically */
+  .hero__actions,
+  .btn-group,
+  .donate-cta-buttons { flex-direction: column; }
+  .hero__actions .btn,
+  .btn-group--stretch .btn { width: 100%; }
+
+  /* Forms: labels above, full-width */
+  .form-row { grid-template-columns: 1fr; }
+
+  /* Footer: single-column */
+  .footer__grid { grid-template-columns: 1fr; gap: var(--s-5); }
+  .footer__socials { justify-content: center; }
+  .site-footer__bottom { text-align: center; }
+
+  /* Donor testimonials: stack */
+  .donor__testimonials { grid-template-columns: 1fr; gap: var(--s-5); }
+
+  /* Quick facts: 2x2 wrap */
+  .quick-facts__list { gap: var(--s-3); }
+  .quick-facts__item { min-width: calc(50% - var(--s-3)); }
+
+  /* Sections: tighter vertical rhythm */
+  .section { padding: var(--s-7) 0; }
+
+  /* Image aspect ratios for mobile */
+  .hero__photo { aspect-ratio: 16/9; }
+
+  /* Card photo areas */
+  .class-card { grid-template-rows: 160px auto; }
+
+  /* Account pages */
+  .account { grid-template-columns: 1fr; gap: var(--s-4); padding: var(--s-5) 0; }
+
+  /* Instructor grid */
+  .pd-instructors { gap: var(--s-5); }
+  .pd-instructor__photo { aspect-ratio: 16/9; }
+
+  /* Hide decorative elements that don't work on small screens */
+  .hero__rhombus::before { display: none; }
+
+  /* Enrollment stepper labels already hidden at 540px (existing rule) */
+
+  /* Newsletter article related grid */
+  .article-related-grid { grid-template-columns: 1fr; }
+}
+
+/* Tablet adjustments (541-900px) */
+@media (min-width: 541px) and (max-width: 900px) {
+  .values__grid { grid-template-columns: 1fr 1fr; }
+  .donor__testimonials { grid-template-columns: 1fr 1fr; }
+  .pd-instructors { grid-template-columns: 1fr 1fr; }
+}
+
 /* ---------- Print styles ---------- */
 @media print {
   .site-header, .site-footer, .promo-bar, .auth-modal,

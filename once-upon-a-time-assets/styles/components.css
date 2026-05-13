@@ -625,3 +625,41 @@
   .sidebar-collapse summary { display: none; }
   .sidebar-collapse { border: 0; padding: 0; }
 }
+
+/* ---------- Mobile component overrides (375px) ---------- */
+@media (max-width: 540px) {
+  /* Modal: full-width on phone */
+  .modal { width: calc(100% - 32px); border-radius: 12px; padding: 20px; }
+
+  /* Empty state: tighter padding */
+  .empty-state { padding: 40px 16px; }
+
+  /* Cookie banner: stack vertically */
+  .cookie-banner { flex-direction: column; text-align: center; padding: 16px; }
+  .cookie-banner__text { max-width: 100%; }
+  .cookie-banner__actions { width: 100%; justify-content: center; }
+  .cookie-banner button { flex: 1; }
+
+  /* Stepper: compact */
+  .cmp-stepper, .stepper { padding: 12px 0; margin-bottom: 16px; }
+
+  /* Testimonial: smaller avatar */
+  .testimonial__avatar { width: 48px; height: 48px; }
+
+  /* Member card: horizontal layout on phone */
+  .member-card { flex-direction: row; text-align: left; padding: var(--s-4); gap: var(--s-3); }
+  .member-card__photo { width: 60px; height: 60px; flex-shrink: 0; }
+
+  /* Badge status: slightly bigger touch target */
+  .badge-status { padding: 4px 12px; font-size: var(--t-label); }
+
+  /* Account sidebar: full-width on mobile */
+  .account__sidebar { width: 100%; }
+
+  /* Date grid: smaller cells */
+  .date-grid { font-size: var(--t-micro); }
+  .date-grid__day { width: 24px; height: 24px; }
+
+  /* Breadcrumbs: wrap and smaller */
+  .breadcrumbs ol { font-size: 12px; }
+}
