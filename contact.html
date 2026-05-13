@@ -140,6 +140,15 @@
       .faq-block--reverse .faq-block__art { order: -1; }
     }
 
+    @media (max-width: 540px) {
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__photo { display: none; }
+      .hero__rhombus { min-height: 180px; padding: var(--s-5); }
+      .hero__rhombus::before { display: none; }
+      .talk { grid-template-columns: 1fr; gap: var(--s-5); }
+      .phone-hero { width: 100%; justify-content: center; text-align: center; }
+    }
+
     /* Page-scoped tail spacing for the banner */
     .cta-banner { margin: var(--s-7) 0 var(--s-9); }
   </style>

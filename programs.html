@@ -129,6 +129,13 @@
       .pg-testi__grid { grid-template-columns: 1fr; }
       .pg-grow { padding: 64px 0; }
     }
+    @media (max-width: 540px) {
+      .pg-hero__grid { grid-template-columns: 1fr; }
+      .pg-cards { grid-template-columns: 1fr; }
+      .pg-grow { padding: var(--s-7) 0; }
+      .pg-grow h2 { font-size: clamp(28px, 6vw, 40px); }
+      .pg-testimonials { grid-template-columns: 1fr; }
+    }
   </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Course","name":"Seasonal Camps","description":"Multi-week immersion across dance, theater, and gardening tracks. Ages 10+.","provider":{"@type":"NGO","name":"Once Upon A Time, Inc."},"offers":{"@type":"Offer","price":"150","priceCurrency":"USD"}},{"@type":"Course","name":"Private Lessons","description":"One-on-one instruction with a working professional.","provider":{"@type":"NGO","name":"Once Upon A Time, Inc."},"offers":{"@type":"Offer","price":"30","priceCurrency":"USD"}}]}</script>
 </head>

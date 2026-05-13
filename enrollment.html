@@ -209,6 +209,13 @@
       .panel__title { font-size: 20px; }
       .pm-grid, .pm-grid--3 { grid-template-columns: 1fr; }
     }
+    @media (max-width: 540px) {
+      .enroll-grid { grid-template-columns: 1fr; }
+      .enroll-form .form-row { grid-template-columns: 1fr; }
+      .enroll-review { padding: var(--s-4); }
+      .enroll-submit { position: sticky; bottom: 0; background: var(--snow); padding: var(--s-4); border-top: 1px solid var(--line); z-index: 10; }
+      .enroll-submit .btn { width: 100%; min-height: 56px; }
+    }
   </style>
 </head>
 <body>

@@ -337,6 +337,15 @@
       .nl-toolbar { flex-direction: column; align-items: flex-start; }
       .nl-related__arrow { display: none; }
     }
+    @media (max-width: 540px) {
+      .nl-toolbar { flex-direction: column; align-items: stretch; }
+      .nl-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .nl-tabs::-webkit-scrollbar { display: none; }
+      .nl-tabs a { white-space: nowrap; flex-shrink: 0; }
+      .nl-feature__grid { grid-template-columns: 1fr; }
+      .nl-card-grid { grid-template-columns: 1fr; }
+      .nl-involved-grid { grid-template-columns: 1fr; }
+    }
   </style>
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "NGO", "name": "Once Upon A Time", "alternateName": "Once Upon A Time, Inc.", "url": "https://jerickevans-gif.github.io/Once-Upon-A-Time/", "logo": "https://jerickevans-gif.github.io/Once-Upon-A-Time/once-upon-a-time-assets/logo/full-icon.png", "description": "Nonprofit arts education for children \u2014 dance, music, theater, and visual art.", "address": {"@type": "PostalAddress", "streetAddress": "87-61 111th St", "addressLocality": "Richmond Hill", "addressRegion": "NY", "postalCode": "11418", "addressCountry": "US"}, "email": "contact@onceuponatime.org"}</script>
 </head>
