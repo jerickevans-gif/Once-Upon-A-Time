@@ -1,0 +1,10 @@
+<div class="quick-facts" role="region" aria-label="Program quick facts">
+  <dl class="quick-facts__list">
+    {% for fact in facts %}
+    <div class="quick-facts__item">
+      <dt><i class="ph ph-{{ fact.icon }}" aria-hidden="true"></i> {{ fact.label }}</dt>
+      <dd>{{ fact.value }}</dd>
+    </div>
+    {% endfor %}
+  </dl>
+</div>
