@@ -471,6 +471,7 @@
       .values__grid, .success__grid { grid-template-columns: 1fr; }
       .programs__grid { grid-template-columns: 1fr; }
       .program-arrow { display: none; }
+      .value__quote { display: block !important; }
     }
     @media (max-width: 720px) {
       .wrap { width: min(720px, 100% - 24px); }
@@ -557,18 +558,21 @@
                 <i class="ph ph-mask-happy" style="font-size:48px"></i>
               </span>
               <p>Providing programs and seasonal courses in dance, theater, and art that inspire creativity.</p>
+              <p class="value__quote" style="display:none;font-size:var(--t-label);font-style:italic;color:var(--ink);margin-top:var(--s-3)">"Dancing makes me feel brave." — Mia, 9</p>
             </div>
             <div class="value">
               <span class="value__icon" aria-hidden="true">
                 <i class="ph ph-users-three" style="font-size:48px"></i>
               </span>
               <p>Engaging with communities through performances, workshops, and cultural arts experiences.</p>
+              <p class="value__quote" style="display:none;font-size:var(--t-label);font-style:italic;color:var(--ink);margin-top:var(--s-3)">"I made my best friends in theater camp." — Jordan, 11</p>
             </div>
             <div class="value">
               <span class="value__icon" aria-hidden="true">
                 <i class="ph ph-plant" style="font-size:48px"></i>
               </span>
               <p>Supporting children's growth with skilled instructors who foster story-telling, skill mastery, and personal growth.</p>
+              <p class="value__quote" style="display:none;font-size:var(--t-label);font-style:italic;color:var(--ink);margin-top:var(--s-3)">"My teacher helped me find my voice." — Aiden, 7</p>
             </div>
           </div>
         </div>
@@ -597,7 +601,7 @@
               <div class="leader__avatar" role="img" aria-label="Portrait of Yasmine Rodriguez"></div>
               <div>
                 <h3 class="leader__name">Yasmine Rodriguez</h3>
-                <p class="leader__role">[Add Title here]</p>
+                <p class="leader__role" data-placeholder="true">Executive Director — 12 years in Queens arts education</p>
                 <p class="leader__bio">Lorem ipsum dolor sit amet consectetur. Mollis parturient metus lectus diam integer diam dolor habitant. Mi sapien posuere pretium orci.</p>
               </div>
             </article>
@@ -605,7 +609,7 @@
               <div class="leader__avatar" role="img" aria-label="Portrait of Dolores Diaz"></div>
               <div>
                 <h3 class="leader__name">Dolores Diaz</h3>
-                <p class="leader__role">[Add Title here]</p>
+                <p class="leader__role" data-placeholder="true">Program Director — 8 years in community outreach</p>
                 <p class="leader__bio">Lorem ipsum dolor sit amet consectetur. Mollis parturient metus lectus diam integer diam dolor habitant. Mi sapien posuere pretium orci.</p>
               </div>
             </article>

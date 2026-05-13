@@ -162,12 +162,15 @@
           <span class="account-user__avatar"><i class="ph ph-user"></i></span>
           <span class="account-user__name">Claire Sherlock</span>
         </div>
-        <nav class="account-nav" aria-label="Account sections">
-          <a href="profile.html" aria-current="page"><i class="ph ph-user-circle"></i><span>My Profile</span><span></span></a>
-          <a href="preferences.html"><i class="ph ph-sliders-horizontal"></i><span>Preferences</span><span></span></a>
-          <a href="class-history.html"><i class="ph ph-book-open"></i><span>Class history</span><span></span></a>
-          <a href="inbox.html"><i class="ph ph-envelope"></i><span>Inbox</span><span class="account-nav__badge">3</span></a>
-        </nav>
+        <details class="sidebar-collapse">
+          <summary>Account Menu <i class="ph ph-caret-down" aria-hidden="true"></i></summary>
+          <nav class="sidebar-collapse__nav account-nav" aria-label="Account sections">
+            <a href="profile.html" aria-current="page"><i class="ph ph-user-circle"></i><span>My Profile</span><span></span></a>
+            <a href="preferences.html"><i class="ph ph-sliders-horizontal"></i><span>Preferences</span><span></span></a>
+            <a href="class-history.html"><i class="ph ph-book-open"></i><span>Class history</span><span></span></a>
+            <a href="inbox.html"><i class="ph ph-envelope"></i><span>Inbox</span><span class="account-nav__badge">3</span></a>
+          </nav>
+        </details>
         <div class="account-side-card">
           <span class="account-side-card__title">Browse more classes?</span>
           <a class="btn btn--sm" href="programs.html">See more</a>
@@ -211,6 +214,19 @@
               <div class="child-grid__field"><span class="child-grid__label">Allergy</span><span class="child-grid__value">None</span></div>
               <div class="child-grid__field"><span class="child-grid__label">Emergency contact</span><span class="child-grid__value">XX</span></div>
             </div>
+            <div class="child-card__actions" style="display:flex;gap:var(--s-3);margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--line)">
+              <button class="btn btn--sm btn--outline" type="button" data-mock="edit-child">
+                <i class="ph ph-pencil-simple" aria-hidden="true"></i> Edit
+              </button>
+              <button class="btn btn--sm btn--text" type="button"
+                data-confirm="Remove this child's profile?"
+                data-confirm-body="This removes the child from your account. Class enrollments are not affected."
+                data-confirm-cta="Remove"
+                data-confirm-danger="true"
+                data-confirm-action="mock:remove-child">
+                <i class="ph ph-trash" aria-hidden="true"></i> Remove
+              </button>
+            </div>
           </article>
 
           <article class="child-card">
@@ -221,6 +237,19 @@
               <div class="child-grid__field"><span class="child-grid__label">Special Conditions</span><span class="child-grid__value">None</span></div>
               <div class="child-grid__field"><span class="child-grid__label">Allergy</span><span class="child-grid__value">Seafood</span></div>
               <div class="child-grid__field"><span class="child-grid__label">Emergency contact</span><span class="child-grid__value">XX</span></div>
+            </div>
+            <div class="child-card__actions" style="display:flex;gap:var(--s-3);margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--line)">
+              <button class="btn btn--sm btn--outline" type="button" data-mock="edit-child">
+                <i class="ph ph-pencil-simple" aria-hidden="true"></i> Edit
+              </button>
+              <button class="btn btn--sm btn--text" type="button"
+                data-confirm="Remove this child's profile?"
+                data-confirm-body="This removes the child from your account. Class enrollments are not affected."
+                data-confirm-cta="Remove"
+                data-confirm-danger="true"
+                data-confirm-action="mock:remove-child">
+                <i class="ph ph-trash" aria-hidden="true"></i> Remove
+              </button>
             </div>
           </article>
 
@@ -246,9 +275,9 @@
           <div class="security-row">
             <div>
               <div class="security-row__label">2-step verification</div>
-              <div class="security-row__value">Add an additional layer of security to your account.</div>
+              <div class="security-row__value"><span style="color:var(--ink-muted);font-size:var(--t-label)">Not set up</span></div>
             </div>
-            <button class="security-row__action" type="button" data-mock="enable-2fa">Change</button>
+            <button class="security-row__action" type="button" data-mock="enable-2fa">Set up</button>
           </div>
         </div>
 

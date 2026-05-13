@@ -139,6 +139,12 @@
     .calendar__day--garden { background: var(--garden-300); color: var(--ink); font-weight: 700; }
     .calendar__day--rose   { background: var(--rose-300);   color: var(--ink); font-weight: 700; }
     .calendar__day--blush  { background: var(--blush);      color: var(--ink); font-weight: 700; }
+    .calendar__legend { display: flex; gap: var(--s-4); margin-top: var(--s-3); font-size: var(--t-micro); color: var(--ink-muted); }
+    .calendar__legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .calendar__legend span::before { content: ''; width: 8px; height: 8px; border-radius: 50%; }
+    .calendar__legend .legend--open::before { background: var(--garden-300); }
+    .calendar__legend .legend--filling::before { background: var(--blush); }
+    .calendar__legend .legend--full::before { background: var(--rose-300); }
     @media (max-width: 900px) {
       .classes-today .wrap { grid-template-columns: 1fr; }
     }
@@ -424,6 +430,11 @@
             <span class="calendar__day">15</span><span class="calendar__day">16</span><span class="calendar__day calendar__day--rose">17</span><span class="calendar__day">18</span><span class="calendar__day">19</span><span class="calendar__day calendar__day--garden">20</span><span class="calendar__day">21</span>
             <span class="calendar__day">22</span><span class="calendar__day">23</span><span class="calendar__day">24</span><span class="calendar__day calendar__day--blush">25</span><span class="calendar__day">26</span><span class="calendar__day calendar__day--blush">27</span><span class="calendar__day">28</span>
             <span class="calendar__day">29</span><span class="calendar__day">30</span><span class="calendar__day calendar__day--blush">31</span>
+          </div>
+          <div class="calendar__legend">
+            <span class="legend--open">Open</span>
+            <span class="legend--filling">Filling</span>
+            <span class="legend--full">Full</span>
           </div>
         </div>
       </div>
