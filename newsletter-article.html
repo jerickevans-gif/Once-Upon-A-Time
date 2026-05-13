@@ -31,10 +31,12 @@
       display: flex; gap: 8px; margin-bottom: 24px;
     }
     .article-actions button {
-      width: 38px; height: 38px; border: 0; border-radius: 8px; cursor: pointer;
-      background: var(--rose-700); color: var(--snow); font-size: 16px;
-      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 38px; border: 0; border-radius: 8px; cursor: pointer;
+      background: var(--rose-700); color: var(--snow); font-size: 14px; font-weight: 500;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 6px 14px;
     }
+    .article-actions button .ph { font-size: 18px; }
     .article-actions button[data-share] { background: var(--garden); }
     .article-actions button.is-bookmarked { background: var(--rose); }
     .article-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--rose-700); margin-bottom: 8px; }
@@ -53,9 +55,23 @@
     .article-body h2 { font-family: var(--serif); font-size: 28px; margin: 32px 0 12px; color: var(--pillar); text-transform: uppercase; }
     .article-body img { width: 100%; border-radius: 12px; margin: 24px 0; }
     .article-body blockquote {
-      border-left: 3px solid var(--rose); padding: 8px 0 8px 20px;
+      border-left: 3px solid var(--rose);
+      background: var(--rose-50);
+      padding: var(--s-5) var(--s-5) var(--s-5) var(--s-6);
+      border-radius: var(--radius);
+      position: relative;
       font-family: var(--serif); font-size: 22px; color: var(--rose-700); font-style: italic;
       margin: 24px 0;
+    }
+    .article-body blockquote::before {
+      content: '\201C';
+      font-family: var(--serif);
+      font-size: 64px;
+      color: var(--rose-300);
+      position: absolute;
+      top: -8px;
+      left: 12px;
+      line-height: 1;
     }
 
     .article-share {
@@ -95,9 +111,9 @@
     <article class="article-wrap">
       <a class="article-back" href="newsletter.html"><i class="ph ph-arrow-left"></i> All newsletters</a>
       <div class="article-actions">
-        <button type="button" aria-label="Save article" aria-pressed="false" data-bookmark="newsletter:december-2025"><i class="ph ph-bookmark-simple"></i></button>
-        <button type="button" aria-label="Share article" data-share data-share-title="December 2025 — Once Upon A Time"><i class="ph ph-share-network"></i></button>
-        <button type="button" aria-label="Print" onclick="window.print()"><i class="ph ph-printer"></i></button>
+        <button type="button" aria-label="Save article" aria-pressed="false" data-bookmark="newsletter:december-2025"><i class="ph ph-bookmark-simple"></i> <span>Save</span></button>
+        <button type="button" aria-label="Share article" data-share data-share-title="December 2025 — Once Upon A Time"><i class="ph ph-share-network"></i> <span>Share</span></button>
+        <button type="button" aria-label="Print" onclick="window.print()"><i class="ph ph-printer"></i> <span>Print</span></button>
       </div>
       <div class="article-eyebrow">December 2025</div>
       <h1 class="article-title">Once Upon A Time</h1>

@@ -187,12 +187,19 @@
         <button type="submit" class="auth-submit">Sign up</button>
       </form>
 
+      <div id="signup-success" class="auth-success" hidden style="text-align:center;padding:var(--s-7) var(--s-5)">
+        <i class="ph ph-check-circle" style="font-size:48px;color:var(--garden)"></i>
+        <h2 style="font-family:var(--serif);font-size:28px;text-transform:uppercase;color:var(--rose-700);margin:16px 0 8px">Welcome aboard</h2>
+        <p style="color:var(--ink-muted);font-size:14px;max-width:36ch;margin:0 auto">Check your email to verify your account. You can close this page.</p>
+        <a class="btn" href="index.html" style="margin-top:24px;display:inline-block;text-decoration:none">Go to homepage</a>
+      </div>
+
       <div class="auth-divider"><span>Or Sign up with</span></div>
 
       <div class="social-row">
-        <button type="button" class="social-btn social-btn--google" data-mock="login-google"><i class="ph ph-google-logo"></i> Google</button>
-        <button type="button" class="social-btn social-btn--apple" data-mock="login-apple"><i class="ph ph-apple-logo"></i> Apple</button>
-        <button type="button" class="social-btn social-btn--email" data-mock="login-email"><i class="ph ph-envelope"></i> Email</button>
+        <button type="button" class="social-btn social-btn--google" data-mock="login-google"><i class="ph ph-google-logo"></i> Sign up with Google</button>
+        <button type="button" class="social-btn social-btn--apple" data-mock="login-apple"><i class="ph ph-apple-logo"></i> Sign up with Apple</button>
+        <button type="button" class="social-btn social-btn--email" data-mock="login-email"><i class="ph ph-envelope"></i> Sign up with Email</button>
       </div>
 
       <div class="auth-page__footer">
@@ -231,9 +238,13 @@
           }
         }
         if (bad) return;
-        if (window.OUAT_toast) {
-          window.OUAT_toast('Account creation routes to Shopify customer accounts in production.', { variant: 'mock' });
-        }
+        // Show success confirmation, hide form and social options
+        document.querySelector('.auth-page__form').hidden = true;
+        document.getElementById('signup-success').hidden = false;
+        var divider = document.querySelector('.auth-divider');
+        var socialRow = document.querySelector('.social-row');
+        if (divider) divider.hidden = true;
+        if (socialRow) socialRow.hidden = true;
       });
     })();
   </script>
