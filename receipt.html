@@ -47,7 +47,7 @@
       display: inline-flex; align-items: center; gap: 8px;
     }
     .receipt-toolbar a:hover, .receipt-toolbar button:hover { background: var(--rose-50); border-color: var(--rose-300); }
-    .receipt-toolbar .btn-primary { background: var(--rose); color: #fff; border-color: var(--rose); }
+    .receipt-toolbar .btn-primary { background: var(--rose); color: var(--snow); border-color: var(--rose); }
     .receipt-toolbar .btn-primary:hover { background: var(--rose-700); border-color: var(--rose-700); }
 
     .receipt {
@@ -153,7 +153,7 @@
     /* Print styles */
     @media print {
       .receipt-toolbar { display: none; }
-      body { background: #fff; }
+      body { background: var(--snow); }
       .receipt { box-shadow: none; border: 0; padding: 24px; border-radius: 0; }
       .receipt-wrap { margin: 0; padding: 0; }
     }

@@ -75,6 +75,36 @@
 
   --danger:      #B83A2B;
   --danger-700:  #8E2A1E;
+  --danger-100:  #FDECEA;
+  --danger-50:   #FEF5F4;
+
+  /* Neutral additions */
+  --n-50:        #F5F2EF;
+  --pillar-800:  #20131A;
+
+  /* Form labels */
+  --label-color: var(--n-500);
+
+  /* Toast variants */
+  --toast-success: var(--garden);
+  --toast-error:   var(--danger);
+  --toast-info:    var(--pillar);
+  --toast-warning: #C4760B;
+
+  /* Skeleton shimmer */
+  --skeleton-from: var(--rose-50);
+  --skeleton-via:  var(--rose-100);
+  --skeleton-dur:  1.4s;
+
+  /* Semantic radius aliases */
+  --radius-card:   var(--radius-lg);
+  --radius-input:  var(--radius);
+  --radius-badge:  var(--radius-pill);
+
+  /* Spacing — non-standard values from Figma */
+  --s-section: 44px;
+  --s-10:      10px;
+  --s-28:      28px;
 
   /* Typography */
   --serif: "Voltra", "Cormorant Garamond", "Playfair Display", Georgia, serif;
@@ -336,13 +366,13 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 .icon-btn:active { background: rgba(38,36,34,.12); }
 .icon-btn .ph { font-size: 22px; flex: 0 0 auto; }
 .icon-btn--icon-only { width: var(--tap); padding: 0; justify-content: center; }
-.icon-btn .badge { position: absolute; top: 0; right: -2px; background: #C0322E; color: #fff; font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--beginning); }
-.avatar { position: relative; width: var(--tap); height: var(--tap); border-radius: 50%; background: var(--rose); color: #fff; font-weight: 600; font-size: var(--t-label); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; flex: 0 0 auto; }
+.icon-btn .badge { position: absolute; top: 0; right: -2px; background: var(--danger); color: var(--snow); font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--beginning); }
+.avatar { position: relative; width: var(--tap); height: var(--tap); border-radius: 50%; background: var(--rose); color: var(--snow); font-weight: 600; font-size: var(--t-label); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; flex: 0 0 auto; }
 .avatar .ph { font-size: 22px; }
-.avatar .badge { position: absolute; top: -2px; right: -2px; background: #C0322E; color: #fff; font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--beginning); }
-.btn--signin { background: var(--pillar); color: #fff; border-radius: var(--radius); padding: 0 22px; min-height: 40px; font-weight: 600; }
-.btn--signin:hover { background: #2f1d29; color: #fff; }
-.btn--signin:active { background: #20131a; transform: translateY(1px); }
+.avatar .badge { position: absolute; top: -2px; right: -2px; background: var(--danger); color: var(--snow); font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--beginning); }
+.btn--signin { background: var(--pillar); color: var(--snow); border-radius: var(--radius); padding: 0 22px; min-height: 40px; font-weight: 600; }
+.btn--signin:hover { background: var(--pillar-700); color: var(--snow); }
+.btn--signin:active { background: var(--pillar-800); transform: translateY(1px); }
 
 .nav-toggle { display: none; width: var(--tap); height: var(--tap); border-radius: 50%; background: transparent; border: 0; align-items: center; justify-content: center; color: var(--ink); cursor: pointer; flex: 0 0 auto; }
 .nav-toggle:hover { background: rgba(38,36,34,.06); }

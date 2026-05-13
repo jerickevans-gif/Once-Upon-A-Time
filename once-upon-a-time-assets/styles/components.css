@@ -54,9 +54,9 @@
 .modal__body { font-size: 14px; color: var(--ink-muted); line-height: 1.6; margin: 0 0 20px; }
 .modal__actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
 .modal__actions .btn { min-width: 100px; }
-.modal--danger .modal__title { color: #C0322E; }
-.modal--danger .btn-confirm { background: #C0322E; color: #fff; }
-.modal--danger .btn-confirm:hover { background: #8E1F1B; }
+.modal--danger .modal__title { color: var(--danger); }
+.modal--danger .btn-confirm { background: var(--danger); color: var(--snow); }
+.modal--danger .btn-confirm:hover { background: var(--danger-700); }
 
 /* ---------- Skeleton loader ---------- */
 .skeleton {
@@ -109,12 +109,12 @@
 .cmp-stepper__step.is-active, .step.is-active { color: var(--rose-700); }
 .cmp-stepper__step.is-active .cmp-stepper__dot,
 .step.is-active .step__dot {
-  background: var(--rose); color: #fff; border-color: var(--rose);
+  background: var(--rose); color: var(--snow); border-color: var(--rose);
 }
 .cmp-stepper__step.is-done, .step.is-done { color: var(--garden-700); }
 .cmp-stepper__step.is-done .cmp-stepper__dot,
 .step.is-done .step__dot {
-  background: var(--garden); color: #fff; border-color: var(--garden);
+  background: var(--garden); color: var(--snow); border-color: var(--garden);
   font-size: 0;
 }
 .cmp-stepper__step.is-done .cmp-stepper__dot::before,
@@ -155,7 +155,7 @@
 /* ---------- Cookie banner ---------- */
 .cookie-banner {
   position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 90;
-  background: var(--pillar); color: #fff;
+  background: var(--pillar); color: var(--snow);
   border-radius: 14px;
   padding: 18px 22px;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
@@ -174,9 +174,9 @@
   padding: 10px 18px; border-radius: 8px; border: 0;
   font-size: 13px; font-weight: 600; cursor: pointer;
 }
-.cookie-banner .btn-accept { background: var(--rose); color: #fff; }
+.cookie-banner .btn-accept { background: var(--rose); color: var(--snow); }
 .cookie-banner .btn-accept:hover { background: var(--rose-700); }
-.cookie-banner .btn-decline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.3); }
+.cookie-banner .btn-decline { background: transparent; color: var(--snow); border: 1px solid rgba(255,255,255,.3); }
 .cookie-banner .btn-decline:hover { background: rgba(255,255,255,.1); }
 
 /* ---------- Date-picker popover (lite) ---------- */
@@ -207,16 +207,16 @@
   cursor: pointer; color: var(--ink);
 }
 .date-grid__day:hover { background: var(--rose-50); }
-.date-grid__day.is-active { background: var(--rose); color: #fff; }
+.date-grid__day.is-active { background: var(--rose); color: var(--snow); }
 .date-grid__day.is-muted { color: var(--ink-muted); opacity: .4; }
 
 /* ---------- Form error states ---------- */
 .input.is-error, .textarea.is-error {
-  border-color: #C0322E !important;
-  box-shadow: 0 0 0 3px rgba(192,50,46,.1);
+  border-color: var(--danger) !important;
+  box-shadow: 0 0 0 3px rgba(184,58,43,.1);
 }
 .field-error {
-  font-size: 12px; color: #C0322E; margin-top: 4px;
+  font-size: 12px; color: var(--danger); margin-top: 4px;
   display: flex; align-items: center; gap: 4px;
 }
 .field-error::before { content: "⚠"; font-size: 13px; }
@@ -224,13 +224,13 @@
 /* ---------- Waitlist banner (used in detail pages when full) ---------- */
 .waitlist-banner {
   background: var(--garden);
-  color: #fff;
+  color: var(--snow);
   padding: 14px 22px; border-radius: 10px;
   font-size: 13px; font-weight: 500;
   display: flex; gap: 12px; align-items: center; flex-wrap: wrap;
 }
 .waitlist-banner button {
-  background: #fff; color: var(--garden-700); border: 0;
+  background: var(--snow); color: var(--garden-700); border: 0;
   padding: 8px 16px; border-radius: 6px;
   font-weight: 600; cursor: pointer;
   margin-left: auto;
@@ -270,37 +270,27 @@
   --garden-700: #C7CB8A;
   --shadow-sm: 0 2px 6px rgba(0,0,0,.5);
   --shadow-md: 0 8px 24px rgba(0,0,0,.6);
+
+  /* New token dark overrides (FEAT-001 T002) */
+  --danger-100:  #3A1A16;
+  --danger-50:   #2E1512;
+  --n-50:        #2A2422;
+  --pillar-800:  #F2DDD5;
+  --label-color: var(--ink-muted);
+  --toast-success: var(--garden);
+  --toast-error:   var(--danger);
+  --toast-info:    var(--pillar);
+  --toast-warning: #D4923A;
+  --skeleton-from: var(--rose-50);
+  --skeleton-via:  var(--rose-100);
 }
 .theme-dark body { background: var(--beginning); color: var(--ink); }
 .theme-dark .site-header { background: var(--beginning); border-bottom: 1px solid var(--line); }
 .theme-dark .promo-bar { background: var(--rose-100); color: var(--rose-700); }
 .theme-dark .auth-modal__art, .theme-dark .auth-page__art { filter: brightness(0.7); }
-.theme-dark .site-footer { background: #1A1614; color: var(--ink-muted); }
+.theme-dark .site-footer { background: var(--ink); color: var(--ink-muted); }
 .theme-dark .site-footer a { color: var(--rose-700); }
 .theme-dark .footer__address { color: var(--ink-muted); }
-/* Inline-style escape hatches: many pages hard-code surface colors. Patch them. */
-.theme-dark [style*="background:#fff"]:not([style*="rgba"]),
-.theme-dark [style*="background: #fff"]:not([style*="rgba"]),
-.theme-dark [style*="background:#FFFCFA"],
-.theme-dark [style*="background: #FFFCFA"],
-.theme-dark [style*="background:var(--snow)"],
-.theme-dark [style*="background: var(--snow)"] {
-  background: var(--snow) !important;
-}
-.theme-dark [style*="background:#FFF5EE"],
-.theme-dark [style*="background: #FFF5EE"],
-.theme-dark [style*="background:var(--beginning)"] {
-  background: var(--beginning) !important;
-}
-.theme-dark [style*="background:#FAEEE9"],
-.theme-dark [style*="background: #FAEEE9"],
-.theme-dark [style*="background:var(--rose-50)"] {
-  background: var(--rose-50) !important;
-}
-.theme-dark [style*="color:var(--ink)"]:not([style*="rgba"]),
-.theme-dark [style*="color: var(--ink)"]:not([style*="rgba"]) {
-  color: var(--ink) !important;
-}
 /* Modal + overlay surfaces */
 .theme-dark .modal { background: var(--snow); color: var(--ink); border: 1px solid var(--line); }
 .theme-dark .modal__title { color: var(--rose-700); }

@@ -32,7 +32,7 @@
     .hero {
       position: relative;
       padding: 28px 0 0;
-      background: linear-gradient(90deg, var(--rose-100) 0%, #F8E5DC 45%, #FBEFE6 75%, var(--beginning) 100%);
+      background: linear-gradient(90deg, var(--rose-100) 0%, var(--rose-100) 45%, var(--rose-50) 75%, var(--beginning) 100%);
       overflow: hidden;
     }
     .hero__grid {
@@ -42,13 +42,13 @@
     }
     .pill {
       display: inline-flex; align-items: center; gap: 10px;
-      background: var(--blush); color: #fff;
+      background: var(--blush); color: var(--snow);
       padding: 10px 20px; border-radius: 999px;
       font-size: 14px; font-weight: 500;
     }
     .pill::before {
       content: ""; width: 16px; height: 16px;
-      background: #fff;
+      background: var(--snow);
       -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21s-7.5-4.6-9.6-9.3C1.1 8.6 2.6 5 6.1 5c2.1 0 3.5 1.2 4.4 2.6h.6C12 6.2 13.4 5 15.5 5 19 5 20.5 8.6 19.6 11.7 17.5 16.4 12 21 12 21z'/></svg>") center/contain no-repeat;
               mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 21s-7.5-4.6-9.6-9.3C1.1 8.6 2.6 5 6.1 5c2.1 0 3.5 1.2 4.4 2.6h.6C12 6.2 13.4 5 15.5 5 19 5 20.5 8.6 19.6 11.7 17.5 16.4 12 21 12 21z'/></svg>") center/contain no-repeat;
     }
@@ -63,7 +63,7 @@
     }
     .hero__lede { font-size: 15px; max-width: 46ch; color: var(--ink-muted); margin: 0 0 28px; line-height: 1.6; }
     .hero__cta {
-      background: var(--rose); color: #fff;
+      background: var(--rose); color: var(--snow);
       padding: 13px 24px; border-radius: 10px;
       font-weight: 600; font-size: 14px;
       text-decoration: none; display: inline-block;
@@ -88,7 +88,7 @@
       box-shadow: 0 12px 24px rgba(76,47,59,.18);
       min-width: 140px;
     }
-    .hero__chip small { display: block; font-size: 13px; color: #fff; font-weight: 500; }
+    .hero__chip small { display: block; font-size: 13px; color: var(--snow); font-weight: 500; }
     .hero__chip strong { display: block; font-family: var(--sans); font-size: 22px; font-weight: 700; color: var(--pillar); margin: 4px 0; }
     .hero__divider { height: 1px; background: rgba(76,47,59,.20); margin: 8px 0 28px; }
     .hero__stats { display: flex; gap: 64px; flex-wrap: wrap; padding: 0 0 32px; }
@@ -188,7 +188,7 @@
       margin: 32px auto 0;
       min-height: 56px;
       background: var(--n-200);
-      color: #fff;
+      color: var(--snow);
       border: 0; border-radius: 12px;
       font-size: 16px; font-weight: 600;
       cursor: pointer;
