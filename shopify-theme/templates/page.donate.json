@@ -9,10 +9,15 @@
         "text_align": "center"
       }
     },
+    "donation-form": {
+      "type": "page-content",
+      "settings": {}
+    },
     "feature-impact": {
       "type": "feature-grid",
       "settings": {
         "eyebrow": "Our Impact in Action",
+        "heading": "",
         "columns": 4
       },
       "blocks": {
@@ -22,7 +27,24 @@
         "i4": { "type": "feature", "settings": { "icon": "ph-house-line", "title": "Housing Support", "body": "Tutoring, food, and after-school care." } }
       },
       "block_order": ["i1", "i2", "i3", "i4"]
+    },
+    "global-impact": {
+      "type": "page-content",
+      "settings": {}
+    },
+    "stories": {
+      "type": "page-content",
+      "settings": {}
+    },
+    "questions": {
+      "type": "rich-text",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Still Have Questions?",
+        "body": "<p>Please write to our friendly support team or call us at +1-718-380-6929.</p>",
+        "text_align": "center"
+      }
     }
   },
-  "order": ["intro", "feature-impact"]
+  "order": ["intro", "donation-form", "feature-impact", "global-impact", "stories", "questions"]
 }

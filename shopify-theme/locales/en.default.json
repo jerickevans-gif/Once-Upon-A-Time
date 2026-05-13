@@ -13,5 +13,27 @@
   "templates": {
     "cart": { "title": "Your Cart", "empty": "Your cart is empty.", "subtotal": "Subtotal", "checkout": "Checkout" },
     "404": { "title": "Page not found", "subtext": "The page you're looking for doesn't exist or has moved." }
+  },
+  "contact": {
+    "error_summary": "Please check {{ count }} field(s) below",
+    "phone_cta": "Call us"
+  },
+  "programs": {
+    "empty_state_title": "No programs match your filters",
+    "empty_state_body": "Try adjusting your filters or searching for something else.",
+    "clear_filters": "Clear filters"
+  },
+  "newsletter": {
+    "bookmark_sync": "Saved locally on this device. Sign in to sync across devices.",
+    "empty_state_title": "No articles found",
+    "empty_state_body": "Try a different search term or browse all issues."
+  },
+  "account": {
+    "sync_saving": "Saving…",
+    "sync_saved": "Saved",
+    "delete_consequence_1": "Your profile and all child profiles will be deleted",
+    "delete_consequence_2": "Payment methods will be removed",
+    "delete_consequence_3": "Class history and receipts will be lost",
+    "delete_consequence_4": "Inbox messages will be permanently deleted"
   }
 }

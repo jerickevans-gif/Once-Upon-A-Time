@@ -1,21 +1,26 @@
 {
   "sections": {
-    "intro": {
+    "hero": {
       "type": "rich-text",
       "settings": {
-        "eyebrow": "All programs",
-        "heading": "Programs",
-        "body": "<p>Browse every active program.</p>",
-        "text_align": "center"
+        "eyebrow": "",
+        "heading": "About our Program",
+        "body": "<p>Lorem ipsum dolor sit amet consectetur. Tortor quam porta varius sed venenatis viverra magnis. Senectus tristique tristique velit orci fermentum integer orci vel auctor aliquam. Lacus adipiscing vitae eu enim. Scelerisque eget aliquet faucibus nullam. Amet eget in sit quis malesuada non quam a odio.</p><p>Lorem ipsum dolor sit amet consectetur. Tortor quam porta varius sed venenatis viverra magnis. Senectus tristique tristique velit orci fermentum integer orci vel auctor aliquam. Lacus adipiscing vitae eu enim. Scelerisque eget aliquet faucibus nullam. Amet eget in sit quis malesuada non quam a odio.</p>",
+        "text_align": "left"
       }
     },
-    "content": {
+    "filter": {
+      "type": "page-content",
+      "settings": {}
+    },
+    "open-enrollment": {
+      "type": "page-content",
+      "settings": {}
+    },
+    "coming-soon": {
       "type": "page-content",
       "settings": {}
     }
   },
-  "order": [
-    "intro",
-    "content"
-  ]
+  "order": ["hero", "filter", "open-enrollment", "coming-soon"]
 }
