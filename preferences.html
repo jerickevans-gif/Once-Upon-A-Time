@@ -166,12 +166,16 @@
         <div class="acc-section">
           <div class="acc-section__head"><h2 class="acc-section__title">Privacy Settings</h2></div>
           <label class="toggle-row">
-            <span class="toggle-row__label">Consent with Video &amp; Photo Release</span>
+            <span class="toggle-row__label">Allow photos for internal records (attendance, progress)</span>
             <input type="checkbox" checked>
+          </label>
+          <label class="toggle-row">
+            <span class="toggle-row__label">Allow photos for website and social media</span>
+            <input type="checkbox">
           </label>
         </div>
 
-        <button class="delete-account" type="button" data-confirm="Delete account?" data-confirm-body="This permanently deletes your profile, child profiles, payment methods, class history, and inbox. You can't undo this." data-confirm-cta="Delete forever" data-confirm-danger="true" data-confirm-action="mock:delete-account" data-confirm-toast="Account deletion routes to Shopify GDPR endpoint in production."><i class="ph ph-trash"></i> Delete my account</button>
+        <button class="delete-account" type="button" data-confirm="Delete account?" data-confirm-body="This action is permanent and cannot be undone." data-confirm-consequences="Your profile and all child profiles will be deleted|Payment methods will be removed|Class history and receipts will be lost|Inbox messages will be permanently deleted" data-confirm-cta="Delete forever" data-confirm-danger="true" data-confirm-action="mock:delete-account" data-confirm-toast="Account deletion routes to Shopify GDPR endpoint in production."><i class="ph ph-trash"></i> Delete my account</button>
       </section>
     </div>
   </main>
