@@ -111,3 +111,11 @@
   .auth-modal { grid-template-columns: 1fr; max-height: 100vh; border-radius: 0; }
   .auth-modal__art { display: none; }
 }
+@media (max-width: 480px) {
+  .role-toggle { flex-direction: column; align-items: flex-start; gap: var(--s-3); }
+  .auth-form .form-row { grid-template-columns: 1fr; }
+  .social-row { grid-template-columns: 1fr; }
+  .social-btn { justify-content: flex-start; padding-left: var(--s-4); }
+  .auth-form__row { flex-direction: column; align-items: flex-start; gap: var(--s-2); }
+  .auth-modal__panel { padding: var(--s-5) var(--s-4); }
+}
