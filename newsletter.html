@@ -489,6 +489,12 @@
           </div>
         </div>
       </section>
+
+      <div class="empty-state" role="status" hidden data-nl-search-empty>
+        <div class="empty-state__icon"><i class="ph ph-newspaper" aria-hidden="true"></i></div>
+        <h3 class="empty-state__title">No articles found</h3>
+        <p class="empty-state__body">Try a different search term or browse all issues.</p>
+      </div>
     </article>
 
     <!-- ============ RELATED NEWSLETTERS ============ -->
@@ -816,14 +822,23 @@
 
       // ---- Newsletter search filter ----
       const searchInput = document.querySelector('[data-nl-search]');
+      const searchEmpty = document.querySelector('[data-nl-search-empty]');
       if (searchInput) {
         const sections = Array.from(document.querySelectorAll('.nl-article, .nl-feature, .nl-card'));
         searchInput.addEventListener('input', () => {
           const q = searchInput.value.trim().toLowerCase();
-          if (!q) { sections.forEach(s => s.style.display = ''); return; }
+          if (!q) {
+            sections.forEach(s => s.style.display = '');
+            if (searchEmpty) searchEmpty.hidden = true;
+            return;
+          }
+          let visible = 0;
           sections.forEach(s => {
-            s.style.display = s.textContent.toLowerCase().includes(q) ? '' : 'none';
+            const match = s.textContent.toLowerCase().includes(q);
+            s.style.display = match ? '' : 'none';
+            if (match) visible++;
           });
+          if (searchEmpty) searchEmpty.hidden = visible > 0;
         });
       }
     })();
