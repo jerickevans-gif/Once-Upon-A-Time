@@ -14,6 +14,7 @@
   border-radius: 16px;
   color: var(--ink-muted);
 }
+.empty-state[hidden] { display: none; }
 .empty-state__icon {
   width: 72px; height: 72px;
   border-radius: 50%; background: var(--rose-50);
