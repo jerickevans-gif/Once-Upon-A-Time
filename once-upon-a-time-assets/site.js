@@ -191,6 +191,11 @@
         setStatus(`Thanks ${first} — we'll be in touch at ${email} shortly.`, 'success');
         if (submit) { submit.removeAttribute('aria-busy'); submit.disabled = false; }
         contactForm.reset();
+        if (window.OUAT_successModal) window.OUAT_successModal({
+          title: 'We have received your message',
+          body: `Thanks ${first} — we'll get back to you at ${email}!`,
+          cta: 'Done'
+        });
       }, 800);
     });
   }

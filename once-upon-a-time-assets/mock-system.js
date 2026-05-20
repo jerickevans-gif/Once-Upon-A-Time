@@ -325,6 +325,117 @@
   }
   window.OUAT_confirm = (opts) => showConfirm(opts);
 
+  // -------------------- Registration modal (data-register) -------------------- //
+  // Available: <a data-register data-register-title=".." data-register-schedule=".." data-register-seats="5 of 10" data-register-price="$50.00" data-register-action="enrollment.html?class=x">
+  // Closed:    <button data-register data-register-state="closed">
+  document.addEventListener('click', function (e) {
+    const el = e.target.closest('[data-register]');
+    if (!el) return;
+    e.preventDefault();
+    showRegister({
+      state: el.dataset.registerState || 'available',
+      title: el.dataset.registerTitle || 'Register',
+      schedule: el.dataset.registerSchedule || '',
+      seats: el.dataset.registerSeats || '',
+      price: el.dataset.registerPrice || '',
+      action: el.dataset.registerAction || ''
+    });
+  });
+  function showRegister (o) {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    if (o.state === 'closed') {
+      overlay.innerHTML = `
+      <div class="modal modal--register" role="dialog" aria-modal="true" aria-labelledby="reg-title">
+        <button class="modal__close" type="button" data-cancel aria-label="Close">&times;</button>
+        <h2 class="modal__title" id="reg-title">Registration Closed</h2>
+        <p class="modal__body">We apologize for the inconvenience. To find out when the next class opens up, please sign up for our newsletter or contact our support team.</p>
+        <form class="reg__signup" data-reg-signup>
+          <input type="email" required placeholder="Enter your email address" aria-label="Email address">
+          <button class="btn" type="submit">Sign up</button>
+        </form>
+      </div>`;
+    } else {
+      overlay.innerHTML = `
+      <div class="modal modal--register" role="dialog" aria-modal="true" aria-labelledby="reg-title">
+        <button class="modal__close" type="button" data-cancel aria-label="Close">&times;</button>
+        <h2 class="modal__title" id="reg-title">${o.title}</h2>
+        ${o.schedule ? `<p class="modal__body">${o.schedule}</p>` : ''}
+        <div class="reg__meta">
+          ${o.seats ? `<span class="reg__seats"><i class="ph ph-users" aria-hidden="true"></i> ${o.seats} slots available</span>` : ''}
+          ${o.price ? `<span class="reg__price">${o.price}</span>` : ''}
+        </div>
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="button" data-cancel>Cancel</button>
+          <button class="btn" type="button" data-ok>Register Now</button>
+        </div>
+      </div>`;
+    }
+    document.body.appendChild(overlay);
+    const detachTrap = trapFocus(overlay.querySelector('.modal'), { initial: o.state === 'closed' ? 'input' : '[data-ok]' });
+    const close = function () { detachTrap(); overlay.remove(); };
+    overlay.addEventListener('click', function (ev) {
+      if (ev.target === overlay || ev.target.closest('[data-cancel]')) close();
+      if (ev.target.closest('[data-ok]')) {
+        close();
+        if (o.action) window.location.href = o.action;
+        else toast('Registration routes to Shopify checkout in production.', { variant: 'mock' });
+      }
+    });
+    const signup = overlay.querySelector('[data-reg-signup]');
+    if (signup) signup.addEventListener('submit', function (ev) {
+      ev.preventDefault(); close();
+      toast("Thanks! We'll email you when the next class opens.", { variant: 'success' });
+    });
+    document.addEventListener('keydown', function esc (ev) {
+      if (ev.key === 'Escape') { close(); document.removeEventListener('keydown', esc); }
+    });
+  }
+  window.OUAT_register = showRegister;
+
+  // -------------------- Success modal (OUAT_successModal) -------------------- //
+  function showSuccess (o) {
+    o = o || {};
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+      <div class="modal modal--success" role="dialog" aria-modal="true" aria-labelledby="success-title">
+        <span class="modal__icon modal__icon--success" aria-hidden="true"><i class="ph ph-check-circle"></i></span>
+        <h2 class="modal__title" id="success-title">${o.title || 'Success'}</h2>
+        <p class="modal__body">${o.body || ''}</p>
+        <div class="modal__actions">
+          <button class="btn" type="button" data-ok>${o.cta || 'Done'}</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+    const detachTrap = trapFocus(overlay.querySelector('.modal'), { initial: '[data-ok]' });
+    const close = function () { detachTrap(); overlay.remove(); if (o.onClose) o.onClose(); };
+    overlay.addEventListener('click', function (ev) {
+      if (ev.target === overlay || ev.target.closest('[data-ok]')) close();
+    });
+    document.addEventListener('keydown', function esc (ev) {
+      if (ev.key === 'Escape') { close(); document.removeEventListener('keydown', esc); }
+    });
+    return close;
+  }
+  window.OUAT_successModal = showSuccess;
+
+  // -------------------- Processing overlay (OUAT_processing) -------------------- //
+  function showProcessing (o) {
+    o = o || {};
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay processing-overlay';
+    overlay.innerHTML = `
+      <div class="modal modal--processing" role="alertdialog" aria-modal="true" aria-labelledby="proc-title" aria-busy="true">
+        <span class="spinner" aria-hidden="true"></span>
+        <h2 class="modal__title" id="proc-title">${o.title || 'Processing…'}</h2>
+        <p class="modal__body">${o.body || 'This may take a few seconds.'}</p>
+      </div>`;
+    document.body.appendChild(overlay);
+    return function () { overlay.remove(); };
+  }
+  window.OUAT_processing = showProcessing;
+
   // -------------------- Form error helper -------------------- //
   // Mark inputs with .is-error and emit a .field-error sibling.
   window.OUAT_setFieldError = function (input, msg) {

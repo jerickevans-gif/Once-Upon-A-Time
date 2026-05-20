@@ -387,6 +387,7 @@
           </p>
 
           <button type="submit" class="donate-submit" id="donate-submit">Donate $100 Now</button>
+          <p style="text-align:center;font-size:12px;color:var(--ink-muted);margin-top:14px">Demo: <a href="payment-declined.html" style="color:var(--rose);text-decoration:underline">preview a declined payment</a></p>
         </form>
       </div>
     </section>
@@ -446,17 +447,17 @@
       form.addEventListener('submit', (e) => {
         e.preventDefault();
         const method = form.querySelector('input[name="method"]:checked').value;
-        const monthly = form.querySelector('input[name="monthly"]').checked;
         if (!submit.classList.contains('is-active') && method === 'card') {
           if (window.OUAT_toast) window.OUAT_toast('Please complete required card fields.', { variant: 'warning' });
           return;
         }
-        if (window.OUAT_toast) {
-          window.OUAT_toast(
-            `${monthly ? 'Recurring monthly' : 'One-time'} donation via ${method.toUpperCase()} routes to Stripe / Shopify Payments in production.`,
-            { variant: 'mock', duration: 4500 }
-          );
-        }
+        const closeProc = window.OUAT_processing
+          ? window.OUAT_processing({ title: 'Processing Your Payment…', body: 'This may take a few seconds.' })
+          : null;
+        setTimeout(function () {
+          if (closeProc) closeProc();
+          window.location.href = 'order-confirmation.html';
+        }, 1900);
       });
 
       // Pull amount + freq from URL (set by donate form)
