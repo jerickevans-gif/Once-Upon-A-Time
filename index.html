@@ -177,9 +177,9 @@
 
     /* ===== Class detail cards (featured carousel) ===== */
     .programs { padding: var(--s-9) 0; }
-    .programs .carousel { max-width: 720px; margin-inline: auto; }
-    .programs .carousel__track { padding: var(--s-2) var(--s-2) var(--s-1); }
-    .programs .carousel__slide { padding: 0 var(--s-2); }
+    .programs .carousel__track { padding: var(--s-2) 0 var(--s-1); scroll-padding-inline: 0; }
+    .programs .carousel__slide { flex: 0 0 calc(50% - (var(--s-5) / 2)); scroll-snap-align: start; }
+    @media (max-width: 720px) { .programs .carousel__slide { flex: 0 0 100%; } }
     .programs__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
     .program-card {
       background: var(--snow); border-radius: var(--radius-lg);
