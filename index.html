@@ -175,8 +175,11 @@
     }
     @media (max-width: 900px) { .who__grid { grid-template-columns: 1fr; } }
 
-    /* ===== Class detail cards ===== */
+    /* ===== Class detail cards (featured carousel) ===== */
     .programs { padding: var(--s-9) 0; }
+    .programs .carousel { max-width: 720px; margin-inline: auto; }
+    .programs .carousel__track { padding: var(--s-2) var(--s-2) var(--s-1); }
+    .programs .carousel__slide { padding: 0 var(--s-2); }
     .programs__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
     .program-card {
       background: var(--snow); border-radius: var(--radius-lg);
@@ -186,8 +189,8 @@
     .program-card__photo { background-size: cover; background-position: center; }
     .program-card--story   .program-card__photo { background-image: url("once-upon-a-time-assets/landing/story-jazz.jpg"); }
     .program-card--ballet  .program-card__photo { background-image: url("once-upon-a-time-assets/landing/ballet-card.jpg"); }
-    .program-card--arts    .program-card__photo { background-image: url("once-upon-a-time-assets/landing/who-we-are-globe.jpg"); }
-    .program-card--theater .program-card__photo { background-image: url("once-upon-a-time-assets/landing/queens-skyline.jpg"); }
+    .program-card--arts    .program-card__photo { background-image: url("once-upon-a-time-assets/landing/arts-craft.jpg"); }
+    .program-card--theater .program-card__photo { background-image: url("once-upon-a-time-assets/landing/outdoor-theater.jpg"); }
     .program-card__body { padding: var(--s-5); display: grid; gap: var(--s-3); }
     .program-card__head { display: flex; justify-content: space-between; gap: var(--s-3); align-items: start; }
     .program-card__title { font-family: var(--serif); font-weight: 400; font-size: var(--t-h3); margin: 0; text-transform: uppercase; }
@@ -477,7 +480,13 @@
 
     <!-- ============ PROGRAMS ============ -->
     <section class="programs wrap">
-      <div class="programs__grid">
+      <div class="carousel" role="group" aria-roledescription="carousel" aria-label="Featured programs">
+        <div class="carousel__controls">
+          <button class="carousel__arrow carousel__arrow--prev" type="button" aria-label="Previous program"><i class="ph ph-caret-left" aria-hidden="true"></i></button>
+          <button class="carousel__arrow carousel__arrow--next" type="button" aria-label="Next program"><i class="ph ph-caret-right" aria-hidden="true"></i></button>
+        </div>
+        <div class="carousel__track">
+        <div class="carousel__slide" role="group" aria-roledescription="slide">
         <article class="program-card program-card--story">
           <div class="program-card__photo" role="img" aria-label="Story Jazz performance"></div>
           <div class="program-card__body">
@@ -502,6 +511,8 @@
             </div>
           </div>
         </article>
+        </div>
+        <div class="carousel__slide" role="group" aria-roledescription="slide">
         <article class="program-card program-card--ballet">
           <div class="program-card__photo" role="img" aria-label="Beginner's Ballet rehearsal"></div>
           <div class="program-card__body">
@@ -526,6 +537,8 @@
             </div>
           </div>
         </article>
+        </div>
+        <div class="carousel__slide" role="group" aria-roledescription="slide">
         <article class="program-card program-card--arts">
           <div class="program-card__photo" role="img" aria-label="Children working on an arts and craft project"></div>
           <div class="program-card__body">
@@ -550,6 +563,8 @@
             </div>
           </div>
         </article>
+        </div>
+        <div class="carousel__slide" role="group" aria-roledescription="slide">
         <article class="program-card program-card--theater">
           <div class="program-card__photo" role="img" aria-label="Children performing outdoor theater under the stars"></div>
           <div class="program-card__body">
@@ -574,6 +589,14 @@
             </div>
           </div>
         </article>
+        </div>
+        </div>
+        <div class="carousel__dots" role="tablist" aria-label="Choose a program">
+          <button class="carousel__dot" type="button" role="tab" aria-label="Story Jazz"><span></span></button>
+          <button class="carousel__dot" type="button" role="tab" aria-label="Ballet for Beginners"><span></span></button>
+          <button class="carousel__dot" type="button" role="tab" aria-label="Arts &amp; Craft"><span></span></button>
+          <button class="carousel__dot" type="button" role="tab" aria-label="Outdoor Theater"><span></span></button>
+        </div>
       </div>
     </section>
 
