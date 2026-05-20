@@ -328,11 +328,13 @@
     .success-card__avatar {
       width: 160px; height: 160px;
       border-radius: 50%;
-      background-size: cover; background-position: center top;
-      background-color: var(--rose-300);
+      background-color: var(--rose);
       flex-shrink: 0;
       border: 0;
       box-shadow: none;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-weight: 400; font-size: 60px;
+      color: var(--snow); line-height: 1;
     }
     .success-card__body { display: flex; flex-direction: column; gap: 24px; }
     .success-card blockquote { margin: 0; }
@@ -342,9 +344,6 @@
     }
     .success-card p::before { content: '"'; }
     .success-card p::after { content: '"'; }
-    .success-card--jane   .success-card__avatar { background-image: url("once-upon-a-time-assets/portraits/jane.png"); }
-    .success-card--josh   .success-card__avatar { background-image: url("once-upon-a-time-assets/portraits/josh.png"); }
-    .success-card--mariah .success-card__avatar { background-image: url("once-upon-a-time-assets/portraits/mariah.png"); }
     .success-card__name { font-weight: 700; font-size: 15px; margin: 0; color: var(--ink); font-family: var(--sans); }
 
     /* ---------- Where your donation goes ---------- */
@@ -669,7 +668,7 @@
           <div class="carousel__track" aria-live="polite">
             <div class="carousel__slide" role="group" aria-roledescription="slide">
               <figure class="success-card success-card--jane">
-                <span class="success-card__avatar" role="img" aria-label="Portrait of Mary"></span>
+                <span class="success-card__avatar" aria-hidden="true">M</span>
                 <div class="success-card__body">
                   <blockquote><p>Supporting OUAT has been incredibly rewarding. Seeing how thoughtfully the programs are designed for children.</p></blockquote>
                   <figcaption class="success-card__name">Mary</figcaption>
@@ -682,7 +681,7 @@
             </div>
             <div class="carousel__slide" role="group" aria-roledescription="slide">
               <figure class="success-card success-card--josh">
-                <span class="success-card__avatar" role="img" aria-label="Portrait of Trevor"></span>
+                <span class="success-card__avatar" aria-hidden="true">T</span>
                 <div class="success-card__body">
                   <blockquote><p>As a long-time supporter, I’ve seen firsthand how OUAT uses the arts to bring stories to life and create opportunities for young performers.</p></blockquote>
                   <figcaption class="success-card__name">Trevor</figcaption>
@@ -695,7 +694,7 @@
             </div>
             <div class="carousel__slide" role="group" aria-roledescription="slide">
               <figure class="success-card success-card--mariah">
-                <span class="success-card__avatar" role="img" aria-label="Portrait of Kelly"></span>
+                <span class="success-card__avatar" aria-hidden="true">K</span>
                 <div class="success-card__body">
                   <blockquote><p>OUAT exceeded my expectations. Supporting their work has allowed me to help programs reach more communities.</p></blockquote>
                   <figcaption class="success-card__name">Kelly</figcaption>
