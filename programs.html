@@ -117,8 +117,7 @@
     .pg-testi { background: var(--rose-100); padding: 56px 0; }
     .pg-testi__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start; }
     .pg-testi__card { display: grid; grid-template-columns: 88px 1fr; gap: 16px; align-items: start; }
-    .pg-testi__avatar { width: 88px; height: 88px; border-radius: 50%; background: var(--rose-300); overflow: hidden; flex: 0 0 auto; }
-    .pg-testi__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .pg-testi__avatar { width: 88px; height: 88px; border-radius: 50%; background: var(--rose); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 400; font-size: 38px; color: var(--snow); line-height: 1; }
     .pg-testi__text { font-size: 13px; line-height: 1.55; color: var(--ink); margin: 0 0 10px; }
     .pg-testi__name { font-size: 13px; font-weight: 700; color: var(--ink); }
 
@@ -331,21 +330,21 @@
       <div class="wrap">
         <div class="pg-testi__grid">
           <figure class="pg-testi__card">
-            <div class="pg-testi__avatar"><img src="once-upon-a-time-assets/portraits/jane.png" alt="Portrait of Mary"></div>
+            <div class="pg-testi__avatar" aria-hidden="true">M</div>
             <figcaption>
               <p class="pg-testi__text">"Supporting OUAT has been incredibly rewarding. Seeing how thoughtfully the programs are designed for children."</p>
               <div class="pg-testi__name">Mary</div>
             </figcaption>
           </figure>
           <figure class="pg-testi__card">
-            <div class="pg-testi__avatar"><img src="once-upon-a-time-assets/portraits/josh.png" alt="Portrait of Trevor"></div>
+            <div class="pg-testi__avatar" aria-hidden="true">T</div>
             <figcaption>
               <p class="pg-testi__text">"As a long-time supporter, I've seen firsthand how OUAT uses the arts to bring stories to life and create opportunities for young performers."</p>
               <div class="pg-testi__name">Trevor</div>
             </figcaption>
           </figure>
           <figure class="pg-testi__card">
-            <div class="pg-testi__avatar"><img src="once-upon-a-time-assets/portraits/mariah.png" alt="Portrait of Kelly"></div>
+            <div class="pg-testi__avatar" aria-hidden="true">K</div>
             <figcaption>
               <p class="pg-testi__text">"OUAT exceeded my expectations. Supporting their work has allowed me to help programs reach more communities."</p>
               <div class="pg-testi__name">Kelly</div>

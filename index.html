@@ -279,13 +279,12 @@
     }
     .testimonial__avatar {
       width: 96px; height: 96px; border-radius: 50%;
-      background: var(--blush);
-      background-size: cover; background-position: center top;
+      background: var(--beginning);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-weight: 400; font-size: 40px;
+      color: var(--rose); line-height: 1;
       box-shadow: 0 2px 12px rgba(0,0,0,.22);
     }
-    .testimonial--jimin   .testimonial__avatar { background-image: url("once-upon-a-time-assets/portraits/jane.png"); }
-    .testimonial--mary    .testimonial__avatar { background-image: url("once-upon-a-time-assets/portraits/mary.png"); }
-    .testimonial--noelle  .testimonial__avatar { background-image: url("once-upon-a-time-assets/portraits/natalie.png"); }
     .testimonial p {
       color: var(--snow); font-size: var(--t-label);
       line-height: var(--lh-body); margin: 0 0 var(--s-3);
@@ -612,7 +611,7 @@
         </div>
         <div class="donor__testimonials">
           <figure class="testimonial testimonial--jimin">
-            <div class="testimonial__avatar" role="img" aria-label="Portrait of Mary"></div>
+            <div class="testimonial__avatar" aria-hidden="true">M</div>
             <p>&ldquo;Supporting OUAT has been incredibly rewarding. Seeing how thoughtfully the programs are designed for children.&rdquo;</p>
             <cite>Mary</cite>
             <span class="trust-signal">
@@ -621,7 +620,7 @@
             </span>
           </figure>
           <figure class="testimonial testimonial--mary">
-            <div class="testimonial__avatar" role="img" aria-label="Portrait of Trevor"></div>
+            <div class="testimonial__avatar" aria-hidden="true">T</div>
             <p>&ldquo;As a long-time supporter, I’ve seen firsthand how OUAT uses the arts to bring stories to life and create opportunities for young performers.&rdquo;</p>
             <cite>Trevor</cite>
             <span class="trust-signal">
@@ -630,7 +629,7 @@
             </span>
           </figure>
           <figure class="testimonial testimonial--noelle">
-            <div class="testimonial__avatar" role="img" aria-label="Portrait of Kelly"></div>
+            <div class="testimonial__avatar" aria-hidden="true">K</div>
             <p>&ldquo;OUAT exceeded my expectations. Supporting their work has allowed me to help programs reach more communities.&rdquo;</p>
             <cite>Kelly</cite>
             <span class="trust-signal">
