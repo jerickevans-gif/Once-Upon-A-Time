@@ -5,7 +5,7 @@
       "settings": {
         "eyebrow": "",
         "heading": "Our Vision & Mission",
-        "body": "<p>OUAT envisions a community where children feel welcome and free to dance, sing, and tell stories that bring people together. We exist to provide children and families across Queens with accessible, creative arts education.</p>",
+        "body": "<p>Once Upon a Time inspires folks to find their creative voice through dance, music, theater, and storytelling. We create spaces for self-expression, connecting families with the community through unforgettable events and performances.</p><p>Our mission is to build a vibrant home for artistic and cultural growth — a place where children feel inspired to learn and perform. Supported by dedicated volunteers, instructors, and staff who keep OUAT standing, we work to ensure every child’s talent is seen and valued.</p>",
         "text_align": "left"
       }
     },
@@ -13,13 +13,13 @@
       "type": "feature-grid",
       "settings": {
         "eyebrow": "Our Values",
-        "heading": "OUAT dedicates its support through core programs and community engagement.",
+        "heading": "Cultivating creativity through our core programs and community experiences",
         "columns": 3
       },
       "blocks": {
-        "v1": { "type": "feature", "settings": { "icon": "ph-star", "title": "Creative Programs", "body": "Programs and seasonal courses in dance, theatre, and art that inspire creativity in young people." } },
-        "v2": { "type": "feature", "settings": { "icon": "ph-users-three", "title": "Community Engagement", "body": "Engaging with communities through performances, workshops, and cultural arts experiences across Queens." } },
-        "v3": { "type": "feature", "settings": { "icon": "ph-sparkle", "title": "Personal Growth", "body": "Supporting children's growth with skilled instructors who foster discipline, mastery, and personal growth." } }
+        "v1": { "type": "feature", "settings": { "icon": "ph-mask-happy", "title": "Creative Programs", "body": "Building creativity through specialized programs in dance, theater, music, and art." } },
+        "v2": { "type": "feature", "settings": { "icon": "ph-users-three", "title": "Community Experiences", "body": "Creating unforgettable community experiences through impactful performance and storytelling." } },
+        "v3": { "type": "feature", "settings": { "icon": "ph-plant", "title": "Creative Potential", "body": "Inspiring children to master their skills and reach their full creative potential." } }
       },
       "block_order": ["v1", "v2", "v3"]
     },
@@ -28,7 +28,7 @@
       "settings": {
         "eyebrow": "",
         "heading": "Our Founder Legacy",
-        "body": "<p>Lorem ipsum dolor sit amet consectetur. Tortor quam justo ac dignissim massa lacinia mi. Senectus tristique velit elementum integer erat ante laoreet. Lacus adipiscing vitae eu lectus. Sed felis eget eget ac risus eu. Cras nibh quam ac quam mauris commodo amet. Ac ut aliquam et a sapien.</p><p>Lorem ipsum dolor sit amet consectetur. Tortor quam justo ac dignissim massa lacinia mi. Senectus tristique velit elementum integer erat ante laoreet. Lacus adipiscing vitae eu lectus. Sed felis. Eget eget ac risus eu. Cras nibh quam ac quam mauris commodo amet. Ac ut aliquam et a sapien.</p>",
+        "body": "<p>Founded in 1980 by Aubel and Terry, Once Upon a Time was built on a passion for the arts. Our founders envisioned a world where children could explore art history, theater, and multicultural dance while finding the stage to perform and grow.</p><p>Today, OUAT is proudly resurfacing to reconnect with our community through vibrant events and programs. From hosting memorial celebrations and birthdays to building a dedicated home for learners, we invite our neighbors to volunteer and help us keep this creative legacy alive.</p>",
         "text_align": "left"
       }
     },
@@ -44,8 +44,8 @@
       "type": "rich-text",
       "settings": {
         "eyebrow": "",
-        "heading": "Expanding Our Platform",
-        "body": "<p>Our support helps expand local programs to reach more children across communities. Donations meaningfully advance opportunities and create experiences for families.</p>",
+        "heading": "Giving an Opportunity",
+        "body": "<p>Every donation helps expand our platform and reach more families across our community. Your support ensures our classes have the resources they need and allows us to add new programs, giving everyone a chance to explore their creativity and learn from our dedicated instructors.</p>",
         "text_align": "left"
       }
     },
@@ -57,8 +57,8 @@
       "type": "rich-text",
       "settings": {
         "eyebrow": "",
-        "heading": "Where Your Donation Goes",
-        "body": "<p>Every donation contributed to OUAT directly supports our programs and students. Funds are allocated toward instructional materials, program supplies, and operational needs to help classes run effectively. The clearest evidence of your engaged support — children with growing experience while maintaining transparency and outcomes.</p>",
+        "heading": "Where Does Your Donation Go",
+        "body": "<p>Every donation we receive goes directly toward our classes, art supplies, and our team who keep our programs running. Our priority is to give children an engaging experience that parents and donors can feel proud of. By supporting OUAT, you are helping children build their confidence and sharpen their skills, giving them the tools they need to succeed on and off the stage.</p>",
         "text_align": "left"
       }
     },
