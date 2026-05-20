@@ -482,11 +482,8 @@
     var current = 0;
     var total = slides.length;
 
-    function goTo(idx) {
-      if (idx < 0) idx = total - 1;
-      if (idx >= total) idx = 0;
+    function setActive (idx) {
       current = idx;
-      slides[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
       slides.forEach(function (s, i) {
         s.setAttribute('aria-label', (i + 1) + ' of ' + total);
       });
@@ -494,6 +491,31 @@
         d.setAttribute('aria-selected', i === current ? 'true' : 'false');
       });
     }
+
+    function goTo(idx) {
+      if (idx < 0) idx = total - 1;
+      if (idx >= total) idx = 0;
+      slides[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      setActive(idx);
+    }
+
+    // Keep the active dot in sync when the user scrolls/swipes the track directly
+    // (previously the indicator only moved via the arrow/dot buttons).
+    var scrollRAF;
+    track.addEventListener('scroll', function () {
+      if (scrollRAF) cancelAnimationFrame(scrollRAF);
+      scrollRAF = requestAnimationFrame(function () {
+        var trackRect = track.getBoundingClientRect();
+        var trackCenter = trackRect.left + trackRect.width / 2;
+        var best = current, bestDist = Infinity;
+        slides.forEach(function (s, i) {
+          var r = s.getBoundingClientRect();
+          var dist = Math.abs((r.left + r.width / 2) - trackCenter);
+          if (dist < bestDist) { bestDist = dist; best = i; }
+        });
+        if (best !== current) setActive(best);
+      });
+    }, { passive: true });
 
     if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
