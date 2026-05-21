@@ -627,6 +627,10 @@
   // Toggle persists in localStorage. Add `dark` class to <html>.
   function applyTheme (mode) {
     document.documentElement.classList.toggle('theme-dark', mode === 'dark');
+    // Keep the mobile browser chrome (address/status bar) in sync with the
+    // manual theme — the site's dark mode is class-based, not OS-preference-based.
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', mode === 'dark' ? '#1F1A18' : '#FFF5EE');
   }
   const savedTheme = localStorage.getItem('ouat:theme');
   if (savedTheme) applyTheme(savedTheme);
