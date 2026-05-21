@@ -63,8 +63,8 @@
 .modal--register, .modal--success, .modal--processing { position: relative; }
 .modal--register { width: min(480px, 100%); }
 .modal__close {
-  position: absolute; top: 14px; right: 14px;
-  width: 32px; height: 32px; border-radius: 50%;
+  position: absolute; top: 10px; right: 10px;
+  width: 46px; height: 46px; border-radius: 50%;
   border: 0; background: transparent; color: var(--ink-muted);
   font-size: 22px; line-height: 1; cursor: pointer;
   display: inline-flex; align-items: center; justify-content: center;

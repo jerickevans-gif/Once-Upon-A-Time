@@ -641,6 +641,28 @@
     if (window.OUAT_toast) window.OUAT_toast(`Switched to ${cur === 'dark' ? 'light' : 'dark'} mode`, { variant: 'info', duration: 1400 });
   });
 
+  // -------------------- Font scale (accessibility text size) -------------------- //
+  // Mirrors Figma's "Aa" accessibility control. Persisted site-wide; applied via
+  // page zoom so the px-based type scale enlarges proportionally without a refactor.
+  function applyFontScale (scale) {
+    document.documentElement.style.zoom = (scale && scale !== '1') ? scale : '';
+    document.querySelectorAll('[data-font-scale]').forEach((b) => {
+      b.setAttribute('aria-pressed', b.dataset.fontScale === String(scale) ? 'true' : 'false');
+    });
+  }
+  const savedScale = localStorage.getItem('ouat:fontscale');
+  if (savedScale) applyFontScale(savedScale);
+  window.OUAT_setFontScale = (scale) => {
+    localStorage.setItem('ouat:fontscale', scale);
+    applyFontScale(scale);
+  };
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('[data-font-scale]');
+    if (!el) return;
+    window.OUAT_setFontScale(el.dataset.fontScale);
+    if (window.OUAT_toast) window.OUAT_toast('Text size updated', { variant: 'info', duration: 1200 });
+  });
+
   // -------------------- Breadcrumbs (auto-injected on detail pages) -------------------- //
   document.addEventListener('DOMContentLoaded', () => {
     const main = document.getElementById('main');

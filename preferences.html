@@ -186,6 +186,23 @@
           <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
         </div>
 
+        <div class="acc-section">
+          <div class="acc-section__head"><h2 class="acc-section__title">Accessibility &amp; Display</h2></div>
+          <div class="toggle-row">
+            <span class="toggle-row__label">Text size <span aria-hidden="true" style="font-family:var(--serif);font-size:var(--t-lg);margin-left:4px">Aa</span></span>
+            <div class="textsize-control" role="group" aria-label="Text size" style="display:inline-flex;gap:8px">
+              <button class="btn btn--sm btn--outline" type="button" data-font-scale="1" aria-pressed="true">Default</button>
+              <button class="btn btn--sm btn--outline" type="button" data-font-scale="1.1" aria-pressed="false" aria-label="Large text">A+</button>
+              <button class="btn btn--sm btn--outline" type="button" data-font-scale="1.2" aria-pressed="false" aria-label="Larger text">A++</button>
+            </div>
+          </div>
+          <div class="toggle-row">
+            <span class="toggle-row__label">Dark mode</span>
+            <button class="btn btn--sm btn--outline" type="button" data-theme-toggle><i class="ph ph-moon" aria-hidden="true"></i> Toggle</button>
+          </div>
+          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
+        </div>
+
         <button class="delete-account" type="button" data-confirm="Delete account?" data-confirm-body="This action is permanent and cannot be undone." data-confirm-consequences="Your profile and all child profiles will be deleted|Payment methods will be removed|Class history and receipts will be lost|Inbox messages will be permanently deleted" data-confirm-cta="Delete forever" data-confirm-danger="true" data-confirm-action="mock:delete-account" data-confirm-toast="Account deletion routes to Shopify GDPR endpoint in production."><i class="ph ph-trash"></i> Delete my account</button>
       </section>
     </div>
