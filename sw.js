@@ -8,7 +8,7 @@
    Uses relative paths so this works under both GitHub Pages (/Once-Upon-A-Time/)
    and a custom Shopify-hosted root. */
 
-const CACHE_VERSION = 'v3.2026.05.21-audit1-perf';
+const CACHE_VERSION = 'v3.2026.05.21-audit3-headings';
 const SHELL_CACHE = `ouat-shell-${CACHE_VERSION}`;
 const RUNTIME_CACHE = `ouat-runtime-${CACHE_VERSION}`;
 
