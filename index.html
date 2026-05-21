@@ -57,12 +57,14 @@
     .hero__lede { color: var(--ink); font-size: var(--t-base); margin-bottom: var(--s-5); max-width: 52ch; }
     .hero__meta {
       display: inline-flex; align-items: center; gap: 6px;
-      background: var(--rose-100); color: var(--rose-700);
+      background: var(--garden-100); color: var(--garden-700);
       font-size: var(--t-label); font-weight: 600;
       padding: 6px 14px; border-radius: var(--radius-pill);
       margin-bottom: var(--s-4);
     }
-    .hero__actions { display: flex; gap: var(--s-3); flex-wrap: wrap; }
+    .hero__actions { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
+    /* Learn More on its own row below the primary CTAs (matches Figma) */
+    .hero__actions [data-hero-cta-learn] { flex-basis: 100%; margin-top: var(--s-1); }
     .hero__photo {
       border-radius: var(--radius-lg);
       overflow: hidden;
