@@ -499,14 +499,26 @@
     function goTo(idx) {
       if (idx < 0) idx = total - 1;
       if (idx >= total) idx = 0;
-      // Scroll ONLY the track horizontally — never scrollIntoView, which scrolls
-      // every ancestor (including the page) and yanked the viewport to the
-      // carousel on each auto-rotate. scrollBy on the track leaves the page put.
+      // Move ONLY the track. NB: a smooth scrollBy/scrollIntoView on a
+      // scroll-snap (x mandatory) container makes Chrome scroll the whole PAGE
+      // to the snap target — that was the page-yank bug. Writing scrollLeft
+      // directly per frame never bubbles to ancestors, so the page stays put.
       var slideRect = slides[idx].getBoundingClientRect();
       var trackRect = track.getBoundingClientRect();
       var delta = (slideRect.left - trackRect.left) - (trackRect.width - slideRect.width) / 2;
+      var target = track.scrollLeft + delta;
       var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      track.scrollBy({ left: delta, behavior: reduce ? 'auto' : 'smooth' });
+      if (reduce || Math.abs(delta) < 2) {
+        track.scrollLeft = target;
+      } else {
+        var from = track.scrollLeft, t0 = performance.now(), dur = 420;
+        (function step(now) {
+          var k = Math.min(1, (now - t0) / dur);
+          var e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2; // easeInOutQuad
+          track.scrollLeft = from + (target - from) * e;
+          if (k < 1) requestAnimationFrame(step);
+        })(performance.now());
+      }
       setActive(idx);
     }
 
