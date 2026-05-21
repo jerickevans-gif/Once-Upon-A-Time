@@ -52,9 +52,15 @@
   }
 
   // ---------- Mobile nav toggle ----------
-  const navToggle = document.querySelector('.nav-toggle');
+  // Most page templates ALSO bind an inline handler to .nav-toggle, which runs
+  // during parse — before this deferred script. Two handlers double-toggled the
+  // menu (open then immediately close), so it never opened. Clone the toggle to
+  // strip any pre-existing listener, then bind the single canonical handler.
+  const navToggleOrig = document.querySelector('.nav-toggle');
   const primaryNav = document.getElementById('primary-nav');
-  if (navToggle && primaryNav) {
+  if (navToggleOrig && primaryNav) {
+    const navToggle = navToggleOrig.cloneNode(true);
+    navToggleOrig.parentNode.replaceChild(navToggle, navToggleOrig);
     navToggle.addEventListener('click', () => {
       const open = primaryNav.dataset.open === 'true';
       primaryNav.dataset.open = open ? 'false' : 'true';

@@ -542,7 +542,9 @@
       });
     }
 
-    goTo(0);
+    // Initialise the active dot WITHOUT scrolling — calling goTo(0) here ran
+    // scrollIntoView on load, which jumped the whole page down to the carousel.
+    setActive(0);
   };
 
   document.addEventListener('DOMContentLoaded', function () {
