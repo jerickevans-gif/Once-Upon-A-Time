@@ -40,12 +40,9 @@
     /* ===== Hero ===== */
     .hero { background: var(--rose-100); padding: var(--s-6) 0 var(--s-7); }
     .hero__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: var(--s-6); align-items: center; }
-    .hero__copy {
-      background: var(--snow);
-      border-radius: var(--radius-lg);
-      padding: var(--s-6);
-      box-shadow: var(--shadow-md);
-    }
+    /* Figma hero: heading + schedule sit on the pink (no card); only the lede
+       is in a bordered rectangle; pill + buttons share the bottom row. */
+    .hero__copy { padding: 0; }
     .hero__copy h1 {
       font-family: var(--serif); font-weight: 400;
       font-size: clamp(48px, 6.2vw, 80px);
@@ -53,18 +50,23 @@
       line-height: var(--lh-display);
       margin: 0 0 var(--s-3);
     }
-    .hero__sub { font-size: var(--t-lg); color: var(--ink-muted); margin-bottom: var(--s-3); }
-    .hero__lede { color: var(--ink); font-size: var(--t-base); margin-bottom: var(--s-5); max-width: 52ch; }
+    .hero__sub { font-size: var(--t-lg); color: var(--ink-muted); margin-bottom: var(--s-5); }
+    .hero__lede-box {
+      background: var(--snow);
+      border: 1px solid var(--rose-300);
+      border-radius: var(--radius);
+      padding: var(--s-4) var(--s-5);
+      margin-bottom: var(--s-5);
+      box-shadow: var(--shadow-sm);
+    }
+    .hero__lede { color: var(--ink); font-size: var(--t-base); margin: 0; }
     .hero__meta {
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--garden-100); color: var(--garden-700);
       font-size: var(--t-label); font-weight: 600;
       padding: 6px 14px; border-radius: var(--radius-pill);
-      margin-bottom: var(--s-4);
     }
     .hero__actions { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
-    /* Learn More on its own row below the primary CTAs (matches Figma) */
-    .hero__actions [data-hero-cta-learn] { flex-basis: 100%; margin-top: var(--s-1); }
     .hero__photo {
       border-radius: var(--radius-lg);
       overflow: hidden;
@@ -386,14 +388,16 @@
     <section class="hero" data-hero>
       <div class="wrap hero__grid">
         <div class="hero__copy" aria-live="polite" aria-atomic="false">
-          <span class="hero__meta" data-hero-meta><i class="ph ph-clock" aria-hidden="true"></i> <span data-hero-meta-text>10 spots left</span></span>
           <h1 data-hero-title>Jazz Class — Winter 2026</h1>
           <p class="hero__sub" data-hero-sub>Thursdays | 4pm | Ages 10+ | Studio Room A</p>
-          <p class="hero__lede" data-hero-lede>This winter, children will discover the rhythm of jazz through music, movement, and play. Our guided sessions help build listening skills and creative confidence, leading up to a special onstage performance where children get to play instruments and the audience feels the music.</p>
+          <div class="hero__lede-box">
+            <p class="hero__lede" data-hero-lede>This winter, children will discover the rhythm of jazz through music, movement, and play. Our guided sessions help build listening skills and creative confidence, leading up to a special onstage performance where children get to play instruments and the audience feels the music.</p>
+          </div>
           <div class="hero__actions" data-hero-actions>
+            <span class="hero__meta" data-hero-meta><i class="ph ph-clock" aria-hidden="true"></i> <span data-hero-meta-text>10 spots left</span></span>
             <a class="btn" href="programs.html" data-hero-cta-primary><i class="ph ph-ticket"></i> <span>Enroll Now</span></a>
             <button class="btn btn--garden" type="button" data-mock="add-to-cart" data-hero-cta-cart><i class="ph ph-shopping-cart-simple"></i> <span>Add to Cart</span></button>
-            <a class="btn btn--text" href="seasonal-camps.html" data-hero-cta-learn><span>Learn More</span> <i class="ph ph-arrow-right"></i></a>
+            <a class="btn btn--outline" href="seasonal-camps.html" data-hero-cta-learn><span>Learn More</span> <i class="ph ph-caret-double-right" aria-hidden="true"></i></a>
           </div>
         </div>
         <div class="hero__photo" role="img" aria-label="Students performing a jazz routine on stage" data-hero-photo></div>
