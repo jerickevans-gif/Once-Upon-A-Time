@@ -690,7 +690,6 @@
       'gallery':            [['index.html', 'Home'], ['about.html', 'About'], [null, 'Gallery']],
       'events':             [['index.html', 'Home'], [null, 'Events']],
       'instructors':        [['index.html', 'Home'], ['about.html', 'About'], [null, 'Instructors']],
-      'programs':           [['index.html', 'Home'], [null, 'Programs']],
     };
     const crumbs = map[path];
     if (!crumbs) return;
