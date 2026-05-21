@@ -495,6 +495,10 @@
     }
     .global-stat__num { font-family: var(--serif); font-size: clamp(28px, 3vw, 38px); font-weight: 600; color: var(--snow); }
     .global-stat__label { font-size: 12px; color: var(--beginning); margin-top: 4px; }
+    /* Dark mode: blush/garden accent surfaces don't flip — keep their text dark */
+    .theme-dark .hero__chip small { color: var(--rose-100); }
+    .theme-dark .global-impact #global-title { color: var(--beginning); }
+    .theme-dark .global-stat__num { color: var(--beginning); }
 
     /* ---------- Stories ---------- */
     .stories {

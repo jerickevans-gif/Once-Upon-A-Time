@@ -139,6 +139,8 @@
     .calendar__day--garden { background: var(--garden-300); color: var(--ink); font-weight: 700; }
     .calendar__day--rose   { background: var(--rose-300);   color: var(--ink); font-weight: 700; }
     .calendar__day--blush  { background: var(--blush);      color: var(--ink); font-weight: 700; }
+    /* blush stays a light surface in dark mode — keep marker text dark */
+    .theme-dark .calendar__day--blush { color: var(--rose-100); }
     .calendar__legend { display: flex; gap: var(--s-4); margin-top: var(--s-3); font-size: var(--t-micro); color: var(--ink-muted); }
     .calendar__legend span { display: inline-flex; align-items: center; gap: 6px; }
     .calendar__legend span::before { content: ''; width: 8px; height: 8px; border-radius: 50%; }

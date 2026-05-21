@@ -439,9 +439,21 @@
 .theme-dark .site-header { background: var(--beginning); border-bottom: 1px solid var(--line); }
 .theme-dark .promo-bar { background: var(--rose-100); color: var(--rose-700); }
 .theme-dark .auth-modal__art, .theme-dark .auth-page__art { filter: brightness(0.7); }
-.theme-dark .site-footer { background: var(--ink); color: var(--ink-muted); }
+/* Footer in dark mode: --ink flips to a LIGHT value, so the old
+   `background: var(--ink)` rendered the footer light. Use a dark surface. */
+.theme-dark .site-footer { background: var(--snow); color: var(--ink); }
+.theme-dark .site-footer h2, .theme-dark .site-footer h3, .theme-dark .site-footer h4 { color: var(--ink); }
 .theme-dark .site-footer a { color: var(--rose-700); }
-.theme-dark .footer__address { color: var(--ink-muted); }
+.theme-dark .footer__address, .theme-dark .site-footer__bottom { color: var(--ink-muted); }
+/* Danger badge keeps a tinted surface; use the (light) dark-mode danger ink. */
+.theme-dark .badge-status--danger { color: var(--danger); }
+/* Cookie banner: --pillar flips light, so pin a dark surface + readable link. */
+.theme-dark .cookie-banner { background: var(--pillar-100); color: var(--ink); }
+.theme-dark .cookie-banner__text a { color: var(--rose-700); }
+.theme-dark .cookie-banner .btn-decline { color: var(--ink); border-color: rgba(242,220,216,.3); }
+/* Blush "pill" stays a light surface in dark mode — keep its text/icon dark. */
+.theme-dark .pill { color: var(--rose-100); }
+.theme-dark .pill::before { background: var(--rose-100); border-color: var(--rose-100); }
 /* Modal + overlay surfaces */
 .theme-dark .modal { background: var(--snow); color: var(--ink); border: 1px solid var(--line); }
 .theme-dark .modal__title { color: var(--rose-700); }
