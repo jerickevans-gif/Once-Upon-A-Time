@@ -236,6 +236,12 @@ body {
 }
 main { flex: 1 0 auto; }
 .site-footer { flex-shrink: 0; }
+/* Promo banner sits BELOW the main nav, site-wide (body is a flex column).
+   Reorder so it's header -> promo bar -> main -> footer regardless of DOM order. */
+.site-header { order: 1; }
+.promo-bar   { order: 2; }
+main         { order: 3; }
+.site-footer { order: 4; }
 img, svg, video { max-width: 100%; display: block; }
 button { font: inherit; color: inherit; cursor: pointer; }
 input, button, select, textarea { font: inherit; }
