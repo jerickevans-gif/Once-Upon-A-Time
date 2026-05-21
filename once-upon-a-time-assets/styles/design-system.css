@@ -31,6 +31,8 @@
 
 /* ---------- Tokens ---------- */
 :root {
+  /* Native UI (form controls, scrollbars) follows the manual theme. */
+  color-scheme: light;
   /* Brand colors — P3 Primary (rose) ramp from OUAT Design System Figma */
   --rose-50:     #F2E8E6;
   --rose-100:    #F2DCD8;   /* aligned to Figma primary-100 (was #F2DDD5) */

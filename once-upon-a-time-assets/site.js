@@ -68,6 +68,12 @@
     });
   }
 
+  // ---------- Print buttons ([data-print]) ----------
+  // Delegated so pages don't need inline onclick handlers (CSP-friendlier).
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('[data-print]')) window.print();
+  });
+
   // ---------- Sticky-header scroll shadow ----------
   const header = document.querySelector('.site-header');
   if (header) {

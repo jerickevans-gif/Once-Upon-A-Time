@@ -373,6 +373,7 @@
 
 /* ---------- Dark mode tokens ---------- */
 .theme-dark {
+  color-scheme: dark;
   /* Base surfaces */
   --beginning: #1F1A18;
   --snow: #2A2422;
