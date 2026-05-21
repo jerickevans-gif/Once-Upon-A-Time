@@ -499,7 +499,14 @@
     function goTo(idx) {
       if (idx < 0) idx = total - 1;
       if (idx >= total) idx = 0;
-      slides[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      // Scroll ONLY the track horizontally — never scrollIntoView, which scrolls
+      // every ancestor (including the page) and yanked the viewport to the
+      // carousel on each auto-rotate. scrollBy on the track leaves the page put.
+      var slideRect = slides[idx].getBoundingClientRect();
+      var trackRect = track.getBoundingClientRect();
+      var delta = (slideRect.left - trackRect.left) - (trackRect.width - slideRect.width) / 2;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      track.scrollBy({ left: delta, behavior: reduce ? 'auto' : 'smooth' });
       setActive(idx);
     }
 
