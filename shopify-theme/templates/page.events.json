@@ -3,9 +3,9 @@
     "intro": {
       "type": "rich-text",
       "settings": {
-        "eyebrow": "Upcoming",
+        "eyebrow": "What's coming up",
         "heading": "Events &amp; Showcases",
-        "body": "<p>Showcases, fundraisers, open studios.</p>",
+        "body": "<p>From end-of-season showcases to open studios and fundraising galas — see you there.</p>",
         "text_align": "center"
       }
     },
