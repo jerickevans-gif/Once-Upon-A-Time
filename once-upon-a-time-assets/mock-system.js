@@ -479,6 +479,10 @@
     var dots = container.querySelectorAll('.carousel__dot');
     if (!track || slides.length === 0) return;
 
+    // The track is a horizontally-scrollable region; make it keyboard-focusable
+    // so it's reachable without a mouse (WCAG 2.1.1 / scrollable-region-focusable).
+    if (!track.hasAttribute('tabindex')) track.setAttribute('tabindex', '0');
+
     var current = 0;
     var total = slides.length;
 

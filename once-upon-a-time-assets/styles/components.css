@@ -279,7 +279,7 @@
 }
 .badge-status--success { background: var(--garden-100); color: var(--garden-700); border: 1px solid var(--garden-300); }
 .badge-status--warning { background: var(--rose-100); color: var(--rose-700); border: 1px solid var(--rose-300); }
-.badge-status--danger { background: var(--danger-100); color: var(--danger); border: 1px solid var(--danger); }
+.badge-status--danger { background: var(--danger-100); color: var(--danger-900); border: 1px solid var(--danger); }
 .badge-status--neutral { background: var(--n-100); color: var(--n-700); border: 1px solid var(--n-300); }
 
 /* ---------- Filter chip ---------- */

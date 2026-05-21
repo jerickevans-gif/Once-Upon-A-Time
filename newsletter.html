@@ -66,7 +66,7 @@
     }
     .nl-tabs a.is-active { border-bottom-color: var(--rose-700); color: var(--rose-700); }
     .nl-tabs a:hover { color: var(--rose); }
-    .nl-tabs a.is-muted { color: var(--ink-muted); opacity: .6; }
+    .nl-tabs a.is-muted { color: var(--ink-muted); }
     .nl-tabs__badge {
       background: var(--rose); color: var(--snow);
       font-size: 11px; font-weight: 700;
@@ -401,11 +401,13 @@
 
     <!-- ============ TOOLBAR ============ -->
     <div class="wrap nl-toolbar">
-      <nav class="nl-tabs" aria-label="Newsletter sections" role="tablist">
-        <a href="#" class="is-active" data-nl-tab="home" role="tab" aria-selected="true" aria-controls="nl-panel-home">Home</a>
-        <a href="#" data-nl-tab="saved" role="tab" aria-selected="false" aria-controls="nl-panel-saved">Saved Articles <span class="nl-tabs__badge" data-nl-count="saved">7</span></a>
-        <a href="#" data-nl-tab="later" role="tab" aria-selected="false" aria-controls="nl-panel-later">Read Later <span class="nl-tabs__badge" data-nl-count="later">2</span></a>
-        <a href="#" data-nl-tab="involved" role="tab" aria-selected="false" aria-controls="nl-panel-involved">Get Involved!</a>
+      <nav class="nl-tabs" aria-label="Newsletter navigation">
+        <div role="tablist" aria-label="Newsletter sections" style="display:contents">
+          <a href="#" id="nl-tab-home" class="is-active" data-nl-tab="home" role="tab" aria-selected="true" aria-controls="nl-panel-home">Home</a>
+          <a href="#" id="nl-tab-saved" data-nl-tab="saved" role="tab" aria-selected="false" aria-controls="nl-panel-saved">Saved Articles <span class="nl-tabs__badge" data-nl-count="saved">7</span></a>
+          <a href="#" id="nl-tab-later" data-nl-tab="later" role="tab" aria-selected="false" aria-controls="nl-panel-later">Read Later <span class="nl-tabs__badge" data-nl-count="later">2</span></a>
+          <a href="#" id="nl-tab-involved" data-nl-tab="involved" role="tab" aria-selected="false" aria-controls="nl-panel-involved">Get Involved!</a>
+        </div>
         <a href="donate.html">Donate</a>
         <a href="#" class="is-muted" data-mock="admin-newsletter" data-mock-toast="Admin newsletter editor opens via Shopify in production.">Admin</a>
         <button class="nl-tabs__more" type="button" aria-label="More options" data-mock="newsletter-more" data-mock-toast="More-actions menu (export, archive, settings) opens here in production.">···</button>
@@ -649,7 +651,7 @@
             <a href="https://www.instagram.com/onceuponatimeinc/" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
             <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
           </div>
-          <div style="margin-top:14px;font-size:12px;opacity:.7"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
+          <div style="margin-top:14px;font-size:12px"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
         </div>
       </div>
       <div class="site-footer__bottom">Once Upon A Time Inc. &copy; 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>
