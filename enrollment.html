@@ -108,7 +108,7 @@
     .session__capacity {
       font-size: 11px; color: var(--garden-700); margin-top: 4px; font-weight: 600;
     }
-    .session__capacity--low { color: #B5611B; }
+    .session__capacity--low { color: var(--warning-700); }
     .session__capacity--full { color: var(--ink-muted); }
     .session.is-full {
       opacity: .55; cursor: not-allowed;
@@ -188,11 +188,11 @@
     }
     .btn-back:hover { border-color: var(--rose); color: var(--rose); }
     .btn-next {
-      background: var(--rose); color: var(--snow); border: 0;
+      background: var(--button-primary); color: var(--snow); border: 0;
       padding: 12px 28px; border-radius: 10px; font-weight: 600; cursor: pointer;
       display: inline-flex; align-items: center; gap: 8px; font-size: 14px;
     }
-    .btn-next:hover { background: var(--rose-700); }
+    .btn-next:hover { background: var(--pillar-700); }
     .btn-next:disabled { background: var(--line); cursor: not-allowed; }
 
     @media (max-width: 720px) {
