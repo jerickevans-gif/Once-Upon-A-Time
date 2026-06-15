@@ -908,6 +908,34 @@
 .donor-tier:last-child { margin-bottom: 0; }
 
 /* =========================================================================
+   .cart-item — promoted from cart.html (byte-identical row layout).
+   ========================================================================= */
+.cart-item {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: var(--s-5);
+  padding: var(--s-5);
+  background: var(--snow);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  align-items: center;
+}
+
+/* =========================================================================
+   .event-card — promoted from events.html (5 byte-identical inline rows).
+   ========================================================================= */
+.event-card {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  gap: var(--s-5);
+  align-items: center;
+  background: var(--snow);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--s-5) var(--s-6);
+}
+
+/* =========================================================================
    .portrait-card — promoted from board.html / press.html / partners.html /
    jobs.html / instructors.html inline patterns (~30+ byte-identical inline
    articles with avatar + name + role + bio).
