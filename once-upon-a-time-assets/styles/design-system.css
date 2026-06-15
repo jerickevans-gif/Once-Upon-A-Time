@@ -76,6 +76,7 @@
   --ink:         #262422;   /* Base — Black 900 */
   --ink-muted:   #5C544E;   /* secondary text */
   --line:        #E5DCCF;   /* hairline */
+  --button-primary: #462B36;  /* Figma Buttons/Button-brand "Woody Brown" — primary CTA fill */
 
   /* Neutral (Hue 25) — warm grey ramp from Figma */
   --n-100:       #E5DFDA;
@@ -291,14 +292,15 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 
 /* ---------- Buttons ---------- */
 .btn {
-  --btn-bg: var(--rose);
+  /* Primary fill per Figma Buttons/Button-brand. */
+  --btn-bg: var(--button-primary);
   --btn-fg: var(--snow);
-  --btn-bg-hover: var(--rose-700);
-  --btn-ring: var(--rose);
+  --btn-bg-hover: var(--pillar-700);
+  --btn-ring: var(--button-primary);
   display: inline-flex; align-items: center; justify-content: center;
   gap: var(--s-2);
-  min-height: 48px;
-  padding: 0 var(--s-4);
+  min-height: 44px;
+  padding: 8px 12px;
   font-family: var(--sans);
   font-weight: 600;
   font-size: var(--t-md);
@@ -333,8 +335,11 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 }
 
 /* Sizes */
-.btn--sm { min-height: 40px; padding: 0 var(--s-3); font-size: var(--t-base); }
-.btn--lg { min-height: 56px; padding: 0 var(--s-5); font-size: var(--t-lg); }
+.btn--sm { min-height: 36px; padding: 6px 10px; font-size: var(--t-base); }
+.btn--lg { min-height: 56px; padding: 12px 18px; font-size: var(--t-lg); }
+
+/* Brand variants opt back to rose-led fills where pages want the warmer look. */
+.btn--rose { --btn-bg: var(--rose); --btn-bg-hover: var(--rose-700); --btn-ring: var(--rose); }
 
 /* Variant: brand (default) — rose */
 /* Variant: garden */
@@ -421,8 +426,8 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 .promo-bar__close:hover { background: rgba(0,0,0,.08); }
 
 /* ---------- Header (Figma P4|S3 — stacked wordmark + search-led) ---------- */
-.site-header { background: var(--snow); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--line); }
-.site-header__inner { display: flex; align-items: center; gap: var(--s-5); padding: var(--s-3) 0; min-height: 118px; }
+.site-header { background: var(--snow); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--n-200); }
+.site-header__inner { display: flex; align-items: center; gap: var(--s-5); padding: 20px 0; min-height: 118px; }
 
 /* Brand — 3-line stacked serif wordmark replacing the image logo. */
 .brand { display: inline-flex; align-items: center; text-decoration: none; line-height: 0; flex: 0 0 auto; }
@@ -489,7 +494,7 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 .site-search__icon { position: absolute; right: 24px; top: 50%; transform: translateY(-50%); font-size: 22px; color: var(--ink); pointer-events: none; }
 
 /* Header actions cluster — cart with text label + settings + dark avatar. */
-.header-actions { display: flex; align-items: center; gap: var(--s-3); flex: 0 0 auto; }
+.header-actions { display: flex; align-items: center; gap: var(--s-4); flex: 0 0 auto; }
 .icon-btn { display: inline-flex; align-items: center; gap: 8px; min-width: var(--tap); height: var(--tap); padding: 0 6px; background: transparent; border: 0; border-radius: var(--radius-pill); position: relative; color: var(--ink); font-size: var(--t-label); font-weight: 500; cursor: pointer; transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease); }
 .icon-btn:hover { background: rgba(38,36,34,.06); }
 .icon-btn:active { background: rgba(38,36,34,.12); }
@@ -498,9 +503,9 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 .icon-btn .badge { position: absolute; top: 0; right: -2px; background: var(--danger); color: var(--snow); font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--beginning); }
 .avatar { position: relative; width: var(--tap); height: var(--tap); border-radius: 50%; background: var(--rose); color: var(--snow); font-weight: 600; font-size: var(--t-label); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; flex: 0 0 auto; }
 .avatar .ph { font-size: 22px; }
-/* Figma navbar uses a darker avatar circle (rose-700) with badge. */
-.avatar--dark { background: var(--rose-700); }
-.avatar--dark:hover { background: var(--rose-800); }
+/* Figma User Thumb is a brighter rose 40px circle with badge. */
+.avatar--dark { background: var(--rose); width: 40px; height: 40px; }
+.avatar--dark:hover { background: var(--rose-700); }
 .avatar .badge { position: absolute; top: -2px; right: -2px; background: var(--danger); color: var(--snow); font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--beginning); }
 .btn--signin { background: var(--pillar); color: var(--snow); border-radius: var(--radius); padding: 0 22px; min-height: 40px; font-weight: 600; }
 .btn--signin:hover { background: var(--pillar-700); color: var(--snow); }
