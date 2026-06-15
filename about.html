@@ -39,11 +39,13 @@
   <style>
     /* ---------- Local aliases — re-map legacy tokens onto design system ---------- */
     :root {
-      --bg:        var(--beginning);
-      --bg-soft:   var(--snow);
+      /* Local aliases — point at canonical tokens. Phase 1 bg/card inversion
+         is preserved (--bg = --snow body; --card = --beginning warm cream). */
+      --bg:        var(--snow);
+      --bg-soft:   var(--beginning);
       --hero:      var(--rose-100);
       --form:      var(--rose-100);
-      --card:      var(--snow);
+      --card:      var(--beginning);
       --accent:    var(--rose);
       --accent-2:  var(--rose);
       --accent-3:  var(--rose-700);
@@ -75,11 +77,11 @@
 
     /* a11y */
     .skip-link { position: absolute; left: -9999px; top: 8px; background: var(--ink); color:var(--snow); padding: 10px 14px; border-radius: 8px; z-index: 1000; text-decoration: none; }
-    .skip-link:focus { left: 8px; outline: 3px solid #f6c453; outline-offset: 2px; }
+    .skip-link:focus { left: 8px; outline: 3px solid var(--rose); outline-offset: 2px; }
     :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
     .sr-only { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip: rect(0,0,0,0); white-space: nowrap; border:0; }
 
-    .wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
+    /* .wrap deliberately removed — use the global responsive --gutter from design-system.css. */
 
 
     /* ---------- Section base ---------- */
@@ -130,7 +132,7 @@
     }
     .vision__copy p:last-child { margin-bottom: 0; }
     .vision__image {
-      border-radius: 18px;
+      border-radius: var(--radius-md);
       overflow: hidden;
       aspect-ratio: 5 / 4;
       background: url("once-upon-a-time-assets/about/vision-hero.jpg") center/cover no-repeat,
@@ -146,7 +148,7 @@
     .values__inner {
       background: var(--bg-soft);
       border: 1px solid #e6cfb8;
-      border-radius: 18px;
+      border-radius: var(--radius-md);
       padding: 40px 32px;
     }
     .values .eyebrow {
@@ -287,7 +289,7 @@
     /* ---------- Expanding platform ---------- */
     .expanding {
       position: relative;
-      border-radius: 18px;
+      border-radius: var(--radius-md);
       padding: 56px 24px;
       color: #f6e7d4;
       text-align: center;
@@ -361,7 +363,7 @@
     }
     .donation-goes p { color: var(--ink-2); font-size: 14px; line-height: 1.7; margin: 0 0 24px; max-width: 50ch; }
     .donation-goes__image {
-      border-radius: 18px;
+      border-radius: var(--radius-md);
       overflow: hidden;
       aspect-ratio: 5 / 4;
       background: url("once-upon-a-time-assets/about/donation-goes.jpg") center/cover no-repeat,
@@ -371,7 +373,7 @@
     /* ---------- Stay connected ---------- */
     .stay-connected {
       position: relative;
-      border-radius: 18px;
+      border-radius: var(--radius-md);
       overflow: hidden;
       padding: 64px 24px;
       text-align: center;
@@ -737,12 +739,12 @@
         <form id="newsletter-form" class="stay-connected__form" novalidate aria-label="Newsletter signup">
           <label class="sr-only" for="stay-email">Email address</label>
           <input id="stay-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required aria-required="true">
-          <button class="btn btn--solid" type="submit">Subscribe</button>
+          <button class="btn" type="submit">Subscribe</button>
         </form>
         <p id="newsletter-status" class="sr-only" role="status" aria-live="polite"></p>
         <div class="stay-connected__actions">
           <a class="btn" href="newsletter.html">Join our Newsletter</a>
-          <a class="btn btn--solid" href="contact.html">Contact Us</a>
+          <a class="btn" href="contact.html">Contact Us</a>
         </div>
       </section>
     </div>
