@@ -865,3 +865,44 @@
   .pd-instructors, .pd-locations, .pd-alts__grid, .pd-components { grid-template-columns: 1fr; }
   .pd-help { grid-template-columns: 1fr; }
 }
+
+/* =========================================================================
+   .page-hero — promoted from page-scoped <style> blocks that were
+   byte-identical across 15+ pages (gift-donation, sponsorship, scholarship,
+   gallery, events, impact-report, donor-wall, jobs, press, partners, board,
+   500, accessibility, privacy, payment-declined, instructors, cart).
+   ========================================================================= */
+.page-hero { padding: 60px 0 40px; background: var(--rose-100); text-align: center; }
+.page-hero__eyebrow { font-size: var(--t-micro); font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--rose-700); margin-bottom: 8px; }
+.page-hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(40px, 5vw, 60px); margin: 0 0 12px; text-transform: uppercase; color: var(--pillar); }
+.page-hero__sub { font-size: var(--t-base); color: var(--ink-muted); max-width: 56ch; margin: 0 auto; line-height: var(--lh-body); }
+
+/* =========================================================================
+   .legal-body — promoted; duplicated across legal + many marketing pages.
+   ========================================================================= */
+.legal-body { max-width: 720px; margin: 56px auto; padding: 0 24px; font-size: 15px; line-height: 1.7; color: var(--ink); }
+.legal-body h2 { font-family: var(--serif); font-weight: 600; font-size: var(--t-subtitle); margin: 32px 0 12px; color: var(--pillar); text-transform: uppercase; }
+.legal-body h3 { font-size: var(--t-base); font-weight: 700; margin: 20px 0 8px; color: var(--ink); }
+.legal-body p { margin: 0 0 12px; }
+.legal-body ul { margin: 0 0 12px; padding-left: 24px; }
+.legal-body li { margin-bottom: 6px; }
+
+/* =========================================================================
+   .stat-card — promoted from impact-report.html inline-styled stat boxes
+   (6 byte-identical inline patterns).
+   ========================================================================= */
+.stat-card {
+  background: var(--snow);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--s-5);
+  text-align: center;
+}
+.stat-card__num { font-family: var(--serif); font-size: 42px; font-weight: 600; color: var(--pillar); line-height: 1; }
+.stat-card__label { font-size: var(--t-label); color: var(--ink-muted); margin-top: var(--s-2); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+
+/* =========================================================================
+   .donor-tier — promoted from donor-wall.html inline-styled donor cards.
+   ========================================================================= */
+.donor-tier { background: var(--snow); border: 1px solid var(--line); border-radius: var(--radius-md); padding: var(--s-6); margin-bottom: var(--s-5); }
+.donor-tier:last-child { margin-bottom: 0; }
