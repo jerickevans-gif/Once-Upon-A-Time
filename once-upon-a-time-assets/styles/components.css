@@ -294,6 +294,25 @@
 .chip[aria-pressed="true"] { background: var(--rose); color: var(--snow); border-color: var(--rose); }
 .chip[disabled] { opacity: .5; cursor: not-allowed; pointer-events: none; }
 
+/* ---------- Tag (Figma static "Chip" component — non-interactive label) ---------- */
+.tag {
+  display: inline-flex; align-items: center; gap: var(--s-1);
+  font-family: var(--sans); font-size: var(--t-label); font-weight: 500; line-height: 1;
+  min-height: 35px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--rose-100); color: var(--rose-700);
+  border: 0;
+  white-space: nowrap;
+}
+.tag .ph { font-size: 16px; flex: 0 0 auto; }
+.tag--info    { background: var(--sky);        color: var(--info-900); }
+.tag--rose    { background: var(--rose-100);   color: var(--rose-700); }
+.tag--danger  { background: var(--danger-100); color: var(--danger-900); }
+.tag--warning { background: var(--warning-100);color: var(--warning-900); }
+.tag--garden  { background: var(--garden-100); color: var(--garden-700); }
+.tag--lg { min-height: 40px; padding: 10px 14px; font-size: var(--t-base); }
+
 /* ---------- Testimonial ---------- */
 .testimonial { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--s-3); }
 .testimonial__avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--rose-100); display: flex; align-items: center; justify-content: center; overflow: hidden; }

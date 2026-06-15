@@ -169,12 +169,19 @@
   <!-- ============ HEADER ============ -->
   <header class="site-header" role="banner">
     <div class="wrap site-header__inner">
-      <a href="index.html" class="brand" aria-label="Once Upon A Time, home">
-        <img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time">
-      </a>
       <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation menu">
         <i class="ph ph-list" aria-hidden="true"></i>
       </button>
+      <a href="index.html" class="brand brand--stacked" aria-label="Once Upon A Time, home">
+        <span class="brand__line">Once</span>
+        <span class="brand__line">Upon</span>
+        <span class="brand__line">A Time</span>
+      </a>
+      <form class="site-search" role="search" action="search.html" method="get">
+        <label class="sr-only" for="site-search-input">Search the site</label>
+        <input id="site-search-input" name="q" type="search" class="site-search__input" placeholder="Search" autocomplete="off">
+        <i class="ph ph-magnifying-glass site-search__icon" aria-hidden="true"></i>
+      </form>
       <nav class="primary-nav" id="primary-nav" aria-label="Primary">
         <a href="about.html">About Us</a>
         <a href="programs.html">Programs</a>
@@ -183,17 +190,16 @@
         <a href="contact.html" aria-current="page">Contact</a>
       </nav>
       <div class="header-actions">
-        <a href="search.html" class="icon-btn icon-btn--icon-only" aria-label="Search"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></a><button class="icon-btn" type="button" aria-label="Cart, 9 items" data-mock="cart">
+        <button class="icon-btn icon-btn--cart" type="button" aria-label="Cart, 9 items" data-mock="cart">
           <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
-          <span>Cart</span>
           <span class="badge" aria-hidden="true">9</span>
+          <span>Cart</span>
         </button>
         <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></a>
-        <a href="profile.html" class="avatar" aria-label="Account, 9 notifications">
+        <a href="profile.html" class="avatar avatar--dark" aria-label="Account, 9 notifications">
           <i class="ph ph-user" aria-hidden="true"></i>
           <span class="badge" aria-hidden="true">9</span>
         </a>
-        <button class="btn btn--signin" type="button" data-open-signin>Sign-in</button>
       </div>
     </div>
   </header>
