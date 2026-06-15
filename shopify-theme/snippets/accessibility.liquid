@@ -1,0 +1,9 @@
+{%- comment -%}
+  Accessibility helpers — skip link + live region announcer.
+  Used by theme.liquid above the main landmark.
+{%- endcomment -%}
+
+<a class="skip-link sr-only-focusable" href="#main">Skip to main content</a>
+
+{%- comment -%} Screen-reader live region for dynamic announcements (cart, toast, etc.) {%- endcomment -%}
+<div id="sr-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>

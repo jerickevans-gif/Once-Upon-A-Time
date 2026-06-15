@@ -7,12 +7,14 @@
     "theme_documentation_url": "https://github.com/jerickevans-gif/Once-Upon-A-Time",
     "theme_support_url": "mailto:contact@onceuponatime.org"
   },
+
   {
     "name": "Brand",
     "settings": [
       { "type": "header", "content": "Identity" },
       { "type": "text", "id": "alt_name", "label": "Legal name", "default": "Once Upon A Time, Inc." },
       { "type": "image_picker", "id": "share_image", "info": "Used in social-share previews. 1200x630 recommended." },
+      { "type": "image_picker", "id": "favicon", "info": "Square. Used for browser tab icon." },
 
       { "type": "header", "content": "Address" },
       { "type": "text", "id": "street", "label": "Street", "default": "87-61 111th St" },
@@ -24,6 +26,105 @@
       { "type": "header", "content": "Contact" },
       { "type": "text", "id": "email", "label": "Email", "default": "contact@onceuponatime.org" },
       { "type": "text", "id": "phone", "label": "Phone", "default": "+1-718-380-6929" }
+    ]
+  },
+
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "header", "content": "Color scheme" },
+      {
+        "type": "select",
+        "id": "color_scheme",
+        "label": "Default scheme",
+        "options": [
+          { "value": "background-1", "label": "Warm cream (--beginning)" },
+          { "value": "background-2", "label": "Bright snow (--snow)" },
+          { "value": "rose",         "label": "Rose surface" }
+        ],
+        "default": "background-1"
+      },
+      { "type": "color", "id": "color_rose",       "label": "Rose (--rose)",       "default": "#8B5044" },
+      { "type": "color", "id": "color_garden",     "label": "Garden (--garden)",   "default": "#6B6D20" },
+      { "type": "color", "id": "color_pillar",     "label": "Pillar (--pillar)",   "default": "#4C2F3B" },
+      { "type": "color", "id": "color_button",     "label": "Button primary",      "default": "#462B36" },
+      { "type": "color", "id": "color_beginning",  "label": "Warm cream",          "default": "#FFF5EE" },
+      { "type": "color", "id": "color_snow",       "label": "Snow",                "default": "#FFFCFA" },
+      { "type": "color", "id": "color_ink",        "label": "Body ink",            "default": "#262422" },
+      { "type": "color", "id": "color_ink_muted",  "label": "Body ink (muted)",    "default": "#5C544E" }
+    ]
+  },
+
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "select",
+        "id": "type_header_font",
+        "label": "Heading font",
+        "options": [
+          { "value": "voltra", "label": "Voltra (Display Serif)" },
+          { "value": "cinzel", "label": "Cinzel (Substitute Serif)" }
+        ],
+        "default": "voltra"
+      },
+      {
+        "type": "select",
+        "id": "type_body_font",
+        "label": "Body font",
+        "options": [
+          { "value": "chivo", "label": "Chivo Variable (Default)" }
+        ],
+        "default": "chivo"
+      },
+      {
+        "type": "range",
+        "id": "type_h1_max",
+        "label": "H1 max size (px)",
+        "min": 40, "max": 96, "step": 4, "default": 64
+      }
+    ]
+  },
+
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "layout_wrap",
+        "label": "Wrap width (px)",
+        "min": 1080, "max": 1440, "step": 20, "default": 1280
+      },
+      {
+        "type": "range",
+        "id": "layout_gutter",
+        "label": "Page side gutter (px)",
+        "min": 16, "max": 120, "step": 4, "default": 80
+      }
+    ]
+  },
+
+  {
+    "name": "Animations",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "animations_reveal_on_scroll",
+        "label": "Enable scroll-reveal animations (GSAP)",
+        "info": "Activates animations.js. Honors prefers-reduced-motion.",
+        "default": true
+      }
+    ]
+  },
+
+  {
+    "name": "Social",
+    "settings": [
+      { "type": "header", "content": "Social profiles" },
+      { "type": "url", "id": "social_instagram", "label": "Instagram URL" },
+      { "type": "url", "id": "social_facebook",  "label": "Facebook URL" },
+      { "type": "url", "id": "social_twitter",   "label": "Twitter / X URL" },
+      { "type": "url", "id": "social_youtube",   "label": "YouTube URL" }
     ]
   }
 ]
