@@ -49,32 +49,43 @@
       display: flex; flex-direction: column;
       gap: 15px;
     }
-    /* Top card: event info (title, sub, chips, lede). --beginning fill per Figma. */
+    /* Top card: event info (title, sub, chips, lede). --beginning fill, 24px
+       uniform padding per Figma 2748:43946. */
     .hero__event-card {
       background: var(--beginning);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
-      padding: var(--s-6) var(--s-5);
+      padding: var(--s-5);            /* 24px uniform — was 32/24 */
       flex: 1;
       display: flex; flex-direction: column;
+      gap: 10px;                       /* matches Figma itemSpacing */
     }
-    /* Bottom card: booking CTA panel (meta tag + action buttons). */
+    /* Bottom card: booking CTA panel — 16px uniform per Figma. */
     .hero__cta-card {
       background: var(--beginning);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
-      padding: var(--s-4) var(--s-5);
+      padding: var(--s-4);             /* 16px uniform — was 16/24 */
       flex: 0 0 auto;
     }
-    .hero__chips { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-bottom: var(--s-4); }
+    /* Hero typography — gap-based rhythm (no margins) matches Figma 10px stack. */
+    .hero__chips { display: flex; gap: var(--s-2); flex-wrap: wrap; margin: 0; }
     .hero__copy h1 {
       font-family: var(--serif); font-weight: 400;
-      font-size: clamp(26px, 3vw, 40px);
+      font-size: clamp(26px, 3vw, 36px);  /* trimmed max 40 -> 36 so it fits 642 col */
       text-transform: uppercase;
       line-height: var(--lh-display);
-      margin: 0 0 var(--s-3);
+      margin: 0;
     }
-    .hero__sub { font-size: var(--t-lg); color: var(--ink-muted); margin-bottom: var(--s-5); }
+    .hero__sub { font-size: var(--t-lg); color: var(--ink-muted); margin: 0; }
+    /* Inner bordered card for the lede paragraph — Figma "Description" frame inside event card. */
+    .hero__lede-box {
+      background: var(--snow);
+      border: 1px solid var(--rose-300);
+      border-radius: var(--radius);
+      padding: var(--s-4);
+      margin-top: auto;            /* pushes lede card to fill remaining space */
+    }
     .hero__lede { color: var(--ink); font-size: var(--t-base); margin: 0; }
     .hero__meta {
       display: inline-flex; align-items: center; gap: 6px;
@@ -432,7 +443,9 @@
             </div>
             <h1 data-hero-title>Jazz Class — Winter 2026</h1>
             <p class="hero__sub" data-hero-sub>Thursdays | 4pm | Ages 10+ | Studio Room A</p>
-            <p class="hero__lede" data-hero-lede>This winter, children will discover the rhythm of jazz through music, movement, and play. Our guided sessions help build listening skills and creative confidence, leading up to a special onstage performance where children get to play instruments and the audience feels the music.</p>
+            <div class="hero__lede-box">
+              <p class="hero__lede" data-hero-lede>This winter, children will discover the rhythm of jazz through music, movement, and play. Our guided sessions help build listening skills and creative confidence, leading up to a special onstage performance where children get to play instruments and the audience feels the music.</p>
+            </div>
           </div>
           <div class="hero__cta-card">
             <div class="hero__actions" data-hero-actions>
