@@ -912,6 +912,28 @@
 .donor-tier:last-child { margin-bottom: 0; }
 
 /* =========================================================================
+   .tier-card — promoted from sponsorship.html tier cards.
+   4 tier variants by background color (Friend / Partner / Champion / Visionary).
+   ========================================================================= */
+.tier-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  background: var(--snow);
+  color: var(--ink);
+  border-radius: var(--radius-md);
+  padding: var(--s-6) var(--s-6) var(--s-6);
+}
+.tier-card--friend    { background: var(--snow);     color: var(--ink); }
+.tier-card--partner   { background: var(--rose-100); color: var(--rose-700); }
+.tier-card--champion  { background: var(--rose);     color: var(--snow); }
+.tier-card--visionary { background: var(--pillar);   color: var(--snow); }
+.tier-card__label { font-size: var(--t-micro); font-weight: 700; letter-spacing: .25em; text-transform: uppercase; opacity: .8; }
+.tier-card__price { font-family: var(--serif); font-size: 36px; font-weight: 600; }
+.tier-card__features { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--s-2); font-size: var(--t-label); line-height: var(--lh-body); }
+.tier-card__cta { margin-top: auto; background: var(--snow); color: var(--rose-700); }
+
+/* =========================================================================
    .instructor-card — promoted from instructors.html (6 byte-identical cards).
    Image-on-top portrait card variant.
    ========================================================================= */
