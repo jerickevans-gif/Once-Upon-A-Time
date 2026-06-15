@@ -42,11 +42,12 @@
 }
 .modal-overlay[hidden] { display: none; }
 @keyframes modal-fade { from { opacity: 0; } }
+/* Figma Modal (node 2560:13924) — 620w, r-xl 32, padding 48/32, bg --rose-50. */
 .modal {
-  background: var(--snow);
-  border-radius: 16px;
-  width: min(440px, 100%);
-  padding: 28px;
+  background: var(--rose-50);
+  border-radius: var(--radius-xl);
+  width: min(620px, 100%);
+  padding: 32px 48px;
   box-shadow: 0 20px 60px rgba(0,0,0,.25);
   animation: modal-pop .25s ease;
 }
