@@ -908,6 +908,29 @@
 .donor-tier:last-child { margin-bottom: 0; }
 
 /* =========================================================================
+   .portrait-card — promoted from board.html / press.html / partners.html /
+   jobs.html / instructors.html inline patterns (~30+ byte-identical inline
+   articles with avatar + name + role + bio).
+   ========================================================================= */
+.portrait-card {
+  background: var(--snow);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: var(--s-5);
+}
+.portrait-card__avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center top;
+  margin-bottom: var(--s-3);
+  filter: saturate(.9);
+}
+.portrait-card__name { font-family: var(--serif); font-size: var(--t-md); text-transform: uppercase; margin: 0 0 4px; color: var(--pillar); font-weight: 400; }
+.portrait-card__role { font-size: var(--t-micro); color: var(--rose-700); font-weight: 600; margin: 0 0 var(--s-2); }
+.portrait-card__bio { font-size: var(--t-label); color: var(--ink-muted); line-height: var(--lh-body); margin: 0; }
+
+/* =========================================================================
    .acc-section — promoted from page-scoped styles duplicated across
    profile/preferences/class-history/inbox. Account-page section primitive.
    ========================================================================= */
