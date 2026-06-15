@@ -162,12 +162,17 @@
       color: var(--ink); margin: 0 0 var(--s-4);
     }
     .nl-featured { padding-top: var(--s-3); padding-bottom: var(--s-6); }
+    /* Figma "Newsletter Card v2_dropshadow" (2748:44915):
+       fill #FFF5EE (--beginning), r=14, two stacked drop shadows. */
     .nl-featured-card {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-      background: var(--rose-100);
-      border-radius: var(--radius-lg);
+      background: var(--beginning);
+      border-radius: 14px;
       overflow: hidden;
       align-items: stretch;
+      box-shadow:
+        0 4px 6px 0 rgba(166, 109, 98, 0.35),
+        0 4px 4px 0 rgba(0, 0, 0, 0.18);
     }
     .nl-featured-card__copy { padding: var(--s-7) var(--s-6); display: flex; flex-direction: column; gap: var(--s-3); }
     .nl-featured-card__brand {
@@ -214,10 +219,13 @@
     }
     @media (max-width: 720px) { .nl-stories__grid { grid-template-columns: 1fr; } }
     .nl-story-card {
-      background: var(--rose-100);
-      border-radius: var(--radius-lg);
+      background: var(--beginning);
+      border-radius: 14px;            /* matches Newsletter Card v2_dropshadow */
       overflow: hidden;
       display: flex; flex-direction: column;
+      box-shadow:
+        0 4px 6px 0 rgba(166, 109, 98, 0.35),
+        0 4px 4px 0 rgba(0, 0, 0, 0.18);
     }
     .nl-story-card__photo {
       aspect-ratio: 16/9;
