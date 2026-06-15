@@ -911,6 +911,24 @@
 .donor-tier:last-child { margin-bottom: 0; }
 
 /* =========================================================================
+   .instructor-card — promoted from instructors.html (6 byte-identical cards).
+   Image-on-top portrait card variant.
+   ========================================================================= */
+.instructor-card {
+  background: var(--snow);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.instructor-card__photo { aspect-ratio: 1; background-size: cover; background-position: center top; filter: saturate(.9); }
+.instructor-card__body { padding: var(--s-4) var(--s-5); }
+.instructor-card__name { font-family: var(--serif); font-size: var(--t-lg); margin: 0 0 2px; text-transform: uppercase; color: var(--ink); font-weight: 400; }
+.instructor-card__role { font-size: var(--t-label); color: var(--rose-700); margin: 0 0 var(--s-2); font-weight: 600; }
+.instructor-card__bio { font-size: var(--t-label); color: var(--ink-muted); line-height: var(--lh-body); margin: 0; }
+.instructor-card__link { display: inline-block; margin-top: var(--s-3); font-size: var(--t-label); color: var(--rose); font-weight: 600; text-decoration: none; }
+.instructor-card__link:hover { color: var(--rose-700); }
+
+/* =========================================================================
    .cart-item — promoted from cart.html (byte-identical row layout).
    ========================================================================= */
 .cart-item {
