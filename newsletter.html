@@ -163,13 +163,17 @@
     }
     .nl-featured { padding-top: var(--s-3); padding-bottom: var(--s-6); }
     /* Figma "Newsletter Card v2_dropshadow" (2748:44915):
-       fill #FFF5EE (--beginning), r=14, two stacked drop shadows. */
+       fill #FFF5EE (--beginning), r=14. Shadow only on hover. */
     .nl-featured-card {
       display: grid; grid-template-columns: 1fr 1fr; gap: 0;
       background: var(--beginning);
       border-radius: 14px;
       overflow: hidden;
       align-items: stretch;
+      transition: box-shadow .25s ease;
+    }
+    .nl-featured-card:hover,
+    .nl-featured-card:focus-within {
       box-shadow:
         0 4px 6px 0 rgba(166, 109, 98, 0.35),
         0 4px 4px 0 rgba(0, 0, 0, 0.18);
@@ -223,6 +227,10 @@
       border-radius: 14px;            /* matches Newsletter Card v2_dropshadow */
       overflow: hidden;
       display: flex; flex-direction: column;
+      transition: box-shadow .25s ease;
+    }
+    .nl-story-card:hover,
+    .nl-story-card:focus-within {
       box-shadow:
         0 4px 6px 0 rgba(166, 109, 98, 0.35),
         0 4px 4px 0 rgba(0, 0, 0, 0.18);
