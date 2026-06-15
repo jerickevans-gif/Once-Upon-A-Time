@@ -307,12 +307,18 @@
   white-space: nowrap;
 }
 .tag .ph { font-size: 16px; flex: 0 0 auto; }
-.tag--info    { background: var(--sky);        color: var(--info-900); }
-.tag--rose    { background: var(--rose-100);   color: var(--rose-700); }
-.tag--danger  { background: var(--danger-100); color: var(--danger-900); }
-.tag--warning { background: var(--warning-100);color: var(--warning-900); }
-.tag--garden  { background: var(--garden-100); color: var(--garden-700); }
+/* Color fills sampled directly from Figma 2748:43946 / 2748:43693 chip
+   instances (35x~80, 8px radius, semantic per discipline). */
+.tag--info     { background: var(--sky);        color: var(--info-900); }
+.tag--rose     { background: var(--rose-100);   color: var(--rose-700); }
+.tag--rose-2   { background: var(--rose-200);   color: var(--rose-800); }
+.tag--danger   { background: var(--danger-100); color: var(--danger-900); }
+.tag--warning  { background: var(--warning-100);color: var(--warning-900); }
+.tag--garden   { background: var(--garden-100); color: var(--garden-700); }
+.tag--pillar   { background: var(--pillar-100); color: var(--pillar);    }
 .tag--lg { min-height: 40px; padding: 10px 14px; font-size: var(--t-base); }
+.tag--sm { min-height: 24px; padding: 4px 10px;  font-size: var(--t-micro); border-radius: var(--radius-sm); gap: 4px; }
+.tag--xs { min-height: 20px; padding: 2px  8px;  font-size: 11px;           border-radius: var(--radius-sm); gap: 4px; }
 
 /* ---------- Testimonial ---------- */
 .testimonial { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--s-3); }
