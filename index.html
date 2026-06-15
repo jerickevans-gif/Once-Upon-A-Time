@@ -142,8 +142,17 @@
       border-radius: var(--radius-lg);
       padding: var(--s-6) var(--s-5);
       min-height: 120px;            /* was 88 — Figma blocks ~120-200px tall */
-      display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--s-4);
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s-4);
       box-shadow: var(--shadow-sm);
+    }
+    /* Number badge — Figma reference shows [1][2][3] in front of each class. */
+    .class-row__num {
+      width: 32px; height: 32px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1.5px solid var(--ink);
+      border-radius: var(--radius-sm);
+      font-family: var(--sans); font-weight: 700; font-size: var(--t-label);
+      color: var(--ink);
     }
     /* Today's highlighted class — green selected state per Figma 2748:43830. */
     .class-row--highlighted {
@@ -480,6 +489,7 @@
           </div>
           <div class="classes-today__list">
             <article class="class-row class-row--highlighted">
+              <span class="class-row__num" aria-hidden="true">1</span>
               <div>
                 <div class="class-row__title">Beginner Ballet</div>
                 <div class="class-row__instructor">Instructor: Luna Pinelli</div>
@@ -487,6 +497,7 @@
               <span class="class-row__time">10:00&nbsp;–&nbsp;11:00&nbsp;AM</span>
             </article>
             <article class="class-row">
+              <span class="class-row__num" aria-hidden="true">2</span>
               <div>
                 <div class="class-row__title">Art History</div>
                 <div class="class-row__instructor">Instructor: Jerrod Finn</div>
@@ -494,6 +505,7 @@
               <span class="class-row__time">11:00&nbsp;AM&nbsp;–&nbsp;12:00&nbsp;PM</span>
             </article>
             <article class="class-row">
+              <span class="class-row__num" aria-hidden="true">3</span>
               <div>
                 <div class="class-row__title">Salsa Dance</div>
                 <div class="class-row__instructor">Instructor: Ashley Roza</div>

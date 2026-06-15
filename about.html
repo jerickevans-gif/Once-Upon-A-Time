@@ -317,6 +317,10 @@
       position: relative;
       overflow: hidden;
     }
+    /* Show 3 testimonial cards side-by-side, like a typical testimonial row. */
+    .success .carousel__slide { flex: 0 0 calc(33.333% - (var(--s-5) * 2 / 3)); scroll-snap-align: start; }
+    @media (max-width: 900px) { .success .carousel__slide { flex: 0 0 calc(50% - (var(--s-5) / 2)); } }
+    @media (max-width: 540px) { .success .carousel__slide { flex: 0 0 100%; } }
     .success__title { color: var(--ink); text-align: center; margin: 0 0 48px; font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 4.4vw, 56px); text-transform: uppercase; letter-spacing: .01em; }
     .success-card {
       background: transparent;
