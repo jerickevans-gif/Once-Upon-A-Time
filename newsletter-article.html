@@ -24,7 +24,22 @@
   <script src="once-upon-a-time-assets/mock-system.js" defer></script>
 
   <style>
-    .article-wrap { max-width: 760px; margin: 32px auto 80px; padding: 0 24px; }
+    .article-eyebrow-band {
+      max-width: 880px; margin: var(--s-7) auto 0; padding: 0 var(--s-5);
+      display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+    }
+    .article-eyebrow-band__label {
+      font-family: var(--sans); font-weight: 700; font-size: var(--t-md);
+      letter-spacing: .18em; text-transform: uppercase; color: var(--ink);
+    }
+    .article-eyebrow-band__pager { display: inline-flex; gap: var(--s-2); }
+    .article-wrap {
+      max-width: 880px; margin: var(--s-4) auto var(--s-8);
+      background: var(--beginning);
+      border-radius: var(--radius-lg);
+      padding: var(--s-7) var(--s-7) var(--s-6);
+    }
+    @media (max-width: 720px) { .article-wrap { padding: var(--s-5); margin-inline: var(--s-3); } }
     .article-back { color: var(--ink-muted); text-decoration: none; font-size: 14px; display: inline-flex; gap: 6px; align-items: center; margin-bottom: 16px; }
     .article-back:hover { color: var(--ink); }
     .article-actions {
@@ -129,6 +144,13 @@
   </header>
 
   <main id="main" tabindex="-1">
+    <div class="article-eyebrow-band">
+      <span class="article-eyebrow-band__label">Current newsletter</span>
+      <span class="article-eyebrow-band__pager">
+        <a class="btn btn--sm btn--outline" href="newsletter.html"><i class="ph ph-caret-left" aria-hidden="true"></i> Previous Page</a>
+        <a class="btn btn--sm" href="newsletter.html">Next Page <i class="ph ph-caret-right" aria-hidden="true"></i></a>
+      </span>
+    </div>
     <article class="article-wrap">
       <a class="article-back" href="newsletter.html"><i class="ph ph-arrow-left"></i> All newsletters</a>
       <div class="article-actions">
