@@ -41,8 +41,8 @@
     .pg-hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1.05; color: var(--rose-700); text-transform: uppercase; margin: 0 0 28px; }
     .pg-hero p { font-size: 15px; line-height: 1.6; color: var(--ink); margin: 0 0 16px; max-width: 46ch; }
     .pg-hero .btn { margin-top: 16px; }
-    .pg-hero__photo { aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; background: var(--rose-700); position: relative; box-shadow: 0 12px 30px rgba(76, 47, 59, .12); }
-    .pg-card__photo { aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: var(--rose-700); position: relative; }
+    .pg-hero__photo { aspect-ratio: 4/3; border-radius: var(--radius-md); overflow: hidden; background: var(--rose-700); position: relative; box-shadow: 0 12px 30px rgba(76, 47, 59, .12); }
+    .pg-card__photo { aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden; background: var(--rose-700); position: relative; }
     /* Pre-baked rose duotones from design — render flat */
     .pg-hero__photo img,
     .pg-card__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -70,7 +70,7 @@
     .pg-card__title { font-family: var(--serif); font-weight: 400; font-size: 22px; text-transform: uppercase; color: var(--ink); margin: 0; line-height: 1.1; letter-spacing: .01em; }
     .pg-card__price { font-family: var(--sans); font-size: 12px; color: var(--ink-muted); text-align: right; line-height: 1.35; flex: 0 0 auto; max-width: 120px; }
     .pg-card__chips { display: flex; gap: 6px; flex-wrap: wrap; }
-    .pg-chip { font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 999px; font-family: var(--sans); letter-spacing: .02em; }
+    .pg-chip { font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: var(--radius-pill); font-family: var(--sans); letter-spacing: .02em; }
     .pg-chip--rose { background: var(--rose-100); color: var(--rose-700); }
     .pg-chip--garden { background: var(--garden-100); color: var(--garden-700); }
     .pg-card__schedule { font-size: 13px; color: var(--ink); font-weight: 400; }
@@ -80,7 +80,7 @@
     .pg-card__meta i { color: var(--rose); font-size: 14px; }
     .pg-card__actions { display: flex; gap: 10px; align-items: center; margin-top: 4px; }
     .pg-card__actions .btn { padding: 8px 16px; font-size: 13px; }
-    .icon-pill { width: 36px; height: 36px; border-radius: 8px; background: var(--rose-100); color: var(--rose-700); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .15s ease; }
+    .icon-pill { width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--rose-100); color: var(--rose-700); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .15s ease; }
     .icon-pill:hover, .icon-pill[aria-pressed="true"] { background: var(--rose); color: var(--snow); }
     .icon-pill i { font-size: 16px; }
 
@@ -104,7 +104,7 @@
     .pg-filter { padding: 32px 0 0; }
     .pg-filter__row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
     .pg-filter__chips { display: inline-flex; gap: 8px; flex-wrap: wrap; }
-    .pg-chipbtn { background: var(--snow); border: 1px solid var(--rose-100); color: var(--ink); font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: 999px; cursor: pointer; font-family: var(--sans); transition: background .15s ease, color .15s ease, border-color .15s ease; }
+    .pg-chipbtn { background: var(--snow); border: 1px solid var(--rose-100); color: var(--ink); font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: var(--radius-pill); cursor: pointer; font-family: var(--sans); transition: background .15s ease, color .15s ease, border-color .15s ease; }
     .pg-chipbtn:hover { border-color: var(--rose-300); }
     .pg-chipbtn[aria-pressed="true"] { background: var(--rose); color: var(--snow); border-color: var(--rose); }
     .pg-search { display: inline-flex; align-items: center; gap: 8px; background: var(--snow); border: 1px solid var(--rose-100); border-radius: var(--radius); padding: 8px 16px; min-width: 240px; }
@@ -262,7 +262,7 @@
               <span style="font-size:var(--t-micro);color:var(--ink-muted)">8 of 10 spots filled</span>
             </div>
             <div class="pg-card__actions">
-              <a class="btn" href="seasonal-camps.html">View More <i class="ph ph-caret-double-right" aria-hidden="true"></i></a>
+              <a class="btn" href="seasonal-camps.html">View More <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
               <button class="icon-pill" type="button" aria-label="Save Seasonal Camps" data-bookmark="prog-seasonal-camps-thu"><i class="ph ph-bookmark-simple"></i></button>
               <button class="icon-pill" type="button" aria-label="Share Seasonal Camps" data-share data-share-title="Seasonal Camps — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/seasonal-camps.html"><i class="ph ph-share-network"></i></button>
             </div>
@@ -290,7 +290,7 @@
               <span style="font-size:var(--t-micro);color:var(--ink-muted)">6 of 10 spots filled</span>
             </div>
             <div class="pg-card__actions">
-              <a class="btn" href="private-lessons.html">View More <i class="ph ph-caret-double-right" aria-hidden="true"></i></a>
+              <a class="btn" href="private-lessons.html">View More <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
               <button class="icon-pill" type="button" aria-label="Save Private Lesson" data-bookmark="prog-private-lesson"><i class="ph ph-bookmark-simple"></i></button>
               <button class="icon-pill" type="button" aria-label="Share Private Lesson" data-share data-share-title="Private Lessons — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/private-lessons.html"><i class="ph ph-share-network"></i></button>
             </div>

@@ -87,7 +87,7 @@
     .skip-link {
       position: absolute; left: -9999px; top: 8px;
       background: var(--ink); color: var(--snow);
-      padding: 10px 14px; border-radius: 8px; z-index: 1000;
+      padding: 10px 14px; border-radius: var(--radius-sm); z-index: 1000;
       text-decoration: none;
     }
     .skip-link:focus { left: 8px; outline: 3px solid var(--rose); outline-offset: 2px; }
@@ -136,7 +136,7 @@
     .pill {
       display: inline-flex; align-items: center; gap: 10px;
       background: var(--blush); color: var(--ink);
-      padding: 10px 20px; border-radius: 999px;
+      padding: 10px 20px; border-radius: var(--radius-pill);
       font-size: 14px; font-weight: 500;
     }
     .pill::before {
@@ -313,7 +313,7 @@
       display: grid; grid-template-columns: repeat(3, 1fr);
       background: var(--bg-soft);
       border: 1px solid var(--line);
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       padding: 4px;
       gap: 4px;
     }
@@ -321,7 +321,7 @@
     .segmented label {
       min-height: 40px;
       display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 999px;
+      border-radius: var(--radius-pill);
       font-size: 14px; font-weight: 500;
       cursor: pointer;
       color: var(--ink);
@@ -449,7 +449,7 @@
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       color: var(--snow);
-      padding: 6px 12px; border-radius: 999px;
+      padding: 6px 12px; border-radius: var(--radius-pill);
       font-size: 12px; font-weight: 500;
       display: inline-flex; align-items: center; gap: 6px;
       z-index: 1;
@@ -622,7 +622,7 @@
       .questions { flex-direction: column; align-items: flex-start; padding: 24px; }
       .footer__grid { grid-template-columns: 1fr 1fr; }
       .footer__brand-block, .footer__address-block { grid-column: 1 / -1; }
-      .donation { padding: 40px 0 48px; border-radius: 16px; }
+      .donation { padding: 40px 0 48px; border-radius: var(--radius-md); }
       .panel, .side-panel { padding: 22px; }
       .stories { padding: 48px 0 56px; margin-bottom: 56px; }
     }
@@ -800,7 +800,7 @@
                 <input id="email" name="email" class="input" type="email" placeholder="Email Address" autocomplete="email" required style="margin-top:12px">
               </fieldset>
 
-              <button type="submit" class="btn btn--block" id="donate-submit">
+              <button type="submit" class="btn" style="width:100%" id="donate-submit">
                 Donate <span id="donate-amount">$ 100</span> Now
               </button>
 

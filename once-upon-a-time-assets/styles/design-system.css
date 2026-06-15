@@ -204,6 +204,8 @@
   --shadow-sm:   0 1px 2px rgba(38,36,34,.06);
   --shadow-md:   0 8px 24px rgba(38,36,34,.10);
   --shadow-lg:   0 24px 48px rgba(38,36,34,.14);
+  --shadow-card-hover: 0 4px 6px 0 rgba(166,109,98,.35), 0 4px 4px 0 rgba(0,0,0,.18);
+  --card: var(--snow);
 
   /* Icon sizes */
   --icon-sm: 16px;
@@ -253,7 +255,7 @@ a { color: inherit; }
 
 /* a11y */
 .sr-only { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip: rect(0,0,0,0); white-space: nowrap; border:0; }
-.skip-link { position: absolute; left: -9999px; top: 8px; background: var(--ink); color:#fff; padding: 10px 14px; border-radius: 8px; z-index: 1000; text-decoration: none; }
+.skip-link { position: absolute; left: -9999px; top: 8px; background: var(--ink); color:#fff; padding: 10px 14px; border-radius: var(--radius-sm); z-index: 1000; text-decoration: none; }
 .skip-link:focus { left: 8px; outline: 3px solid var(--rose); outline-offset: 2px; }
 
 /* ---------- Layout ---------- */
@@ -350,6 +352,10 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 /* Variant: outlined */
 .btn--outline { background: transparent; color: var(--btn-bg); border-width: 1px; border-color: var(--btn-bg); box-shadow: none; }
 .btn--outline:hover { background: var(--btn-bg); color: var(--btn-fg); }
+/* Alias: --ghost was the original Figma name for outline; keep the alias so legacy
+   markup keeps the intended visual instead of falling through to the default fill. */
+.btn--ghost { background: transparent; color: var(--btn-bg); border-width: 1px; border-color: var(--btn-bg); box-shadow: none; }
+.btn--ghost:hover { background: var(--btn-bg); color: var(--btn-fg); }
 /* Variant: tonal (light fill) */
 .btn--tonal { background: var(--rose-100); color: var(--rose-700); }
 .btn--tonal:hover { background: var(--rose-300); color: var(--rose-700); }
@@ -502,13 +508,13 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 .icon-btn:active { background: rgba(38,36,34,.12); }
 .icon-btn .ph { font-size: 22px; flex: 0 0 auto; }
 .icon-btn--icon-only { width: var(--tap); padding: 0; justify-content: center; }
-.icon-btn .badge { position: absolute; top: 0; right: -2px; background: var(--danger); color: var(--snow); font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--beginning); }
+.icon-btn .badge { position: absolute; top: 0; right: -2px; background: var(--danger); color: var(--snow); font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 4px; border-radius: var(--radius-pill); display: flex; align-items: center; justify-content: center; border: 2px solid var(--beginning); }
 .avatar { position: relative; width: var(--tap); height: var(--tap); border-radius: 50%; background: var(--rose); color: var(--snow); font-weight: 600; font-size: var(--t-label); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; flex: 0 0 auto; }
 .avatar .ph { font-size: 22px; }
 /* Figma User Thumb is a brighter rose 40px circle with badge. */
 .avatar--dark { background: var(--rose); width: 40px; height: 40px; }
 .avatar--dark:hover { background: var(--rose-700); }
-.avatar .badge { position: absolute; top: -2px; right: -2px; background: var(--danger); color: var(--snow); font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 999px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--beginning); }
+.avatar .badge { position: absolute; top: -2px; right: -2px; background: var(--danger); color: var(--snow); font-size: 10px; font-weight: 700; min-width: 18px; height: 18px; padding: 0 4px; border-radius: var(--radius-pill); display: flex; align-items: center; justify-content: center; border: 2px solid var(--beginning); }
 .btn--signin { background: var(--pillar); color: var(--snow); border-radius: var(--radius); padding: 0 22px; min-height: 40px; font-weight: 600; }
 .btn--signin:hover { background: var(--pillar-700); color: var(--snow); }
 .btn--signin:active { background: var(--pillar-800); transform: translateY(1px); }

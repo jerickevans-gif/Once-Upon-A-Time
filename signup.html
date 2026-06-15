@@ -42,7 +42,7 @@
       display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 500;
       text-decoration: none;
     }
-    .auth-back:hover, .auth-close:hover { background: rgba(0,0,0,.04); border-radius: 6px; }
+    .auth-back:hover, .auth-close:hover { background: rgba(0,0,0,.04); border-radius: var(--radius-sm); }
     .auth-page__title {
       font-family: var(--serif); font-weight: 400;
       font-size: clamp(40px, 5vw, 56px);
@@ -90,7 +90,7 @@
     .auth-submit {
       width: 100%; min-height: 52px;
       background: var(--rose); color: var(--snow);
-      border: 0; border-radius: 8px;
+      border: 0; border-radius: var(--radius-sm);
       font-size: 16px; font-weight: 600;
       cursor: pointer;
       margin-top: 36px;
@@ -106,7 +106,7 @@
     .social-btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
       padding: 12px 16px;
-      background: var(--snow); border: 1px solid var(--line); border-radius: 8px;
+      background: var(--snow); border: 1px solid var(--line); border-radius: var(--radius-sm);
       font-size: 14px; font-weight: 500; cursor: pointer; color: var(--ink);
     }
     .social-btn:hover { border-color: var(--rose-300); background: var(--rose-50); }
@@ -115,7 +115,7 @@
     .social-btn--apple .ph-apple-logo { color: var(--ink); }
     .social-btn--email .ph-envelope { color: var(--rose); }
     .auth-page__footer { text-align: center; font-size: 14px; color: var(--ink-muted); margin-top: 28px; }
-    .auth-page__footer a { color: #5b6caf; font-weight: 600; text-decoration: underline; }
+    .auth-page__footer a { color: var(--rose-700); font-weight: 600; text-decoration: underline; }
 
     @media (max-width: 900px) {
       .auth-page { grid-template-columns: 1fr; }

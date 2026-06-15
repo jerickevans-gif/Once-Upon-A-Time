@@ -132,7 +132,7 @@
         return;
       }
       const note = userIds.length ? '' : `<p style="font-size:12px;color:var(--ink-muted);margin-bottom:14px">Showing sample issues — bookmark articles in the newsletter to see your own list here.</p>`;
-      list.innerHTML = note + items.map(it => `<article style="background:var(--snow);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:12px"><div><div style="font-family:var(--serif);font-size:18px;text-transform:uppercase">${it.title}</div><div style="font-size:13px;color:var(--ink-muted);margin-top:4px">By ${it.author} · ${it.date}</div></div><a class="btn btn--sm btn--ghost" href="${it.url}">Read</a></article>`).join('');
+      list.innerHTML = note + items.map(it => `<article style="background:var(--snow);border:1px solid var(--line);border-radius:var(--radius);padding:18px 22px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:12px"><div><div style="font-family:var(--serif);font-size:18px;text-transform:uppercase">${it.title}</div><div style="font-size:13px;color:var(--ink-muted);margin-top:4px">By ${it.author} · ${it.date}</div></div><a class="btn btn--sm btn--ghost" href="${it.url}">Read</a></article>`).join('');
     })();
     
   </script>

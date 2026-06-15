@@ -49,7 +49,7 @@
 
     .panel {
       background: var(--snow); border: 1px solid var(--line);
-      border-radius: 16px; padding: 32px;
+      border-radius: var(--radius-md); padding: var(--s-6);
       box-shadow: 0 4px 16px rgba(76,47,59,.06);
     }
     .panel + .panel { margin-top: 16px; }
@@ -65,7 +65,7 @@
     .child-pick {
       display: grid; grid-template-columns: 24px 1fr auto; gap: 14px; align-items: center;
       padding: 16px 18px;
-      border: 1.5px solid var(--line); border-radius: 12px;
+      border: 1.5px solid var(--line); border-radius: var(--radius-sm);
       cursor: pointer; transition: border-color .15s, background .15s;
       background: var(--snow);
     }
@@ -84,7 +84,7 @@
     .add-child {
       width: 100%;
       background: transparent; border: 1.5px dashed var(--line);
-      border-radius: 12px; padding: 14px;
+      border-radius: var(--radius-sm); padding: 14px;
       color: var(--ink-muted); font-weight: 600; cursor: pointer;
       display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     }
@@ -94,7 +94,7 @@
     .session-list { display: grid; gap: 12px; }
     .session {
       display: grid; grid-template-columns: 24px 1fr auto; gap: 16px; align-items: center;
-      padding: 16px 18px; border: 1.5px solid var(--line); border-radius: 12px;
+      padding: 16px 18px; border: 1.5px solid var(--line); border-radius: var(--radius-sm);
       cursor: pointer; background: var(--snow);
     }
     .session:hover { border-color: var(--rose-300); background: var(--rose-50); }
@@ -137,7 +137,7 @@
       font-size: 13px; cursor: pointer;
     }
     .waiver-check input[type="checkbox"] {
-      appearance: none; width: 22px; height: 22px; border-radius: 6px;
+      appearance: none; width: 22px; height: 22px; border-radius: 4px;
       border: 1.5px solid var(--rose); background: var(--snow);
       display: grid; place-items: center; margin-top: 1px;
     }
@@ -150,7 +150,7 @@
     .signature label { font-size: 13px; color: var(--ink-muted); font-weight: 600; }
     .sig-pad {
       width: 100%; min-height: 56px;
-      border: 1.5px solid var(--line); border-radius: 8px;
+      border: 1.5px solid var(--line); border-radius: var(--radius-sm);
       padding: 12px 14px;
       font-family: 'Brush Script MT', cursive; font-size: 26px;
       background: var(--snow); color: var(--pillar);
@@ -196,7 +196,6 @@
       display: inline-flex; align-items: center; gap: 8px; font-size: 14px;
     }
     .btn-next:hover { background: var(--pillar-700); }
-    .btn-next:disabled { background: var(--line); cursor: not-allowed; }
 
     @media (max-width: 720px) {
       .enroll-wrap { padding: 0 16px; }

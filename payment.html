@@ -46,7 +46,7 @@
     .pill {
       display: inline-flex; align-items: center; gap: 10px;
       background: var(--blush); color: var(--ink);
-      padding: 10px 20px; border-radius: 999px;
+      padding: 10px 20px; border-radius: var(--radius-pill);
       font-size: 14px; font-weight: 500;
     }
     .pill::before {
@@ -75,7 +75,7 @@
     .hero__media { position: relative; padding: 12px 12px 40px 40px; }
     .hero__image {
       position: relative;
-      border-radius: 6px; overflow: hidden;
+      border-radius: var(--radius-sm); overflow: hidden;
       aspect-ratio: 5 / 4; min-height: 280px;
       background: linear-gradient(160deg, rgba(139,80,68,.45) 0%, rgba(76,47,59,.55) 100%),
                   url("once-upon-a-time-assets/img/hero.jpg") center/cover no-repeat;
@@ -86,7 +86,7 @@
     .hero__chip {
       position: absolute; left: 0; bottom: 0;
       background: var(--blush); color: var(--pillar);
-      padding: 18px 22px; border-radius: 12px;
+      padding: 18px 22px; border-radius: var(--radius-sm);
       font-size: 13px; line-height: 1.4;
       box-shadow: 0 12px 24px rgba(76,47,59,.18);
       min-width: 140px;
@@ -192,7 +192,7 @@
       min-height: 56px;
       background: var(--n-200);
       color: var(--snow);
-      border: 0; border-radius: 12px;
+      border: 0; border-radius: var(--radius-sm);
       font-size: 16px; font-weight: 600;
       cursor: pointer;
     }
