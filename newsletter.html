@@ -155,6 +155,100 @@
     .nl-search input::placeholder { color: var(--ink-muted); }
 
     /* Current Newsletter heading row + action buttons */
+    /* ===== Featured Story + More Stories (Figma 2748:44028 WIP redesign) ===== */
+    .nl-section-eyebrow {
+      font-size: var(--t-md); font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--ink); margin: 0 0 var(--s-4);
+    }
+    .nl-featured { padding-top: var(--s-3); padding-bottom: var(--s-6); }
+    .nl-featured-card {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      background: var(--rose-100);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      align-items: stretch;
+    }
+    .nl-featured-card__copy { padding: var(--s-7) var(--s-6); display: flex; flex-direction: column; gap: var(--s-3); }
+    .nl-featured-card__brand {
+      display: inline-flex; gap: var(--s-2); align-items: center;
+      font-size: var(--t-label); font-weight: 600; color: var(--rose-700);
+      letter-spacing: .04em;
+      margin: 0;
+    }
+    .nl-featured-card__pipe { color: var(--rose-300); font-weight: 400; }
+    .nl-featured-card__title {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 3.4vw, 40px);
+      color: var(--rose-700); text-transform: none;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .nl-featured-card__body {
+      font-size: var(--t-base); color: var(--ink); line-height: var(--lh-body);
+      margin: 0;
+    }
+    .nl-featured-card__actions { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-3); }
+    .nl-featured-card__photo {
+      background:
+        linear-gradient(rgba(139,80,68,.32), rgba(139,80,68,.42)),
+        url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
+      min-height: 360px;
+    }
+    @media (max-width: 900px) {
+      .nl-featured-card { grid-template-columns: 1fr; }
+      .nl-featured-card__photo { min-height: 240px; }
+      .nl-featured-card__copy { padding: var(--s-5); }
+    }
+
+    .nl-stories { padding-top: var(--s-7); padding-bottom: var(--s-8); }
+    .nl-stories__heading {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 3.4vw, 44px);
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 0 0 var(--s-5);
+    }
+    .nl-stories__grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6);
+    }
+    @media (max-width: 720px) { .nl-stories__grid { grid-template-columns: 1fr; } }
+    .nl-story-card {
+      background: var(--rose-100);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .nl-story-card__photo {
+      aspect-ratio: 16/9;
+      background-size: cover; background-position: center;
+      background-color: var(--rose-300);
+    }
+    .nl-story-card__photo--oct {
+      background-image:
+        linear-gradient(rgba(107,109,32,.30), rgba(107,109,32,.42)),
+        url("once-upon-a-time-assets/landing/queens-skyline.jpg");
+    }
+    .nl-story-card__photo--nov {
+      background-image:
+        linear-gradient(rgba(139,80,68,.30), rgba(139,80,68,.45)),
+        url("once-upon-a-time-assets/landing/jazz-hero.jpg");
+    }
+    .nl-story-card__body { padding: var(--s-5) var(--s-5) var(--s-6); display: flex; flex-direction: column; gap: var(--s-3); flex: 1; }
+    .nl-story-card__title {
+      font-family: var(--serif); font-weight: 400;
+      font-size: var(--t-h4); color: var(--rose-700);
+      text-transform: none; margin: 0;
+      line-height: 1.15;
+    }
+    .nl-story-card__meta { font-size: var(--t-label); color: var(--ink-muted); margin: 0; }
+    .nl-story-card__copy {
+      font-size: var(--t-base); color: var(--ink); line-height: var(--lh-body);
+      margin: 0;
+      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .nl-story-card__actions { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: auto; }
+
     .nl-current-head {
       display: flex; align-items: center; justify-content: space-between;
       gap: var(--s-4); flex-wrap: wrap;
@@ -467,90 +561,60 @@
     <!-- ============ TAB PANELS ============ -->
     <div id="nl-panel-home" class="nl-panel" role="tabpanel" aria-labelledby="nl-tab-home">
 
-    <!-- ============ FEATURED ARTICLE ============ -->
-    <article class="wrap">
-      <div class="nl-current-head">
-        <h2>Current Newsletter</h2>
-        <div class="nl-actions" role="group" aria-label="Newsletter actions">
-          <button class="nl-action" type="button" aria-label="Save" aria-pressed="false" data-bookmark="newsletter:december-2025"><i class="ph ph-bookmark-simple"></i></button>
-          <button class="nl-action nl-action--share" type="button" aria-label="Share" data-share data-share-title="Once Upon A Time — December 2025"><i class="ph ph-share-network"></i></button>
-          <button class="nl-action" type="button" aria-label="Skip to first" data-nl-nav="first"><i class="ph ph-rewind"></i></button>
-          <button class="nl-action" type="button" aria-label="Previous" data-nl-nav="prev"><i class="ph ph-caret-left"></i></button>
-          <button class="nl-action" type="button" aria-label="Next" data-nl-nav="next"><i class="ph ph-caret-right"></i></button>
-          <button class="nl-action" type="button" aria-label="Skip to latest" data-nl-nav="last"><i class="ph ph-fast-forward"></i></button>
-        </div>
-      </div>
-
-      <div class="nl-feature">
-        <div class="nl-feature__actions">
-          <button class="nl-action" type="button" aria-label="Save article" aria-pressed="false" data-bookmark="newsletter:december-2025-feature"><i class="ph ph-bookmark-simple"></i></button>
-          <button class="nl-action nl-action--share" type="button" aria-label="Share article" data-share data-share-title="Once Upon A Time Newsletter"><i class="ph ph-share-network"></i></button>
-        </div>
-        <header class="nl-feature__head">
-          <h2>Once Upon A Time <span style="font-family:var(--sans);font-weight:400;font-size:.55em;text-transform:none;letter-spacing:0;border-left:1.5px solid var(--ink);padding-left:14px;margin-left:8px;vertical-align:middle">Newsletter</span></h2>
-          <p class="nl-feature__date">December&nbsp;2025</p>
+    <!-- ============ FEATURED STORY (Figma WIP | Newsletter Page - P4S3) ============ -->
+    <section class="wrap nl-featured" aria-labelledby="featured-title">
+      <p class="nl-section-eyebrow" id="featured-title">Featured Story</p>
+      <article class="nl-featured-card">
+        <div class="nl-featured-card__copy">
+          <p class="nl-featured-card__brand"><span>Once Upon A Time</span><span class="nl-featured-card__pipe" aria-hidden="true">|</span><span>Newsletter</span></p>
+          <h2 class="nl-featured-card__title">December Edition 2025</h2>
           <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
-        </header>
-
-        <div class="nl-feature__body">
-          <p>As another year draws to a close, we want to thank the families, students, and supporters who made 2025 such a meaningful season for Once Upon a Time. From our first winter jazz showcase to a full calendar of community performances, this has been a year of growth, creativity, and connection.</p>
-          <p>Our studios in Queens welcomed more young performers than ever before. Across dance, theater, music, and visual art, children stepped onto the stage, discovered new skills, and shared their stories with the families and neighbors who cheered them on.</p>
-          <p>This issue, we spotlight the community garden that has become a gathering place for our students and their families, share an update on its winter harvest, and celebrate one of the volunteers whose dedication keeps our programs thriving.</p>
-          <p>Looking ahead, spring enrollment opens soon for our seasonal camps and private lessons. Whether your child is returning or joining us for the first time, there is a place for them in our classes.</p>
-          <p>Thank you for being part of our story. None of this work would be possible without the generosity of our donors and the time given so freely by our volunteers and instructors.</p>
-        </div>
-
-        <div class="nl-feature__photo" role="img" aria-label="Featured story photograph"></div>
-      </div>
-
-      <!-- COMMUNITY GARDEN -->
-      <section class="nl-article nl-article--garden">
-        <div class="nl-article__photo" role="img" aria-label="Community garden"></div>
-        <div>
-          <h3>Community Garden</h3>
-          <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
-          <div class="nl-article__body" style="margin-top:var(--s-3)">
-            <p>Tucked beside our studio, the community garden has become one of our most beloved spaces. Each week, children and families gather to plant, weed, and harvest together, learning patience and teamwork with their hands in the soil.</p>
-            <p>The garden is more than a place to grow vegetables. It is where neighbors meet, where younger students learn from older ones, and where the lessons of our arts programs — creativity, care, and collaboration — take root in a new form.</p>
+          <p class="nl-featured-card__body">As another year draws to a close, we want to thank the families, students, and supporters who made 2025 such a meaningful season for Once Upon a Time. This issue, we spotlight the community garden that has become a gathering place for our students and their families, share an update on its winter harvest, and celebrate one of the volunteers whose dedication keeps our programs thriving.</p>
+          <div class="nl-featured-card__actions">
+            <a class="btn" href="newsletter-article.html?id=december-2025">Read Article <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+            <button class="btn btn--outline" type="button" aria-label="Save December 2025 newsletter" aria-pressed="false" data-bookmark="newsletter:december-2025"><i class="ph ph-bookmark-simple"></i> Save</button>
+            <button class="btn btn--outline" type="button" aria-label="Share December 2025 newsletter" data-share data-share-title="December 2025 — Once Upon A Time"><i class="ph ph-share-network"></i> Share</button>
           </div>
         </div>
-      </section>
+        <div class="nl-featured-card__photo" role="img" aria-label="December 2025 newsletter cover"></div>
+      </article>
+    </section>
 
-      <!-- COMMUNITY GARDEN UPDATE -->
-      <section class="nl-article nl-article--reverse nl-article--update">
-        <div class="nl-article__photo" role="img" aria-label="Community garden update"></div>
-        <div>
-          <h3>Community Garden Update</h3>
-          <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
-          <div class="nl-article__body" style="margin-top:var(--s-3)">
-            <p>This season, our young gardeners brought in their first winter harvest — hardy greens, herbs, and the last of the autumn tomatoes. The children proudly shared the produce with their families, and a portion was donated to a local food pantry.</p>
-            <p>With help from volunteers, we have added raised beds and a small toolshed, making the garden easier for our youngest participants to tend. Come spring, we will plant a pollinator patch and expand the herb garden the children use in their cooking sessions.</p>
+    <!-- ============ MORE STORIES ============ -->
+    <section class="wrap nl-stories" aria-labelledby="more-stories-title">
+      <h2 id="more-stories-title" class="nl-stories__heading">More Stories</h2>
+      <div class="nl-stories__grid">
+        <article class="nl-story-card">
+          <div class="nl-story-card__photo nl-story-card__photo--oct" role="img" aria-label="October 2025 community garden harvest"></div>
+          <div class="nl-story-card__body">
+            <h3 class="nl-story-card__title">October Edition 2025</h3>
+            <p class="nl-story-card__meta">Author: Lena&nbsp;Stuart&nbsp;&nbsp;|&nbsp;&nbsp;Published 10/16</p>
+            <p class="nl-story-card__copy">Costume parade, ceramics show, and the launch of our community garden initiative. Read about how the season set the stage for the year ahead.</p>
+            <div class="nl-story-card__actions">
+              <a class="btn" href="newsletter-article.html?id=october-2025">Read Article <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+              <button class="btn btn--outline" type="button" aria-label="Save October 2025 newsletter" aria-pressed="false" data-bookmark="newsletter:october-2025"><i class="ph ph-bookmark-simple"></i> Save</button>
+              <button class="btn btn--outline" type="button" aria-label="Share October 2025 newsletter" data-share data-share-title="October 2025 — Once Upon A Time"><i class="ph ph-share-network"></i> Share</button>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <!-- VOLUNTEER SPOTLIGHT -->
-      <section class="nl-article nl-article--volunteer">
-        <div class="nl-article__photo" role="img" aria-label="Volunteer spotlight"></div>
-        <div>
-          <h3>Volunteer Spotlight</h3>
-          <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
-          <div class="nl-article__body" style="margin-top:var(--s-3)">
-            <p>This month we celebrate Marcus, a volunteer who has given his Saturday mornings to Once Upon a Time for the past three years. From setting up the stage before performances to mentoring our older students, his steady presence has touched every corner of our programs.</p>
-            <p>“Watching a shy kid find their voice on stage never gets old,” he says. Volunteers like Marcus are the heart of our community — if you would like to join him, we would love to hear from you.</p>
+        </article>
+        <article class="nl-story-card">
+          <div class="nl-story-card__photo nl-story-card__photo--nov" role="img" aria-label="November 2025 student performance"></div>
+          <div class="nl-story-card__body">
+            <h3 class="nl-story-card__title">November Edition 2025</h3>
+            <p class="nl-story-card__meta">Author: Lena&nbsp;Stuart&nbsp;&nbsp;|&nbsp;&nbsp;Published 11/16</p>
+            <p class="nl-story-card__copy">Fall recital recap, an instructor spotlight on Mia Kim, and the first donor-funded scholarships announced this month.</p>
+            <div class="nl-story-card__actions">
+              <a class="btn" href="newsletter-article.html?id=november-2025">Read Article <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+              <button class="btn btn--outline" type="button" aria-label="Save November 2025 newsletter" aria-pressed="false" data-bookmark="newsletter:november-2025"><i class="ph ph-bookmark-simple"></i> Save</button>
+              <button class="btn btn--outline" type="button" aria-label="Share November 2025 newsletter" data-share data-share-title="November 2025 — Once Upon A Time"><i class="ph ph-share-network"></i> Share</button>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <div class="empty-state" role="status" hidden data-nl-search-empty>
-        <div class="empty-state__icon"><i class="ph ph-newspaper" aria-hidden="true"></i></div>
-        <h3 class="empty-state__title">No articles found</h3>
-        <p class="empty-state__body">Try a different search term or browse all issues.</p>
+        </article>
       </div>
-    </article>
+    </section>
 
-    <!-- ============ RELATED NEWSLETTERS ============ -->
-    <section class="wrap nl-related" aria-labelledby="related-title">
+    <!-- (legacy) RELATED NEWSLETTERS — hidden index used by tab JS for search/filter -->
+    <section class="wrap nl-related" aria-labelledby="related-title" hidden>
       <h2 id="related-title">Related Newsletters</h2>
       <div class="nl-related__viewport">
         <div class="nl-related__grid">
