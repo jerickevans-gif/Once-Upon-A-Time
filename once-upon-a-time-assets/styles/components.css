@@ -344,8 +344,9 @@
 .carousel { position: relative; }
 /* Arrows sit OUTSIDE the slide frames — flush against the gutter, not over the cards. */
 .carousel__controls { position: absolute; top: 50%; left: -56px; right: -56px; transform: translateY(-50%); display: flex; justify-content: space-between; pointer-events: none; z-index: 2; padding: 0; }
-.carousel__arrow { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--n-200); background: var(--snow); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; pointer-events: auto; box-shadow: var(--shadow-sm); transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease); flex: 0 0 auto; }
-.carousel__arrow:hover { background: var(--rose-50); border-color: var(--rose-300); }
+/* Figma 2748:43693 — arrows are square r-8 36px, --rose-200 fill, no border. */
+.carousel__arrow { width: 36px; height: 36px; border-radius: var(--radius-sm); border: 0; background: var(--rose-200); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; pointer-events: auto; box-shadow: none; transition: background var(--dur-1) var(--ease); flex: 0 0 auto; }
+.carousel__arrow:hover { background: var(--rose-300); }
 .carousel__arrow:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 .carousel__track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; gap: var(--s-5); }
 .carousel__track::-webkit-scrollbar { display: none; }

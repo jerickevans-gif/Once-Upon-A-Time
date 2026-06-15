@@ -128,17 +128,23 @@
     .classes-today__heading .eyebrow { color: var(--rose-100); margin-bottom: 0; }
     .classes-today__list { display: grid; gap: var(--s-3); margin-top: var(--s-4); }
     .class-row {
-      background: var(--snow); color: var(--ink);
-      border-radius: var(--radius);
-      padding: var(--s-4) var(--s-5);
+      background: var(--beginning); color: var(--ink);
+      border-radius: var(--radius-lg);
+      padding: var(--s-5);
+      min-height: 88px;
       display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--s-4);
       box-shadow: var(--shadow-sm);
+    }
+    /* Today's highlighted class — green selected state per Figma 2748:43830. */
+    .class-row--highlighted {
+      background: var(--garden-300);
+      box-shadow: 0 0 0 3px var(--snow), 0 0 0 5px var(--garden-300);
     }
     .class-row__title { font-weight: 700; font-size: var(--t-base); }
     .class-row__instructor { font-size: var(--t-label); color: var(--ink-muted); margin-top: 2px; }
     .class-row__time {
-      background: var(--garden); color: var(--snow);
-      padding: 6px 12px; border-radius: var(--radius);
+      background: var(--rose-100); color: var(--ink);
+      padding: 6px 12px; border-radius: var(--radius-sm);
       font-size: var(--t-label); font-weight: 600; white-space: nowrap;
     }
     .calendar {
@@ -180,8 +186,9 @@
 
     /* ===== Who We Are ===== */
     .who { padding: var(--s-9) 0; }
-    .who__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-7); align-items: center; }
-    .who__copy h2 { margin-bottom: var(--s-4); }
+    .who__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    /* Figma 2748:43976 — "Who We Are" is mixed case, not uppercase. */
+    .who__copy h2 { margin-bottom: var(--s-4); text-transform: none; }
     .who__copy p { font-size: var(--t-base); color: var(--ink); }
     .who__features { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
     .feature { display: grid; grid-template-columns: 36px 1fr; gap: var(--s-3); align-items: start; }
@@ -211,7 +218,7 @@
     @media (max-width: 720px) { .programs .carousel__slide { flex: 0 0 100%; } }
     .programs__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
     .program-card {
-      background: var(--snow); border-radius: var(--radius-lg);
+      background: var(--beginning); border-radius: var(--radius-lg);
       overflow: hidden; box-shadow: var(--shadow-sm);
       display: grid; grid-template-rows: 180px auto;
     }
@@ -453,7 +460,7 @@
             <h2>Class&nbsp;Schedule</h2>
           </div>
           <div class="classes-today__list">
-            <article class="class-row">
+            <article class="class-row class-row--highlighted">
               <div>
                 <div class="class-row__title">Beginner Ballet</div>
                 <div class="class-row__instructor">Instructor: Luna Pinelli</div>
