@@ -1,0 +1,64 @@
+/* Once Upon A Time — Tailwind source.
+   Compiled to:
+   - once-upon-a-time-assets/styles/tailwind.css   (static HTML site)
+   - shopify-theme/assets/tailwind.css             (Shopify theme)
+
+   Run:
+     npm run css:build          (one-shot, minified)
+     npm run css:watch          (live rebuild on save)
+     npm run theme:css:build    (Shopify variant)
+
+   Tailwind layers on TOP of design-system.css + components.css. Existing
+   pages keep working; new pages / migrated sections use utility classes.
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- @layer base: tokens as CSS variables ----------
+   Mirrors design-system.css so consumers can use either Tailwind utilities
+   OR raw var(--rose-300) etc. Single source of truth. */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+}
+
+/* ---------- @layer components: app-level classes that read like utilities ---------- */
+@layer components {
+  /* Canonical brand button (utility-class wrapper for our .btn). Use as
+     `<button class="ouat-btn">` in new code; existing markup keeps .btn. */
+  .ouat-btn {
+    @apply inline-flex items-center justify-center gap-2 min-h-[44px] py-2 px-3 font-sans font-semibold text-md leading-none rounded-sm bg-button-primary text-snow shadow-xs transition;
+  }
+  .ouat-btn:hover { @apply bg-pillar-700; }
+
+  .ouat-btn--rose      { @apply !bg-rose-500 hover:!bg-rose-700; }
+  .ouat-btn--garden    { @apply !bg-garden hover:!bg-garden-700; }
+  .ouat-btn--outline   { @apply !bg-transparent !text-button-primary border border-button-primary hover:!bg-button-primary hover:!text-snow; }
+  .ouat-btn--tonal     { @apply !bg-rose-100 !text-rose-700 hover:!bg-rose-300; }
+
+  /* Canonical tag/chip (utility wrapper for our .tag). */
+  .ouat-tag {
+    @apply inline-flex items-center gap-1 font-sans font-medium text-label leading-none min-h-[35px] py-2 px-3 rounded-sm bg-rose-100 text-rose-700 whitespace-nowrap;
+  }
+  .ouat-tag--garden  { @apply !bg-garden-100 !text-garden-700; }
+  .ouat-tag--info    { @apply !bg-sky !text-info-900; }
+  .ouat-tag--danger  { @apply !bg-danger-100 !text-danger-900; }
+  .ouat-tag--warning { @apply !bg-warning-100 !text-warning-900; }
+
+  /* Newsletter Card v2_dropshadow — hover surface elevation per Figma 2748:44915 */
+  .ouat-card-hover {
+    @apply transition-shadow duration-2;
+  }
+  .ouat-card-hover:hover,
+  .ouat-card-hover:focus-within {
+    @apply shadow-card;
+  }
+}
+
+/* ---------- @layer utilities: bespoke utilities not in Tailwind defaults ---------- */
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+}

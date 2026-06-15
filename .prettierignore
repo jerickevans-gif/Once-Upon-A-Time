@@ -1,0 +1,15 @@
+node_modules
+once-upon-a-time-assets/styles/tailwind.css
+shopify-theme/assets/tailwind.css
+once-upon-a-time-assets/phosphor
+once-upon-a-time-assets/fonts
+**/*.min.css
+**/*.min.js
+sw.js
+emails
+audit
+.claude
+.codex
+hegemon
+project
+automaton
