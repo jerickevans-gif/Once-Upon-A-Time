@@ -32,7 +32,12 @@
   <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
   <script src="once-upon-a-time-assets/site.js" defer></script>
   <script src="once-upon-a-time-assets/mock-system.js" defer></script>
-</head>
+<style>
+    /* Per-page button override (Figma AI Prototype): this frame uses --rose
+       fill for Buttons/Button-brand, not the global Woody Brown default. */
+    .btn { --btn-bg: var(--rose); --btn-bg-hover: var(--rose-700); --btn-ring: var(--rose); }
+  </style>
+  </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
   <header class="site-header" role="banner">
