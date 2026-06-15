@@ -34,6 +34,9 @@
   <script src="once-upon-a-time-assets/styles/auth-modal.js" defer></script>
   <script src="once-upon-a-time-assets/site.js" defer></script>
   <script src="once-upon-a-time-assets/mock-system.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js" defer></script>
+  <script src="once-upon-a-time-assets/animations.js" defer></script>
 
   <style>
     /* ===== Hero (Figma 2748:43946 "Hero Class Card - Iteration A") =====
@@ -541,7 +544,7 @@
     </section>
 
     <!-- ============ WHO WE ARE ============ -->
-    <section class="who wrap">
+    <section class="who wrap" data-anim="fade-up">
       <div class="who__grid">
         <div class="who__copy">
           <span class="eyebrow">Our Story</span>
@@ -561,7 +564,7 @@
     </section>
 
     <!-- ============ PROGRAMS ============ -->
-    <section class="programs wrap">
+    <section class="programs wrap" data-anim="fade-up">
       <div class="carousel" role="group" aria-roledescription="carousel" aria-label="Featured programs">
         <div class="carousel__controls">
           <button class="carousel__arrow carousel__arrow--prev" type="button" aria-label="Previous program"><i class="ph ph-caret-left" aria-hidden="true"></i></button>
@@ -683,7 +686,7 @@
     </section>
 
     <!-- ============ DONOR SPOTLIGHT ============ -->
-    <section class="donor">
+    <section class="donor" data-anim="fade-up">
       <div class="wrap">
         <h2>Bring the Stage to Life</h2>
         <p class="donor__lede">Our programs and performances are only possible through the generosity of our donors. This support allows the organization to expand, providing meaningful classes for children and creating new ways for communities to re-engage.</p>
