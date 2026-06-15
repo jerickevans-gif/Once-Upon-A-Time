@@ -146,10 +146,14 @@ module.exports = {
       },
 
       // ===== Motion =====
+      // Override Tailwind's Material-y defaults so Tailwind utilities stay on
+      // the brand curve. Tailwind reads DEFAULT for the unsuffixed utility.
       transitionTimingFunction: {
+        DEFAULT: 'cubic-bezier(.2,.8,.2,1)',
         brand: 'cubic-bezier(.2,.8,.2,1)',
       },
       transitionDuration: {
+        DEFAULT: '150ms',
         1: '150ms',
         2: '300ms',
       },

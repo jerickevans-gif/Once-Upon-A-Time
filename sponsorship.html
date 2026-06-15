@@ -80,15 +80,15 @@
       <h1>Corporate Sponsorship</h1>
       <p class="page-hero__sub">Reach a community of 1,500+ Queens families while underwriting transformative arts education. All sponsorships are tax-deductible.</p></div>
     </section>
-    <section class="wrap" style="padding:48px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;max-width:1100px">
+    <section class="wrap" style="padding:var(--s-7) 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;max-width:1100px">
       <article class="tier-card tier-card--friend"><div class="tier-card__label">Friend</div><div class="tier-card__price">$500</div><ul class="tier-card__features"><li>Logo on website donor wall</li><li>Annual impact report</li><li>Tax-deductible receipt</li></ul><a class="btn tier-card__cta" href="#sponsor-form" data-tier="Friend">Get in touch</a></article><article class="tier-card tier-card--partner"><div class="tier-card__label">Partner</div><div class="tier-card__price">$2,500</div><ul class="tier-card__features"><li>Everything in Friend, plus:</li><li>Logo at all in-studio events</li><li>2 tickets to Fall Gala</li><li>Quarterly impact dashboard</li></ul><a class="btn tier-card__cta" href="#sponsor-form" data-tier="Partner">Get in touch</a></article><article class="tier-card tier-card--champion"><div class="tier-card__label">Champion</div><div class="tier-card__price">$10,000</div><ul class="tier-card__features"><li>Everything in Partner, plus:</li><li>Named scholarship (1 student)</li><li>Studio space naming option</li><li>Table of 8 at Gala</li><li>Brand placement on showcase materials</li></ul><a class="btn tier-card__cta" href="#sponsor-form" data-tier="Champion">Get in touch</a></article><article class="tier-card tier-card--visionary"><div class="tier-card__label">Visionary</div><div class="tier-card__price">$25,000+</div><ul class="tier-card__features"><li>Everything in Champion, plus:</li><li>Named program track</li><li>Multi-year MOU available</li><li>Custom community engagement</li><li>Direct line to ED</li></ul><a class="btn tier-card__cta" href="#sponsor-form" data-tier="Visionary">Get in touch</a></article>
     </section>
 
     <!-- ============ SPONSORSHIP INQUIRY FORM ============ -->
-    <section class="wrap" id="sponsor-form" style="max-width:780px;padding:24px 0 64px">
+    <section class="wrap" id="sponsor-form" style="max-width:780px;padding:var(--s-5) 0 64px">
       <div style="background:var(--snow);border:1px solid var(--line);border-radius: var(--radius-md);padding:36px 36px 32px">
-        <h2 style="font-family:var(--serif);font-size:28px;font-weight:600;text-transform:uppercase;color:var(--pillar);margin:0 0 8px">Tell us about your organization</h2>
-        <p style="color:var(--ink-muted);font-size:14px;margin:0 0 24px">Our development director will follow up within 2 business days with a tailored proposal.</p>
+        <h2 style="font-family:var(--serif);font-size:var(--t-h5);font-weight:600;text-transform:uppercase;color:var(--pillar);margin:0 0 8px">Tell us about your organization</h2>
+        <p style="color:var(--ink-muted);font-size:var(--t-label);margin:0 0 24px">Our development director will follow up within 2 business days with a tailored proposal.</p>
         <!-- Replace REPLACE_ME with a Formspree form ID to submit real inquiries. -->
         <form id="sponsor-inquiry" novalidate data-formspree-id="REPLACE_ME" style="display:grid;gap:16px">
           <input type="hidden" name="form-source" value="sponsorship-page">
@@ -111,10 +111,10 @@
             </select>
           </label>
           <label class="field"><span class="field__label">Tell us about your goals</span>
-            <textarea class="input" name="message" rows="5" style="padding:12px 14px;min-height:auto" placeholder="We&#39;d love to align our brand with arts education in Queens — what does the engagement timeline look like for the upcoming Fall Gala?"></textarea>
+            <textarea class="input" name="message" rows="5" style="padding:var(--s-3) 14px;min-height:auto" placeholder="We&#39;d love to align our brand with arts education in Queens — what does the engagement timeline look like for the upcoming Fall Gala?"></textarea>
           </label>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:6px">
-            <p id="sponsor-status" role="status" aria-live="polite" class="sr-only" style="font-size:13px;margin:0"></p>
+            <p id="sponsor-status" role="status" aria-live="polite" class="sr-only" style="font-size:var(--t-label);margin:0"></p>
             <button class="btn" type="submit">Send inquiry <i class="ph ph-arrow-right"></i></button>
           </div>
         </form>
@@ -122,9 +122,9 @@
     </section>
 
     <style>
-      #sponsor-form .field__label { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; display: block; }
+      #sponsor-form .field__label { font-size: var(--t-label); font-weight: 600; color: var(--ink); margin-bottom: var(--s-1); display: block; }
       #sponsor-form .input { width: 100%; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--snow); font-size: var(--t-label); }
-      #sponsor-form textarea.input { padding-top: 12px; }
+      #sponsor-form textarea.input { padding-top: var(--s-3); }
       #sponsor-form .input:focus { outline: none; border-color: var(--rose); box-shadow: 0 0 0 3px var(--rose-100); }
       @media (max-width: 540px) {
         #sponsor-form div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }

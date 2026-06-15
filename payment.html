@@ -34,20 +34,20 @@
     /* Hero — soft horizontal gradient, mirrors donate.html */
     .hero {
       position: relative;
-      padding: 28px 0 0;
+      padding: var(--s-28) 0 0;
       background: linear-gradient(90deg, var(--rose-100) 0%, var(--rose-100) 45%, var(--rose-50) 75%, var(--beginning) 100%);
       overflow: hidden;
     }
     .hero__grid {
       display: grid; grid-template-columns: 1.1fr 1fr;
-      gap: 48px; align-items: center;
-      padding-bottom: 32px;
+      gap: var(--s-7); align-items: center;
+      padding-bottom: var(--s-6);
     }
     .pill {
-      display: inline-flex; align-items: center; gap: 10px;
+      display: inline-flex; align-items: center; gap: var(--s-10);
       background: var(--blush); color: var(--ink);
-      padding: 10px 20px; border-radius: var(--radius-pill);
-      font-size: 14px; font-weight: 500;
+      padding: var(--s-10) 20px; border-radius: var(--radius-pill);
+      font-size: var(--t-label); font-weight: 500;
     }
     .pill::before {
       content: ""; width: 16px; height: 16px;
@@ -64,15 +64,15 @@
       margin: 18px 0 20px;
       color: var(--pillar);
     }
-    .hero__lede { font-size: 15px; max-width: 46ch; color: var(--ink-muted); margin: 0 0 28px; line-height: 1.6; }
+    .hero__lede { font-size: var(--t-base); max-width: 46ch; color: var(--ink-muted); margin: 0 0 28px; line-height: 1.6; }
     .hero__cta {
       background: var(--rose); color: var(--snow);
       padding: 13px 24px; border-radius: var(--radius);
-      font-weight: 600; font-size: 14px;
+      font-weight: 600; font-size: var(--t-label);
       text-decoration: none; display: inline-block;
     }
     .hero__cta:hover { background: var(--rose-700); }
-    .hero__media { position: relative; padding: 12px 12px 40px 40px; }
+    .hero__media { position: relative; padding: var(--s-3) 12px 40px 40px; }
     .hero__image {
       position: relative;
       border-radius: var(--radius-sm); overflow: hidden;
@@ -87,24 +87,24 @@
       position: absolute; left: 0; bottom: 0;
       background: var(--blush); color: var(--pillar);
       padding: 18px 22px; border-radius: var(--radius-sm);
-      font-size: 13px; line-height: 1.4;
+      font-size: var(--t-label); line-height: 1.4;
       box-shadow: 0 12px 24px rgba(76,47,59,.18);
       min-width: 140px;
     }
-    .hero__chip small { display: block; font-size: 13px; color: var(--pillar); font-weight: 500; }
-    .hero__chip strong { display: block; font-family: var(--sans); font-size: 22px; font-weight: 700; color: var(--pillar); margin: 4px 0; }
-    .hero__divider { height: 1px; background: rgba(76,47,59,.20); margin: 8px 0 28px; }
-    .hero__stats { display: flex; gap: 64px; flex-wrap: wrap; padding: 0 0 32px; }
-    .hero__stat-num { font-family: var(--serif); font-size: 36px; font-weight: 600; line-height: 1; color: var(--pillar); }
-    .hero__stat-label { font-size: 12px; color: var(--ink-muted); margin-top: 6px; }
+    .hero__chip small { display: block; font-size: var(--t-label); color: var(--pillar); font-weight: 500; }
+    .hero__chip strong { display: block; font-family: var(--sans); font-size: var(--t-subtitle); font-weight: 700; color: var(--pillar); margin: var(--s-1) 0; }
+    .hero__divider { height: 1px; background: rgba(76,47,59,.20); margin: var(--s-2) 0 28px; }
+    .hero__stats { display: flex; gap: var(--s-8); flex-wrap: wrap; padding: 0 0 32px; }
+    .hero__stat-num { font-family: var(--serif); font-size: var(--t-h3-sm); font-weight: 600; line-height: 1; color: var(--pillar); }
+    .hero__stat-label { font-size: var(--t-micro); color: var(--ink-muted); margin-top: 6px; }
 
     /* Payment panel */
     .payment-wrap { background: var(--rose-100); padding: 56px 0 80px; }
     .payment-back {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: var(--s-2);
       color: var(--ink-muted); text-decoration: none;
-      font-size: 14px; margin: 0 0 20px;
-      padding: 4px 8px;
+      font-size: var(--t-label); margin: 0 0 20px;
+      padding: var(--s-1) 8px;
     }
     .payment-back:hover { color: var(--ink); }
     .payment-card {
@@ -123,9 +123,9 @@
       border: 0; padding: 0; margin: 0 0 28px;
     }
     .pm-row {
-      display: flex; align-items: center; gap: 12px;
-      font-size: 16px; font-weight: 600;
-      margin-bottom: 16px;
+      display: flex; align-items: center; gap: var(--s-3);
+      font-size: var(--t-base); font-weight: 600;
+      margin-bottom: var(--s-4);
     }
     .pm-row input[type="radio"] {
       appearance: none;
@@ -155,11 +155,11 @@
     .card-icon--mc { background: linear-gradient(90deg, #eb001b 50%, #f79e1b 50%); color: transparent; -webkit-background-clip: text; background-clip: text; }
     .card-icon--amex { color: #006fcf; }
 
-    .pm-fields { display: grid; gap: 16px; padding-left: 30px; margin-bottom: 28px; }
+    .pm-fields { display: grid; gap: var(--s-4); padding-left: 30px; margin-bottom: var(--s-28); }
     .pm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .pm-grid--3 { grid-template-columns: 1fr 1fr 1fr; }
     .field { display: flex; flex-direction: column; gap: 6px; }
-    .field__label { font-size: 13px; color: var(--ink-muted); font-weight: 500; }
+    .field__label { font-size: var(--t-label); color: var(--ink-muted); font-weight: 500; }
     .input {
       width: 100%; min-height: 40px; padding: 0 12px;
       border: 1px solid var(--line); border-radius: var(--radius-sm);
@@ -168,14 +168,14 @@
     .input:focus { outline: none; border-color: var(--rose); box-shadow: 0 0 0 3px var(--rose-100); }
 
     .billing-title {
-      font-size: 14px; font-weight: 700; color: var(--ink);
-      margin: 4px 0 0;
+      font-size: var(--t-label); font-weight: 700; color: var(--ink);
+      margin: var(--s-1) 0 0;
     }
 
     .pm-monthly {
-      display: flex; align-items: center; gap: 12px;
+      display: flex; align-items: center; gap: var(--s-3);
       padding-left: 30px;
-      font-size: 14px; color: var(--ink-muted);
+      font-size: var(--t-label); color: var(--ink-muted);
     }
     .pm-monthly input[type="radio"] {
       appearance: none;
@@ -188,22 +188,22 @@
 
     .donate-submit {
       display: block; width: calc(100% - 96px);
-      margin: 32px auto 0;
+      margin: var(--s-6) auto 0;
       min-height: 56px;
       background: var(--n-200);
       color: var(--snow);
       border: 0; border-radius: var(--radius-sm);
-      font-size: 16px; font-weight: 600;
+      font-size: var(--t-base); font-weight: 600;
       cursor: pointer;
     }
     .donate-submit.is-active { background: var(--rose); }
     .donate-submit:hover.is-active { background: var(--rose-700); }
 
     @media (max-width: 1024px) {
-      .hero__grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero__grid { grid-template-columns: 1fr; gap: var(--s-28); }
       .pm-fields, .pm-monthly { padding-left: 0; }
       .pm-grid, .pm-grid--3 { grid-template-columns: 1fr; }
-      .payment-card { padding: 28px 22px; }
+      .payment-card { padding: var(--s-28) 22px; }
       .donate-submit { width: 100%; }
     }
   </style>
@@ -328,7 +328,7 @@
                   <input class="input" name="card-exp" type="text" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/YY" required>
                 </label>
                 <label class="field">
-                  <span class="field__label">CVV <button type="button" class="cvv-help" aria-label="What is CVV?" data-mock-toast="The CVV is the 3-digit code on the back of your card (4 digits on the front for Amex)." style="background:transparent;border:0;color:var(--ink-muted);cursor:pointer;padding:2px;font-size:14px;vertical-align:middle"><i class="ph ph-question" aria-hidden="true"></i></button></span>
+                  <span class="field__label">CVV <button type="button" class="cvv-help" aria-label="What is CVV?" data-mock-toast="The CVV is the 3-digit code on the back of your card (4 digits on the front for Amex)." style="background:transparent;border:0;color:var(--ink-muted);cursor:pointer;padding:2px;font-size:var(--t-label);vertical-align:middle"><i class="ph ph-question" aria-hidden="true"></i></button></span>
                   <input class="input" name="card-cvv" type="text" inputmode="numeric" autocomplete="cc-csc" placeholder="CVV" required>
                 </label>
               </div>
@@ -374,7 +374,7 @@
             </label>
 
             <div class="pm-fields" data-method-fields="paypal" style="display:none;padding:var(--s-4) 0">
-              <p style="font-size:14px;color:var(--ink-muted);margin:0 0 16px">You'll be redirected to PayPal to complete your donation securely.</p>
+              <p style="font-size:var(--t-label);color:var(--ink-muted);margin:0 0 16px">You'll be redirected to PayPal to complete your donation securely.</p>
               <button type="button" class="btn" data-mock="paypal-redirect" style="background:#003087;color:var(--snow)">
                 <i class="ph ph-paypal-logo" aria-hidden="true"></i> Continue with PayPal
               </button>
@@ -384,7 +384,7 @@
               <input type="radio" name="method" value="apple">
               <span>Apple Pay</span>
               <span class="pm-row__icons" aria-hidden="true">
-                <span class="card-icon" style="background:#000;color:#fff;border-color:#000;"><i class="ph ph-apple-logo" style="font-size:11px;margin-right:2px"></i>Pay</span>
+                <span class="card-icon" style="background:#000;color:#fff;border-color:#000;"><i class="ph ph-apple-logo" style="font-size:var(--t-micro);margin-right:2px"></i>Pay</span>
               </span>
             </label>
           </fieldset>
@@ -394,12 +394,12 @@
             <span>Check the Box if you want to pay every month</span>
           </label>
 
-          <p id="impact-personal" style="text-align:center;font-size:13px;color:var(--garden-700);margin:16px 0 0;font-weight:500">
+          <p id="impact-personal" style="text-align:center;font-size:var(--t-label);color:var(--garden-700);margin:var(--s-4) 0 0;font-weight:500">
             Your $100 sponsors a full program enrollment for one child.
           </p>
 
           <button type="submit" class="donate-submit" id="donate-submit">Donate $100 Now</button>
-          <p style="text-align:center;font-size:12px;color:var(--ink-muted);margin-top:14px">Demo: <a href="payment-declined.html" style="color:var(--rose);text-decoration:underline">preview a declined payment</a></p>
+          <p style="text-align:center;font-size:var(--t-micro);color:var(--ink-muted);margin-top:14px">Demo: <a href="payment-declined.html" style="color:var(--rose);text-decoration:underline">preview a declined payment</a></p>
         </form>
       </div>
     </section>

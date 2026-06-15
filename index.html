@@ -61,7 +61,7 @@
       padding: var(--s-5);            /* 24px uniform — was 32/24 */
       flex: 1;
       display: flex; flex-direction: column;
-      gap: 10px;                       /* matches Figma itemSpacing */
+      gap: var(--s-10);                       /* matches Figma itemSpacing */
     }
     /* Bottom card: booking CTA panel — 16px uniform per Figma. */
     .hero__cta-card {
@@ -104,16 +104,16 @@
       background: url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
-      transition: opacity .3s ease, background-image .3s ease;
+      transition: opacity var(--dur-2) var(--ease), background-image var(--dur-2) var(--ease);
     }
     /* Mobile: card stacks, so give the image a defined height + wrap the buttons */
     @media (max-width: 900px) {
       .hero__actions { flex-wrap: wrap; }
       .hero__photo { aspect-ratio: 16/10; min-height: 0; }
     }
-    .hero__copy > * { transition: opacity .3s ease; }
+    .hero__copy > * { transition: opacity var(--dur-2) var(--ease); }
     .hero[data-fading] .hero__copy > *, .hero[data-fading] .hero__photo { opacity: 0; }
-    .hero__dots { display: flex; gap: 8px; justify-content: center; margin-top: var(--s-5); }
+    .hero__dots { display: flex; gap: var(--s-2); justify-content: center; margin-top: var(--s-5); }
     .hero__dots span {
       /* 24px hit-area, 8px visual using ::before — meets WCAG target-size 24×24 minimum. */
       width: 24px; height: 24px;
@@ -185,7 +185,7 @@
     }
     .calendar__nav button:hover { background: rgba(0,0,0,.06); }
     .calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; font-size: var(--t-label); }
-    .calendar__dow { color: var(--ink-muted); font-weight: 600; padding: 4px 0; }
+    .calendar__dow { color: var(--ink-muted); font-weight: 600; padding: var(--s-1) 0; }
     .calendar__day {
       width: 40px; height: 40px;     /* was 28 — Figma cells ~48 (clamped to fit grid) */
       border-radius: 50%;
@@ -217,7 +217,7 @@
     .who__features { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
     .feature { display: grid; grid-template-columns: 36px 1fr; gap: var(--s-3); align-items: start; }
     .feature .ph {
-      font-size: 22px; color: var(--garden);
+      font-size: var(--t-subtitle); color: var(--garden);
       width: 36px; height: 36px;
       display: inline-flex; align-items: center; justify-content: center;
       background: var(--garden-100); border-radius: 50%;
@@ -256,9 +256,9 @@
     .program-card__title { font-family: var(--serif); font-weight: 400; font-size: var(--t-h3); margin: 0; text-transform: uppercase; }
     .program-card__price { font-size: var(--t-label); color: var(--ink-muted); text-align: right; }
     .program-card__price strong { display: block; color: var(--ink); font-size: var(--t-base); }
-    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chips { display: flex; gap: var(--s-2); flex-wrap: wrap; }
     .chip {
-      font-size: var(--t-micro); font-weight: 600; padding: 4px 10px;
+      font-size: var(--t-micro); font-weight: 600; padding: var(--s-1) 10px;
       border-radius: var(--radius-pill); border: 1px solid var(--rose);
       color: var(--rose-700); background: transparent;
     }
@@ -323,8 +323,8 @@
     }
     .donor__stat strong {
       font-family: var(--sans); font-weight: 700;
-      font-size: 28px; display: block; line-height: 1.1;
-      margin-bottom: 4px; color: var(--ink);
+      font-size: var(--t-h5); display: block; line-height: 1.1;
+      margin-bottom: var(--s-1); color: var(--ink);
     }
     .donor__stat span { font-size: var(--t-label); color: var(--ink-muted); }
 
@@ -341,7 +341,7 @@
       width: 96px; height: 96px; border-radius: 50%;
       background: var(--beginning);
       display: flex; align-items: center; justify-content: center;
-      font-family: var(--serif); font-weight: 400; font-size: 40px;
+      font-family: var(--serif); font-weight: 400; font-size: var(--t-h3);
       color: var(--rose); line-height: 1;
       box-shadow: 0 2px 12px rgba(0,0,0,.22);
     }

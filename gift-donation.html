@@ -86,23 +86,23 @@
       <h1>Donate in Honor or Memory</h1>
       <p class="page-hero__sub">Celebrate a birthday, graduation, or honor a loved one with a gift to OUAT. We'll send a personalized notification card to the recipient or family.</p></div>
     </section>
-    <section class="wrap" style="max-width:680px;padding:48px 24px">
+    <section class="wrap" style="max-width:680px;padding:var(--s-7) 24px">
       <form id="gift-form" style="display:grid;gap:20px" novalidate>
         <fieldset style="border:0;padding:0">
-          <legend style="font-size:14px;font-weight:700;margin-bottom:10px">This gift is</legend>
+          <legend style="font-size:var(--t-label);font-weight:700;margin-bottom:10px">This gift is</legend>
           <div class="gift-type-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-            <label style="display:inline-flex;gap:10px;padding:14px 18px;border:1.5px solid var(--rose);border-radius: var(--radius);cursor:pointer;font-weight:600;align-items:center"><input type="radio" name="gift-type" value="honor" checked> In honor of</label>
-            <label style="display:inline-flex;gap:10px;padding:14px 18px;border:1.5px solid var(--line);border-radius: var(--radius);cursor:pointer;font-weight:600;align-items:center"><input type="radio" name="gift-type" value="memory"> In memory of</label>
+            <label style="display:inline-flex;gap:var(--s-10);padding:14px 18px;border:1.5px solid var(--rose);border-radius: var(--radius);cursor:pointer;font-weight:600;align-items:center"><input type="radio" name="gift-type" value="honor" checked> In honor of</label>
+            <label style="display:inline-flex;gap:var(--s-10);padding:14px 18px;border:1.5px solid var(--line);border-radius: var(--radius);cursor:pointer;font-weight:600;align-items:center"><input type="radio" name="gift-type" value="memory"> In memory of</label>
           </div>
         </fieldset>
         <label class="field"><span class="field__label">Honoree&#39;s name</span><input class="input" name="honoree" type="text" placeholder="e.g. Grandma Rose" required aria-required="true"></label>
         <label class="field"><span class="field__label">Personal message (optional)</span><textarea class="textarea" name="message" rows="3" placeholder="Happy 80th birthday from Claire and Daisy"></textarea></label>
-        <h2 style="font-family:var(--serif);font-size:18px;text-transform:uppercase;margin:8px 0 0">Send notification to</h2>
+        <h2 style="font-family:var(--serif);font-size:var(--t-md);text-transform:uppercase;margin:var(--s-2) 0 0">Send notification to</h2>
         <div class="form-row-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
           <label class="field"><span class="field__label">Recipient name</span><input class="input" name="recipient-name" type="text" required aria-required="true"></label>
           <label class="field"><span class="field__label">Email</span><input class="input" name="recipient-email" type="email" required aria-required="true"></label>
         </div>
-        <h2 style="font-family:var(--serif);font-size:18px;text-transform:uppercase;margin:8px 0 0">Gift amount</h2>
+        <h2 style="font-family:var(--serif);font-size:var(--t-md);text-transform:uppercase;margin:var(--s-2) 0 0">Gift amount</h2>
         <div class="gift-amounts" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
           <label class="gift-amounts__opt"><input type="radio" name="amount" value="50">$50</label>
           <label class="gift-amounts__opt is-active"><input type="radio" name="amount" value="100" checked>$100</label>
@@ -115,7 +115,7 @@
     </section>
     <style>
       .gift-amounts__opt {
-        text-align: center; padding: 12px 0;
+        text-align: center; padding: var(--s-3) 0;
         border: 1.5px solid var(--line); border-radius: var(--radius-sm);
         cursor: pointer; font-weight: 600;
         transition: border-color .15s, background .15s, color .15s;

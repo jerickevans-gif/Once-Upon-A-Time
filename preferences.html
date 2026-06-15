@@ -47,7 +47,7 @@
       padding: var(--s-4) var(--s-5);
       display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-4); align-items: center;
     }
-    .payment-row__icon { color: var(--ink-muted); font-size: 22px; }
+    .payment-row__icon { color: var(--ink-muted); font-size: var(--t-subtitle); }
     .payment-row__title { font-size: var(--t-label); color: var(--ink-muted); margin-bottom: 2px; }
     .payment-row__value { font-size: var(--t-base); color: var(--ink-muted); }
 
@@ -64,10 +64,10 @@
       display: grid; place-items: center; cursor: pointer; margin: 0;
     }
     .toggle-row input[type="checkbox"]:checked { background: var(--rose); border-color: var(--rose); }
-    .toggle-row input[type="checkbox"]:checked::after { content: "✓"; color: var(--snow); font-size: 13px; font-weight: 700; }
+    .toggle-row input[type="checkbox"]:checked::after { content: "✓"; color: var(--snow); font-size: var(--t-label); font-weight: 700; }
 
     .delete-account {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: var(--s-2);
       background: transparent; border: 0; color: var(--danger);
       font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
       font-size: var(--t-base); cursor: pointer;
@@ -159,7 +159,7 @@
               <div class="payment-row__value">
                 <i class="ph ph-credit-card payment-row__icon" style="vertical-align: -3px; margin-right: 6px;"></i>
                 Mastercard Credit •••• 5555
-                <span class="badge-status badge-status--neutral" style="margin-left:8px;font-size:11px;vertical-align:1px">Default</span>
+                <span class="badge-status badge-status--neutral" style="margin-left:var(--s-2);font-size:var(--t-micro);vertical-align:1px">Default</span>
               </div>
             </div>
             <div></div>

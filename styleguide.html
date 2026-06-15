@@ -44,7 +44,7 @@
   .sg-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--s-3); }
   .sg-swatch { border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
   .sg-swatch__color { aspect-ratio: 16 / 10; }
-  .sg-swatch__meta { padding: 8px 10px; font-size: 11px; }
+  .sg-swatch__meta { padding: var(--s-2) 10px; font-size: var(--t-micro); }
   .sg-swatch__name { font-weight: 600; color: var(--ink); }
   .sg-swatch__hex { color: var(--ink-muted); font-family: Menlo, monospace; font-size: 10px; }
 
@@ -55,18 +55,18 @@
   /* Type scale row */
   .sg-type-row { display: grid; gap: var(--s-1); padding: var(--s-3) 0; border-bottom: 1px solid var(--line); }
   .sg-type-row__sample { color: var(--ink); line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .sg-type-row__label { font-size: 11px; color: var(--ink-muted); font-family: Menlo, monospace; }
+  .sg-type-row__label { font-size: var(--t-micro); color: var(--ink-muted); font-family: Menlo, monospace; }
 
   /* Spacing ruler */
   .sg-spacing { display: grid; gap: var(--s-3); }
   .sg-spacing-row { display: flex; align-items: center; gap: var(--s-4); }
   .sg-spacing-row__bar { height: 20px; background: var(--rose-300); border-radius: 4px; flex-shrink: 0; }
-  .sg-spacing-row__label { font-size: 11px; font-family: Menlo, monospace; color: var(--ink-muted); white-space: nowrap; }
+  .sg-spacing-row__label { font-size: var(--t-micro); font-family: Menlo, monospace; color: var(--ink-muted); white-space: nowrap; }
 
   /* Button grid */
   .sg-btn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--s-4); align-items: start; }
   .sg-btn-cell { display: grid; gap: var(--s-2); }
-  .sg-btn-cell__label { font-size: 11px; font-family: Menlo, monospace; color: var(--ink-muted); }
+  .sg-btn-cell__label { font-size: var(--t-micro); font-family: Menlo, monospace; color: var(--ink-muted); }
 
   /* Demo row */
   .sg-row { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
@@ -459,7 +459,7 @@
           <h3 class="sg-swatch-group__label">Testimonial</h3>
           <div class="sg-demo">
             <figure class="testimonial">
-              <div class="testimonial__avatar"><i class="ph ph-user" style="font-size:28px;color:var(--rose)" aria-hidden="true"></i></div>
+              <div class="testimonial__avatar"><i class="ph ph-user" style="font-size:var(--t-h5);color:var(--rose)" aria-hidden="true"></i></div>
               <blockquote>&ldquo;Once Upon A Time changed my daughter&rsquo;s life. She found her voice through dance and has never looked back.&rdquo;</blockquote>
               <figcaption><cite>Maria Santos</cite>, Parent</figcaption>
             </figure>
@@ -479,12 +479,12 @@
           <h3 class="sg-swatch-group__label">Member Card</h3>
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--s-4)">
             <div class="member-card">
-              <div class="member-card__photo" style="background:var(--rose-100);display:grid;place-items:center"><i class="ph ph-user" style="font-size:32px;color:var(--rose)" aria-hidden="true"></i></div>
+              <div class="member-card__photo" style="background:var(--rose-100);display:grid;place-items:center"><i class="ph ph-user" style="font-size:var(--t-h4);color:var(--rose)" aria-hidden="true"></i></div>
               <h4 class="member-card__name">Lydia Owens</h4>
               <p class="member-card__role">Artistic Director</p>
             </div>
             <div class="member-card">
-              <div class="member-card__photo" style="background:var(--garden-100);display:grid;place-items:center"><i class="ph ph-user" style="font-size:32px;color:var(--garden)" aria-hidden="true"></i></div>
+              <div class="member-card__photo" style="background:var(--garden-100);display:grid;place-items:center"><i class="ph ph-user" style="font-size:var(--t-h4);color:var(--garden)" aria-hidden="true"></i></div>
               <h4 class="member-card__name">James Carter</h4>
               <p class="member-card__role">Music Instructor</p>
             </div>

@@ -64,14 +64,14 @@
       font-size: var(--t-label); font-weight: 600;
       color: var(--ink); text-decoration: none;
       padding: 6px 0; border-bottom: 2px solid transparent;
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: var(--s-2);
     }
     .nl-tabs a.is-active { border-bottom-color: var(--rose-700); color: var(--rose-700); }
     .nl-tabs a:hover { color: var(--rose); }
     .nl-tabs a.is-muted { color: var(--ink-muted); }
     .nl-tabs__badge {
       background: var(--rose); color: var(--snow);
-      font-size: 11px; font-weight: 700;
+      font-size: var(--t-micro); font-weight: 700;
       min-width: 20px; height: 20px;
       padding: 0 6px;
       border-radius: var(--radius-pill);
@@ -79,8 +79,8 @@
     }
     .nl-tabs__more-wrap { position: relative; display: inline-flex; }
     .nl-tabs__more {
-      background: transparent; border: 0; padding: 4px 8px;
-      color: var(--ink); font-size: 18px; cursor: pointer;
+      background: transparent; border: 0; padding: var(--s-1) 8px;
+      color: var(--ink); font-size: var(--t-md); cursor: pointer;
       letter-spacing: 2px;
       line-height: 1;
     }
@@ -88,7 +88,7 @@
     .nl-dropdown {
       position: absolute; top: calc(100% + 8px); right: 0;
       min-width: 225px;
-      background: #735041;            /* Figma rgb(.45, .26, .22) */
+      background: var(--rose-600);            /* Figma rgb(.45, .26, .22) */
       color: var(--snow);
       border-radius: var(--radius-lg);
       padding: var(--s-4) var(--s-5);
@@ -126,34 +126,34 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(139,80,68,.08);
     }
-    .nl-involved-card > i.ph { font-size: 32px; color: var(--rose); }
-    .nl-involved-card h3 { font-family: var(--serif); font-weight: 400; font-size: 22px; margin: 0; }
-    .nl-involved-card p { color: var(--ink-muted); font-size: 14px; margin: 0; line-height: 1.55; }
+    .nl-involved-card > i.ph { font-size: var(--t-h4); color: var(--rose); }
+    .nl-involved-card h3 { font-family: var(--serif); font-weight: 400; font-size: var(--t-subtitle); margin: 0; }
+    .nl-involved-card p { color: var(--ink-muted); font-size: var(--t-label); margin: 0; line-height: 1.55; }
     .nl-involved-card__cta {
       display: inline-flex; align-items: center; gap: 6px;
       font-weight: 600; color: var(--rose-700); margin-top: auto;
     }
     .nl-filter {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: var(--s-2);
       background: var(--snow); border: 1px solid var(--line);
       border-radius: var(--radius-sm, 8px);
-      padding: 8px 14px;
+      padding: var(--s-2) 14px;
       font-size: var(--t-label); color: var(--ink-muted);
       cursor: pointer;
     }
     .nl-filter:hover { border-color: var(--rose); color: var(--rose-700); }
-    .nl-filter .ph { font-size: 14px; }
+    .nl-filter .ph { font-size: var(--t-label); }
     .nl-search {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: var(--s-2);
       background: var(--snow); border: 1px solid var(--line);
       border-radius: var(--radius-sm, 8px);
-      padding: 4px 12px 4px 14px; min-width: 220px;
+      padding: var(--s-1) 12px 4px 14px; min-width: 220px;
     }
-    .nl-search .ph { color: var(--ink-muted); font-size: 14px; }
+    .nl-search .ph { color: var(--ink-muted); font-size: var(--t-label); }
     .nl-search input {
       border: 0; background: transparent; outline: 0;
       font-size: var(--t-label); color: var(--ink);
-      flex: 1; padding: 8px 0; min-width: 0;
+      flex: 1; padding: var(--s-2) 0; min-width: 0;
     }
     .nl-search input::placeholder { color: var(--ink-muted); }
 
@@ -173,7 +173,7 @@
       border-radius: 14px;
       overflow: hidden;
       align-items: stretch;
-      transition: box-shadow .25s ease;
+      transition: box-shadow var(--dur-2) var(--ease);
     }
     .nl-featured-card:hover,
     .nl-featured-card:focus-within {
@@ -228,7 +228,7 @@
       border-radius: 14px;            /* matches Newsletter Card v2_dropshadow */
       overflow: hidden;
       display: flex; flex-direction: column;
-      transition: box-shadow .25s ease;
+      transition: box-shadow var(--dur-2) var(--ease);
     }
     .nl-story-card:hover,
     .nl-story-card:focus-within {
@@ -276,14 +276,14 @@
       margin: 0;
       letter-spacing: .02em;
     }
-    .nl-actions { display: inline-flex; gap: 8px; }
+    .nl-actions { display: inline-flex; gap: var(--s-2); }
     .nl-action {
       width: 38px; height: 38px;
       border: 0; cursor: pointer;
       border-radius: var(--radius-sm);
       display: inline-flex; align-items: center; justify-content: center;
       background: var(--rose-700); color: var(--snow);
-      font-size: 16px;
+      font-size: var(--t-base);
     }
     .nl-action--share { background: var(--garden); }
     .nl-action:hover { filter: brightness(1.08); }
@@ -293,9 +293,9 @@
     .nl-feature__actions {
       position: absolute; top: 0; right: 0;
       display: inline-flex; gap: 6px;
-      padding: 12px;
+      padding: var(--s-3);
     }
-    .nl-feature__actions .nl-action { width: 32px; height: 32px; font-size: 14px; }
+    .nl-feature__actions .nl-action { width: 32px; height: 32px; font-size: var(--t-label); }
 
     /* ===== Eyebrow row ===== */
     .nl-eyebrow {
@@ -314,7 +314,7 @@
     .nl-chip {
       width: 24px; height: 24px; border-radius: 50%;
       display: inline-flex; align-items: center; justify-content: center;
-      font-size: 11px; font-weight: 700; color: var(--snow);
+      font-size: var(--t-micro); font-weight: 700; color: var(--snow);
     }
     .nl-chip--rose { background: var(--rose); }
     .nl-chip--garden { background: var(--garden); }
@@ -359,8 +359,8 @@
     .nl-feature__body p { margin: 0 0 var(--s-3); break-inside: avoid-column; }
     .nl-feature__body p:first-child::first-letter {
       font-family: var(--serif); font-weight: 400;
-      float: left; font-size: 56px; line-height: .9;
-      padding: 4px 8px 0 0; color: var(--rose-700);
+      float: left; font-size: var(--t-display); line-height: .9;
+      padding: var(--s-1) 8px 0 0; color: var(--rose-700);
     }
     .nl-feature__photo {
       aspect-ratio: 4/5;
@@ -450,7 +450,7 @@
     .nl-card__copy { font-size: var(--t-label); color: var(--ink); margin: 0 0 var(--s-3); line-height: var(--lh-body); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .nl-card__footer { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
     .nl-card__icons { display: inline-flex; gap: 6px; color: var(--ink-muted); }
-    .nl-card__icons button { background: transparent; border: 0; cursor: pointer; padding: 4px; color: inherit; }
+    .nl-card__icons button { background: transparent; border: 0; cursor: pointer; padding: var(--s-1); color: inherit; }
     .nl-related__arrow {
       position: absolute; top: 50%; transform: translateY(-50%);
       right: -18px;
