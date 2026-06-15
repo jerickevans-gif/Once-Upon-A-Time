@@ -1,153 +1,248 @@
 <style>
-body { background: var(--snow); }
+  body {
+    background: var(--snow);
+  }
 
-    /* Inbox-specific overrides for account-side-card */
-    .account-side-card { background: var(--rose-50); padding: var(--s-4); }
+  /* Inbox-specific overrides for account-side-card */
+  .account-side-card {
+    background: var(--rose-50);
+    padding: var(--s-4);
+  }
 
-    /* Inbox-specific */
-    .acc-section__filter { display: inline-flex; gap: var(--s-2); }
-    .acc-section__filter button {
-      padding: 6px 12px; border: 1px solid var(--line); background: var(--snow);
-      border-radius: 999px; font-size: 13px; cursor: pointer; color: var(--ink-muted);
-    }
-    .acc-section__filter button[aria-pressed="true"] { background: var(--rose-100); color: var(--rose-700); border-color: var(--rose-100); font-weight: 600; }
+  /* Inbox-specific */
+  .acc-section__filter {
+    display: inline-flex;
+    gap: var(--s-2);
+  }
+  .acc-section__filter button {
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    background: var(--snow);
+    border-radius: 999px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--ink-muted);
+  }
+  .acc-section__filter button[aria-pressed='true'] {
+    background: var(--rose-100);
+    color: var(--rose-700);
+    border-color: var(--rose-100);
+    font-weight: 600;
+  }
 
-    .msg-list { display: grid; gap: var(--s-3); }
-    .msg {
-      display: grid; grid-template-columns: 44px 1fr auto;
-      gap: var(--s-4); align-items: start;
-      padding: var(--s-4) var(--s-5);
-      background: var(--snow); border: 1px solid var(--line);
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: border-color .15s, background .15s;
-    }
-    .msg:hover { border-color: var(--rose-300); background: var(--rose-50); }
-    .msg.is-unread { background: var(--rose-50); border-color: var(--rose-100); }
-    .msg.is-unread .msg__title { font-weight: 700; }
-    .msg.is-unread .msg__title::before {
-      content: ""; display: inline-block;
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--rose); margin-right: 8px; vertical-align: middle;
-    }
-    .msg__avatar {
-      width: 44px; height: 44px; border-radius: 50%;
-      background: var(--rose-100); color: var(--rose-700);
-      display: grid; place-items: center; font-size: 18px;
-      font-family: var(--serif); font-weight: 600;
-    }
-    .msg__main { display: grid; gap: 4px; min-width: 0; }
-    .msg__from { font-size: 13px; color: var(--ink-muted); }
-    .msg__title { font-size: 15px; color: var(--ink); margin: 0; }
-    .msg__preview { font-size: 13px; color: var(--ink-muted); line-height: 1.5;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .msg__time { font-size: 12px; color: var(--ink-muted); white-space: nowrap; padding-top: 2px; }
+  .msg-list {
+    display: grid;
+    gap: var(--s-3);
+  }
+  .msg {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: var(--s-4);
+    align-items: start;
+    padding: var(--s-4) var(--s-5);
+    background: var(--snow);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition:
+      border-color 0.15s,
+      background 0.15s;
+  }
+  .msg:hover {
+    border-color: var(--rose-300);
+    background: var(--rose-50);
+  }
+  .msg.is-unread {
+    background: var(--rose-50);
+    border-color: var(--rose-100);
+  }
+  .msg.is-unread .msg__title {
+    font-weight: 700;
+  }
+  .msg.is-unread .msg__title::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rose);
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .msg__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--rose-100);
+    color: var(--rose-700);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    font-family: var(--serif);
+    font-weight: 600;
+  }
+  .msg__main {
+    display: grid;
+    gap: 4px;
+    min-width: 0;
+  }
+  .msg__from {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .msg__title {
+    font-size: 15px;
+    color: var(--ink);
+    margin: 0;
+  }
+  .msg__preview {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .msg__time {
+    font-size: 12px;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    padding-top: 2px;
+  }
 
-    @media (max-width: 900px) {
-      .msg__time { display: none; }
+  @media (max-width: 900px) {
+    .msg__time {
+      display: none;
     }
+  }
 </style>
 
-<div class="wrap account">
-      <!-- SIDEBAR -->
-      <aside class="account__sidebar" aria-label="Account navigation">
-        <div class="account-user">
-          <span class="account-user__avatar"><i class="ph ph-user"></i></span>
-          <span class="account-user__name">Claire Sherlock</span>
-        </div>
-        <nav class="account-nav" aria-label="Account sections">
-          <a href="profile.html"><i class="ph ph-user-circle"></i><span>My Profile</span><span></span></a>
-          <a href="preferences.html"><i class="ph ph-sliders-horizontal"></i><span>Preferences</span><span></span></a>
-          <a href="class-history.html"><i class="ph ph-book-open"></i><span>Class history</span><span></span></a>
-          <a href="inbox.html" aria-current="page"><i class="ph ph-envelope"></i><span>Inbox</span><span class="account-nav__badge">3</span></a>
-        </nav>
-        <div class="account-side-card">
-          <span class="account-side-card__title">Browse more classes?</span>
-          <a class="btn btn--sm" href="programs.html">See more</a>
-        </div>
-        <div class="account-side-card account-side-card--ghost">
-          <span class="account-side-card__title">Looking for support?</span>
-          <a class="btn btn--sm btn--outline" href="contact.html">Contact Us</a>
-        </div>
-      </aside>
-
-      <!-- MAIN -->
-      <section class="account__main" aria-labelledby="inbox-title">
-        <div class="acc-section">
-          <div class="acc-section__head">
-            <h1 class="acc-section__title" id="inbox-title">Inbox</h1>
-            <div class="acc-section__filter" role="group" aria-label="Filter inbox">
-              <button type="button" aria-pressed="true" data-filter="all">All</button>
-              <button type="button" aria-pressed="false" data-filter="unread">Unread</button>
-              <button type="button" aria-pressed="false" data-filter="starred">Starred</button>
-            </div>
-          </div>
-
-          <ul class="msg-list" role="list">
-            <li class="msg is-unread is-starred" data-status="unread" data-id="m1" data-starred="true">
-              <span class="msg__avatar" aria-hidden="true">L</span>
-              <div class="msg__main">
-                <span class="msg__from">Luna Pinelli — Beginner Ballet</span>
-                <p class="msg__title">Welcome to next week's session</p>
-                <p class="msg__preview">A quick reminder that Daisy's Mar 10 class moves to Studio Room A. Please arrive 10 minutes early so we can get her warmed up before…</p>
-              </div>
-              <button class="msg__star" type="button" aria-label="Toggle star" aria-pressed="true" data-msg-star="m1"><i class="ph ph-star-fill"></i></button>
-              <span class="msg__time">2h ago</span>
-            </li>
-
-            <li class="msg is-unread" data-status="unread" data-id="m2">
-              <span class="msg__avatar" aria-hidden="true">O</span>
-              <div class="msg__main">
-                <span class="msg__from">Once Upon A Time</span>
-                <p class="msg__title">Thank you for your $100 donation</p>
-                <p class="msg__preview">Hi Claire — your contribution this month directly funded scholarship instruments for two new students. Your receipt is attached for…</p>
-              </div>
-              <button class="msg__star" type="button" aria-label="Toggle star" aria-pressed="false" data-msg-star="m2"><i class="ph ph-star"></i></button>
-              <span class="msg__time">Yesterday</span>
-            </li>
-
-            <li class="msg is-unread is-starred" data-status="unread" data-id="m3" data-starred="true">
-              <span class="msg__avatar" aria-hidden="true">C</span>
-              <div class="msg__main">
-                <span class="msg__from">Courtney Henry — Seasonal Camps</span>
-                <p class="msg__title">Permission slip needed for Mar 15</p>
-                <p class="msg__preview">We're heading to the Queens Botanical Garden as part of the Gardening track. Please sign and return the attached release form by…</p>
-              </div>
-              <button class="msg__star" type="button" aria-label="Toggle star" aria-pressed="true" data-msg-star="m3"><i class="ph ph-star-fill"></i></button>
-              <span class="msg__time">Mar 02</span>
-            </li>
-
-            <li class="msg" data-status="read" data-id="m4">
-              <span class="msg__avatar" aria-hidden="true">S</span>
-              <div class="msg__main">
-                <span class="msg__from">Sydney Phelps — Newsletter</span>
-                <p class="msg__title">December newsletter is live</p>
-                <p class="msg__preview">Catch up on Community Garden updates, Volunteer Spotlight, and a recap of our winter showcase performances at the Richmond…</p>
-              </div>
-              <button class="msg__star" type="button" aria-label="Toggle star" aria-pressed="false" data-msg-star="m4"><i class="ph ph-star"></i></button>
-              <span class="msg__time">Feb 18</span>
-            </li>
-
-            <li class="msg" data-status="read" data-id="m5">
-              <span class="msg__avatar" aria-hidden="true">O</span>
-              <div class="msg__main">
-                <span class="msg__from">Once Upon A Time</span>
-                <p class="msg__title">Receipt: Seasonal Camps 2025</p>
-                <p class="msg__preview">Your enrollment for Daisy is confirmed. Total charged: $150.00 to MasterCard ending 5555. Add this to your tax records using the…</p>
-              </div>
-              <button class="msg__star" type="button" aria-label="Toggle star" aria-pressed="false" data-msg-star="m5"><i class="ph ph-star"></i></button>
-              <span class="msg__time">Feb 10</span>
-            </li>
-          </ul>
-          <div class="empty-state" data-inbox-empty hidden>
-            <i class="ph ph-tray" aria-hidden="true" style="font-size:42px;color:var(--rose);margin-bottom:var(--s-3)"></i>
-            <h3 data-inbox-empty-title>No messages</h3>
-            <p data-inbox-empty-msg>You&rsquo;re all caught up.</p>
-          </div>
-        </div>
-      </section>
+<div class='wrap account'>
+  <!-- SIDEBAR -->
+  <aside class='account__sidebar' aria-label='Account navigation'>
+    <div class='account-user'>
+      <span class='account-user__avatar'><i class='ph ph-user'></i></span>
+      <span class='account-user__name'>Claire Sherlock</span>
     </div>
+    <nav class='account-nav' aria-label='Account sections'>
+      <a href='profile.html'><i class='ph ph-user-circle'></i><span>My Profile</span><span></span></a>
+      <a href='preferences.html'><i class='ph ph-sliders-horizontal'></i><span>Preferences</span><span></span></a>
+      <a href='class-history.html'><i class='ph ph-book-open'></i><span>Class history</span><span></span></a>
+      <a href='inbox.html' aria-current='page'
+        ><i class='ph ph-envelope'></i><span>Inbox</span><span class='account-nav__badge'>3</span></a
+      >
+    </nav>
+    <div class='account-side-card'>
+      <span class='account-side-card__title'>Browse more classes?</span>
+      <a class='btn btn--sm' href='programs.html'>See more</a>
+    </div>
+    <div class='account-side-card account-side-card--ghost'>
+      <span class='account-side-card__title'>Looking for support?</span>
+      <a class='btn btn--sm btn--outline' href='contact.html'>Contact Us</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <section class='account__main' aria-labelledby='inbox-title'>
+    <div class='acc-section'>
+      <div class='acc-section__head'>
+        <h1 class='acc-section__title' id='inbox-title'>Inbox</h1>
+        <div class='acc-section__filter' role='group' aria-label='Filter inbox'>
+          <button type='button' aria-pressed='true' data-filter='all'>All</button>
+          <button type='button' aria-pressed='false' data-filter='unread'>Unread</button>
+          <button type='button' aria-pressed='false' data-filter='starred'>Starred</button>
+        </div>
+      </div>
+
+      <ul class='msg-list' role='list'>
+        <li class='msg is-unread is-starred' data-status='unread' data-id='m1' data-starred='true'>
+          <span class='msg__avatar' aria-hidden='true'>L</span>
+          <div class='msg__main'>
+            <span class='msg__from'>Luna Pinelli — Beginner Ballet</span>
+            <p class='msg__title'>Welcome to next week's session</p>
+            <p class='msg__preview'>
+              A quick reminder that Daisy's Mar 10 class moves to Studio Room A. Please arrive 10 minutes early so we
+              can get her warmed up before…
+            </p>
+          </div>
+          <button class='msg__star' type='button' aria-label='Toggle star' aria-pressed='true' data-msg-star='m1'>
+            <i class='ph ph-star-fill'></i>
+          </button>
+          <span class='msg__time'>2h ago</span>
+        </li>
+
+        <li class='msg is-unread' data-status='unread' data-id='m2'>
+          <span class='msg__avatar' aria-hidden='true'>O</span>
+          <div class='msg__main'>
+            <span class='msg__from'>Once Upon A Time</span>
+            <p class='msg__title'>Thank you for your $100 donation</p>
+            <p class='msg__preview'>
+              Hi Claire — your contribution this month directly funded scholarship instruments for two new students.
+              Your receipt is attached for…
+            </p>
+          </div>
+          <button class='msg__star' type='button' aria-label='Toggle star' aria-pressed='false' data-msg-star='m2'>
+            <i class='ph ph-star'></i>
+          </button>
+          <span class='msg__time'>Yesterday</span>
+        </li>
+
+        <li class='msg is-unread is-starred' data-status='unread' data-id='m3' data-starred='true'>
+          <span class='msg__avatar' aria-hidden='true'>C</span>
+          <div class='msg__main'>
+            <span class='msg__from'>Courtney Henry — Seasonal Camps</span>
+            <p class='msg__title'>Permission slip needed for Mar 15</p>
+            <p class='msg__preview'>
+              We're heading to the Queens Botanical Garden as part of the Gardening track. Please sign and return the
+              attached release form by…
+            </p>
+          </div>
+          <button class='msg__star' type='button' aria-label='Toggle star' aria-pressed='true' data-msg-star='m3'>
+            <i class='ph ph-star-fill'></i>
+          </button>
+          <span class='msg__time'>Mar 02</span>
+        </li>
+
+        <li class='msg' data-status='read' data-id='m4'>
+          <span class='msg__avatar' aria-hidden='true'>S</span>
+          <div class='msg__main'>
+            <span class='msg__from'>Sydney Phelps — Newsletter</span>
+            <p class='msg__title'>December newsletter is live</p>
+            <p class='msg__preview'>
+              Catch up on Community Garden updates, Volunteer Spotlight, and a recap of our winter showcase performances
+              at the Richmond…
+            </p>
+          </div>
+          <button class='msg__star' type='button' aria-label='Toggle star' aria-pressed='false' data-msg-star='m4'>
+            <i class='ph ph-star'></i>
+          </button>
+          <span class='msg__time'>Feb 18</span>
+        </li>
+
+        <li class='msg' data-status='read' data-id='m5'>
+          <span class='msg__avatar' aria-hidden='true'>O</span>
+          <div class='msg__main'>
+            <span class='msg__from'>Once Upon A Time</span>
+            <p class='msg__title'>Receipt: Seasonal Camps 2025</p>
+            <p class='msg__preview'>
+              Your enrollment for Daisy is confirmed. Total charged: $150.00 to MasterCard ending 5555. Add this to your
+              tax records using the…
+            </p>
+          </div>
+          <button class='msg__star' type='button' aria-label='Toggle star' aria-pressed='false' data-msg-star='m5'>
+            <i class='ph ph-star'></i>
+          </button>
+          <span class='msg__time'>Feb 10</span>
+        </li>
+      </ul>
+      <div class='empty-state' data-inbox-empty hidden>
+        <i class='ph ph-tray' aria-hidden='true' style='font-size:42px;color:var(--rose);margin-bottom:var(--s-3)'></i>
+        <h3 data-inbox-empty-title>No messages</h3>
+        <p data-inbox-empty-msg>You&rsquo;re all caught up.</p>
+      </div>
+    </div>
+  </section>
+</div>
 
 {% schema %}
 {

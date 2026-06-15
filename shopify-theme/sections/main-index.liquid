@@ -1,665 +1,1267 @@
 <style>
-/* ===== Hero (Figma 2748:43946 "Hero Class Card - Iteration A") =====
+  /* ===== Hero (Figma 2748:43946 "Hero Class Card - Iteration A") =====
        LEFT column = TWO stacked cards (event card + booking CTA card),
        RIGHT column = single photo card. 34px between columns, 15px stack gap. */
-    .hero { background: var(--snow); padding: var(--s-7) 0; }
-    .hero__grid {
-      display: grid; grid-template-columns: 642fr 601fr; gap: 34px;
-      align-items: stretch;
-    }
-    /* Left column container — vertically stacks two separate cards. */
-    .hero__copy {
-      display: flex; flex-direction: column;
-      gap: 15px;
-    }
-    /* Top card: event info (title, sub, chips, lede). --beginning fill, 24px
+  .hero {
+    background: var(--snow);
+    padding: var(--s-7) 0;
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 642fr 601fr;
+    gap: 34px;
+    align-items: stretch;
+  }
+  /* Left column container — vertically stacks two separate cards. */
+  .hero__copy {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  /* Top card: event info (title, sub, chips, lede). --beginning fill, 24px
        uniform padding per Figma 2748:43946. */
-    .hero__event-card {
-      background: var(--beginning);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      padding: var(--s-5);            /* 24px uniform — was 32/24 */
-      flex: 1;
-      display: flex; flex-direction: column;
-      gap: 10px;                       /* matches Figma itemSpacing */
+  .hero__event-card {
+    background: var(--beginning);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--s-5); /* 24px uniform — was 32/24 */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* matches Figma itemSpacing */
+  }
+  /* Bottom card: booking CTA panel — 16px uniform per Figma. */
+  .hero__cta-card {
+    background: var(--beginning);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--s-4); /* 16px uniform — was 16/24 */
+    flex: 0 0 auto;
+  }
+  /* Hero typography — gap-based rhythm (no margins) matches Figma 10px stack. */
+  .hero__chips {
+    display: flex;
+    gap: var(--s-2);
+    flex-wrap: wrap;
+    margin: 0;
+  }
+  .hero__copy h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(26px, 3vw, 36px); /* trimmed max 40 -> 36 so it fits 642 col */
+    text-transform: uppercase;
+    line-height: var(--lh-display);
+    margin: 0;
+  }
+  .hero__sub {
+    font-size: var(--t-lg);
+    color: var(--ink-muted);
+    margin: 0;
+  }
+  /* Inner bordered card for the lede paragraph — Figma "Description" frame inside event card. */
+  .hero__lede-box {
+    background: var(--snow);
+    border: 1px solid var(--rose-300);
+    border-radius: var(--radius);
+    padding: var(--s-4);
+    margin-top: auto; /* pushes lede card to fill remaining space */
+  }
+  .hero__lede {
+    color: var(--ink);
+    font-size: var(--t-base);
+    margin: 0;
+  }
+  .hero__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--garden-100);
+    color: var(--garden-700);
+    font-size: var(--t-label);
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+  }
+  .hero__actions {
+    display: flex;
+    gap: var(--s-2);
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  .hero__actions .btn,
+  .hero__actions .hero__meta {
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .hero__photo {
+    overflow: hidden;
+    min-height: 360px;
+    background: url('once-upon-a-time-assets/landing/jazz-hero.jpg') center/cover no-repeat;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition:
+      opacity 0.3s ease,
+      background-image 0.3s ease;
+  }
+  /* Mobile: card stacks, so give the image a defined height + wrap the buttons */
+  @media (max-width: 900px) {
+    .hero__actions {
+      flex-wrap: wrap;
     }
-    /* Bottom card: booking CTA panel — 16px uniform per Figma. */
-    .hero__cta-card {
-      background: var(--beginning);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      padding: var(--s-4);             /* 16px uniform — was 16/24 */
-      flex: 0 0 auto;
-    }
-    /* Hero typography — gap-based rhythm (no margins) matches Figma 10px stack. */
-    .hero__chips { display: flex; gap: var(--s-2); flex-wrap: wrap; margin: 0; }
-    .hero__copy h1 {
-      font-family: var(--serif); font-weight: 400;
-      font-size: clamp(26px, 3vw, 36px);  /* trimmed max 40 -> 36 so it fits 642 col */
-      text-transform: uppercase;
-      line-height: var(--lh-display);
-      margin: 0;
-    }
-    .hero__sub { font-size: var(--t-lg); color: var(--ink-muted); margin: 0; }
-    /* Inner bordered card for the lede paragraph — Figma "Description" frame inside event card. */
-    .hero__lede-box {
-      background: var(--snow);
-      border: 1px solid var(--rose-300);
-      border-radius: var(--radius);
-      padding: var(--s-4);
-      margin-top: auto;            /* pushes lede card to fill remaining space */
-    }
-    .hero__lede { color: var(--ink); font-size: var(--t-base); margin: 0; }
-    .hero__meta {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--garden-100); color: var(--garden-700);
-      font-size: var(--t-label); font-weight: 600;
-      padding: 6px 14px; border-radius: var(--radius-pill);
-    }
-    .hero__actions { display: flex; gap: var(--s-2); flex-wrap: nowrap; align-items: center; }
-    .hero__actions .btn, .hero__actions .hero__meta { white-space: nowrap; flex: 0 0 auto; }
     .hero__photo {
-      overflow: hidden;
-      min-height: 360px;
-      background: url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      transition: opacity .3s ease, background-image .3s ease;
+      aspect-ratio: 16/10;
+      min-height: 0;
     }
-    /* Mobile: card stacks, so give the image a defined height + wrap the buttons */
-    @media (max-width: 900px) {
-      .hero__actions { flex-wrap: wrap; }
-      .hero__photo { aspect-ratio: 16/10; min-height: 0; }
+  }
+  .hero__copy > * {
+    transition: opacity 0.3s ease;
+  }
+  .hero[data-fading] .hero__copy > *,
+  .hero[data-fading] .hero__photo {
+    opacity: 0;
+  }
+  .hero__dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: var(--s-5);
+  }
+  .hero__dots span {
+    /* 24px hit-area, 8px visual using ::before — meets WCAG target-size 24×24 minimum. */
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+  }
+  .hero__dots span::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rose-300);
+    transition:
+      background 0.2s,
+      transform 0.2s;
+  }
+  .hero__dots span[aria-current='true']::before {
+    background: var(--rose);
+    transform: scale(1.3);
+  }
+  .hero__dots span:focus-visible {
+    outline: 2px solid var(--rose);
+    outline-offset: 2px;
+    border-radius: 50%;
+  }
+  @media (max-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
     }
-    .hero__copy > * { transition: opacity .3s ease; }
-    .hero[data-fading] .hero__copy > *, .hero[data-fading] .hero__photo { opacity: 0; }
-    .hero__dots { display: flex; gap: 8px; justify-content: center; margin-top: var(--s-5); }
-    .hero__dots span {
-      /* 24px hit-area, 8px visual using ::before — meets WCAG target-size 24×24 minimum. */
-      width: 24px; height: 24px;
-      display: inline-flex; align-items: center; justify-content: center;
-      border: 0; background: transparent; padding: 0; cursor: pointer;
-    }
-    .hero__dots span::before {
-      content: ""; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--rose-300); transition: background .2s, transform .2s;
-    }
-    .hero__dots span[aria-current="true"]::before { background: var(--rose); transform: scale(1.3); }
-    .hero__dots span:focus-visible { outline: 2px solid var(--rose); outline-offset: 2px; border-radius: 50%; }
-    @media (max-width: 900px) { .hero__grid { grid-template-columns: 1fr; } }
+  }
 
-    /* ===== Today's Classes (rose surface, full bleed) ===== */
-    .classes-today {
-      background: var(--rose-400);
-      color: var(--snow);
-      padding: var(--s-8) 0;
+  /* ===== Today's Classes (rose surface, full bleed) ===== */
+  .classes-today {
+    background: var(--rose-400);
+    color: var(--snow);
+    padding: var(--s-8) 0;
+  }
+  .classes-today .wrap {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--s-6);
+  }
+  .classes-today__heading h2 {
+    color: var(--snow);
+    margin-bottom: var(--s-2);
+  }
+  .classes-today__heading .eyebrow {
+    color: var(--rose-100);
+    margin-bottom: 0;
+  }
+  .classes-today__list {
+    display: grid;
+    gap: var(--s-3);
+    margin-top: var(--s-4);
+  }
+  .class-row {
+    background: var(--beginning);
+    color: var(--ink);
+    border-radius: var(--radius-lg);
+    padding: var(--s-6) var(--s-5);
+    min-height: 120px; /* was 88 — Figma blocks ~120-200px tall */
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--s-4);
+    box-shadow: var(--shadow-sm);
+  }
+  /* Number badge — Figma reference shows [1][2][3] in front of each class. */
+  .class-row__num {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid var(--ink);
+    border-radius: var(--radius-sm);
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: var(--t-label);
+    color: var(--ink);
+  }
+  /* Today's highlighted class — green selected state per Figma 2748:43830. */
+  .class-row--highlighted {
+    background: var(--garden-300);
+    box-shadow:
+      0 0 0 3px var(--snow),
+      0 0 0 5px var(--garden-300);
+  }
+  .class-row__title {
+    font-weight: 700;
+    font-size: var(--t-base);
+  }
+  .class-row__instructor {
+    font-size: var(--t-label);
+    color: var(--ink-muted);
+    margin-top: 2px;
+  }
+  .class-row__time {
+    background: var(--rose-100);
+    color: var(--ink);
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: var(--t-label);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .calendar {
+    background: var(--snow);
+    color: var(--ink);
+    border-radius: var(--radius-lg);
+    padding: var(--s-5);
+    box-shadow: var(--shadow-sm);
+  }
+  .calendar__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--s-4);
+  }
+  .calendar__title {
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .calendar__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    font-weight: 600;
+    font-size: var(--t-label);
+  }
+  .calendar__nav button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    color: var(--ink-muted);
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .calendar__nav button:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+  .calendar__grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    text-align: center;
+    font-size: var(--t-label);
+  }
+  .calendar__dow {
+    color: var(--ink-muted);
+    font-weight: 600;
+    padding: 4px 0;
+  }
+  .calendar__day {
+    width: 40px;
+    height: 40px; /* was 28 — Figma cells ~48 (clamped to fit grid) */
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    font-weight: 500;
+  }
+  .calendar__day--garden {
+    background: var(--garden-300);
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .calendar__day--rose {
+    background: var(--rose-300);
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .calendar__day--blush {
+    background: var(--blush);
+    color: var(--ink);
+    font-weight: 700;
+  }
+  /* blush stays a light surface in dark mode — keep marker text dark */
+  .theme-dark .calendar__day--blush {
+    color: var(--rose-100);
+  }
+  .calendar__legend {
+    display: flex;
+    gap: var(--s-4);
+    margin-top: var(--s-3);
+    font-size: var(--t-micro);
+    color: var(--ink-muted);
+  }
+  .calendar__legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .calendar__legend span::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .calendar__legend .legend--open::before {
+    background: var(--garden-300);
+  }
+  .calendar__legend .legend--filling::before {
+    background: var(--blush);
+  }
+  .calendar__legend .legend--full::before {
+    background: var(--rose-300);
+  }
+  @media (max-width: 900px) {
+    .classes-today .wrap {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== Who We Are ===== */
+  .who {
+    padding: var(--s-9) 0;
+  }
+  .who__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+  }
+  /* Figma 2748:43976 — "Who We Are" is mixed case, not uppercase. */
+  .who__copy h2 {
+    margin-bottom: var(--s-4);
+    text-transform: none;
+  }
+  .who__copy p {
+    font-size: var(--t-base);
+    color: var(--ink);
+  }
+  .who__features {
+    display: grid;
+    gap: var(--s-3);
+    margin-top: var(--s-5);
+  }
+  .feature {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: var(--s-3);
+    align-items: start;
+  }
+  .feature .ph {
+    font-size: 22px;
+    color: var(--garden);
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--garden-100);
+    border-radius: 50%;
+  }
+  .feature p {
+    margin: 0;
+    font-size: var(--t-base);
+    color: var(--ink);
+  }
+  .who__photo {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 5/6;
+    background:
+      linear-gradient(rgba(139, 80, 68, 0.45), rgba(139, 80, 68, 0.45)),
+      url('once-upon-a-time-assets/landing/who-we-are-globe.jpg') center/cover no-repeat;
+    background-blend-mode: multiply, normal;
+    box-shadow: var(--shadow-md);
+  }
+  @media (max-width: 900px) {
+    .who__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== Class detail cards (featured carousel) ===== */
+  .programs {
+    padding: var(--s-9) 0;
+  }
+  .programs .carousel__track {
+    padding: var(--s-2) 0 var(--s-1);
+    scroll-padding-inline: 0;
+  }
+  .programs .carousel__slide {
+    flex: 0 0 calc(50% - (var(--s-5) / 2));
+    scroll-snap-align: start;
+  }
+  @media (max-width: 720px) {
+    .programs .carousel__slide {
+      flex: 0 0 100%;
+    }
+  }
+  .programs__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-5);
+  }
+  .program-card {
+    background: var(--beginning);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  .program-card__photo {
+    aspect-ratio: 16 / 9;
+    background-size: cover;
+    background-position: center;
+  }
+  .program-card--story .program-card__photo {
+    background-image: url('once-upon-a-time-assets/landing/story-jazz.jpg');
+  }
+  .program-card--ballet .program-card__photo {
+    background-image: url('once-upon-a-time-assets/landing/ballet-card.jpg');
+  }
+  .program-card--arts .program-card__photo {
+    background-image: url('once-upon-a-time-assets/landing/arts-craft.jpg');
+  }
+  .program-card--theater .program-card__photo {
+    background-image: url('once-upon-a-time-assets/landing/outdoor-theater.jpg');
+  }
+  .program-card__body {
+    padding: var(--s-5);
+    display: grid;
+    gap: var(--s-3);
+  }
+  .program-card__head {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-3);
+    align-items: start;
+  }
+  .program-card__title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: var(--t-h3);
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .program-card__price {
+    font-size: var(--t-label);
+    color: var(--ink-muted);
+    text-align: right;
+  }
+  .program-card__price strong {
+    display: block;
+    color: var(--ink);
+    font-size: var(--t-base);
+  }
+  .chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    font-size: var(--t-micro);
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--rose);
+    color: var(--rose-700);
+    background: transparent;
+  }
+  .chip--garden {
+    border-color: var(--garden);
+    color: var(--garden-700);
+  }
+  .program-card__meta {
+    font-size: var(--t-label);
+    color: var(--ink-muted);
+  }
+  .program-card__copy {
+    font-size: var(--t-base);
+    color: var(--ink);
+    margin: 0;
+  }
+  .program-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+    padding-top: var(--s-3);
+  }
+  .program-card__age {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--t-label);
+    color: var(--ink-muted);
+  }
+  .program-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+  }
+  .program-card__icon-btn {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--beginning);
+    border: 1px solid var(--rose);
+    border-radius: var(--radius-sm);
+    color: var(--rose);
+    cursor: pointer;
+    box-shadow: var(--shadow-xs-skeuo);
+    transition:
+      background var(--dur-1) var(--ease),
+      color var(--dur-1) var(--ease);
+  }
+  .program-card__icon-btn .ph {
+    font-size: var(--icon-md);
+  }
+  .program-card__icon-btn:hover {
+    background: var(--rose-50);
+  }
+  .program-card__icon-btn:focus-visible {
+    outline: none;
+    box-shadow:
+      0 1px 2px rgba(10, 13, 18, 0.05),
+      0 0 0 2px var(--snow),
+      0 0 0 4px var(--rose),
+      inset 0 0 0 1px rgba(10, 13, 18, 0.18),
+      inset 0 -2px 0 rgba(10, 13, 18, 0.05);
+  }
+  .program-card__icon-btn[aria-pressed='true'] {
+    background: var(--rose);
+    color: var(--snow);
+  }
+  @media (max-width: 720px) {
+    .programs__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== Donor Spotlight (single continuous band) ===== */
+  .donor {
+    background:
+      linear-gradient(rgba(139, 80, 68, 0.65), rgba(139, 80, 68, 0.72)),
+      url('once-upon-a-time-assets/landing/queens-skyline.jpg') center/cover no-repeat;
+    color: var(--snow);
+    padding: var(--s-9) 0;
+  }
+  .donor h2 {
+    color: var(--snow);
+    margin-bottom: var(--s-4);
+    text-align: center;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(36px, 4.4vw, 56px);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .donor__lede {
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 78ch;
+    margin: 0 auto var(--s-7);
+    text-align: center;
+    font-size: var(--t-lg);
+    line-height: var(--lh-body);
+  }
+  .donor__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-4);
+    margin-bottom: var(--s-8);
+  }
+  .donor__stat {
+    background: var(--beginning);
+    border-radius: var(--radius-sm); /* 8px — matches Figma Stats-card */
+    padding: var(--s-4); /* 16 uniform — was 16/24 */
+    text-align: left;
+  }
+  .donor__stat strong {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 28px;
+    display: block;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+  .donor__stat span {
+    font-size: var(--t-label);
+    color: var(--ink-muted);
+  }
+
+  /* Testimonials (inside donor band, no card bg, avatar-left text-right) */
+  .donor__testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--s-5);
+    align-items: start;
+  }
+  .testimonial {
+    display: grid;
+    grid-template-columns: 96px 1fr;
+    gap: var(--s-4);
+    align-items: start;
+    margin: 0;
+  }
+  .testimonial__avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: var(--beginning);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 40px;
+    color: var(--rose);
+    line-height: 1;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
+  }
+  .testimonial p {
+    color: var(--snow);
+    font-size: var(--t-label);
+    line-height: var(--lh-body);
+    margin: 0 0 var(--s-3);
+  }
+  .testimonial cite {
+    font-style: normal;
+    font-weight: 700;
+    font-size: var(--t-base);
+    color: var(--snow);
+    display: block;
+  }
+  /* Alternate avatar position: 1st left of text, 2nd left of text, 3rd left of text — match PDF flow */
+  @media (max-width: 900px) {
+    .donor__stats,
+    .donor__testimonials {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== Support Our Mission ===== */
+  .mission {
+    padding: var(--s-9) 0;
+  }
+  .mission__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: var(--s-7);
+    align-items: center;
+  }
+  .mission__photo {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    background:
+      linear-gradient(135deg, rgba(107, 109, 32, 0.3), rgba(76, 47, 59, 0.3)),
+      url('once-upon-a-time-assets/landing/mission-hands.jpg') center/cover no-repeat;
+    box-shadow: var(--shadow-md);
+  }
+  .mission__copy h2 {
+    margin-bottom: var(--s-3);
+  }
+  .mission__copy > p {
+    font-size: var(--t-base);
+    color: var(--ink);
+    margin-bottom: var(--s-5);
+  }
+  .mission__faq {
+    display: grid;
+    gap: var(--s-3);
+    margin: var(--s-5) 0;
+  }
+  .mission__faq h3 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: var(--t-base);
+    margin: 0 0 4px;
+    color: var(--ink);
+  }
+  .mission__faq p {
+    font-size: var(--t-label);
+    color: var(--ink-muted);
+    margin: 0;
+    line-height: var(--lh-body);
+  }
+  .mission__cta {
+    display: flex;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+    margin-top: var(--s-5);
+  }
+  @media (max-width: 900px) {
+    .mission__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------- Small-phone refinements ---------- */
+  @media (max-width: 540px) {
+    .hero__grid {
+      grid-template-columns: 1fr;
+    }
+    .hero__copy {
+      padding: var(--s-5);
+    }
+    .hero__actions {
+      flex-direction: column;
+    }
+    .hero__actions .btn {
+      width: 100%;
     }
     .classes-today .wrap {
-      display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--s-6);
+      grid-template-columns: 1fr;
     }
-    .classes-today__heading h2 { color: var(--snow); margin-bottom: var(--s-2); }
-    .classes-today__heading .eyebrow { color: var(--rose-100); margin-bottom: 0; }
-    .classes-today__list { display: grid; gap: var(--s-3); margin-top: var(--s-4); }
-    .class-row {
-      background: var(--beginning); color: var(--ink);
-      border-radius: var(--radius-lg);
-      padding: var(--s-6) var(--s-5);
-      min-height: 120px;            /* was 88 — Figma blocks ~120-200px tall */
-      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s-4);
-      box-shadow: var(--shadow-sm);
-    }
-    /* Number badge — Figma reference shows [1][2][3] in front of each class. */
-    .class-row__num {
-      width: 32px; height: 32px;
-      display: inline-flex; align-items: center; justify-content: center;
-      border: 1.5px solid var(--ink);
-      border-radius: var(--radius-sm);
-      font-family: var(--sans); font-weight: 700; font-size: var(--t-label);
-      color: var(--ink);
-    }
-    /* Today's highlighted class — green selected state per Figma 2748:43830. */
-    .class-row--highlighted {
-      background: var(--garden-300);
-      box-shadow: 0 0 0 3px var(--snow), 0 0 0 5px var(--garden-300);
-    }
-    .class-row__title { font-weight: 700; font-size: var(--t-base); }
-    .class-row__instructor { font-size: var(--t-label); color: var(--ink-muted); margin-top: 2px; }
-    .class-row__time {
-      background: var(--rose-100); color: var(--ink);
-      padding: 6px 12px; border-radius: var(--radius-sm);
-      font-size: var(--t-label); font-weight: 600; white-space: nowrap;
-    }
-    .calendar {
-      background: var(--snow); color: var(--ink);
-      border-radius: var(--radius-lg);
-      padding: var(--s-5);
-      box-shadow: var(--shadow-sm);
-    }
-    .calendar__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--s-4); }
-    .calendar__title { font-weight: 700; letter-spacing: .04em; }
-    .calendar__nav { display: flex; align-items: center; gap: var(--s-3); font-weight: 600; font-size: var(--t-label); }
-    .calendar__nav button {
-      background: transparent; border: 0; padding: 0; color: var(--ink-muted);
-      width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center;
-      border-radius: 50%;
-    }
-    .calendar__nav button:hover { background: rgba(0,0,0,.06); }
-    .calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; font-size: var(--t-label); }
-    .calendar__dow { color: var(--ink-muted); font-weight: 600; padding: 4px 0; }
-    .calendar__day {
-      width: 40px; height: 40px;     /* was 28 — Figma cells ~48 (clamped to fit grid) */
-      border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
-      margin: 0 auto;
-      font-weight: 500;
-    }
-    .calendar__day--garden { background: var(--garden-300); color: var(--ink); font-weight: 700; }
-    .calendar__day--rose   { background: var(--rose-300);   color: var(--ink); font-weight: 700; }
-    .calendar__day--blush  { background: var(--blush);      color: var(--ink); font-weight: 700; }
-    /* blush stays a light surface in dark mode — keep marker text dark */
-    .theme-dark .calendar__day--blush { color: var(--rose-100); }
-    .calendar__legend { display: flex; gap: var(--s-4); margin-top: var(--s-3); font-size: var(--t-micro); color: var(--ink-muted); }
-    .calendar__legend span { display: inline-flex; align-items: center; gap: 6px; }
-    .calendar__legend span::before { content: ''; width: 8px; height: 8px; border-radius: 50%; }
-    .calendar__legend .legend--open::before { background: var(--garden-300); }
-    .calendar__legend .legend--filling::before { background: var(--blush); }
-    .calendar__legend .legend--full::before { background: var(--rose-300); }
-    @media (max-width: 900px) {
-      .classes-today .wrap { grid-template-columns: 1fr; }
-    }
-
-    /* ===== Who We Are ===== */
-    .who { padding: var(--s-9) 0; }
-    .who__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
-    /* Figma 2748:43976 — "Who We Are" is mixed case, not uppercase. */
-    .who__copy h2 { margin-bottom: var(--s-4); text-transform: none; }
-    .who__copy p { font-size: var(--t-base); color: var(--ink); }
-    .who__features { display: grid; gap: var(--s-3); margin-top: var(--s-5); }
-    .feature { display: grid; grid-template-columns: 36px 1fr; gap: var(--s-3); align-items: start; }
-    .feature .ph {
-      font-size: 22px; color: var(--garden);
-      width: 36px; height: 36px;
-      display: inline-flex; align-items: center; justify-content: center;
-      background: var(--garden-100); border-radius: 50%;
-    }
-    .feature p { margin: 0; font-size: var(--t-base); color: var(--ink); }
-    .who__photo {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      aspect-ratio: 5/6;
-      background:
-        linear-gradient(rgba(139,80,68,.45), rgba(139,80,68,.45)),
-        url("once-upon-a-time-assets/landing/who-we-are-globe.jpg") center/cover no-repeat;
-      background-blend-mode: multiply, normal;
-      box-shadow: var(--shadow-md);
-    }
-    @media (max-width: 900px) { .who__grid { grid-template-columns: 1fr; } }
-
-    /* ===== Class detail cards (featured carousel) ===== */
-    .programs { padding: var(--s-9) 0; }
-    .programs .carousel__track { padding: var(--s-2) 0 var(--s-1); scroll-padding-inline: 0; }
-    .programs .carousel__slide { flex: 0 0 calc(50% - (var(--s-5) / 2)); scroll-snap-align: start; }
-    @media (max-width: 720px) { .programs .carousel__slide { flex: 0 0 100%; } }
-    .programs__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
-    .program-card {
-      background: var(--beginning); border-radius: var(--radius-lg);
-      overflow: hidden; box-shadow: var(--shadow-sm);
-      display: grid; grid-template-rows: auto 1fr;
-    }
-    .program-card__photo { aspect-ratio: 16 / 9; background-size: cover; background-position: center; }
-    .program-card--story   .program-card__photo { background-image: url("once-upon-a-time-assets/landing/story-jazz.jpg"); }
-    .program-card--ballet  .program-card__photo { background-image: url("once-upon-a-time-assets/landing/ballet-card.jpg"); }
-    .program-card--arts    .program-card__photo { background-image: url("once-upon-a-time-assets/landing/arts-craft.jpg"); }
-    .program-card--theater .program-card__photo { background-image: url("once-upon-a-time-assets/landing/outdoor-theater.jpg"); }
-    .program-card__body { padding: var(--s-5); display: grid; gap: var(--s-3); }
-    .program-card__head { display: flex; justify-content: space-between; gap: var(--s-3); align-items: start; }
-    .program-card__title { font-family: var(--serif); font-weight: 400; font-size: var(--t-h3); margin: 0; text-transform: uppercase; }
-    .program-card__price { font-size: var(--t-label); color: var(--ink-muted); text-align: right; }
-    .program-card__price strong { display: block; color: var(--ink); font-size: var(--t-base); }
-    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
-    .chip {
-      font-size: var(--t-micro); font-weight: 600; padding: 4px 10px;
-      border-radius: var(--radius-pill); border: 1px solid var(--rose);
-      color: var(--rose-700); background: transparent;
-    }
-    .chip--garden { border-color: var(--garden); color: var(--garden-700); }
-    .program-card__meta { font-size: var(--t-label); color: var(--ink-muted); }
-    .program-card__copy { font-size: var(--t-base); color: var(--ink); margin: 0; }
-    .program-card__footer { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; padding-top: var(--s-3); }
-    .program-card__age { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-label); color: var(--ink-muted); }
-    .program-card__cta { display: inline-flex; align-items: center; gap: var(--s-2); }
-    .program-card__icon-btn {
-      width: 40px; height: 40px;
-      display: inline-flex; align-items: center; justify-content: center;
-      background: var(--beginning);
-      border: 1px solid var(--rose);
-      border-radius: var(--radius-sm);
-      color: var(--rose);
-      cursor: pointer;
-      box-shadow: var(--shadow-xs-skeuo);
-      transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
-    }
-    .program-card__icon-btn .ph { font-size: var(--icon-md); }
-    .program-card__icon-btn:hover { background: var(--rose-50); }
-    .program-card__icon-btn:focus-visible {
-      outline: none;
-      box-shadow:
-        0 1px 2px rgba(10,13,18,.05),
-        0 0 0 2px var(--snow),
-        0 0 0 4px var(--rose),
-        inset 0 0 0 1px rgba(10,13,18,.18),
-        inset 0 -2px 0 rgba(10,13,18,.05);
-    }
-    .program-card__icon-btn[aria-pressed="true"] { background: var(--rose); color: var(--snow); }
-    @media (max-width: 720px) { .programs__grid { grid-template-columns: 1fr; } }
-
-    /* ===== Donor Spotlight (single continuous band) ===== */
-    .donor {
-      background:
-        linear-gradient(rgba(139,80,68,.65), rgba(139,80,68,.72)),
-        url("once-upon-a-time-assets/landing/queens-skyline.jpg") center/cover no-repeat;
-      color: var(--snow);
-      padding: var(--s-9) 0;
-    }
-    .donor h2 {
-      color: var(--snow); margin-bottom: var(--s-4); text-align: center;
-      font-family: var(--serif); font-weight: 400;
-      font-size: clamp(36px, 4.4vw, 56px);
-      text-transform: uppercase; letter-spacing: .04em;
-    }
-    .donor__lede {
-      color: rgba(255,255,255,.92); max-width: 78ch; margin: 0 auto var(--s-7);
-      text-align: center; font-size: var(--t-lg); line-height: var(--lh-body);
-    }
-    .donor__stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-4);
-      margin-bottom: var(--s-8);
+    .donor__testimonials {
+      grid-template-columns: 1fr;
+      gap: var(--s-5);
     }
     .donor__stat {
-      background: var(--beginning);
-      border-radius: var(--radius-sm);  /* 8px — matches Figma Stats-card */
-      padding: var(--s-4);              /* 16 uniform — was 16/24 */
-      text-align: left;
-    }
-    .donor__stat strong {
-      font-family: var(--sans); font-weight: 700;
-      font-size: 28px; display: block; line-height: 1.1;
-      margin-bottom: 4px; color: var(--ink);
-    }
-    .donor__stat span { font-size: var(--t-label); color: var(--ink-muted); }
-
-    /* Testimonials (inside donor band, no card bg, avatar-left text-right) */
-    .donor__testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); align-items: start; }
-    .testimonial {
-      display: grid;
-      grid-template-columns: 96px 1fr;
-      gap: var(--s-4);
-      align-items: start;
-      margin: 0;
+      flex-direction: column;
+      text-align: center;
     }
     .testimonial__avatar {
-      width: 96px; height: 96px; border-radius: 50%;
-      background: var(--beginning);
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--serif); font-weight: 400; font-size: 40px;
-      color: var(--rose); line-height: 1;
-      box-shadow: 0 2px 12px rgba(0,0,0,.22);
+      width: 80px !important;
+      height: 80px !important;
     }
-    .testimonial p {
-      color: var(--snow); font-size: var(--t-label);
-      line-height: var(--lh-body); margin: 0 0 var(--s-3);
+    .who__grid {
+      grid-template-columns: 1fr;
     }
-    .testimonial cite {
-      font-style: normal; font-weight: 700;
-      font-size: var(--t-base); color: var(--snow);
-      display: block;
-    }
-    /* Alternate avatar position: 1st left of text, 2nd left of text, 3rd left of text — match PDF flow */
-    @media (max-width: 900px) {
-      .donor__stats, .donor__testimonials { grid-template-columns: 1fr; }
-    }
-
-    /* ===== Support Our Mission ===== */
-    .mission { padding: var(--s-9) 0; }
-    .mission__grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: var(--s-7); align-items: center; }
-    .mission__photo {
-      border-radius: var(--radius-lg);
-      overflow: hidden; aspect-ratio: 3/4;
-      background:
-        linear-gradient(135deg, rgba(107,109,32,.3), rgba(76,47,59,.3)),
-        url("once-upon-a-time-assets/landing/mission-hands.jpg") center/cover no-repeat;
-      box-shadow: var(--shadow-md);
-    }
-    .mission__copy h2 { margin-bottom: var(--s-3); }
-    .mission__copy > p { font-size: var(--t-base); color: var(--ink); margin-bottom: var(--s-5); }
-    .mission__faq { display: grid; gap: var(--s-3); margin: var(--s-5) 0; }
-    .mission__faq h3 { font-family: var(--sans); font-weight: 700; font-size: var(--t-base); margin: 0 0 4px; color: var(--ink); }
-    .mission__faq p { font-size: var(--t-label); color: var(--ink-muted); margin: 0; line-height: var(--lh-body); }
-    .mission__cta { display: flex; gap: var(--s-3); flex-wrap: wrap; margin-top: var(--s-5); }
-    @media (max-width: 900px) { .mission__grid { grid-template-columns: 1fr; } }
-
-    /* ---------- Small-phone refinements ---------- */
-    @media (max-width: 540px) {
-      .hero__grid { grid-template-columns: 1fr; }
-      .hero__copy { padding: var(--s-5); }
-      .hero__actions { flex-direction: column; }
-      .hero__actions .btn { width: 100%; }
-      .classes-today .wrap { grid-template-columns: 1fr; }
-      .donor__testimonials { grid-template-columns: 1fr; gap: var(--s-5); }
-      .donor__stat { flex-direction: column; text-align: center; }
-      .testimonial__avatar { width: 80px !important; height: 80px !important; }
-      .who__grid { grid-template-columns: 1fr; }
-    }
-/* Per-page button override (Figma AI Prototype): this frame uses --rose
+  }
+  /* Per-page button override (Figma AI Prototype): this frame uses --rose
        fill for Buttons/Button-brand, not the global Woody Brown default. */
-    .btn { --btn-bg: var(--rose); --btn-bg-hover: var(--rose-700); --btn-ring: var(--rose); }
+  .btn {
+    --btn-bg: var(--rose);
+    --btn-bg-hover: var(--rose-700);
+    --btn-ring: var(--rose);
+  }
 </style>
 
 <!-- ============ HERO ============ -->
-    <section class="hero" data-hero>
-      <div class="wrap hero__grid">
-        <div class="hero__copy" aria-live="polite" aria-atomic="false">
-          <div class="hero__event-card">
-            <div class="hero__chips" data-hero-chips>
-              <span class="tag tag--rose">Dance</span>
-              <span class="tag tag--rose">Theater</span>
-              <span class="tag tag--garden">Beginner</span>
-            </div>
-            <h1 data-hero-title>Jazz Class — Winter 2026</h1>
-            <p class="hero__sub" data-hero-sub>Thursdays | 4pm | Ages 10+ | Studio Room A</p>
-            <div class="hero__lede-box">
-              <p class="hero__lede" data-hero-lede>This winter, children will discover the rhythm of jazz through music, movement, and play. Our guided sessions help build listening skills and creative confidence, leading up to a special onstage performance where children get to play instruments and the audience feels the music.</p>
-            </div>
-          </div>
-          <div class="hero__cta-card">
-            <div class="hero__actions" data-hero-actions>
-              <span class="tag tag--rose" data-hero-meta><i class="ph ph-clock" aria-hidden="true"></i> <span data-hero-meta-text>10 spots left</span></span>
-              <a class="btn" href="programs.html" data-hero-cta-primary><i class="ph ph-ticket"></i> <span>Enroll Now</span></a>
-              <button class="btn btn--garden" type="button" data-mock="add-to-cart" data-hero-cta-cart><i class="ph ph-shopping-cart-simple"></i> <span>Add to Cart</span></button>
-              <a class="btn btn--outline" href="seasonal-camps.html" data-hero-cta-learn><span>Learn More</span> <i class="ph ph-caret-double-right" aria-hidden="true"></i></a>
-            </div>
-          </div>
+<section class='hero' data-hero>
+  <div class='wrap hero__grid'>
+    <div class='hero__copy' aria-live='polite' aria-atomic='false'>
+      <div class='hero__event-card'>
+        <div class='hero__chips' data-hero-chips>
+          <span class='tag tag--rose'>Dance</span>
+          <span class='tag tag--rose'>Theater</span>
+          <span class='tag tag--garden'>Beginner</span>
         </div>
-        <div class="hero__photo" role="img" aria-label="Students performing a jazz routine on stage" data-hero-photo></div>
-      </div>
-      <div class="hero__dots" role="tablist" aria-label="Featured programs">
-        <span aria-current="true"></span><span></span><span></span><span></span>
-      </div>
-    </section>
-
-    <!-- ============ TODAY'S CLASSES ============ -->
-    <section class="classes-today" id="programs">
-      <div class="wrap">
-        <div>
-          <div class="classes-today__heading">
-            <span class="eyebrow">Today's Classes</span>
-            <h2>Class&nbsp;Schedule</h2>
-          </div>
-          <div class="classes-today__list">
-            <article class="class-row class-row--highlighted">
-              <span class="class-row__num" aria-hidden="true">1</span>
-              <div>
-                <div class="class-row__title">Beginner Ballet</div>
-                <div class="class-row__instructor">Instructor: Luna Pinelli</div>
-              </div>
-              <span class="class-row__time">10:00&nbsp;–&nbsp;11:00&nbsp;AM</span>
-            </article>
-            <article class="class-row">
-              <span class="class-row__num" aria-hidden="true">2</span>
-              <div>
-                <div class="class-row__title">Art History</div>
-                <div class="class-row__instructor">Instructor: Jerrod Finn</div>
-              </div>
-              <span class="class-row__time">11:00&nbsp;AM&nbsp;–&nbsp;12:00&nbsp;PM</span>
-            </article>
-            <article class="class-row">
-              <span class="class-row__num" aria-hidden="true">3</span>
-              <div>
-                <div class="class-row__title">Salsa Dance</div>
-                <div class="class-row__instructor">Instructor: Ashley Roza</div>
-              </div>
-              <span class="class-row__time">12:00&nbsp;–&nbsp;1:00&nbsp;PM</span>
-            </article>
-          </div>
-        </div>
-        <div class="calendar">
-          <div class="calendar__head">
-            <span class="calendar__title">Activity</span>
-            <span class="calendar__nav">
-              <button type="button" aria-label="Previous month" data-cal-prev><i class="ph ph-caret-left"></i></button>
-              <span data-cal-label>Jan&nbsp;2026</span>
-              <button type="button" aria-label="Next month" data-cal-next><i class="ph ph-caret-right"></i></button>
-            </span>
-          </div>
-          <div class="calendar__grid">
-            <span class="calendar__dow">S</span><span class="calendar__dow">M</span><span class="calendar__dow">T</span><span class="calendar__dow">W</span><span class="calendar__dow">T</span><span class="calendar__dow">F</span><span class="calendar__dow">S</span>
-            <span class="calendar__day">1</span><span class="calendar__day calendar__day--garden">2</span><span class="calendar__day">3</span><span class="calendar__day calendar__day--garden">4</span><span class="calendar__day">5</span><span class="calendar__day calendar__day--garden">6</span><span class="calendar__day">7</span>
-            <span class="calendar__day">8</span><span class="calendar__day">9</span><span class="calendar__day calendar__day--garden">10</span><span class="calendar__day calendar__day--garden">11</span><span class="calendar__day">12</span><span class="calendar__day">13</span><span class="calendar__day">14</span>
-            <span class="calendar__day">15</span><span class="calendar__day">16</span><span class="calendar__day calendar__day--rose">17</span><span class="calendar__day">18</span><span class="calendar__day">19</span><span class="calendar__day calendar__day--garden">20</span><span class="calendar__day">21</span>
-            <span class="calendar__day">22</span><span class="calendar__day">23</span><span class="calendar__day">24</span><span class="calendar__day calendar__day--blush">25</span><span class="calendar__day">26</span><span class="calendar__day calendar__day--blush">27</span><span class="calendar__day">28</span>
-            <span class="calendar__day">29</span><span class="calendar__day">30</span><span class="calendar__day calendar__day--blush">31</span>
-          </div>
-          <div class="calendar__legend">
-            <span class="legend--open">Open</span>
-            <span class="legend--filling">Filling</span>
-            <span class="legend--full">Full</span>
-          </div>
+        <h1 data-hero-title>Jazz Class — Winter 2026</h1>
+        <p class='hero__sub' data-hero-sub>Thursdays | 4pm | Ages 10+ | Studio Room A</p>
+        <div class='hero__lede-box'>
+          <p class='hero__lede' data-hero-lede>
+            This winter, children will discover the rhythm of jazz through music, movement, and play. Our guided
+            sessions help build listening skills and creative confidence, leading up to a special onstage performance
+            where children get to play instruments and the audience feels the music.
+          </p>
         </div>
       </div>
-    </section>
-
-    <!-- ============ WHO WE ARE ============ -->
-    <section class="who wrap" data-anim="fade-up">
-      <div class="who__grid">
-        <div class="who__copy">
-          <span class="eyebrow">Our Story</span>
-          <h2>Who&nbsp;We&nbsp;Are</h2>
-          <p>Once Upon a Time is a nonprofit dedicated to empowering the community through the language of dance, music, art, and theater. The organization focuses on restoring and expanding these essential programs, providing a space for people to re-engage and support its impactful mission.</p>
-          <div class="who__features">
-            <div class="feature"><i class="ph ph-smiley"></i><p>Empowering children through dance and theatre programs</p></div>
-            <div class="feature"><i class="ph ph-users-three"></i><p>Year-round performances that establish teamwork and skill-development</p></div>
-            <div class="feature"><i class="ph ph-leaf"></i><p>Community-driven arts education rooted in inclusivity and care</p></div>
-          </div>
-          <div style="margin-top: var(--s-5);">
-            <a class="btn" href="about.html">Learn more about us <i class="ph ph-arrow-right"></i></a>
-          </div>
-        </div>
-        <div class="who__photo" role="img" aria-label="Children gathered around a globe of community"></div>
-      </div>
-    </section>
-
-    <!-- ============ PROGRAMS ============ -->
-    <section class="programs wrap" data-anim="fade-up">
-      <div class="carousel" role="group" aria-roledescription="carousel" aria-label="Featured programs">
-        <div class="carousel__controls">
-          <button class="carousel__arrow carousel__arrow--prev" type="button" aria-label="Previous program"><i class="ph ph-caret-left" aria-hidden="true"></i></button>
-          <button class="carousel__arrow carousel__arrow--next" type="button" aria-label="Next program"><i class="ph ph-caret-right" aria-hidden="true"></i></button>
-        </div>
-        <div class="carousel__track">
-        <div class="carousel__slide" role="group" aria-roledescription="slide">
-        <article class="program-card program-card--story">
-          <div class="program-card__photo" role="img" aria-label="Story Jazz performance"></div>
-          <div class="program-card__body">
-            <div class="program-card__head">
-              <h3 class="program-card__title">Story Jazz</h3>
-              <div class="program-card__price"><span>Starting at</span><strong>$150 / week</strong></div>
-            </div>
-            <div class="chips">
-              <span class="chip">Dance</span>
-              <span class="chip">Theater</span>
-              <span class="chip chip--garden">Gardening</span>
-            </div>
-            <div class="program-card__meta">Thursdays | 4pm | Ages 10+ | Studio Room A</div>
-            <p class="program-card__copy">This winter, children will discover the rhythm of jazz through music, movement, and play. Our guided sessions help build listening skills and creative confidence, leading up to a special onstage performance where children get to play instruments and the audience feels the music.</p>
-            <div class="program-card__footer">
-              <span class="program-card__age"><i class="ph ph-baby"></i> 13 + Year Old &nbsp;·&nbsp; <i class="ph ph-calendar-check"></i> Enrollment ends Feb 25th, 2026</span>
-              <div class="program-card__cta">
-                <a class="btn btn--sm" href="seasonal-camps.html">View More <i class="ph ph-arrow-right"></i></a>
-                <button class="program-card__icon-btn" type="button" aria-label="Bookmark Story Jazz" aria-pressed="false" data-bookmark="story-jazz"><i class="ph ph-bookmark-simple" aria-hidden="true"></i></button>
-                <button class="program-card__icon-btn" type="button" aria-label="Share Story Jazz" data-share="story-jazz"><i class="ph ph-share-fat" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-        </article>
-        </div>
-        <div class="carousel__slide" role="group" aria-roledescription="slide">
-        <article class="program-card program-card--ballet">
-          <div class="program-card__photo" role="img" aria-label="Beginner's Ballet rehearsal"></div>
-          <div class="program-card__body">
-            <div class="program-card__head">
-              <h3 class="program-card__title">Ballet for Beginners</h3>
-              <div class="program-card__price"><span>Starting at</span><strong>$150 / week</strong></div>
-            </div>
-            <div class="chips">
-              <span class="chip">Dance</span>
-              <span class="chip">Theater</span>
-              <span class="chip chip--garden">Beginner</span>
-            </div>
-            <div class="program-card__meta">Wednesdays | 3pm | Ages 10+ | Studio Room C</div>
-            <p class="program-card__copy">Explore the fundamentals of ballet! In this class, dancers refine their stance and style through guided practice. The season leads to a beautiful theatrical experience as our students perform the classic story of &ldquo;A Christmas Carol&rdquo;.</p>
-            <div class="program-card__footer">
-              <span class="program-card__age"><i class="ph ph-baby"></i> 4 + Year Old &nbsp;·&nbsp; <i class="ph ph-calendar-check"></i> Enrollment ends Feb 25th, 2026</span>
-              <div class="program-card__cta">
-                <a class="btn btn--sm" href="private-lessons.html">View More <i class="ph ph-arrow-right"></i></a>
-                <button class="program-card__icon-btn" type="button" aria-label="Bookmark Ballet for Beginners" aria-pressed="false" data-bookmark="beginners-ballet"><i class="ph ph-bookmark-simple" aria-hidden="true"></i></button>
-                <button class="program-card__icon-btn" type="button" aria-label="Share Ballet for Beginners" data-share="beginners-ballet"><i class="ph ph-share-fat" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-        </article>
-        </div>
-        <div class="carousel__slide" role="group" aria-roledescription="slide">
-        <article class="program-card program-card--arts">
-          <div class="program-card__photo" role="img" aria-label="Children working on an arts and craft project"></div>
-          <div class="program-card__body">
-            <div class="program-card__head">
-              <h3 class="program-card__title">Arts &amp; Craft</h3>
-              <div class="program-card__price"><span>Starting at</span><strong>$150 / week</strong></div>
-            </div>
-            <div class="chips">
-              <span class="chip">Art</span>
-              <span class="chip">Design</span>
-              <span class="chip chip--garden">Craft</span>
-            </div>
-            <div class="program-card__meta">Mondays &amp; Fridays | 3pm | Ages 8+ | Studio Room B</div>
-            <p class="program-card__copy">In this session, young creators craft and style artwork inspired by their favorite hobbies. It’s a hands-on introduction to the basics of design, color, and drawing, giving children a fun way to share their stories through a special show and tell.</p>
-            <div class="program-card__footer">
-              <span class="program-card__age"><i class="ph ph-baby"></i> 8 + Year Old &nbsp;·&nbsp; <i class="ph ph-calendar-check"></i> Enrollment ends Feb 25th, 2026</span>
-              <div class="program-card__cta">
-                <a class="btn btn--sm" href="programs.html">View More <i class="ph ph-arrow-right"></i></a>
-                <button class="program-card__icon-btn" type="button" aria-label="Bookmark Arts &amp; Craft" aria-pressed="false" data-bookmark="arts-craft"><i class="ph ph-bookmark-simple" aria-hidden="true"></i></button>
-                <button class="program-card__icon-btn" type="button" aria-label="Share Arts &amp; Craft" data-share="arts-craft"><i class="ph ph-share-fat" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-        </article>
-        </div>
-        <div class="carousel__slide" role="group" aria-roledescription="slide">
-        <article class="program-card program-card--theater">
-          <div class="program-card__photo" role="img" aria-label="Children performing outdoor theater under the stars"></div>
-          <div class="program-card__body">
-            <div class="program-card__head">
-              <h3 class="program-card__title">Outdoor Theater</h3>
-              <div class="program-card__price"><span>Starting at</span><strong>$150 / week</strong></div>
-            </div>
-            <div class="chips">
-              <span class="chip">Theater</span>
-              <span class="chip">Film</span>
-              <span class="chip chip--garden">Outdoor</span>
-            </div>
-            <div class="program-card__meta">Saturdays | 7pm | Ages 10+ | Central Park</div>
-            <p class="program-card__copy">Experience the magic of cinema under the stars! After watching a classic film together, children will take center stage to replay iconic scenes and perform live, sharing the story with friends, family, and neighbors.</p>
-            <div class="program-card__footer">
-              <span class="program-card__age"><i class="ph ph-baby"></i> 10 + Year Old &nbsp;·&nbsp; <i class="ph ph-calendar-check"></i> Enrollment ends Feb 25th, 2026</span>
-              <div class="program-card__cta">
-                <a class="btn btn--sm" href="programs.html">View More <i class="ph ph-arrow-right"></i></a>
-                <button class="program-card__icon-btn" type="button" aria-label="Bookmark Outdoor Theater" aria-pressed="false" data-bookmark="outdoor-theater"><i class="ph ph-bookmark-simple" aria-hidden="true"></i></button>
-                <button class="program-card__icon-btn" type="button" aria-label="Share Outdoor Theater" data-share="outdoor-theater"><i class="ph ph-share-fat" aria-hidden="true"></i></button>
-              </div>
-            </div>
-          </div>
-        </article>
-        </div>
-        </div>
-        <div class="carousel__dots" role="tablist" aria-label="Choose a program">
-          <button class="carousel__dot" type="button" role="tab" aria-label="Story Jazz"><span></span></button>
-          <button class="carousel__dot" type="button" role="tab" aria-label="Ballet for Beginners"><span></span></button>
-          <button class="carousel__dot" type="button" role="tab" aria-label="Arts &amp; Craft"><span></span></button>
-          <button class="carousel__dot" type="button" role="tab" aria-label="Outdoor Theater"><span></span></button>
+      <div class='hero__cta-card'>
+        <div class='hero__actions' data-hero-actions>
+          <span class='tag tag--rose' data-hero-meta
+            ><i class='ph ph-clock' aria-hidden='true'></i> <span data-hero-meta-text>10 spots left</span></span
+          >
+          <a class='btn' href='programs.html' data-hero-cta-primary
+            ><i class='ph ph-ticket'></i> <span>Enroll Now</span></a
+          >
+          <button class='btn btn--garden' type='button' data-mock='add-to-cart' data-hero-cta-cart>
+            <i class='ph ph-shopping-cart-simple'></i> <span>Add to Cart</span>
+          </button>
+          <a class='btn btn--outline' href='seasonal-camps.html' data-hero-cta-learn
+            ><span>Learn More</span> <i class='ph ph-caret-double-right' aria-hidden='true'></i
+          ></a>
         </div>
       </div>
-    </section>
-
-    <!-- ============ DONOR SPOTLIGHT ============ -->
-    <section class="donor" data-anim="fade-up">
-      <div class="wrap">
-        <h2>Bring the Stage to Life</h2>
-        <p class="donor__lede">Our programs and performances are only possible through the generosity of our donors. This support allows the organization to expand, providing meaningful classes for children and creating new ways for communities to re-engage.</p>
-        <div class="donor__stats">
-          <div class="donor__stat"><strong>500+</strong><span>Students attendance annually</span></div>
-          <div class="donor__stat"><strong>10+</strong><span>Years serving communities</span></div>
-          <div class="donor__stat"><strong>100+</strong><span>Performances conducted</span></div>
-        </div>
-        <div class="donor__testimonials">
-          <figure class="testimonial testimonial--jimin">
-            <div class="testimonial__avatar" aria-hidden="true">M</div>
-            <p>&ldquo;Supporting OUAT has been incredibly rewarding. Seeing how thoughtfully the programs are designed for children.&rdquo;</p>
-            <cite>Mary</cite>
-            <span class="trust-signal">
-              <i class="ph ph-seal-check" aria-hidden="true"></i>
-              <span class="trust-signal__detail">Donor since 2019</span>
-            </span>
-          </figure>
-          <figure class="testimonial testimonial--mary">
-            <div class="testimonial__avatar" aria-hidden="true">T</div>
-            <p>&ldquo;As a long-time supporter, I’ve seen firsthand how OUAT uses the arts to bring stories to life and create opportunities for young performers.&rdquo;</p>
-            <cite>Trevor</cite>
-            <span class="trust-signal">
-              <i class="ph ph-seal-check" aria-hidden="true"></i>
-              <span class="trust-signal__detail">Donor since 2021</span>
-            </span>
-          </figure>
-          <figure class="testimonial testimonial--noelle">
-            <div class="testimonial__avatar" aria-hidden="true">K</div>
-            <p>&ldquo;OUAT exceeded my expectations. Supporting their work has allowed me to help programs reach more communities.&rdquo;</p>
-            <cite>Kelly</cite>
-            <span class="trust-signal">
-              <i class="ph ph-seal-check" aria-hidden="true"></i>
-              <span class="trust-signal__detail">Donor since 2023</span>
-            </span>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ NEWSLETTER CTA ============ -->
-    <div style="text-align:center;padding:var(--s-5) 0;border-top:1px solid var(--line)">
-      <p style="font-size:var(--t-label);color:var(--ink-muted);margin:0 0 var(--s-2)">Stay in the loop</p>
-      <a class="btn btn--outline btn--sm" href="newsletter.html">
-        <i class="ph ph-envelope-simple" aria-hidden="true"></i> Subscribe to our newsletter
-      </a>
     </div>
+    <div class='hero__photo' role='img' aria-label='Students performing a jazz routine on stage' data-hero-photo></div>
+  </div>
+  <div class='hero__dots' role='tablist' aria-label='Featured programs'>
+    <span aria-current='true'></span><span></span><span></span><span></span>
+  </div>
+</section>
 
-    <!-- ============ SUPPORT OUR MISSION ============ -->
-    <section class="mission wrap">
-      <div class="mission__grid">
-        <div class="mission__photo" role="img" aria-label="Hands joined together in support"></div>
-        <div class="mission__copy">
-          <span class="eyebrow">Get Involved</span>
-          <h2>Support Our Mission</h2>
-          <p>Once Upon a Time exists to provide children and families with accessible education through music, art, dance, and theater. The mission is to create meaningful experiences that go beyond re-engaging with communities — it’s about fostering growth and building confidence in every child.</p>
-          <div class="mission__faq">
-            <div class="feature"><i class="ph ph-hand-heart"></i><div><h3>What drives us to do the work that we do?</h3><p>Seeing young performers shine on stage is the heart of this work. Once Upon a Time dedicates every effort to ensuring children receive a high-quality education in the arts, giving them the chance to grow, perform, and make their families proud.</p></div></div>
-            <div class="feature"><i class="ph ph-flower-lotus"></i><div><h3>Who benefits?</h3><p>The entire community benefits — from the children discovering their creative potential to the families who see them grow. This work is made possible by the donors and contributors who invest in our staff and programs, ensuring Once Upon a Time remains a place where the next generation can experience the arts.</p></div></div>
-            <div class="feature"><i class="ph ph-handshake"></i><div><h3>How do our programs transform a child’s journey?</h3><p>Our programs at Once Upon a Time establish the core fundamentals of teamwork. We want to provide children a collaborative space where they can build connections, bring their inner creativity out, and be proud of their accomplishments to share with their parents and families.</p></div></div>
+<!-- ============ TODAY'S CLASSES ============ -->
+<section class='classes-today' id='programs'>
+  <div class='wrap'>
+    <div>
+      <div class='classes-today__heading'>
+        <span class='eyebrow'>Today's Classes</span>
+        <h2>Class&nbsp;Schedule</h2>
+      </div>
+      <div class='classes-today__list'>
+        <article class='class-row class-row--highlighted'>
+          <span class='class-row__num' aria-hidden='true'>1</span>
+          <div>
+            <div class='class-row__title'>Beginner Ballet</div>
+            <div class='class-row__instructor'>Instructor: Luna Pinelli</div>
           </div>
-          <div class="mission__cta">
-            <a class="btn" href="donate.html"><i class="ph ph-heart"></i> Donate Now</a>
-            <a class="btn btn--text" href="about.html">Learn More <i class="ph ph-arrow-right"></i></a>
+          <span class='class-row__time'>10:00&nbsp;–&nbsp;11:00&nbsp;AM</span>
+        </article>
+        <article class='class-row'>
+          <span class='class-row__num' aria-hidden='true'>2</span>
+          <div>
+            <div class='class-row__title'>Art History</div>
+            <div class='class-row__instructor'>Instructor: Jerrod Finn</div>
+          </div>
+          <span class='class-row__time'>11:00&nbsp;AM&nbsp;–&nbsp;12:00&nbsp;PM</span>
+        </article>
+        <article class='class-row'>
+          <span class='class-row__num' aria-hidden='true'>3</span>
+          <div>
+            <div class='class-row__title'>Salsa Dance</div>
+            <div class='class-row__instructor'>Instructor: Ashley Roza</div>
+          </div>
+          <span class='class-row__time'>12:00&nbsp;–&nbsp;1:00&nbsp;PM</span>
+        </article>
+      </div>
+    </div>
+    <div class='calendar'>
+      <div class='calendar__head'>
+        <span class='calendar__title'>Activity</span>
+        <span class='calendar__nav'>
+          <button type='button' aria-label='Previous month' data-cal-prev><i class='ph ph-caret-left'></i></button>
+          <span data-cal-label>Jan&nbsp;2026</span>
+          <button type='button' aria-label='Next month' data-cal-next><i class='ph ph-caret-right'></i></button>
+        </span>
+      </div>
+      <div class='calendar__grid'>
+        <span class='calendar__dow'>S</span><span class='calendar__dow'>M</span><span class='calendar__dow'>T</span
+        ><span class='calendar__dow'>W</span><span class='calendar__dow'>T</span><span class='calendar__dow'>F</span
+        ><span class='calendar__dow'>S</span> <span class='calendar__day'>1</span
+        ><span class='calendar__day calendar__day--garden'>2</span><span class='calendar__day'>3</span
+        ><span class='calendar__day calendar__day--garden'>4</span><span class='calendar__day'>5</span
+        ><span class='calendar__day calendar__day--garden'>6</span><span class='calendar__day'>7</span>
+        <span class='calendar__day'>8</span><span class='calendar__day'>9</span
+        ><span class='calendar__day calendar__day--garden'>10</span
+        ><span class='calendar__day calendar__day--garden'>11</span><span class='calendar__day'>12</span
+        ><span class='calendar__day'>13</span><span class='calendar__day'>14</span> <span class='calendar__day'>15</span
+        ><span class='calendar__day'>16</span><span class='calendar__day calendar__day--rose'>17</span
+        ><span class='calendar__day'>18</span><span class='calendar__day'>19</span
+        ><span class='calendar__day calendar__day--garden'>20</span><span class='calendar__day'>21</span>
+        <span class='calendar__day'>22</span><span class='calendar__day'>23</span><span class='calendar__day'>24</span
+        ><span class='calendar__day calendar__day--blush'>25</span><span class='calendar__day'>26</span
+        ><span class='calendar__day calendar__day--blush'>27</span><span class='calendar__day'>28</span>
+        <span class='calendar__day'>29</span><span class='calendar__day'>30</span
+        ><span class='calendar__day calendar__day--blush'>31</span>
+      </div>
+      <div class='calendar__legend'>
+        <span class='legend--open'>Open</span>
+        <span class='legend--filling'>Filling</span>
+        <span class='legend--full'>Full</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHO WE ARE ============ -->
+<section class='who wrap' data-anim='fade-up'>
+  <div class='who__grid'>
+    <div class='who__copy'>
+      <span class='eyebrow'>Our Story</span>
+      <h2>Who&nbsp;We&nbsp;Are</h2>
+      <p>
+        Once Upon a Time is a nonprofit dedicated to empowering the community through the language of dance, music, art,
+        and theater. The organization focuses on restoring and expanding these essential programs, providing a space for
+        people to re-engage and support its impactful mission.
+      </p>
+      <div class='who__features'>
+        <div class='feature'>
+          <i class='ph ph-smiley'></i>
+          <p>Empowering children through dance and theatre programs</p>
+        </div>
+        <div class='feature'>
+          <i class='ph ph-users-three'></i>
+          <p>Year-round performances that establish teamwork and skill-development</p>
+        </div>
+        <div class='feature'>
+          <i class='ph ph-leaf'></i>
+          <p>Community-driven arts education rooted in inclusivity and care</p>
+        </div>
+      </div>
+      <div style='margin-top: var(--s-5);'>
+        <a class='btn' href='about.html'>Learn more about us <i class='ph ph-arrow-right'></i></a>
+      </div>
+    </div>
+    <div class='who__photo' role='img' aria-label='Children gathered around a globe of community'></div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class='programs wrap' data-anim='fade-up'>
+  <div class='carousel' role='group' aria-roledescription='carousel' aria-label='Featured programs'>
+    <div class='carousel__controls'>
+      <button class='carousel__arrow carousel__arrow--prev' type='button' aria-label='Previous program'>
+        <i class='ph ph-caret-left' aria-hidden='true'></i>
+      </button>
+      <button class='carousel__arrow carousel__arrow--next' type='button' aria-label='Next program'>
+        <i class='ph ph-caret-right' aria-hidden='true'></i>
+      </button>
+    </div>
+    <div class='carousel__track'>
+      <div class='carousel__slide' role='group' aria-roledescription='slide'>
+        <article class='program-card program-card--story'>
+          <div class='program-card__photo' role='img' aria-label='Story Jazz performance'></div>
+          <div class='program-card__body'>
+            <div class='program-card__head'>
+              <h3 class='program-card__title'>Story Jazz</h3>
+              <div class='program-card__price'><span>Starting at</span><strong>$150 / week</strong></div>
+            </div>
+            <div class='chips'>
+              <span class='chip'>Dance</span>
+              <span class='chip'>Theater</span>
+              <span class='chip chip--garden'>Gardening</span>
+            </div>
+            <div class='program-card__meta'>Thursdays | 4pm | Ages 10+ | Studio Room A</div>
+            <p class='program-card__copy'>
+              This winter, children will discover the rhythm of jazz through music, movement, and play. Our guided
+              sessions help build listening skills and creative confidence, leading up to a special onstage performance
+              where children get to play instruments and the audience feels the music.
+            </p>
+            <div class='program-card__footer'>
+              <span class='program-card__age'
+                ><i class='ph ph-baby'></i> 13 + Year Old &nbsp;·&nbsp; <i class='ph ph-calendar-check'></i> Enrollment
+                ends Feb 25th, 2026</span
+              >
+              <div class='program-card__cta'>
+                <a class='btn btn--sm' href='seasonal-camps.html'>View More <i class='ph ph-arrow-right'></i></a>
+                <button
+                  class='program-card__icon-btn'
+                  type='button'
+                  aria-label='Bookmark Story Jazz'
+                  aria-pressed='false'
+                  data-bookmark='story-jazz'
+                >
+                  <i class='ph ph-bookmark-simple' aria-hidden='true'></i>
+                </button>
+                <button
+                  class='program-card__icon-btn'
+                  type='button'
+                  aria-label='Share Story Jazz'
+                  data-share='story-jazz'
+                >
+                  <i class='ph ph-share-fat' aria-hidden='true'></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class='carousel__slide' role='group' aria-roledescription='slide'>
+        <article class='program-card program-card--ballet'>
+          <div class='program-card__photo' role='img' aria-label="Beginner's Ballet rehearsal"></div>
+          <div class='program-card__body'>
+            <div class='program-card__head'>
+              <h3 class='program-card__title'>Ballet for Beginners</h3>
+              <div class='program-card__price'><span>Starting at</span><strong>$150 / week</strong></div>
+            </div>
+            <div class='chips'>
+              <span class='chip'>Dance</span>
+              <span class='chip'>Theater</span>
+              <span class='chip chip--garden'>Beginner</span>
+            </div>
+            <div class='program-card__meta'>Wednesdays | 3pm | Ages 10+ | Studio Room C</div>
+            <p class='program-card__copy'>
+              Explore the fundamentals of ballet! In this class, dancers refine their stance and style through guided
+              practice. The season leads to a beautiful theatrical experience as our students perform the classic story
+              of &ldquo;A Christmas Carol&rdquo;.
+            </p>
+            <div class='program-card__footer'>
+              <span class='program-card__age'
+                ><i class='ph ph-baby'></i> 4 + Year Old &nbsp;·&nbsp; <i class='ph ph-calendar-check'></i> Enrollment
+                ends Feb 25th, 2026</span
+              >
+              <div class='program-card__cta'>
+                <a class='btn btn--sm' href='private-lessons.html'>View More <i class='ph ph-arrow-right'></i></a>
+                <button
+                  class='program-card__icon-btn'
+                  type='button'
+                  aria-label='Bookmark Ballet for Beginners'
+                  aria-pressed='false'
+                  data-bookmark='beginners-ballet'
+                >
+                  <i class='ph ph-bookmark-simple' aria-hidden='true'></i>
+                </button>
+                <button
+                  class='program-card__icon-btn'
+                  type='button'
+                  aria-label='Share Ballet for Beginners'
+                  data-share='beginners-ballet'
+                >
+                  <i class='ph ph-share-fat' aria-hidden='true'></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class='carousel__slide' role='group' aria-roledescription='slide'>
+        <article class='program-card program-card--arts'>
+          <div class='program-card__photo' role='img' aria-label='Children working on an arts and craft project'></div>
+          <div class='program-card__body'>
+            <div class='program-card__head'>
+              <h3 class='program-card__title'>Arts &amp; Craft</h3>
+              <div class='program-card__price'><span>Starting at</span><strong>$150 / week</strong></div>
+            </div>
+            <div class='chips'>
+              <span class='chip'>Art</span>
+              <span class='chip'>Design</span>
+              <span class='chip chip--garden'>Craft</span>
+            </div>
+            <div class='program-card__meta'>Mondays &amp; Fridays | 3pm | Ages 8+ | Studio Room B</div>
+            <p class='program-card__copy'>
+              In this session, young creators craft and style artwork inspired by their favorite hobbies. It’s a
+              hands-on introduction to the basics of design, color, and drawing, giving children a fun way to share
+              their stories through a special show and tell.
+            </p>
+            <div class='program-card__footer'>
+              <span class='program-card__age'
+                ><i class='ph ph-baby'></i> 8 + Year Old &nbsp;·&nbsp; <i class='ph ph-calendar-check'></i> Enrollment
+                ends Feb 25th, 2026</span
+              >
+              <div class='program-card__cta'>
+                <a class='btn btn--sm' href='programs.html'>View More <i class='ph ph-arrow-right'></i></a>
+                <button
+                  class='program-card__icon-btn'
+                  type='button'
+                  aria-label='Bookmark Arts &amp; Craft'
+                  aria-pressed='false'
+                  data-bookmark='arts-craft'
+                >
+                  <i class='ph ph-bookmark-simple' aria-hidden='true'></i>
+                </button>
+                <button
+                  class='program-card__icon-btn'
+                  type='button'
+                  aria-label='Share Arts &amp; Craft'
+                  data-share='arts-craft'
+                >
+                  <i class='ph ph-share-fat' aria-hidden='true'></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class='carousel__slide' role='group' aria-roledescription='slide'>
+        <article class='program-card program-card--theater'>
+          <div
+            class='program-card__photo'
+            role='img'
+            aria-label='Children performing outdoor theater under the stars'
+          ></div>
+          <div class='program-card__body'>
+            <div class='program-card__head'>
+              <h3 class='program-card__title'>Outdoor Theater</h3>
+              <div class='program-card__price'><span>Starting at</span><strong>$150 / week</strong></div>
+            </div>
+            <div class='chips'>
+              <span class='chip'>Theater</span>
+              <span class='chip'>Film</span>
+              <span class='chip chip--garden'>Outdoor</span>
+            </div>
+            <div class='program-card__meta'>Saturdays | 7pm | Ages 10+ | Central Park</div>
+            <p class='program-card__copy'>
+              Experience the magic of cinema under the stars! After watching a classic film together, children will take
+              center stage to replay iconic scenes and perform live, sharing the story with friends, family, and
+              neighbors.
+            </p>
+            <div class='program-card__footer'>
+              <span class='program-card__age'
+                ><i class='ph ph-baby'></i> 10 + Year Old &nbsp;·&nbsp; <i class='ph ph-calendar-check'></i> Enrollment
+                ends Feb 25th, 2026</span
+              >
+              <div class='program-card__cta'>
+                <a class='btn btn--sm' href='programs.html'>View More <i class='ph ph-arrow-right'></i></a>
+                <button
+                  class='program-card__icon-btn'
+                  type='button'
+                  aria-label='Bookmark Outdoor Theater'
+                  aria-pressed='false'
+                  data-bookmark='outdoor-theater'
+                >
+                  <i class='ph ph-bookmark-simple' aria-hidden='true'></i>
+                </button>
+                <button
+                  class='program-card__icon-btn'
+                  type='button'
+                  aria-label='Share Outdoor Theater'
+                  data-share='outdoor-theater'
+                >
+                  <i class='ph ph-share-fat' aria-hidden='true'></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class='carousel__dots' role='tablist' aria-label='Choose a program'>
+      <button class='carousel__dot' type='button' role='tab' aria-label='Story Jazz'><span></span></button>
+      <button class='carousel__dot' type='button' role='tab' aria-label='Ballet for Beginners'><span></span></button>
+      <button class='carousel__dot' type='button' role='tab' aria-label='Arts &amp; Craft'><span></span></button>
+      <button class='carousel__dot' type='button' role='tab' aria-label='Outdoor Theater'><span></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DONOR SPOTLIGHT ============ -->
+<section class='donor' data-anim='fade-up'>
+  <div class='wrap'>
+    <h2>Bring the Stage to Life</h2>
+    <p class='donor__lede'>
+      Our programs and performances are only possible through the generosity of our donors. This support allows the
+      organization to expand, providing meaningful classes for children and creating new ways for communities to
+      re-engage.
+    </p>
+    <div class='donor__stats'>
+      <div class='donor__stat'><strong>500+</strong><span>Students attendance annually</span></div>
+      <div class='donor__stat'><strong>10+</strong><span>Years serving communities</span></div>
+      <div class='donor__stat'><strong>100+</strong><span>Performances conducted</span></div>
+    </div>
+    <div class='donor__testimonials'>
+      <figure class='testimonial testimonial--jimin'>
+        <div class='testimonial__avatar' aria-hidden='true'>M</div>
+        <p>
+          &ldquo;Supporting OUAT has been incredibly rewarding. Seeing how thoughtfully the programs are designed for
+          children.&rdquo;
+        </p>
+        <cite>Mary</cite>
+        <span class='trust-signal'>
+          <i class='ph ph-seal-check' aria-hidden='true'></i>
+          <span class='trust-signal__detail'>Donor since 2019</span>
+        </span>
+      </figure>
+      <figure class='testimonial testimonial--mary'>
+        <div class='testimonial__avatar' aria-hidden='true'>T</div>
+        <p>
+          &ldquo;As a long-time supporter, I’ve seen firsthand how OUAT uses the arts to bring stories to life and
+          create opportunities for young performers.&rdquo;
+        </p>
+        <cite>Trevor</cite>
+        <span class='trust-signal'>
+          <i class='ph ph-seal-check' aria-hidden='true'></i>
+          <span class='trust-signal__detail'>Donor since 2021</span>
+        </span>
+      </figure>
+      <figure class='testimonial testimonial--noelle'>
+        <div class='testimonial__avatar' aria-hidden='true'>K</div>
+        <p>
+          &ldquo;OUAT exceeded my expectations. Supporting their work has allowed me to help programs reach more
+          communities.&rdquo;
+        </p>
+        <cite>Kelly</cite>
+        <span class='trust-signal'>
+          <i class='ph ph-seal-check' aria-hidden='true'></i>
+          <span class='trust-signal__detail'>Donor since 2023</span>
+        </span>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER CTA ============ -->
+<div style='text-align:center;padding:var(--s-5) 0;border-top:1px solid var(--line)'>
+  <p style='font-size:var(--t-label);color:var(--ink-muted);margin:0 0 var(--s-2)'>Stay in the loop</p>
+  <a class='btn btn--outline btn--sm' href='newsletter.html'>
+    <i class='ph ph-envelope-simple' aria-hidden='true'></i> Subscribe to our newsletter
+  </a>
+</div>
+
+<!-- ============ SUPPORT OUR MISSION ============ -->
+<section class='mission wrap'>
+  <div class='mission__grid'>
+    <div class='mission__photo' role='img' aria-label='Hands joined together in support'></div>
+    <div class='mission__copy'>
+      <span class='eyebrow'>Get Involved</span>
+      <h2>Support Our Mission</h2>
+      <p>
+        Once Upon a Time exists to provide children and families with accessible education through music, art, dance,
+        and theater. The mission is to create meaningful experiences that go beyond re-engaging with communities — it’s
+        about fostering growth and building confidence in every child.
+      </p>
+      <div class='mission__faq'>
+        <div class='feature'>
+          <i class='ph ph-hand-heart'></i>
+          <div>
+            <h3>What drives us to do the work that we do?</h3>
+            <p>
+              Seeing young performers shine on stage is the heart of this work. Once Upon a Time dedicates every effort
+              to ensuring children receive a high-quality education in the arts, giving them the chance to grow,
+              perform, and make their families proud.
+            </p>
+          </div>
+        </div>
+        <div class='feature'>
+          <i class='ph ph-flower-lotus'></i>
+          <div>
+            <h3>Who benefits?</h3>
+            <p>
+              The entire community benefits — from the children discovering their creative potential to the families who
+              see them grow. This work is made possible by the donors and contributors who invest in our staff and
+              programs, ensuring Once Upon a Time remains a place where the next generation can experience the arts.
+            </p>
+          </div>
+        </div>
+        <div class='feature'>
+          <i class='ph ph-handshake'></i>
+          <div>
+            <h3>How do our programs transform a child’s journey?</h3>
+            <p>
+              Our programs at Once Upon a Time establish the core fundamentals of teamwork. We want to provide children
+              a collaborative space where they can build connections, bring their inner creativity out, and be proud of
+              their accomplishments to share with their parents and families.
+            </p>
           </div>
         </div>
       </div>
-    </section>
+      <div class='mission__cta'>
+        <a class='btn' href='donate.html'><i class='ph ph-heart'></i> Donate Now</a>
+        <a class='btn btn--text' href='about.html'>Learn More <i class='ph ph-arrow-right'></i></a>
+      </div>
+    </div>
+  </div>
+</section>
 
 {% schema %}
 {

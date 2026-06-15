@@ -1,136 +1,233 @@
 <style>
-body { background: var(--snow); }
+  body {
+    background: var(--snow);
+  }
 
-    /* Payment row */
+  /* Payment row */
+  .payment-row {
+    background: var(--beginning);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: var(--s-4) var(--s-5);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--s-4);
+    align-items: center;
+  }
+  .payment-row__icon {
+    color: var(--ink-muted);
+    font-size: 22px;
+  }
+  .payment-row__title {
+    font-size: var(--t-label);
+    color: var(--ink-muted);
+    margin-bottom: 2px;
+  }
+  .payment-row__value {
+    font-size: var(--t-base);
+    color: var(--ink-muted);
+  }
+
+  /* Toggle rows */
+  .toggle-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: var(--s-3);
+    padding: var(--s-3) 0;
+  }
+  .toggle-row + .toggle-row {
+    border-top: 1px solid var(--line);
+  }
+  .toggle-row__label {
+    font-size: var(--t-base);
+    color: var(--ink);
+  }
+  .toggle-row input[type='checkbox'] {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    border: 1.5px solid var(--rose);
+    background: var(--snow);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    margin: 0;
+  }
+  .toggle-row input[type='checkbox']:checked {
+    background: var(--rose);
+    border-color: var(--rose);
+  }
+  .toggle-row input[type='checkbox']:checked::after {
+    content: '✓';
+    color: var(--snow);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .delete-account {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 0;
+    color: var(--danger);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: var(--t-base);
+    cursor: pointer;
+    padding: var(--s-3) 0;
+  }
+  .delete-account:hover {
+    color: var(--danger-700);
+    text-decoration: underline;
+  }
+
+  @media (max-width: 540px) {
     .payment-row {
-      background: var(--beginning); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: var(--s-4) var(--s-5);
-      display: grid; grid-template-columns: auto 1fr auto; gap: var(--s-4); align-items: center;
+      grid-template-columns: auto 1fr;
     }
-    .payment-row__icon { color: var(--ink-muted); font-size: 22px; }
-    .payment-row__title { font-size: var(--t-label); color: var(--ink-muted); margin-bottom: 2px; }
-    .payment-row__value { font-size: var(--t-base); color: var(--ink-muted); }
-
-    /* Toggle rows */
-    .toggle-row {
-      display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--s-3);
-      padding: var(--s-3) 0;
+    .payment-row__icon + * + .btn {
+      grid-column: 1 / -1;
     }
-    .toggle-row + .toggle-row { border-top: 1px solid var(--line); }
-    .toggle-row__label { font-size: var(--t-base); color: var(--ink); }
-    .toggle-row input[type="checkbox"] {
-      appearance: none; width: 22px; height: 22px; border-radius: 6px;
-      border: 1.5px solid var(--rose); background: var(--snow);
-      display: grid; place-items: center; cursor: pointer; margin: 0;
-    }
-    .toggle-row input[type="checkbox"]:checked { background: var(--rose); border-color: var(--rose); }
-    .toggle-row input[type="checkbox"]:checked::after { content: "✓"; color: var(--snow); font-size: 13px; font-weight: 700; }
-
-    .delete-account {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; border: 0; color: var(--danger);
-      font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
-      font-size: var(--t-base); cursor: pointer;
-      padding: var(--s-3) 0;
-    }
-    .delete-account:hover { color: var(--danger-700); text-decoration: underline; }
-
-    @media (max-width: 540px) {
-      .payment-row { grid-template-columns: auto 1fr; }
-      .payment-row__icon + * + .btn { grid-column: 1 / -1; }
-    }
+  }
 </style>
 
-<div class="wrap account">
-      <aside class="account__sidebar" aria-label="Account navigation">
-        <div class="account-user">
-          <span class="account-user__avatar"><i class="ph ph-user"></i></span>
-          <span class="account-user__name">Claire Sherlock</span>
-        </div>
-        <details class="sidebar-collapse">
-          <summary>Account Menu <i class="ph ph-caret-down" aria-hidden="true"></i></summary>
-          <nav class="sidebar-collapse__nav account-nav" aria-label="Account sections">
-            <a href="profile.html"><i class="ph ph-user-circle"></i><span>My Profile</span><span></span></a>
-            <a href="preferences.html" aria-current="page"><i class="ph ph-sliders-horizontal"></i><span>Preferences</span><span></span></a>
-            <a href="class-history.html"><i class="ph ph-book-open"></i><span>Class history</span><span></span></a>
-            <a href="inbox.html"><i class="ph ph-envelope"></i><span>Inbox</span><span class="account-nav__badge">3</span></a>
-          </nav>
-        </details>
-        <div class="account-side-card">
-          <span class="account-side-card__title">Browse more classes?</span>
-          <a class="btn btn--sm" href="programs.html">See more</a>
-        </div>
-        <div class="account-side-card account-side-card--ghost">
-          <span class="account-side-card__title">Looking for support?</span>
-          <a class="btn btn--sm btn--outline" href="contact.html">Contact Us</a>
-        </div>
-      </aside>
-
-      <section class="account__main" aria-labelledby="prefs-h1">
-        <h1 id="prefs-h1" class="sr-only">Preferences</h1>
-        <div class="acc-section">
-          <div class="acc-section__head"><h2 class="acc-section__title">My Payment Information</h2></div>
-          <div class="payment-row">
-            <div>
-              <div class="payment-row__title">Pay with</div>
-              <div class="payment-row__value">
-                <i class="ph ph-credit-card payment-row__icon" style="vertical-align: -3px; margin-right: 6px;"></i>
-                Mastercard Credit •••• 5555
-                <span class="badge-status badge-status--neutral" style="margin-left:8px;font-size:11px;vertical-align:1px">Default</span>
-              </div>
-            </div>
-            <div></div>
-            <button class="btn btn--sm btn--outline" type="button" data-mock="add-payment">Add a new payment method</button>
-          </div>
-          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
-        </div>
-
-        <div class="acc-section">
-          <div class="acc-section__head"><h2 class="acc-section__title">Notification Settings</h2></div>
-          <label class="toggle-row">
-            <span class="toggle-row__label">Receive Email Notifications</span>
-            <input type="checkbox" checked>
-          </label>
-          <label class="toggle-row">
-            <span class="toggle-row__label">Subscribe Newsletters</span>
-            <input type="checkbox" checked>
-          </label>
-          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
-        </div>
-
-        <div class="acc-section">
-          <div class="acc-section__head"><h2 class="acc-section__title">Privacy Settings</h2></div>
-          <label class="toggle-row">
-            <span class="toggle-row__label">Allow photos for internal records (attendance, progress)</span>
-            <input type="checkbox" checked>
-          </label>
-          <label class="toggle-row">
-            <span class="toggle-row__label">Allow photos for website and social media</span>
-            <input type="checkbox">
-          </label>
-          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
-        </div>
-
-        <div class="acc-section">
-          <div class="acc-section__head"><h2 class="acc-section__title">Accessibility &amp; Display</h2></div>
-          <div class="toggle-row">
-            <span class="toggle-row__label">Text size <span aria-hidden="true" style="font-family:var(--serif);font-size:var(--t-lg);margin-left:4px">Aa</span></span>
-            <div class="textsize-control" role="group" aria-label="Text size" style="display:inline-flex;gap:8px">
-              <button class="btn btn--sm btn--outline" type="button" data-font-scale="1" aria-pressed="true">Default</button>
-              <button class="btn btn--sm btn--outline" type="button" data-font-scale="1.1" aria-pressed="false" aria-label="Large text">A+</button>
-              <button class="btn btn--sm btn--outline" type="button" data-font-scale="1.2" aria-pressed="false" aria-label="Larger text">A++</button>
-            </div>
-          </div>
-          <div class="toggle-row">
-            <span class="toggle-row__label">Dark mode</span>
-            <button class="btn btn--sm btn--outline" type="button" data-theme-toggle><i class="ph ph-moon" aria-hidden="true"></i> Toggle</button>
-          </div>
-          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
-        </div>
-
-        <button class="delete-account" type="button" data-confirm="Delete account?" data-confirm-body="This action is permanent and cannot be undone." data-confirm-consequences="Your profile and all child profiles will be deleted|Payment methods will be removed|Class history and receipts will be lost|Inbox messages will be permanently deleted" data-confirm-cta="Delete forever" data-confirm-danger="true" data-confirm-action="mock:delete-account" data-confirm-toast="Account deletion routes to Shopify GDPR endpoint in production."><i class="ph ph-trash"></i> Delete my account</button>
-      </section>
+<div class='wrap account'>
+  <aside class='account__sidebar' aria-label='Account navigation'>
+    <div class='account-user'>
+      <span class='account-user__avatar'><i class='ph ph-user'></i></span>
+      <span class='account-user__name'>Claire Sherlock</span>
     </div>
+    <details class='sidebar-collapse'>
+      <summary>Account Menu <i class='ph ph-caret-down' aria-hidden='true'></i></summary>
+      <nav class='sidebar-collapse__nav account-nav' aria-label='Account sections'>
+        <a href='profile.html'><i class='ph ph-user-circle'></i><span>My Profile</span><span></span></a>
+        <a href='preferences.html' aria-current='page'
+          ><i class='ph ph-sliders-horizontal'></i><span>Preferences</span><span></span
+        ></a>
+        <a href='class-history.html'><i class='ph ph-book-open'></i><span>Class history</span><span></span></a>
+        <a href='inbox.html'
+          ><i class='ph ph-envelope'></i><span>Inbox</span><span class='account-nav__badge'>3</span></a
+        >
+      </nav>
+    </details>
+    <div class='account-side-card'>
+      <span class='account-side-card__title'>Browse more classes?</span>
+      <a class='btn btn--sm' href='programs.html'>See more</a>
+    </div>
+    <div class='account-side-card account-side-card--ghost'>
+      <span class='account-side-card__title'>Looking for support?</span>
+      <a class='btn btn--sm btn--outline' href='contact.html'>Contact Us</a>
+    </div>
+  </aside>
+
+  <section class='account__main' aria-labelledby='prefs-h1'>
+    <h1 id='prefs-h1' class='sr-only'>Preferences</h1>
+    <div class='acc-section'>
+      <div class='acc-section__head'><h2 class='acc-section__title'>My Payment Information</h2></div>
+      <div class='payment-row'>
+        <div>
+          <div class='payment-row__title'>Pay with</div>
+          <div class='payment-row__value'>
+            <i class='ph ph-credit-card payment-row__icon' style='vertical-align: -3px; margin-right: 6px;'></i>
+            Mastercard Credit •••• 5555
+            <span class='badge-status badge-status--neutral' style='margin-left:8px;font-size:11px;vertical-align:1px'
+              >Default</span
+            >
+          </div>
+        </div>
+        <div></div>
+        <button class='btn btn--sm btn--outline' type='button' data-mock='add-payment'>Add a new payment method</button>
+      </div>
+      <span class='sync-status' aria-live='polite' aria-atomic='true'></span>
+    </div>
+
+    <div class='acc-section'>
+      <div class='acc-section__head'><h2 class='acc-section__title'>Notification Settings</h2></div>
+      <label class='toggle-row'>
+        <span class='toggle-row__label'>Receive Email Notifications</span>
+        <input type='checkbox' checked>
+      </label>
+      <label class='toggle-row'>
+        <span class='toggle-row__label'>Subscribe Newsletters</span>
+        <input type='checkbox' checked>
+      </label>
+      <span class='sync-status' aria-live='polite' aria-atomic='true'></span>
+    </div>
+
+    <div class='acc-section'>
+      <div class='acc-section__head'><h2 class='acc-section__title'>Privacy Settings</h2></div>
+      <label class='toggle-row'>
+        <span class='toggle-row__label'>Allow photos for internal records (attendance, progress)</span>
+        <input type='checkbox' checked>
+      </label>
+      <label class='toggle-row'>
+        <span class='toggle-row__label'>Allow photos for website and social media</span>
+        <input type='checkbox'>
+      </label>
+      <span class='sync-status' aria-live='polite' aria-atomic='true'></span>
+    </div>
+
+    <div class='acc-section'>
+      <div class='acc-section__head'><h2 class='acc-section__title'>Accessibility &amp; Display</h2></div>
+      <div class='toggle-row'>
+        <span class='toggle-row__label'
+          >Text size
+          <span aria-hidden='true' style='font-family:var(--serif);font-size:var(--t-lg);margin-left:4px'
+            >Aa</span
+          ></span
+        >
+        <div class='textsize-control' role='group' aria-label='Text size' style='display:inline-flex;gap:8px'>
+          <button class='btn btn--sm btn--outline' type='button' data-font-scale='1' aria-pressed='true'>
+            Default
+          </button>
+          <button
+            class='btn btn--sm btn--outline'
+            type='button'
+            data-font-scale='1.1'
+            aria-pressed='false'
+            aria-label='Large text'
+          >
+            A+
+          </button>
+          <button
+            class='btn btn--sm btn--outline'
+            type='button'
+            data-font-scale='1.2'
+            aria-pressed='false'
+            aria-label='Larger text'
+          >
+            A++
+          </button>
+        </div>
+      </div>
+      <div class='toggle-row'>
+        <span class='toggle-row__label'>Dark mode</span>
+        <button class='btn btn--sm btn--outline' type='button' data-theme-toggle>
+          <i class='ph ph-moon' aria-hidden='true'></i> Toggle
+        </button>
+      </div>
+      <span class='sync-status' aria-live='polite' aria-atomic='true'></span>
+    </div>
+
+    <button
+      class='delete-account'
+      type='button'
+      data-confirm='Delete account?'
+      data-confirm-body='This action is permanent and cannot be undone.'
+      data-confirm-consequences='Your profile and all child profiles will be deleted|Payment methods will be removed|Class history and receipts will be lost|Inbox messages will be permanently deleted'
+      data-confirm-cta='Delete forever'
+      data-confirm-danger='true'
+      data-confirm-action='mock:delete-account'
+      data-confirm-toast='Account deletion routes to Shopify GDPR endpoint in production.'
+    >
+      <i class='ph ph-trash'></i> Delete my account
+    </button>
+  </section>
+</div>
 
 {% schema %}
 {
