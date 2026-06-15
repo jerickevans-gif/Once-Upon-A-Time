@@ -1,21 +1,11 @@
 {
   "sections": {
-    "intro": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "Scholarships",
-        "heading": "Make Arts Education Affordable",
-        "body": "<p>Need-based aid up to 100% of program tuition. We awarded 48 scholarships in 2025 and don't plan to slow down.</p>",
-        "text_align": "center"
-      }
-    },
-    "content": {
-      "type": "page-content",
+    "main": {
+      "type": "main-scholarship",
       "settings": {}
     }
   },
   "order": [
-    "intro",
-    "content"
+    "main"
   ]
 }

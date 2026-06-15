@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-receipt",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ],
+  "layout": "page"
+}

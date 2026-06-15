@@ -1,21 +1,11 @@
 {
   "sections": {
-    "intro": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "Thank you",
-        "heading": "Our Donor Community",
-        "body": "<p>Every supporter listed below opted to be acknowledged publicly. Your generosity is the engine of OUAT.</p>",
-        "text_align": "center"
-      }
-    },
-    "content": {
-      "type": "page-content",
+    "main": {
+      "type": "main-donor-wall",
       "settings": {}
     }
   },
   "order": [
-    "intro",
-    "content"
+    "main"
   ]
 }

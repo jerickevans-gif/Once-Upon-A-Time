@@ -1,0 +1,66 @@
+<section class="page-hero">
+      <div class="wrap"><div class="page-hero__eyebrow">Almost there</div>
+      <h1>Your Cart</h1></div>
+    </section>
+    <section class="wrap" style="max-width:880px;padding:32px 24px 80px">
+      <div id="cart-state">
+        <!-- ITEMS state -->
+        <div id="cart-items" style="display:grid;gap:16px">
+          <article class="cart-item">
+            <div style="width:120px;aspect-ratio:1;background:linear-gradient(rgba(139,80,68,.4),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/jazz-hero.jpg') center/cover;background-blend-mode:multiply;border-radius:10px"></div>
+            <div>
+              <h2 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0 0 4px">Seasonal Camps 2026</h2>
+              <p style="font-size:13px;color:var(--ink-muted);margin:0 0 8px">Spring · Mar 03 – May 28 · Mon/Wed/Fri 5–7 PM</p>
+              <p style="font-size:13px;color:var(--ink-muted);margin:0">For: Daisy</p>
+            </div>
+            <div style="text-align:right">
+              <div style="font-family:var(--serif);font-size:22px;font-weight:600;color:var(--pillar)">$250</div>
+              <button type="button" data-cart-remove style="background:transparent;border:0;color:var(--ink-muted);font-size:12px;cursor:pointer;margin-top:8px">Remove</button>
+            </div>
+          </article>
+          <article class="cart-item">
+            <div style="width:120px;aspect-ratio:1;background:linear-gradient(rgba(139,80,68,.4),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/ballet-card.jpg') center/cover;background-blend-mode:multiply;border-radius:10px"></div>
+            <div>
+              <h2 style="font-family:var(--serif);font-size:20px;text-transform:uppercase;margin:0 0 4px">Beginner Ballet</h2>
+              <p style="font-size:13px;color:var(--ink-muted);margin:0 0 8px">Mon &amp; Wed · 4–5 PM · Studio A</p>
+              <p style="font-size:13px;color:var(--ink-muted);margin:0">For: Daisy</p>
+            </div>
+            <div style="text-align:right">
+              <div style="font-family:var(--serif);font-size:22px;font-weight:600;color:var(--pillar)">$120</div>
+              <button type="button" data-cart-remove style="background:transparent;border:0;color:var(--ink-muted);font-size:12px;cursor:pointer;margin-top:8px">Remove</button>
+            </div>
+          </article>
+        </div>
+        <div class="sibling-banner" style="margin-top:18px"><i class="ph ph-info"></i> <span>Enrolling 2+ children? Sibling discount applies automatically at checkout.</span></div>
+        <div style="background:var(--snow);border:1px solid var(--line);border-radius: var(--radius-md);padding:24px;margin-top:24px;display:grid;gap:10px">
+          <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--ink-muted)"><span>Subtotal</span><span id="cart-subtotal">$370.00</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--garden-700)"><span>Sibling discount</span><span>−$0.00</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--ink-muted)"><span>Sales tax</span><span>$0.00</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:22px;font-weight:600;font-family:var(--serif);padding-top:12px;border-top:2px solid var(--ink);margin-top:6px;color:var(--pillar)"><span>Total</span><span id="cart-total">$370.00</span></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:24px;justify-content:flex-end;flex-wrap:wrap">
+          <a class="btn btn--ghost" href="programs.html">Keep browsing</a>
+          <a class="btn" href="payment.html?amount=370&freq=One-time" data-mock="checkout">Continue to checkout <i class="ph ph-arrow-right"></i></a>
+        </div>
+      </div>
+      <!-- EMPTY state (hidden) -->
+      <div id="cart-empty" hidden>
+        <div class="empty-state">
+          <div class="empty-state__icon"><i class="ph ph-shopping-cart-simple"></i></div>
+          <div class="empty-state__title">Your cart is empty</div>
+          <p class="empty-state__body">Browse open programs and add classes to your cart, or make a one-time donation.</p>
+          <div class="empty-state__actions">
+            <a class="btn" href="programs.html">Browse programs</a>
+            <a class="btn btn--ghost" href="donate.html">Make a donation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+{% schema %}
+{
+  "name": "Cart \u2014 Main",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

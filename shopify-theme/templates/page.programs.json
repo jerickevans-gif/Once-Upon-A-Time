@@ -1,26 +1,11 @@
 {
   "sections": {
-    "hero": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "",
-        "heading": "A Growing Program",
-        "body": "<p>Once Upon a Time offers structured programs where children develop skills and express creativity through guided instruction. Seasonal camps, private lessons, and after-school sessions support growth across different interests and experience levels.</p><p>Families are invited to see progress throughout the year as students share what they have learned. Each program is led by experienced instructors in a well-organized class setting designed to keep students engaged and supported.</p>",
-        "text_align": "left"
-      }
-    },
-    "filter": {
-      "type": "page-content",
-      "settings": {}
-    },
-    "open-enrollment": {
-      "type": "page-content",
-      "settings": {}
-    },
-    "coming-soon": {
-      "type": "page-content",
+    "main": {
+      "type": "main-programs",
       "settings": {}
     }
   },
-  "order": ["hero", "filter", "open-enrollment", "coming-soon"]
+  "order": [
+    "main"
+  ]
 }

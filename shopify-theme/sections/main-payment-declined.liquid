@@ -1,0 +1,31 @@
+<section class="page-hero">
+      <div class="wrap" style="text-align:center;padding:64px 0">
+        <div style="display:inline-flex;width:80px;height:80px;border-radius:50%;background:var(--danger-50);color:var(--danger);align-items:center;justify-content:center;font-size:36px;margin-bottom:16px"><i class="ph ph-x-circle"></i></div>
+        <div class="page-hero__eyebrow" style="color:var(--danger)">Payment declined</div>
+        <h1>We couldn't process that payment</h1>
+        <p class="page-hero__sub">No charge was made. Common reasons: insufficient funds, expired card, or a CVV mismatch. You can retry with the same or a different method.</p>
+        <div style="margin-top:24px;display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center">
+          <a class="btn" href="payment.html"><i class="ph ph-credit-card"></i> Retry payment</a>
+          <a class="btn btn--ghost" href="contact.html">Contact support</a>
+        </div>
+        <p style="margin-top:16px;font-size:14px"><a href="contact.html#faqs" style="color:var(--rose-700);font-weight:600;text-decoration:underline;text-underline-offset:3px">Have a question about payments? Read our FAQs</a></p>
+      </div>
+    </section>
+    <section class="legal-body">
+      <h2>What to try</h2>
+      <ul>
+        <li>Double-check the card number, expiry date, and CVV</li>
+        <li>Make sure the billing ZIP matches the card statement</li>
+        <li>Try a different payment method (PayPal or Apple Pay)</li>
+        <li>If you've recently moved, your bank may need to authorize the new address</li>
+      </ul>
+      <p>Still stuck? Email <a href="mailto:contact@onceuponatime.org">contact@onceuponatime.org</a> with the time of the attempt and the last 4 digits of the card.</p>
+    </section>
+
+{% schema %}
+{
+  "name": "Payment Declined \u2014 Main",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

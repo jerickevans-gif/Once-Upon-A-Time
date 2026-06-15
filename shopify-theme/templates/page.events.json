@@ -1,21 +1,11 @@
 {
   "sections": {
-    "intro": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "What's coming up",
-        "heading": "Events &amp; Showcases",
-        "body": "<p>From end-of-season showcases to open studios and fundraising galas — see you there.</p>",
-        "text_align": "center"
-      }
-    },
-    "content": {
-      "type": "page-content",
+    "main": {
+      "type": "main-events",
       "settings": {}
     }
   },
   "order": [
-    "intro",
-    "content"
+    "main"
   ]
 }

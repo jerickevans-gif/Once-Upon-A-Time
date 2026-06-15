@@ -1,0 +1,671 @@
+<style>
+/* ===== Page title ===== */
+    .nl-title {
+      padding: var(--s-7) 0 var(--s-3);
+    }
+    .nl-title h1 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(40px, 5.4vw, 72px);
+      text-transform: uppercase;
+      margin: 0; line-height: var(--lh-display);
+      letter-spacing: .02em;
+    }
+
+    /* ===== Toolbar ===== */
+    .nl-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--s-4); flex-wrap: wrap;
+      padding: var(--s-3) 0 var(--s-6);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: var(--s-6);
+    }
+    .nl-tabs { display: flex; align-items: center; gap: var(--s-5); flex-wrap: wrap; }
+    .nl-tabs a {
+      font-size: var(--t-label); font-weight: 600;
+      color: var(--ink); text-decoration: none;
+      padding: 6px 0; border-bottom: 2px solid transparent;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .nl-tabs a.is-active { border-bottom-color: var(--rose-700); color: var(--rose-700); }
+    .nl-tabs a:hover { color: var(--rose); }
+    .nl-tabs a.is-muted { color: var(--ink-muted); }
+    .nl-tabs__badge {
+      background: var(--rose); color: var(--snow);
+      font-size: 11px; font-weight: 700;
+      min-width: 20px; height: 20px;
+      padding: 0 6px;
+      border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .nl-tabs__more-wrap { position: relative; display: inline-flex; }
+    .nl-tabs__more {
+      background: transparent; border: 0; padding: 4px 8px;
+      color: var(--ink); font-size: 18px; cursor: pointer;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+    /* Accessibility dropdown — Figma 3 Dot Menu_Newsletter (2748:45003). */
+    .nl-dropdown {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      min-width: 225px;
+      background: #735041;            /* Figma rgb(.45, .26, .22) */
+      color: var(--snow);
+      border-radius: var(--radius-lg);
+      padding: var(--s-4) var(--s-5);
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+      z-index: 50;
+      list-style: none;
+      margin: 0;
+    }
+    .nl-dropdown[hidden] { display: none; }
+    .nl-dropdown li { padding: var(--s-3) 0; border-bottom: 1px solid rgba(255,252,250,.25); }
+    .nl-dropdown li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .nl-dropdown li:first-child { padding-top: 0; }
+    .nl-dropdown button {
+      background: transparent; border: 0; padding: 0;
+      color: var(--snow); font-family: var(--sans); font-size: var(--t-md); font-weight: 500;
+      width: 100%; text-align: left; cursor: pointer; line-height: 1.4;
+    }
+    .nl-dropdown button:hover { color: var(--rose-100); }
+    .nl-tools { display: flex; align-items: center; gap: var(--s-3); flex-wrap: wrap; }
+    .nl-panel[hidden] { display: none !important; }
+    .nl-involved-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--s-5); margin-top: var(--s-5);
+    }
+    .nl-involved-card {
+      display: flex; flex-direction: column; gap: var(--s-3);
+      padding: var(--s-6);
+      background: var(--snow);
+      border: 1px solid var(--line); border-radius: var(--radius-md);
+      color: var(--ink); text-decoration: none;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .nl-involved-card:hover {
+      border-color: var(--rose-300);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(139,80,68,.08);
+    }
+    .nl-involved-card > i.ph { font-size: 32px; color: var(--rose); }
+    .nl-involved-card h3 { font-family: var(--serif); font-weight: 400; font-size: 22px; margin: 0; }
+    .nl-involved-card p { color: var(--ink-muted); font-size: 14px; margin: 0; line-height: 1.55; }
+    .nl-involved-card__cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-weight: 600; color: var(--rose-700); margin-top: auto;
+    }
+    .nl-filter {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--snow); border: 1px solid var(--line);
+      border-radius: var(--radius-sm, 8px);
+      padding: 8px 14px;
+      font-size: var(--t-label); color: var(--ink-muted);
+      cursor: pointer;
+    }
+    .nl-filter:hover { border-color: var(--rose); color: var(--rose-700); }
+    .nl-filter .ph { font-size: 14px; }
+    .nl-search {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--snow); border: 1px solid var(--line);
+      border-radius: var(--radius-sm, 8px);
+      padding: 4px 12px 4px 14px; min-width: 220px;
+    }
+    .nl-search .ph { color: var(--ink-muted); font-size: 14px; }
+    .nl-search input {
+      border: 0; background: transparent; outline: 0;
+      font-size: var(--t-label); color: var(--ink);
+      flex: 1; padding: 8px 0; min-width: 0;
+    }
+    .nl-search input::placeholder { color: var(--ink-muted); }
+
+    /* Current Newsletter heading row + action buttons */
+    /* ===== Featured Story + More Stories (Figma 2748:44028 WIP redesign) ===== */
+    .nl-section-eyebrow {
+      font-size: var(--t-md); font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--ink); margin: 0 0 var(--s-4);
+    }
+    .nl-featured { padding-top: var(--s-3); padding-bottom: var(--s-6); }
+    /* Figma "Newsletter Card v2_dropshadow" (2748:44915):
+       fill #FFF5EE (--beginning), r=14. Shadow only on hover. */
+    .nl-featured-card {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      background: var(--beginning);
+      border-radius: 14px;
+      overflow: hidden;
+      align-items: stretch;
+      transition: box-shadow .25s ease;
+    }
+    .nl-featured-card:hover,
+    .nl-featured-card:focus-within {
+      box-shadow:
+        0 4px 6px 0 rgba(166, 109, 98, 0.35),
+        0 4px 4px 0 rgba(0, 0, 0, 0.18);
+    }
+    .nl-featured-card__copy { padding: var(--s-7) var(--s-6); display: flex; flex-direction: column; gap: var(--s-3); }
+    .nl-featured-card__brand {
+      display: inline-flex; gap: var(--s-2); align-items: center;
+      font-size: var(--t-label); font-weight: 600; color: var(--rose-700);
+      letter-spacing: .04em;
+      margin: 0;
+    }
+    .nl-featured-card__pipe { color: var(--rose-300); font-weight: 400; }
+    .nl-featured-card__title {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 3.4vw, 40px);
+      color: var(--rose-700); text-transform: none;
+      margin: 0;
+      line-height: 1.1;
+    }
+    .nl-featured-card__body {
+      font-size: var(--t-base); color: var(--ink); line-height: var(--lh-body);
+      margin: 0;
+    }
+    .nl-featured-card__actions { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-3); }
+    .nl-featured-card__photo {
+      background:
+        linear-gradient(rgba(139,80,68,.32), rgba(139,80,68,.42)),
+        url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
+      min-height: 360px;
+    }
+    @media (max-width: 900px) {
+      .nl-featured-card { grid-template-columns: 1fr; }
+      .nl-featured-card__photo { min-height: 240px; }
+      .nl-featured-card__copy { padding: var(--s-5); }
+    }
+
+    .nl-stories { padding-top: var(--s-7); padding-bottom: var(--s-8); }
+    .nl-stories__heading {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 3.4vw, 44px);
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 0 0 var(--s-5);
+    }
+    .nl-stories__grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6);
+    }
+    @media (max-width: 720px) { .nl-stories__grid { grid-template-columns: 1fr; } }
+    .nl-story-card {
+      background: var(--beginning);
+      border-radius: 14px;            /* matches Newsletter Card v2_dropshadow */
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: box-shadow .25s ease;
+    }
+    .nl-story-card:hover,
+    .nl-story-card:focus-within {
+      box-shadow:
+        0 4px 6px 0 rgba(166, 109, 98, 0.35),
+        0 4px 4px 0 rgba(0, 0, 0, 0.18);
+    }
+    .nl-story-card__photo {
+      aspect-ratio: 16/9;
+      background-size: cover; background-position: center;
+      background-color: var(--rose-300);
+    }
+    .nl-story-card__photo--oct {
+      background-image:
+        linear-gradient(rgba(107,109,32,.30), rgba(107,109,32,.42)),
+        url("once-upon-a-time-assets/landing/queens-skyline.jpg");
+    }
+    .nl-story-card__photo--nov {
+      background-image:
+        linear-gradient(rgba(139,80,68,.30), rgba(139,80,68,.45)),
+        url("once-upon-a-time-assets/landing/jazz-hero.jpg");
+    }
+    .nl-story-card__body { padding: var(--s-5) var(--s-5) var(--s-6); display: flex; flex-direction: column; gap: var(--s-3); flex: 1; }
+    .nl-story-card__title {
+      font-family: var(--serif); font-weight: 400;
+      font-size: var(--t-h4); color: var(--rose-700);
+      text-transform: none; margin: 0;
+      line-height: 1.15;
+    }
+    .nl-story-card__meta { font-size: var(--t-label); color: var(--ink-muted); margin: 0; }
+    .nl-story-card__copy {
+      font-size: var(--t-base); color: var(--ink); line-height: var(--lh-body);
+      margin: 0;
+      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .nl-story-card__actions { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: auto; }
+
+    .nl-current-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: var(--s-4); flex-wrap: wrap;
+      margin-bottom: var(--s-5);
+    }
+    .nl-current-head h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 3vw, 40px);
+      text-transform: uppercase;
+      margin: 0;
+      letter-spacing: .02em;
+    }
+    .nl-actions { display: inline-flex; gap: 8px; }
+    .nl-action {
+      width: 38px; height: 38px;
+      border: 0; cursor: pointer;
+      border-radius: 8px;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--rose-700); color: var(--snow);
+      font-size: 16px;
+    }
+    .nl-action--share { background: var(--garden); }
+    .nl-action:hover { filter: brightness(1.08); }
+
+    /* Article card-level bookmark/share floating in feature top-right */
+    .nl-feature { position: relative; }
+    .nl-feature__actions {
+      position: absolute; top: 0; right: 0;
+      display: inline-flex; gap: 6px;
+      padding: 12px;
+    }
+    .nl-feature__actions .nl-action { width: 32px; height: 32px; font-size: 14px; }
+
+    /* ===== Eyebrow row ===== */
+    .nl-eyebrow {
+      display: flex; align-items: center; gap: var(--s-3);
+      margin-bottom: var(--s-4); flex-wrap: wrap;
+    }
+    .nl-eyebrow .eyebrow { margin: 0; }
+    .nl-tag {
+      display: inline-flex; align-items: center;
+      background: var(--snow); border: 1px solid var(--line);
+      color: var(--ink); font-size: var(--t-micro);
+      padding: 2px 10px; border-radius: var(--radius-pill);
+      font-weight: 600;
+    }
+    .nl-chips { display: inline-flex; gap: 6px; margin-left: auto; }
+    .nl-chip {
+      width: 24px; height: 24px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: var(--snow);
+    }
+    .nl-chip--rose { background: var(--rose); }
+    .nl-chip--garden { background: var(--garden); }
+    .nl-chip--blush { background: var(--blush); color: var(--rose-700); }
+    .nl-chip--pillar { background: var(--pillar); }
+    .nl-chip--sky { background: var(--sky); color: var(--ink); }
+    .nl-chip--snow { background: var(--snow); border: 1px solid var(--line); color: var(--ink); }
+    .nl-feature__date {
+      font-family: var(--serif); font-size: var(--t-h4);
+      font-weight: 400; color: var(--rose-700);
+      margin: 0 0 var(--s-2);
+    }
+
+    /* ===== Featured article (lead) ===== */
+    .nl-feature {
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: var(--s-7);
+      align-items: start;
+      margin-bottom: var(--s-8);
+    }
+    .nl-feature__head {
+      grid-column: 1 / -1;
+      margin-bottom: var(--s-4);
+    }
+    .nl-feature h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(34px, 4vw, 52px);
+      text-transform: uppercase; margin: 0 0 var(--s-2);
+      letter-spacing: .02em;
+    }
+    .nl-byline {
+      font-size: var(--t-label); color: var(--ink-muted);
+      margin: 0;
+      letter-spacing: .01em;
+    }
+    .nl-byline .pipe { display: inline-block; padding: 0 8px; opacity: .55; }
+    .nl-feature__body {
+      column-count: 2; column-gap: var(--s-6);
+      font-size: var(--t-base); color: var(--ink);
+      line-height: 1.7;
+      hyphens: auto;
+    }
+    .nl-feature__body p { margin: 0 0 var(--s-3); break-inside: avoid-column; }
+    .nl-feature__body p:first-child::first-letter {
+      font-family: var(--serif); font-weight: 400;
+      float: left; font-size: 56px; line-height: .9;
+      padding: 4px 8px 0 0; color: var(--rose-700);
+    }
+    .nl-feature__photo {
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: url("once-upon-a-time-assets/newsletter/feature-women-dancing.jpg?v=2") center/cover no-repeat;
+    }
+
+    /* ===== Sub-articles ===== */
+    .nl-article {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--s-6);
+      align-items: start;
+      padding: var(--s-6) 0;
+      border-top: 1px solid var(--line);
+    }
+    .nl-article--reverse { grid-template-columns: 1.2fr 1fr; }
+    .nl-article--reverse .nl-article__photo { order: 2; }
+    .nl-article__photo {
+      aspect-ratio: 4/3;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background-size: cover; background-position: center;
+    }
+    .nl-article--garden .nl-article__photo {
+      background: url("once-upon-a-time-assets/newsletter/garden-watering-can.jpg?v=2") center/cover no-repeat;
+    }
+    .nl-article--update .nl-article__photo {
+      background: url("once-upon-a-time-assets/newsletter/garden-update-field.jpg?v=2") center/cover no-repeat;
+    }
+    .nl-article--volunteer .nl-article__photo {
+      background: url("once-upon-a-time-assets/newsletter/volunteer-pepsi-sign.jpg?v=2") center/cover no-repeat;
+    }
+    .nl-article h3 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 2.8vw, 36px);
+      text-transform: uppercase;
+      margin: 0 0 var(--s-2);
+      letter-spacing: .02em;
+    }
+    .nl-article__body { font-size: var(--t-label); color: var(--ink); line-height: var(--lh-body); }
+    .nl-article__body p { margin: 0 0 var(--s-3); }
+
+    /* ===== Related newsletters ===== */
+    .nl-related {
+      padding: var(--s-8) 0;
+      border-top: 1px solid var(--line);
+      margin-top: var(--s-8);
+    }
+    .nl-related h2 {
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(28px, 3vw, 40px);
+      text-transform: uppercase;
+      margin: 0 0 var(--s-5);
+      letter-spacing: .02em;
+    }
+    .nl-related__viewport { position: relative; }
+    .nl-related__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5); }
+    .nl-card {
+      background: var(--snow);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .nl-card__photo {
+      aspect-ratio: 16/10;
+      background-size: cover; background-position: center;
+    }
+    .nl-card--oct .nl-card__photo {
+      background: url("once-upon-a-time-assets/newsletter/related-oct-tomatoes.jpg?v=2") center/cover no-repeat;
+    }
+    .nl-card--nov .nl-card__photo {
+      background: url("once-upon-a-time-assets/newsletter/related-nov-ballet.jpg?v=2") center/cover no-repeat;
+    }
+    .nl-card--dec .nl-card__photo {
+      background: url("once-upon-a-time-assets/newsletter/related-dec-skyline.jpg?v=2") center/cover no-repeat;
+    }
+    .nl-card__body { padding: var(--s-4) var(--s-5); }
+    .nl-card__date {
+      font-family: var(--serif); font-weight: 400;
+      font-size: var(--t-h4);
+      text-transform: uppercase;
+      margin: 0 0 4px;
+      letter-spacing: .02em;
+    }
+    .nl-card__meta { font-size: var(--t-micro); color: var(--ink-muted); margin: 0 0 var(--s-3); display: flex; justify-content: space-between; }
+    .nl-card__copy { font-size: var(--t-label); color: var(--ink); margin: 0 0 var(--s-3); line-height: var(--lh-body); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .nl-card__footer { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
+    .nl-card__icons { display: inline-flex; gap: 6px; color: var(--ink-muted); }
+    .nl-card__icons button { background: transparent; border: 0; cursor: pointer; padding: 4px; color: inherit; }
+    .nl-related__arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      right: -22px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--snow); border: 1px solid var(--line);
+      box-shadow: var(--shadow-sm);
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .nl-feature, .nl-article, .nl-article--reverse { grid-template-columns: 1fr; }
+      .nl-feature__body { column-count: 1; }
+      .nl-article--reverse .nl-article__photo { order: 0; }
+      .nl-related__grid { grid-template-columns: 1fr; }
+      .nl-toolbar { flex-direction: column; align-items: flex-start; }
+      .nl-related__arrow { display: none; }
+    }
+    @media (max-width: 540px) {
+      .nl-toolbar { flex-direction: column; align-items: stretch; }
+      .nl-tabs { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      .nl-tabs::-webkit-scrollbar { display: none; }
+      .nl-tabs a { white-space: nowrap; flex-shrink: 0; }
+      .nl-feature__grid { grid-template-columns: 1fr; }
+      .nl-card-grid { grid-template-columns: 1fr; }
+      .nl-involved-grid { grid-template-columns: 1fr; }
+    }
+/* Per-page button override (Figma AI Prototype): this frame uses --rose
+       fill for Buttons/Button-brand, not the global Woody Brown default. */
+    .btn { --btn-bg: var(--rose); --btn-bg-hover: var(--rose-700); --btn-ring: var(--rose); }
+</style>
+
+<!-- ============ TITLE ============ -->
+    <section class="nl-title wrap">
+      <h1>Newsletter&nbsp;Dashboard</h1>
+    </section>
+
+    <!-- ============ TOOLBAR ============ -->
+    <div class="wrap nl-toolbar">
+      <nav class="nl-tabs" aria-label="Newsletter navigation">
+        <div role="tablist" aria-label="Newsletter sections" style="display:contents">
+          <a href="#" id="nl-tab-home" class="is-active" data-nl-tab="home" role="tab" aria-selected="true" aria-controls="nl-panel-home">Home</a>
+          <a href="#" id="nl-tab-saved" data-nl-tab="saved" role="tab" aria-selected="false" aria-controls="nl-panel-saved">Saved Articles <span class="nl-tabs__badge" data-nl-count="saved">7</span></a>
+          <a href="#" id="nl-tab-later" data-nl-tab="later" role="tab" aria-selected="false" aria-controls="nl-panel-later">Read Later <span class="nl-tabs__badge" data-nl-count="later">2</span></a>
+          <a href="#" id="nl-tab-involved" data-nl-tab="involved" role="tab" aria-selected="false" aria-controls="nl-panel-involved">Get Involved</a>
+        </div>
+        <a href="donate.html">Donate</a>
+        <div class="nl-tabs__more-wrap">
+          <button class="nl-tabs__more" type="button" id="nl-more-btn" aria-label="Accessibility options" aria-haspopup="true" aria-expanded="false" aria-controls="nl-more-menu">···</button>
+          <ul class="nl-dropdown" id="nl-more-menu" role="menu" aria-labelledby="nl-more-btn" hidden>
+            <li role="none"><button type="button" role="menuitem" data-mock="a11y-screen-reader" data-mock-toast="Screen reader mode applied to the article view.">Screen Reader</button></li>
+            <li role="none"><button type="button" role="menuitem" data-mock="a11y-contrast" data-mock-toast="High-contrast theme applied.">Adjust Contrast</button></li>
+            <li role="none"><button type="button" role="menuitem" data-mock="a11y-line-spacing" data-mock-toast="Line spacing increased for easier reading.">Line Spacing</button></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="nl-tools">
+        <button class="nl-filter" type="button" aria-label="Filter by publish date" data-mock="filter-date" data-mock-toast="A date-range picker opens here. Hooked to Shopify article publish_at in production.">
+          <i class="ph ph-calendar-blank"></i> Publish Date
+        </button>
+        <label class="nl-search" aria-label="Search articles">
+          <i class="ph ph-magnifying-glass"></i>
+          <input type="search" placeholder="Search" autocomplete="off" data-nl-search>
+        </label>
+      </div>
+    </div>
+
+    <!-- ============ TAB PANELS ============ -->
+    <div id="nl-panel-home" class="nl-panel" role="tabpanel" aria-labelledby="nl-tab-home">
+
+    <!-- ============ FEATURED STORY (Figma WIP | Newsletter Page - P4S3) ============ -->
+    <section class="wrap nl-featured" aria-labelledby="featured-title">
+      <p class="nl-section-eyebrow" id="featured-title">Featured Story</p>
+      <article class="nl-featured-card">
+        <div class="nl-featured-card__copy">
+          <p class="nl-featured-card__brand"><span>Once Upon A Time</span><span class="nl-featured-card__pipe" aria-hidden="true">|</span><span>Newsletter</span></p>
+          <h2 class="nl-featured-card__title">December Edition 2025</h2>
+          <p class="nl-byline">Written by: Sydney&nbsp;Phelps&nbsp;&nbsp;|&nbsp;&nbsp;Published 1/18/2026</p>
+          <p class="nl-featured-card__body">As another year draws to a close, we want to thank the families, students, and supporters who made 2025 such a meaningful season for Once Upon a Time. This issue, we spotlight the community garden that has become a gathering place for our students and their families, share an update on its winter harvest, and celebrate one of the volunteers whose dedication keeps our programs thriving.</p>
+          <div class="nl-featured-card__actions">
+            <a class="btn" href="newsletter-article.html?id=december-2025">Read Article <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+            <button class="btn btn--outline" type="button" aria-label="Save December 2025 newsletter" aria-pressed="false" data-bookmark="newsletter:december-2025"><i class="ph ph-bookmark-simple"></i> Save</button>
+            <button class="btn btn--outline" type="button" aria-label="Share December 2025 newsletter" data-share data-share-title="December 2025 — Once Upon A Time"><i class="ph ph-share-network"></i> Share</button>
+          </div>
+        </div>
+        <div class="nl-featured-card__photo" role="img" aria-label="December 2025 newsletter cover"></div>
+      </article>
+    </section>
+
+    <!-- ============ MORE STORIES ============ -->
+    <section class="wrap nl-stories" aria-labelledby="more-stories-title">
+      <h2 id="more-stories-title" class="nl-stories__heading">More Stories</h2>
+      <div class="nl-stories__grid">
+        <article class="nl-story-card">
+          <div class="nl-story-card__photo nl-story-card__photo--oct" role="img" aria-label="October 2025 community garden harvest"></div>
+          <div class="nl-story-card__body">
+            <h3 class="nl-story-card__title">October Edition 2025</h3>
+            <p class="nl-story-card__meta">Author: Lena&nbsp;Stuart&nbsp;&nbsp;|&nbsp;&nbsp;Published 10/16</p>
+            <p class="nl-story-card__copy">Costume parade, ceramics show, and the launch of our community garden initiative. Read about how the season set the stage for the year ahead.</p>
+            <div class="nl-story-card__actions">
+              <a class="btn" href="newsletter-article.html?id=october-2025">Read Article <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+              <button class="btn btn--outline" type="button" aria-label="Save October 2025 newsletter" aria-pressed="false" data-bookmark="newsletter:october-2025"><i class="ph ph-bookmark-simple"></i> Save</button>
+              <button class="btn btn--outline" type="button" aria-label="Share October 2025 newsletter" data-share data-share-title="October 2025 — Once Upon A Time"><i class="ph ph-share-network"></i> Share</button>
+            </div>
+          </div>
+        </article>
+        <article class="nl-story-card">
+          <div class="nl-story-card__photo nl-story-card__photo--nov" role="img" aria-label="November 2025 student performance"></div>
+          <div class="nl-story-card__body">
+            <h3 class="nl-story-card__title">November Edition 2025</h3>
+            <p class="nl-story-card__meta">Author: Lena&nbsp;Stuart&nbsp;&nbsp;|&nbsp;&nbsp;Published 11/16</p>
+            <p class="nl-story-card__copy">Fall recital recap, an instructor spotlight on Mia Kim, and the first donor-funded scholarships announced this month.</p>
+            <div class="nl-story-card__actions">
+              <a class="btn" href="newsletter-article.html?id=november-2025">Read Article <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+              <button class="btn btn--outline" type="button" aria-label="Save November 2025 newsletter" aria-pressed="false" data-bookmark="newsletter:november-2025"><i class="ph ph-bookmark-simple"></i> Save</button>
+              <button class="btn btn--outline" type="button" aria-label="Share November 2025 newsletter" data-share data-share-title="November 2025 — Once Upon A Time"><i class="ph ph-share-network"></i> Share</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- (legacy) RELATED NEWSLETTERS — hidden index used by tab JS for search/filter -->
+    <section class="wrap nl-related" aria-labelledby="related-title" hidden>
+      <h2 id="related-title">Related Newsletters</h2>
+      <div class="nl-related__viewport">
+        <div class="nl-related__grid">
+          <article class="nl-card nl-card--oct">
+            <div class="nl-card__photo" role="img" aria-label="October 2025 newsletter cover"></div>
+            <div class="nl-card__body">
+              <h3 class="nl-card__date">October&nbsp;2025</h3>
+              <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
+              <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
+              <div class="nl-card__footer">
+                <a class="btn btn--sm btn--outline" href="newsletter-article.html?id=newsletter:october-2025"><i class="ph ph-arrow-right"></i> View More</a>
+                <span class="nl-card__icons">
+                  <button type="button" aria-label="Bookmark October 2025 newsletter" data-bookmark="newsletter:october-2025"><i class="ph ph-bookmark-simple"></i></button>
+                  <button type="button" aria-label="Share October 2025 newsletter" data-share data-share-title="October 2025 — Once Upon A Time"><i class="ph ph-share-network"></i></button>
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="nl-card nl-card--nov">
+            <div class="nl-card__photo" role="img" aria-label="November 2025 newsletter cover"></div>
+            <div class="nl-card__body">
+              <h3 class="nl-card__date">November&nbsp;2025</h3>
+              <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
+              <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
+              <div class="nl-card__footer">
+                <a class="btn btn--sm btn--outline" href="newsletter-article.html?id=newsletter:november-2025"><i class="ph ph-arrow-right"></i> View More</a>
+                <span class="nl-card__icons">
+                  <button type="button" aria-label="Bookmark November 2025 newsletter" data-bookmark="newsletter:november-2025"><i class="ph ph-bookmark-simple"></i></button>
+                  <button type="button" aria-label="Share November 2025 newsletter" data-share data-share-title="November 2025 — Once Upon A Time"><i class="ph ph-share-network"></i></button>
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <article class="nl-card nl-card--dec">
+            <div class="nl-card__photo" role="img" aria-label="December 2025 newsletter cover"></div>
+            <div class="nl-card__body">
+              <h3 class="nl-card__date">December&nbsp;2025</h3>
+              <p class="nl-card__meta"><span>Author: Lara Stuart</span><span>Published 12/18</span></p>
+              <p class="nl-card__copy">There's not a thing in the world wrong with washing your brush. What the deer. You can get away with a lot. Be careful. You can always erase it but you can't &lsquo;un-erase&rsquo; it. Look at the beauty.</p>
+              <div class="nl-card__footer">
+                <a class="btn btn--sm btn--outline" href="newsletter-article.html?id=newsletter:december-2025"><i class="ph ph-arrow-right"></i> View More</a>
+                <span class="nl-card__icons">
+                  <button type="button" aria-label="Bookmark December 2025 newsletter" data-bookmark="newsletter:december-2025"><i class="ph ph-bookmark-simple"></i></button>
+                  <button type="button" aria-label="Share December 2025 newsletter" data-share data-share-title="December 2025 — Once Upon A Time"><i class="ph ph-share-network"></i></button>
+                </span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <button class="nl-related__arrow" type="button" aria-label="Next newsletters" data-related-next>
+          <i class="ph ph-caret-right"></i>
+        </button>
+      </div>
+    </section>
+
+    </div><!-- /nl-panel-home -->
+
+    <!-- ============ SAVED ARTICLES ============ -->
+    <div id="nl-panel-saved" class="nl-panel" role="tabpanel" aria-labelledby="nl-tab-saved" hidden>
+      <section class="wrap" style="padding-top:var(--s-3)">
+        <div class="nl-current-head">
+          <h2>Saved Articles</h2>
+          <p class="nl-byline" data-nl-saved-meta>Your bookmarked stories</p>
+        </div>
+        <div class="nl-related__grid" data-nl-saved-grid data-skeleton-list data-skeleton-count="6"></div>
+        <div class="empty-state" data-nl-saved-empty hidden>
+          <i class="ph ph-bookmark-simple" aria-hidden="true" style="font-size:42px;color:var(--rose);margin-bottom:var(--s-3)"></i>
+          <h3>No saved articles yet</h3>
+          <p>Tap the bookmark icon on any newsletter or article to save it here.</p>
+          <a class="btn btn--primary" href="#" data-nl-tab-jump="home" style="margin-top:var(--s-4)">Browse newsletters</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ READ LATER ============ -->
+    <div id="nl-panel-later" class="nl-panel" role="tabpanel" aria-labelledby="nl-tab-later" hidden>
+      <section class="wrap" style="padding-top:var(--s-3)">
+        <div class="nl-current-head">
+          <h2>Read Later</h2>
+          <p class="nl-byline" data-nl-later-meta>Articles queued for later</p>
+        </div>
+        <div class="nl-related__grid" data-nl-later-grid data-skeleton-list data-skeleton-count="4"></div>
+        <div class="empty-state" data-nl-later-empty hidden>
+          <i class="ph ph-clock" aria-hidden="true" style="font-size:42px;color:var(--rose);margin-bottom:var(--s-3)"></i>
+          <h3>Nothing queued yet</h3>
+          <p>Use the &ldquo;Read Later&rdquo; option in any article&rsquo;s share menu to queue it here.</p>
+          <a class="btn btn--primary" href="#" data-nl-tab-jump="home" style="margin-top:var(--s-4)">Browse newsletters</a>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ GET INVOLVED ============ -->
+    <div id="nl-panel-involved" class="nl-panel" role="tabpanel" aria-labelledby="nl-tab-involved" hidden>
+      <section class="wrap" style="padding-top:var(--s-3)">
+        <div class="nl-current-head">
+          <h2>Get Involved</h2>
+          <p class="nl-byline">Three ways to make an impact this month</p>
+        </div>
+        <div class="nl-involved-grid">
+          <a class="nl-involved-card" href="donate.html">
+            <i class="ph ph-heart" aria-hidden="true"></i>
+            <h3>Donate</h3>
+            <p>Sponsor a child&rsquo;s scholarship, fund supplies, or contribute to our garden initiative.</p>
+            <span class="nl-involved-card__cta">Give now <i class="ph ph-arrow-right"></i></span>
+          </a>
+          <a class="nl-involved-card" href="contact.html">
+            <i class="ph ph-hand-heart" aria-hidden="true"></i>
+            <h3>Volunteer</h3>
+            <p>Mentor in our after-school programs, help at events, or share your craft with kids.</p>
+            <span class="nl-involved-card__cta">Sign up <i class="ph ph-arrow-right"></i></span>
+          </a>
+          <a class="nl-involved-card" href="sponsorship.html">
+            <i class="ph ph-buildings" aria-hidden="true"></i>
+            <h3>Partner</h3>
+            <p>Bring your business or organization on board as a corporate sponsor or programs partner.</p>
+            <span class="nl-involved-card__cta">Become a partner <i class="ph ph-arrow-right"></i></span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+{% schema %}
+{
+  "name": "Newsletter \u2014 Main",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

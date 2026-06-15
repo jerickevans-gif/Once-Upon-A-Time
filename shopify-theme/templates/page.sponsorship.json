@@ -1,21 +1,11 @@
 {
   "sections": {
-    "intro": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "For organizations",
-        "heading": "Corporate Sponsorship",
-        "body": "<p>Reach a community of 1,500+ Queens families while underwriting transformative arts education. All sponsorships are tax-deductible.</p>",
-        "text_align": "center"
-      }
-    },
-    "content": {
-      "type": "page-content",
+    "main": {
+      "type": "main-sponsorship",
       "settings": {}
     }
   },
   "order": [
-    "intro",
-    "content"
+    "main"
   ]
 }

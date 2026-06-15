@@ -1,0 +1,604 @@
+<style>
+/* Page-scoped layout for the styleguide */
+
+  .sg { max-width: 1080px; margin: 0 auto; padding: var(--s-7) var(--gutter) var(--s-9); display: grid; gap: var(--s-9); }
+  .sg__section { display: grid; gap: var(--s-5); }
+  .sg__title { font-family: var(--serif); font-size: var(--t-subtitle); text-transform: uppercase; margin: 0; color: var(--pillar); padding-bottom: var(--s-3); border-bottom: 1px solid var(--line); }
+  .sg__note { font-size: var(--t-label); color: var(--ink-muted); margin: 0; max-width: 68ch; line-height: 1.55; }
+
+  /* Swatch grid */
+  .sg-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--s-3); }
+  .sg-swatch { border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
+  .sg-swatch__color { aspect-ratio: 16 / 10; }
+  .sg-swatch__meta { padding: 8px 10px; font-size: 11px; }
+  .sg-swatch__name { font-weight: 600; color: var(--ink); }
+  .sg-swatch__hex { color: var(--ink-muted); font-family: Menlo, monospace; font-size: 10px; }
+
+  /* Swatch sub-groups */
+  .sg-swatch-group { display: grid; gap: var(--s-3); }
+  .sg-swatch-group__label { font-size: var(--t-label); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-muted); margin: 0; }
+
+  /* Type scale row */
+  .sg-type-row { display: grid; gap: var(--s-1); padding: var(--s-3) 0; border-bottom: 1px solid var(--line); }
+  .sg-type-row__sample { color: var(--ink); line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sg-type-row__label { font-size: 11px; color: var(--ink-muted); font-family: Menlo, monospace; }
+
+  /* Spacing ruler */
+  .sg-spacing { display: grid; gap: var(--s-3); }
+  .sg-spacing-row { display: flex; align-items: center; gap: var(--s-4); }
+  .sg-spacing-row__bar { height: 20px; background: var(--rose-300); border-radius: 4px; flex-shrink: 0; }
+  .sg-spacing-row__label { font-size: 11px; font-family: Menlo, monospace; color: var(--ink-muted); white-space: nowrap; }
+
+  /* Button grid */
+  .sg-btn-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--s-4); align-items: start; }
+  .sg-btn-cell { display: grid; gap: var(--s-2); }
+  .sg-btn-cell__label { font-size: 11px; font-family: Menlo, monospace; color: var(--ink-muted); }
+
+  /* Demo row */
+  .sg-row { display: flex; gap: var(--s-3); flex-wrap: wrap; align-items: center; }
+
+  /* Component demo card */
+  .sg-demo { background: var(--snow); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-5); }
+
+  @media (max-width: 540px) {
+    .sg-swatches { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+    .sg-btn-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<section class="page-hero"><div class="wrap"><div class="page-hero__eyebrow">For developers + designers</div>
+    <h1>Style Guide</h1><p class="page-hero__sub">Complete reference for tokens, components, and patterns used across the OUAT site. Toggle dark mode to preview all components in both themes.</p></div></section>
+
+    <div class="sg">
+
+      <!-- ============================================================
+           1. COLOR TOKENS
+           ============================================================ -->
+      <section class="sg__section" id="colors">
+        <h2 class="sg__title">Color Tokens</h2>
+        <p class="sg__note">All colors are defined as CSS custom properties in design-system.css. Use <code>var(--token)</code> everywhere. Hex values shown for reference only.</p>
+
+        <!-- Rose ramp -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Rose (Primary)</h3>
+          <div class="sg-swatches">
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--rose-50)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">rose-50</div><div class="sg-swatch__hex">#F2E8E6</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--rose-100)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">rose-100</div><div class="sg-swatch__hex">#F2DDD5</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--rose-200)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">rose-200</div><div class="sg-swatch__hex">#D9B3AB</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--rose-300)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">rose-300</div><div class="sg-swatch__hex">#BF8E84</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--rose-400)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">rose-400</div><div class="sg-swatch__hex">#A66D62</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--rose)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">rose (500)</div><div class="sg-swatch__hex">#8B5044</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--rose-700)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">rose-700</div><div class="sg-swatch__hex">#59332B</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--rose-800)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">rose-800</div><div class="sg-swatch__hex">#40251F</div></div></div>
+          </div>
+        </div>
+
+        <!-- Garden ramp -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Garden (Secondary)</h3>
+          <div class="sg-swatches">
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--garden-50)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">garden-50</div><div class="sg-swatch__hex">#F1F2DF</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--garden-100)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">garden-100</div><div class="sg-swatch__hex">#E3E4C5</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--garden-300)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">garden-300</div><div class="sg-swatch__hex">#B5B679</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--garden)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">garden (500)</div><div class="sg-swatch__hex">#6B6D20</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--garden-700)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">garden-700</div><div class="sg-swatch__hex">#54561A</div></div></div>
+          </div>
+        </div>
+
+        <!-- Pillar ramp -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Pillar (Aubergine)</h3>
+          <div class="sg-swatches">
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--pillar-100)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">pillar-100</div><div class="sg-swatch__hex">#DDC9D1</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--pillar)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">pillar (500)</div><div class="sg-swatch__hex">#4C2F3B</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--pillar-700)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">pillar-700</div><div class="sg-swatch__hex">#371F2A</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--pillar-800)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">pillar-800</div><div class="sg-swatch__hex">#20131A</div></div></div>
+          </div>
+        </div>
+
+        <!-- Neutrals -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Neutrals (Warm Grey)</h3>
+          <div class="sg-swatches">
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--n-50)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">n-50</div><div class="sg-swatch__hex">#F5F2EF</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--n-100)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">n-100</div><div class="sg-swatch__hex">#E5DFDA</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--n-200)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">n-200</div><div class="sg-swatch__hex">#CCC2BC</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--n-300)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">n-300</div><div class="sg-swatch__hex">#BFB3AA</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--n-400)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">n-400</div><div class="sg-swatch__hex">#A69B94</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--n-500)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">n-500</div><div class="sg-swatch__hex">#8B827C</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--n-600)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">n-600</div><div class="sg-swatch__hex">#736B66</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--n-700)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">n-700</div><div class="sg-swatch__hex">#59544F</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--n-800)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">n-800</div><div class="sg-swatch__hex">#403C39</div></div></div>
+          </div>
+        </div>
+
+        <!-- Stone -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Stone</h3>
+          <div class="sg-swatches">
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--stone)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">stone</div><div class="sg-swatch__hex">#343330</div></div></div>
+          </div>
+        </div>
+
+        <!-- Danger -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Danger</h3>
+          <div class="sg-swatches">
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--danger-50)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">danger-50</div><div class="sg-swatch__hex">#FEF5F4</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--danger-100)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">danger-100</div><div class="sg-swatch__hex">#FDECEA</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--danger)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">danger</div><div class="sg-swatch__hex">#B83A2B</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--danger-700)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">danger-700</div><div class="sg-swatch__hex">#8E2A1E</div></div></div>
+          </div>
+        </div>
+
+        <!-- Accents + base -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Accents &amp; Base</h3>
+          <div class="sg-swatches">
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--sky)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">sky</div><div class="sg-swatch__hex">#E2F6FE</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--blush)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">blush</div><div class="sg-swatch__hex">#E5AA9C</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--beginning)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">beginning</div><div class="sg-swatch__hex">#FFF5EE</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--snow)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">snow</div><div class="sg-swatch__hex">#FFFCFA</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--ink)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">ink</div><div class="sg-swatch__hex">#262422</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--ink-muted)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">ink-muted</div><div class="sg-swatch__hex">#5C544E</div></div></div>
+            <div class="sg-swatch"><div class="sg-swatch__color" style="background:var(--line)"></div><div class="sg-swatch__meta"><div class="sg-swatch__name">line</div><div class="sg-swatch__hex">#E5DCCF</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           2. TYPOGRAPHY
+           ============================================================ -->
+      <section class="sg__section" id="typography">
+        <h2 class="sg__title">Typography</h2>
+        <p class="sg__note">Voltra (display serif) for headings. Chivo Variable (sans) for body, UI, labels. All sizes use <code>--t-*</code> tokens.</p>
+
+        <div style="display:grid;gap:0">
+          <div class="sg-type-row"><div class="sg-type-row__sample" style="font-family:var(--serif);font-size:var(--t-h1);text-transform:uppercase">Heading One</div><div class="sg-type-row__label">--t-h1 &middot; 64px &middot; Voltra &middot; uppercase</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample" style="font-family:var(--serif);font-size:var(--t-h2);text-transform:uppercase">Heading Two</div><div class="sg-type-row__label">--t-h2 &middot; 48px &middot; Voltra &middot; uppercase</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample" style="font-family:var(--serif);font-size:var(--t-h3);text-transform:uppercase">Heading Three</div><div class="sg-type-row__label">--t-h3 &middot; 40px &middot; Voltra &middot; uppercase</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample" style="font-family:var(--serif);font-size:var(--t-h4)">Heading Four</div><div class="sg-type-row__label">--t-h4 &middot; 32px &middot; Voltra</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample" style="font-family:var(--sans);font-size:var(--t-xl);line-height:var(--lh-body)">Body Extra-Large</div><div class="sg-type-row__label">--t-xl &middot; 32px &middot; Chivo &middot; body-xl</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample subtitle subtitle--semibold">Subtitle Semibold</div><div class="sg-type-row__label">--t-subtitle &middot; 24px &middot; .subtitle .subtitle--semibold</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample" style="font-family:var(--sans);font-size:var(--t-lg);line-height:var(--lh-body)">Body Large</div><div class="sg-type-row__label">--t-lg &middot; 20px &middot; .body-lg</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample" style="font-family:var(--sans);font-size:var(--t-md)">Medium (Button Default)</div><div class="sg-type-row__label">--t-md &middot; 18px &middot; button text</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample" style="font-family:var(--sans);font-size:var(--t-base);line-height:var(--lh-body)">Body Base &mdash; the quick brown fox jumps over the lazy dog</div><div class="sg-type-row__label">--t-base &middot; 16px &middot; .body-md</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample label label--semibold">Label Semibold</div><div class="sg-type-row__label">--t-label &middot; 14px &middot; .label .label--semibold</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample" style="font-family:var(--sans);font-size:var(--t-micro)">Micro text &mdash; fine print, badges, timestamps</div><div class="sg-type-row__label">--t-micro &middot; 12px</div></div>
+          <div class="sg-type-row"><div class="sg-type-row__sample eyebrow">Eyebrow Label</div><div class="sg-type-row__label">.eyebrow &middot; 14px 600 &middot; 0.25em tracking &middot; uppercase &middot; rose</div></div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           3. SPACING
+           ============================================================ -->
+      <section class="sg__section" id="spacing">
+        <h2 class="sg__title">Spacing</h2>
+        <p class="sg__note">8px base rhythm. Tokens <code>--s-1</code> through <code>--s-9</code> plus special values <code>--s-10</code>, <code>--s-28</code>, and <code>--s-section</code>.</p>
+
+        <div class="sg-spacing">
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-1)"></div><div class="sg-spacing-row__label">--s-1 &middot; 4px</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-2)"></div><div class="sg-spacing-row__label">--s-2 &middot; 8px</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-3)"></div><div class="sg-spacing-row__label">--s-3 &middot; 12px</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-4)"></div><div class="sg-spacing-row__label">--s-4 &middot; 16px</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-5)"></div><div class="sg-spacing-row__label">--s-5 &middot; 24px</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-6)"></div><div class="sg-spacing-row__label">--s-6 &middot; 32px</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-7)"></div><div class="sg-spacing-row__label">--s-7 &middot; 48px</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-8)"></div><div class="sg-spacing-row__label">--s-8 &middot; 64px</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-9)"></div><div class="sg-spacing-row__label">--s-9 &middot; 96px</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-10);background:var(--garden-300)"></div><div class="sg-spacing-row__label">--s-10 &middot; 10px (Figma special)</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-28);background:var(--garden-300)"></div><div class="sg-spacing-row__label">--s-28 &middot; 28px (Figma special)</div></div>
+          <div class="sg-spacing-row"><div class="sg-spacing-row__bar" style="width:var(--s-section);background:var(--garden-300)"></div><div class="sg-spacing-row__label">--s-section &middot; 44px (Figma special)</div></div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           4. BUTTONS
+           ============================================================ -->
+      <section class="sg__section" id="buttons">
+        <h2 class="sg__title">Buttons</h2>
+        <p class="sg__note">7 color variants &times; 3 sizes. Default (rose/brand), garden, destructive/danger, outline, tonal, text, and amount. Sizes: <code>.btn--sm</code>, default, <code>.btn--lg</code>.</p>
+
+        <!-- Brand (default) -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Brand (default)</h3>
+          <div class="sg-row">
+            <button class="btn btn--sm">Brand sm</button>
+            <button class="btn">Brand</button>
+            <button class="btn btn--lg">Brand lg</button>
+          </div>
+        </div>
+
+        <!-- Garden -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Garden</h3>
+          <div class="sg-row">
+            <button class="btn btn--garden btn--sm">Garden sm</button>
+            <button class="btn btn--garden">Garden</button>
+            <button class="btn btn--garden btn--lg">Garden lg</button>
+          </div>
+        </div>
+
+        <!-- Destructive / Danger -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Destructive / Danger</h3>
+          <div class="sg-row">
+            <button class="btn btn--danger btn--sm">Danger sm</button>
+            <button class="btn btn--danger">Danger</button>
+            <button class="btn btn--danger btn--lg">Danger lg</button>
+          </div>
+        </div>
+
+        <!-- Outline -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Outline</h3>
+          <div class="sg-row">
+            <button class="btn btn--outline btn--sm">Outline sm</button>
+            <button class="btn btn--outline">Outline</button>
+            <button class="btn btn--outline btn--lg">Outline lg</button>
+          </div>
+        </div>
+
+        <!-- Tonal -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Tonal</h3>
+          <div class="sg-row">
+            <button class="btn btn--tonal btn--sm">Tonal sm</button>
+            <button class="btn btn--tonal">Tonal</button>
+            <button class="btn btn--tonal btn--lg">Tonal lg</button>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Text</h3>
+          <div class="sg-row">
+            <button class="btn btn--text btn--sm">Text sm</button>
+            <button class="btn btn--text">Text</button>
+            <button class="btn btn--text btn--lg">Text lg</button>
+          </div>
+        </div>
+
+        <!-- Amount -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Amount (donation selector)</h3>
+          <div class="sg-row">
+            <button class="btn btn--amount btn--sm">$25</button>
+            <button class="btn btn--amount">$50</button>
+            <button class="btn btn--amount btn--lg" aria-pressed="true">$100</button>
+          </div>
+        </div>
+
+        <!-- States -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">States</h3>
+          <div class="sg-row">
+            <button class="btn" disabled>Disabled</button>
+            <button class="btn is-loading">Loading</button>
+            <button class="btn btn--garden" disabled>Garden Disabled</button>
+            <button class="btn btn--danger is-loading">Danger Loading</button>
+          </div>
+        </div>
+
+        <!-- Button group -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Button Group</h3>
+          <div class="btn-group">
+            <button class="btn btn--sm">Save</button>
+            <button class="btn btn--outline btn--sm">Cancel</button>
+            <button class="btn btn--text btn--sm"><i class="ph ph-share-network" aria-hidden="true"></i> Share</button>
+          </div>
+        </div>
+
+        <!-- Icon + text -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Icon + Text</h3>
+          <div class="sg-row">
+            <button class="btn"><i class="ph ph-paper-plane-tilt" aria-hidden="true"></i> Send</button>
+            <button class="btn btn--garden"><i class="ph ph-heart" aria-hidden="true"></i> Donate</button>
+            <button class="btn btn--outline btn--sm"><i class="ph ph-download-simple" aria-hidden="true"></i> Download</button>
+            <button class="btn btn--tonal btn--sm"><i class="ph ph-pencil-simple" aria-hidden="true"></i> Edit</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           5. FORM FIELDS
+           ============================================================ -->
+      <section class="sg__section" id="form-fields">
+        <h2 class="sg__title">Form Fields</h2>
+        <p class="sg__note">Input and textarea. Default, focus (click to see), and error states. Labels use <code>--label-color</code> (maps to <code>--n-500</code>).</p>
+
+        <div style="display:grid;gap:var(--s-5);max-width:480px">
+          <div class="field">
+            <label class="field__label" style="color:var(--label-color)">Label (--label-color)</label>
+            <input class="input" type="text" placeholder="Default input">
+          </div>
+          <div class="field">
+            <label class="field__label">Email</label>
+            <input class="input is-error" type="email" value="invalid@">
+            <div class="field-error">Enter a valid email address</div>
+          </div>
+          <div class="field">
+            <label class="field__label">Message</label>
+            <textarea class="textarea" rows="3" placeholder="Textarea placeholder"></textarea>
+            <span class="field__hint">Hint text for additional context.</span>
+          </div>
+        </div>
+
+        <!-- Form card -->
+        <div class="sg-swatch-group" style="margin-top:var(--s-5)">
+          <h3 class="sg-swatch-group__label">Form Card (contact surface)</h3>
+          <form class="form-card" style="max-width:560px" onsubmit="event.preventDefault();OUAT_toast?.('Form-card demo.',{variant:'mock'})">
+            <div class="form-row">
+              <label class="field"><span class="sr-only">First name</span><input class="input" type="text" placeholder="First Name*"></label>
+              <label class="field"><span class="sr-only">Last name</span><input class="input" type="text" placeholder="Last Name*"></label>
+            </div>
+            <label class="field" data-stack><span class="sr-only">Email</span><input class="input" type="email" placeholder="Email*"></label>
+            <label class="field" data-stack><span class="sr-only">Message</span><textarea class="textarea" rows="4" placeholder="Your message..."></textarea></label>
+            <div class="form-card__actions"><button class="btn" type="submit">Send Message</button></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           6. BADGES
+           ============================================================ -->
+      <section class="sg__section" id="badges">
+        <h2 class="sg__title">Badges</h2>
+        <p class="sg__note"><code>.badge-status</code> with 4 variants: success, warning, danger, neutral.</p>
+
+        <div class="sg-row">
+          <span class="badge-status badge-status--success">Confirmed</span>
+          <span class="badge-status badge-status--warning">Pending</span>
+          <span class="badge-status badge-status--danger">Cancelled</span>
+          <span class="badge-status badge-status--neutral">Draft</span>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           7. CHIPS
+           ============================================================ -->
+      <section class="sg__section" id="chips">
+        <h2 class="sg__title">Chips</h2>
+        <p class="sg__note"><code>.chip</code> for filter selection. States: default, hover (try it), selected (<code>aria-pressed="true"</code>), disabled.</p>
+
+        <div class="sg-row">
+          <button class="chip" type="button">Default</button>
+          <button class="chip" type="button" aria-pressed="true">Selected</button>
+          <button class="chip" type="button" disabled>Disabled</button>
+          <button class="chip" type="button">Dance</button>
+          <button class="chip" type="button" aria-pressed="true">Music</button>
+          <button class="chip" type="button">Visual Arts</button>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           8. COMPONENTS
+           ============================================================ -->
+      <section class="sg__section" id="components">
+        <h2 class="sg__title">Components</h2>
+        <p class="sg__note">Composite patterns from components.css. Each shown with realistic content.</p>
+
+        <!-- Testimonial -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Testimonial</h3>
+          <div class="sg-demo">
+            <figure class="testimonial">
+              <div class="testimonial__avatar"><i class="ph ph-user" style="font-size:28px;color:var(--rose)" aria-hidden="true"></i></div>
+              <blockquote>&ldquo;Once Upon A Time changed my daughter&rsquo;s life. She found her voice through dance and has never looked back.&rdquo;</blockquote>
+              <figcaption><cite>Maria Santos</cite>, Parent</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Trust signal -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Trust Signal</h3>
+          <div class="sg-demo">
+            <span class="trust-signal"><i class="ph ph-shield-check" aria-hidden="true"></i> 501(c)(3) Verified <span class="trust-signal__detail">&middot; EIN 11-3705709</span></span>
+          </div>
+        </div>
+
+        <!-- Member card -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Member Card</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:var(--s-4)">
+            <div class="member-card">
+              <div class="member-card__photo" style="background:var(--rose-100);display:grid;place-items:center"><i class="ph ph-user" style="font-size:32px;color:var(--rose)" aria-hidden="true"></i></div>
+              <h4 class="member-card__name">Lydia Owens</h4>
+              <p class="member-card__role">Artistic Director</p>
+            </div>
+            <div class="member-card">
+              <div class="member-card__photo" style="background:var(--garden-100);display:grid;place-items:center"><i class="ph ph-user" style="font-size:32px;color:var(--garden)" aria-hidden="true"></i></div>
+              <h4 class="member-card__name">James Carter</h4>
+              <p class="member-card__role">Music Instructor</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offer card -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Offer Card</h3>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--s-4)">
+            <div class="offer-card">
+              <h4 class="offer-card__title">Summer Workshop</h4>
+              <p class="offer-card__body">8-week immersive arts program covering dance, music, and visual arts for ages 6&ndash;14.</p>
+              <button class="btn btn--sm">Learn More</button>
+            </div>
+            <div class="offer-card">
+              <h4 class="offer-card__title">Scholarship Fund</h4>
+              <p class="offer-card__body">Support a child&rsquo;s creative education. 100% of donations go directly to student tuition.</p>
+              <button class="btn btn--garden btn--sm">Donate Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Account sidebar nav -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Account Sidebar Nav</h3>
+          <div class="sg-demo" style="max-width:300px">
+            <div class="account-user" style="margin-bottom:var(--s-4)">
+              <div class="account-user__avatar"><i class="ph ph-user" aria-hidden="true"></i></div>
+              <div class="account-user__name">Jane Doe</div>
+            </div>
+            <nav class="account-nav">
+              <a href="#" aria-current="page"><i class="ph ph-user-circle" aria-hidden="true"></i> Profile</a>
+              <a href="#"><i class="ph ph-bell" aria-hidden="true"></i> Notifications <span class="account-nav__badge">3</span></a>
+              <a href="#"><i class="ph ph-gear" aria-hidden="true"></i> Preferences</a>
+              <a href="#"><i class="ph ph-clock-counter-clockwise" aria-hidden="true"></i> Class History</a>
+              <a href="#"><i class="ph ph-envelope-simple" aria-hidden="true"></i> Inbox</a>
+            </nav>
+            <div class="account-side-card" style="margin-top:var(--s-4)">
+              <span class="account-side-card__title">Refer a friend</span>
+              <button class="btn btn--sm">Share</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty state -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Empty State</h3>
+          <div class="empty-state">
+            <div class="empty-state__icon"><i class="ph ph-folder-open"></i></div>
+            <div class="empty-state__title">Nothing here yet</div>
+            <p class="empty-state__body">When data is available, it will show up here.</p>
+            <div class="empty-state__actions"><button class="btn">Primary action</button></div>
+          </div>
+        </div>
+
+        <!-- Skeleton loaders -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Skeleton Loaders</h3>
+          <div style="display:grid;gap:var(--s-2);max-width:400px">
+            <div class="skeleton skeleton--title"></div>
+            <div class="skeleton skeleton--text"></div>
+            <div class="skeleton skeleton--text" style="width:80%"></div>
+            <div class="skeleton skeleton--text" style="width:60%"></div>
+            <div class="skeleton skeleton--block" style="margin-top:var(--s-2)"></div>
+          </div>
+        </div>
+
+        <!-- FAQ list -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">FAQ Accordion</h3>
+          <p class="sg__note">Native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code>. Open state fills rose-100 with a 2px primary border.</p>
+          <div class="faq-list" style="max-width:680px">
+            <details class="faq-item" open>
+              <summary>How do I book a class?</summary>
+              <div class="faq-item__body">Browse the schedule on Programs, pick a class, and click Enroll Now. Confirmation arrives by email.</div>
+            </details>
+            <details class="faq-item">
+              <summary>What is the cancellation policy?</summary>
+              <div class="faq-item__body">Cancellations made at least 24 hours before class start receive a full credit.</div>
+            </details>
+          </div>
+        </div>
+
+        <!-- CTA banner -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">CTA Banner</h3>
+          <div class="cta-banner">
+            <div class="cta-banner__copy">
+              <h3>Still have questions?</h3>
+              <p>Please write to our friendly support team or call us at +1&nbsp;718-380-6929.</p>
+            </div>
+            <a class="btn" href="mailto:contact@onceuponatime.org">Send Email <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Contact info list -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Contact Info List</h3>
+          <ul class="contact-info" style="max-width:480px">
+            <li><i class="ph ph-map-pin" aria-hidden="true"></i><a href="https://maps.app.goo.gl/d8kfjpDiRvw9ZKt47" target="_blank" rel="noopener">87-61 111th St, Richmond Hill<br>NY 11418, United States</a></li>
+            <li><i class="ph ph-phone" aria-hidden="true"></i><span>+1 718-380-6929</span></li>
+            <li><i class="ph ph-envelope-simple" aria-hidden="true"></i><span>contact@onceuponatime.org</span></li>
+          </ul>
+        </div>
+
+        <!-- Toast types -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Toast Types</h3>
+          <p class="sg__note">Click to fire each variant via <code>OUAT_toast()</code>.</p>
+          <div class="sg-row">
+            <button class="btn btn--outline btn--sm" onclick="OUAT_toast('Info message',{ variant:'info' })">Info</button>
+            <button class="btn btn--outline btn--sm" onclick="OUAT_toast('Success!',{ variant:'success' })">Success</button>
+            <button class="btn btn--outline btn--sm" onclick="OUAT_toast('Warning',{ variant:'warning' })">Warning</button>
+            <button class="btn btn--outline btn--sm" onclick="OUAT_toast('Mock — this routes through Shopify in production.',{ variant:'mock' })">Mock</button>
+          </div>
+        </div>
+
+        <!-- Confirmation modal -->
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Confirmation Modal</h3>
+          <div class="sg-row">
+            <button class="btn btn--outline" data-confirm="Are you sure?" data-confirm-body="This is a demo of the standard confirm modal." data-confirm-cta="OK">Standard</button>
+            <button class="btn btn--danger btn--outline" data-confirm="Delete this item?" data-confirm-body="This action cannot be undone." data-confirm-cta="Delete" data-confirm-danger>Danger variant</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           9. UTILITIES
+           ============================================================ -->
+      <section class="sg__section" id="utilities">
+        <h2 class="sg__title">Utilities</h2>
+
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">.img-border</h3>
+          <p class="sg__note">Adds a 1px <code>--line</code> ring and <code>--radius</code> border-radius.</p>
+          <div style="width:200px;height:120px;background:var(--rose-100);display:grid;place-items:center" class="img-border">
+            <span style="font-size:var(--t-label);color:var(--ink-muted)">Image placeholder</span>
+          </div>
+        </div>
+
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">.text-on-pattern</h3>
+          <p class="sg__note">600 weight + subtle text-shadow for readability on textured backgrounds.</p>
+          <div style="background:var(--rose-300);padding:var(--s-5);border-radius:var(--radius-sm)">
+            <span class="text-on-pattern" style="font-size:var(--t-lg);color:var(--snow)">Text on a patterned background</span>
+          </div>
+        </div>
+
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Radii</h3>
+          <div class="sg-row">
+            <div style="width:60px;height:60px;background:var(--rose-100);border:1px solid var(--line);border-radius:var(--radius-sm);display:grid;place-items:center"><span style="font-size:10px;font-family:Menlo,monospace;color:var(--ink-muted)">sm 8</span></div>
+            <div style="width:60px;height:60px;background:var(--rose-100);border:1px solid var(--line);border-radius:var(--radius);display:grid;place-items:center"><span style="font-size:10px;font-family:Menlo,monospace;color:var(--ink-muted)">12</span></div>
+            <div style="width:60px;height:60px;background:var(--rose-100);border:1px solid var(--line);border-radius:var(--radius-lg);display:grid;place-items:center"><span style="font-size:10px;font-family:Menlo,monospace;color:var(--ink-muted)">lg 20</span></div>
+            <div style="width:80px;height:40px;background:var(--rose-100);border:1px solid var(--line);border-radius:var(--radius-pill);display:grid;place-items:center"><span style="font-size:10px;font-family:Menlo,monospace;color:var(--ink-muted)">pill</span></div>
+          </div>
+        </div>
+
+        <div class="sg-swatch-group">
+          <h3 class="sg-swatch-group__label">Shadows</h3>
+          <div class="sg-row">
+            <div style="width:100px;height:60px;background:var(--snow);border-radius:var(--radius-sm);box-shadow:var(--shadow-xs);display:grid;place-items:center"><span style="font-size:10px;font-family:Menlo,monospace;color:var(--ink-muted)">xs</span></div>
+            <div style="width:100px;height:60px;background:var(--snow);border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);display:grid;place-items:center"><span style="font-size:10px;font-family:Menlo,monospace;color:var(--ink-muted)">sm</span></div>
+            <div style="width:100px;height:60px;background:var(--snow);border-radius:var(--radius-sm);box-shadow:var(--shadow-md);display:grid;place-items:center"><span style="font-size:10px;font-family:Menlo,monospace;color:var(--ink-muted)">md</span></div>
+            <div style="width:100px;height:60px;background:var(--snow);border-radius:var(--radius-sm);box-shadow:var(--shadow-lg);display:grid;place-items:center"><span style="font-size:10px;font-family:Menlo,monospace;color:var(--ink-muted)">lg</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           10. DARK MODE TOGGLE
+           ============================================================ -->
+      <section class="sg__section" id="dark-mode">
+        <h2 class="sg__title">Dark Mode Toggle</h2>
+        <p class="sg__note">Click to toggle <code>.theme-dark</code> on <code>&lt;html&gt;</code>. All sections above will re-render with dark tokens. Uses <code>OUAT_setTheme()</code> from mock-system.js.</p>
+        <div class="sg-row">
+          <button class="btn btn--outline" data-theme-toggle><i class="ph ph-moon" aria-hidden="true"></i> Toggle dark mode</button>
+        </div>
+      </section>
+
+    </div>
+
+{% schema %}
+{
+  "name": "Styleguide \u2014 Main",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

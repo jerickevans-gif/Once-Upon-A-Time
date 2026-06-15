@@ -1,0 +1,27 @@
+<section class="page-hero">
+      <div class="wrap"><div class="page-hero__eyebrow">Search</div>
+      <h1 style="margin-bottom:24px">What can we help you find?</h1>
+      <form action="search.html" method="get" role="search" style="max-width:560px;margin:0 auto;display:flex;gap:8px">
+        <label style="flex:1;display:inline-flex;gap:8px;align-items:center;background:var(--snow);border:1px solid var(--line);border-radius:8px;padding:10px 16px">
+          <i class="ph ph-magnifying-glass" style="color:var(--ink-muted)"></i>
+          <input type="search" name="q" id="q" aria-label="Search programs, instructors, and articles" placeholder="Search programs, instructors, articles..." autofocus style="border:0;background:transparent;outline:0;font-size:15px;flex:1">
+        </label>
+        <button class="btn" type="submit">Search</button>
+      </form>
+      </div>
+    </section>
+    <section class="wrap" id="results" style="padding:48px 0;max-width:780px">
+      <div class="empty-state" role="status" hidden>
+        <div class="empty-state__icon"><i class="ph ph-magnifying-glass" aria-hidden="true"></i></div>
+        <h3 class="empty-state__title">No results found</h3>
+        <p class="empty-state__body">Try a different search term.</p>
+      </div>
+    </section>
+
+{% schema %}
+{
+  "name": "Search \u2014 Main",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

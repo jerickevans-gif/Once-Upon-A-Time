@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-instructor",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

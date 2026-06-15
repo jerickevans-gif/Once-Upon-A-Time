@@ -1,0 +1,266 @@
+<style>
+/* ============ Page-specific ============ */
+
+    /* Hero band */
+    .hero {
+      background: var(--beginning);
+      padding: var(--s-7) 0 var(--s-7);
+    }
+    .hero__inner {
+      display: grid; grid-template-columns: 1.05fr 1fr; gap: var(--s-5);
+      align-items: stretch;
+    }
+    .hero__photo {
+      border-radius: 32px;            /* Figma: 32px corner radius */
+      overflow: hidden;
+      aspect-ratio: 674 / 400;        /* Figma frame: 1.685 : 1 */
+      background: url("once-upon-a-time-assets/contact/unisphere.jpg") center/cover no-repeat;
+      box-shadow: var(--shadow-sm);
+    }
+    .hero__rhombus {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--beginning);
+      border-radius: var(--radius-lg);
+      min-height: 320px;
+      padding: 0 var(--s-7);
+      overflow: hidden;
+    }
+    /* Marquee/hourglass shape with concave left+right edges, per PDF design.
+       Built as inline SVG so the curves stay smooth at any size. */
+    .hero__rhombus::before {
+      content: "";
+      position: absolute; inset: 0;
+      background:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 320' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%23b8b779'/><stop offset='55%25' stop-color='%236B6D20'/><stop offset='100%25' stop-color='%234a4d12'/></linearGradient></defs><path fill='url(%23g)' d='M 0 0 L 600 0 Q 540 160, 600 320 L 0 320 Q 60 160, 0 0 Z'/></svg>")
+        no-repeat center / 100% 100%;
+    }
+    .hero__rhombus h1 {
+      position: relative; z-index: 1;
+      font-family: var(--serif); font-weight: 400;
+      font-size: clamp(32px, 4.4vw, 54px);
+      /* Negative text-indent compensates for trailing letter-spacing
+         so optical center matches geometric center of the marquee. */
+      letter-spacing: .05em; text-indent: -.05em;
+      color: var(--ink);
+      text-transform: uppercase;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    @media (max-width: 720px) {
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__photo { aspect-ratio: 16/9; }
+      .hero__rhombus { padding: var(--s-7) var(--s-5); }
+    }
+
+    /* "Let's talk" + form layout (form-card + contact-info live in components.css) */
+    .talk {
+      display: grid; grid-template-columns: 1fr 1.05fr; gap: var(--s-7);
+      padding: var(--s-8) 0;
+      align-items: start;
+    }
+    .talk__copy h2 { margin-bottom: var(--s-4); text-transform: uppercase; }
+    .faq-block__title { text-transform: uppercase; }
+    .talk__copy p {
+      color: var(--ink);
+      margin-bottom: var(--s-6);
+      max-width: 42ch;
+      font-size: var(--t-subtitle);
+      font-weight: 600;
+      line-height: 1.17;
+    }
+    .phone-hero {
+      display: inline-flex; align-items: center; gap: var(--s-3);
+      font-family: var(--serif); font-size: clamp(28px, 4vw, 40px); font-weight: 400;
+      color: var(--rose-700); text-decoration: none;
+      padding: var(--s-4) var(--s-5); border-radius: var(--radius); background: var(--rose-50);
+      margin-bottom: var(--s-5);
+    }
+    .phone-hero .ph { font-size: 28px; color: var(--rose); }
+    .phone-hero:hover { background: var(--rose-100); }
+    .talk__copy .contact-info { margin-top: var(--s-5); }
+    @media (max-width: 720px) {
+      .talk { grid-template-columns: 1fr; gap: var(--s-6); }
+    }
+
+    /* FAQ block layout (faq-list lives in components.css) */
+    .faq-block {
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: var(--s-7);
+      align-items: start;
+      padding: var(--s-7) 0;
+    }
+    .faq-block--reverse { grid-template-columns: 1.6fr 1fr; }
+    .faq-block__art {
+      display: grid; place-items: center;
+      padding: var(--s-5);
+    }
+    .faq-block__art img { max-width: 100%; height: auto; max-height: 360px; }
+    .faq-block__title { margin-bottom: var(--s-5); }
+    @media (max-width: 720px) {
+      .faq-block, .faq-block--reverse { grid-template-columns: 1fr; }
+      .faq-block--reverse .faq-block__art { order: -1; }
+    }
+
+    @media (max-width: 540px) {
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__photo { display: none; }
+      .hero__rhombus { min-height: 180px; padding: var(--s-5); }
+      .hero__rhombus::before { display: none; }
+      .talk { grid-template-columns: 1fr; gap: var(--s-5); }
+      .phone-hero { width: 100%; justify-content: center; text-align: center; }
+    }
+
+    /* Page-scoped tail spacing for the banner */
+    .cta-banner { margin: var(--s-7) 0 var(--s-9); }
+</style>
+
+<!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap hero__inner">
+        <div class="hero__photo" role="img" aria-label="Unisphere monument with surrounding plaza"></div>
+        <div class="hero__rhombus">
+          <h1>&ldquo;Contact&nbsp;Us&rdquo;</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TALK + FORM ============ -->
+    <section class="wrap">
+      <div class="talk">
+        <div class="talk__copy">
+          <h2>Let's Talk With&nbsp;Us</h2>
+          <p>Questions, comments, or suggestions? Simply fill in the form and we'll be in touch shortly.</p>
+          <a class="phone-hero" href="tel:+17183806929">
+            <i class="ph ph-phone" aria-hidden="true"></i>
+            <span>+1 (718) 380-6929</span>
+          </a>
+          <ul class="contact-info">
+            <li>
+              <i class="ph ph-map-pin" aria-hidden="true"></i>
+              <a href="https://maps.app.goo.gl/d8kfjpDiRvw9ZKt47" target="_blank" rel="noopener">87-61 111th St, Richmond Hill<br>NY 11418, United States</a>
+            </li>
+            <li>
+              <i class="ph ph-envelope-simple" aria-hidden="true"></i>
+              <span>contact@onceuponatime.org</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Replace REPLACE_ME with a Formspree form ID (https://formspree.io) to submit real messages. -->
+        <div id="contact-error-summary" class="error-summary" role="alert" hidden style="background:var(--danger-50);border:1px solid var(--danger-100);border-radius:var(--radius);padding:var(--s-4);margin-bottom:var(--s-4);color:var(--danger)">
+          <p style="margin:0;font-size:var(--t-label);font-weight:600"><strong>Please check <span data-error-count></span> field(s) below</strong></p>
+        </div>
+        <form id="contact-form" class="form-card" novalidate aria-label="Contact form" data-formspree-id="REPLACE_ME">
+          <div class="form-row">
+            <label class="field" for="contact-first">
+              <span class="sr-only">First name</span>
+              <input id="contact-first" class="input" type="text" name="first" placeholder="John" autocomplete="given-name" required aria-required="true">
+            </label>
+            <label class="field" for="contact-last">
+              <span class="sr-only">Last name</span>
+              <input id="contact-last" class="input" type="text" name="last" placeholder="Last Name*" autocomplete="family-name" required aria-required="true">
+            </label>
+          </div>
+          <label class="field" data-stack for="contact-email">
+            <span class="sr-only">Email</span>
+            <input id="contact-email" class="input" type="email" name="email" placeholder="Email*" autocomplete="email" required aria-required="true">
+          </label>
+          <label class="field" data-stack for="contact-phone">
+            <span class="sr-only">Phone number (optional)</span>
+            <input id="contact-phone" class="input" type="tel" inputmode="tel" name="phone" placeholder="Phone Number (optional)" autocomplete="tel">
+          </label>
+          <label class="field" data-stack for="contact-message">
+            <span class="sr-only">Your message</span>
+            <textarea id="contact-message" class="textarea" name="message" placeholder="Your message..." rows="5" required aria-required="true"></textarea>
+          </label>
+          <div class="form-card__actions">
+            <button class="btn" type="submit">Send Message</button>
+          </div>
+          <p id="contact-status" role="status" aria-live="polite" class="sr-only"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ COMMON QUESTIONS ============ -->
+    <section class="wrap" id="faqs">
+      <div class="faq-block">
+        <div class="faq-block__art">
+          <img src="once-upon-a-time-assets/contact/qa-illustration.png?v=2" alt="" aria-hidden="true">
+        </div>
+        <div>
+          <h2 class="faq-block__title">Answer to common questions!</h2>
+          <div class="faq-list">
+            <details class="faq-item" open>
+              <summary>How do I book a class?</summary>
+              <div class="faq-item__body">
+                Browse the schedule on the Programs page, pick a class, and click <em>Enroll Now</em>. You'll be guided through registration and payment in a few short steps. Confirmation arrives by email within minutes.
+              </div>
+            </details>
+            <details class="faq-item">
+              <summary>How many classes can I take?</summary>
+              <div class="faq-item__body">There's no cap — most students attend two to three classes per week. We can recommend a balanced schedule based on your goals.</div>
+            </details>
+            <details class="faq-item">
+              <summary>What is the cancellation policy?</summary>
+              <div class="faq-item__body">Cancellations made at least 24 hours before the class start time receive a full credit. Late cancellations may forfeit the session.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Are the tour prices per person or per group?</summary>
+              <div class="faq-item__body">Tour prices are per person, with discounts for groups of six or more. Reach out for custom group quotes.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DONATION QUESTIONS ============ -->
+    <section class="wrap">
+      <div class="faq-block faq-block--reverse">
+        <div>
+          <h2 class="faq-block__title">Donation questions? We've got answers!</h2>
+          <div class="faq-list">
+            <details class="faq-item" open>
+              <summary>How do I donate?</summary>
+              <div class="faq-item__body">Visit our <a class="link" href="donate.html">Donation page</a> and choose a one-time gift or a recurring monthly contribution. We accept card, ACH, and donor-advised funds.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Is my donation tax-deductible?</summary>
+              <div class="faq-item__body">Yes. Once Upon A Time, Inc. is a registered 501(c)(3) nonprofit. You'll receive an itemised tax receipt by email.</div>
+            </details>
+            <details class="faq-item">
+              <summary>What is the cancellation policy?</summary>
+              <div class="faq-item__body">Recurring donations can be paused or cancelled any time from your account preferences, or by replying to your monthly receipt.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Where does my donation go?</summary>
+              <div class="faq-item__body">Roughly 87¢ of every dollar funds programs — scholarships, instructor pay, and venue costs — with the remainder covering admin and outreach.</div>
+            </details>
+          </div>
+        </div>
+        <div class="faq-block__art">
+          <img src="once-upon-a-time-assets/contact/faq-splat.png?v=3" alt="" aria-hidden="true">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STILL HAVE QUESTIONS ============ -->
+    <section class="wrap">
+      <div class="cta-banner">
+        <div class="cta-banner__copy">
+          <h3>Still have questions?</h3>
+          <p>Please write to our friendly support team or call us at +1 — 123-456-789.</p>
+        </div>
+        <a class="btn" href="mailto:contact@onceuponatime.org">
+          Send Email <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
+        </a>
+      </div>
+    </section>
+
+{% schema %}
+{
+  "name": "Contact \u2014 Main",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

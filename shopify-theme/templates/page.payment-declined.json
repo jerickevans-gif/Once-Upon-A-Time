@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-payment-declined",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ],
+  "layout": "page"
+}

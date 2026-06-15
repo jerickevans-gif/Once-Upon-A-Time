@@ -1,42 +1,11 @@
 {
   "sections": {
-    "hero": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "",
-        "heading": "Contact Us",
-        "body": "",
-        "text_align": "center"
-      }
-    },
-    "form": {
-      "type": "contact-form",
-      "settings": {
-        "heading": "Contact Us",
-        "copy_heading": "Let's Talk With Us",
-        "copy_lede": "Questions, comments, or suggestions? Simply fill in the form and we'll be in touch shortly.",
-        "address": "87-61 111th St, Richmond Hill, NY 11418",
-        "phone": "+1 718-380-6929",
-        "email": "contact@onceuponatime.org"
-      }
-    },
-    "faq-general": {
-      "type": "page-content",
+    "main": {
+      "type": "main-contact",
       "settings": {}
-    },
-    "faq-donation": {
-      "type": "page-content",
-      "settings": {}
-    },
-    "cta": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "",
-        "heading": "Still have questions?",
-        "body": "<p>Please write to our friendly support team or call us at +1 718-380-6929.</p>",
-        "text_align": "center"
-      }
     }
   },
-  "order": ["hero", "form", "faq-general", "faq-donation", "cta"]
+  "order": [
+    "main"
+  ]
 }

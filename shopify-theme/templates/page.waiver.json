@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-waiver",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

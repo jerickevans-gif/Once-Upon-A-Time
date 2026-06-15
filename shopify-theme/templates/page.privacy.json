@@ -1,21 +1,11 @@
 {
   "sections": {
-    "intro": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "Legal",
-        "heading": "Privacy Policy",
-        "body": "<p>Last updated April 29, 2026</p>",
-        "text_align": "center"
-      }
-    },
-    "content": {
-      "type": "page-content",
+    "main": {
+      "type": "main-privacy",
       "settings": {}
     }
   },
   "order": [
-    "intro",
-    "content"
+    "main"
   ]
 }

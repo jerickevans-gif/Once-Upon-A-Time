@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-onboarding",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ],
+  "layout": "page"
+}

@@ -1,0 +1,170 @@
+<style>
+body { background: var(--snow); }
+
+    /* Class history cards */
+    .class-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+    .class-card {
+      background: var(--snow); border: 1px solid var(--line); border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: grid; grid-template-rows: 200px auto;
+    }
+    .class-card__photo {
+      position: relative;
+      background-size: cover; background-position: center;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: var(--s-4);
+    }
+    .class-card--camps26 .class-card__photo { background-image: url("once-upon-a-time-assets/landing/jazz-hero.jpg"); }
+    .class-card--camps25 .class-card__photo { background-image: url("once-upon-a-time-assets/landing/ballet-card.jpg"); }
+    .class-card--private .class-card__photo { background-image: url("once-upon-a-time-assets/landing/story-jazz.jpg"); }
+    .class-card--camps24 .class-card__photo { background-image: url("once-upon-a-time-assets/landing/jazz-hero.jpg"); }
+
+    .class-card__status {
+      background: var(--snow); color: var(--ink);
+      padding: 4px 12px; border-radius: var(--radius-pill);
+      font-size: var(--t-label); font-weight: 600;
+    }
+    .class-card__status--starting { background: var(--garden-100); color: var(--garden-700); }
+    .class-card__status--happening { background: var(--rose-100); color: var(--rose-700); }
+    .class-card__status--closed { background: var(--snow); color: var(--ink-muted); }
+    .class-card__price {
+      background: var(--snow); color: var(--ink);
+      padding: 4px 12px; border-radius: var(--radius-pill);
+      font-size: var(--t-label); font-weight: 700;
+    }
+
+    .class-card__body { padding: var(--s-5); display: grid; gap: var(--s-3); }
+    .class-card__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-3); flex-wrap: wrap; }
+    .class-card__title { font-family: var(--serif); font-weight: 400; font-size: var(--t-h4); margin: 0; }
+    .class-card__meta { font-size: var(--t-label); color: var(--ink-muted); }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip { font-size: var(--t-micro); font-weight: 600; padding: 4px 10px; border-radius: var(--radius-pill); border: 1px solid var(--rose); color: var(--rose-700); background: transparent; }
+    .chip--garden { border-color: var(--garden); color: var(--garden-700); }
+
+    .class-card__links { display: flex; gap: var(--s-4); align-items: center; font-size: var(--t-label); }
+    .class-card__links a { color: var(--rose); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+    .class-card__footer { display: flex; gap: var(--s-3); padding-top: var(--s-3); }
+    .class-card__footer .btn { flex: 1; }
+
+    @media (max-width: 900px) { .class-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap account">
+      <aside class="account__sidebar" aria-label="Account navigation">
+        <div class="account-user">
+          <span class="account-user__avatar"><i class="ph ph-user"></i></span>
+          <span class="account-user__name">Claire Sherlock</span>
+        </div>
+        <nav class="account-nav" aria-label="Account sections">
+          <a href="profile.html"><i class="ph ph-user-circle"></i><span>My Profile</span><span></span></a>
+          <a href="preferences.html"><i class="ph ph-sliders-horizontal"></i><span>Preferences</span><span></span></a>
+          <a href="class-history.html" aria-current="page"><i class="ph ph-book-open"></i><span>Class history</span><span></span></a>
+          <a href="inbox.html"><i class="ph ph-envelope"></i><span>Inbox</span><span class="account-nav__badge">3</span></a>
+        </nav>
+        <div class="account-side-card">
+          <span class="account-side-card__title">Browse more classes?</span>
+          <a class="btn btn--sm" href="programs.html">See more</a>
+        </div>
+        <div class="account-side-card account-side-card--ghost">
+          <span class="account-side-card__title">Looking for support?</span>
+          <a class="btn btn--sm btn--outline" href="contact.html">Contact Us</a>
+        </div>
+      </aside>
+
+      <section class="account__main" aria-labelledby="ch-h1">
+        <h1 id="ch-h1" class="sr-only">Class History</h1>
+        <div class="acc-section">
+          <h2 class="acc-section__title">Enrolled Classes</h2>
+          <div class="class-grid">
+            <article class="class-card class-card--camps26">
+              <div class="class-card__photo">
+                <span class="class-card__status class-card__status--starting">Starting Soon</span>
+                <span class="class-card__price">$250</span>
+              </div>
+              <div class="class-card__body">
+                <h3 class="class-card__title">Seasonal Camps 2026</h3>
+                <div class="class-card__meta">Start date · Mar 03 2026</div>
+                <div class="chips"><span class="chip">Dance</span><span class="chip">Theater</span><span class="chip chip--garden">Gardening</span></div>
+                <div class="class-card__links">
+                  <a href="#" data-confirm="Cancel this program?" data-confirm-body="Refunds are full up to 14 days before the start date; partial credit after. Anyone in the class roster will be notified." data-confirm-cta="Cancel program" data-confirm-danger="true" data-confirm-action="mock:cancel-program">Cancel program</a>
+                  <a href="mailto:contact@onceuponatime.org?subject=Report%20issue%20-%20Seasonal%20Camps%202026&body=Order%20%23OUAT-2026-001%0A%0AIssue%20description%3A">Report an issue</a>
+                  <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
+                </div>
+                <div class="class-card__footer">
+                  <a class="btn btn--sm" href="seasonal-camps.html">View Details</a>
+                  <a class="btn btn--sm btn--text" href="receipt.html?order=OUAT-2026-001">View Receipt</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="class-card class-card--camps25">
+              <div class="class-card__photo">
+                <span class="class-card__status class-card__status--happening">Happening</span>
+                <span class="class-card__price">$250</span>
+              </div>
+              <div class="class-card__body">
+                <h3 class="class-card__title">Seasonal Camps 2025</h3>
+                <div class="class-card__meta">Start date · Mar 10 2025</div>
+                <div class="chips"><span class="chip">Dance</span><span class="chip">Theater</span><span class="chip chip--garden">Gardening</span></div>
+                <div class="class-card__footer">
+                  <a class="btn btn--sm" href="seasonal-camps.html">View Details</a>
+                  <a class="btn btn--sm btn--text" href="receipt.html?order=OUAT-2025-007">View Receipt</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="acc-section">
+          <h2 class="acc-section__title">Previous Classes</h2>
+          <div class="class-grid">
+            <article class="class-card class-card--private">
+              <div class="class-card__photo">
+                <span class="class-card__status class-card__status--closed">Closed</span>
+                <span class="class-card__price">$250</span>
+              </div>
+              <div class="class-card__body">
+                <h3 class="class-card__title">Private Sessions</h3>
+                <div class="class-card__meta">Start date · June 02 2024</div>
+                <div class="chips"><span class="chip">Acting</span></div>
+                <div class="class-card__footer">
+                  <a class="btn btn--sm" href="private-lessons.html">View Details</a>
+                  <a class="btn btn--sm btn--text" href="receipt.html?order=OUAT-2024-052">View Receipt</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="class-card class-card--camps24">
+              <div class="class-card__photo">
+                <span class="class-card__status class-card__status--closed">Closed</span>
+                <span class="class-card__price">$250</span>
+              </div>
+              <div class="class-card__body">
+                <h3 class="class-card__title">Seasonal Camps 2024</h3>
+                <div class="class-card__meta">Start date · Mar 8 2024</div>
+                <div class="chips"><span class="chip">Dance</span><span class="chip">Theater</span></div>
+                <div class="class-card__footer">
+                  <a class="btn btn--sm" href="seasonal-camps.html">View Details</a>
+                  <a class="btn btn--sm btn--text" href="receipt.html?order=OUAT-2024-018">View Receipt</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="empty-state" role="status" hidden>
+          <div class="empty-state__icon"><i class="ph ph-book-open" aria-hidden="true"></i></div>
+          <h3 class="empty-state__title">No class history yet</h3>
+          <p class="empty-state__body">Your enrolled classes will appear here after your first session.</p>
+        </div>
+      </section>
+    </div>
+
+{% schema %}
+{
+  "name": "Class History \u2014 Main",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,211 @@
+<style>
+body { background: var(--snow); }
+
+    .account__main {
+      background: var(--snow);
+      padding-right: var(--s-3);
+    }
+
+    /* .acc-section* now in components.css */
+
+    /* ===== Profile-specific ===== */
+    .pref-name {
+      display: grid; grid-template-columns: 60px 1fr; gap: var(--s-4); align-items: center;
+      max-width: 520px;
+    }
+    .pref-name__avatar {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--rose); color: var(--snow);
+      display: grid; place-items: center;
+    }
+    .pref-name__avatar .ph { font-size: 28px; }
+    .pref-name__field { display: grid; gap: 4px; }
+    .pref-name__label { font-size: var(--t-label); color: var(--ink-muted); font-weight: 500; }
+
+    .child-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: var(--s-5);
+      margin-bottom: var(--s-3);
+    }
+    .child-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--s-5) var(--s-6);
+    }
+    .child-grid__field { display: grid; gap: 4px; }
+    .child-grid__label { font-size: var(--t-label); color: var(--ink-muted); }
+    .child-grid__value { font-size: var(--t-base); font-weight: 500; color: var(--ink); }
+
+    .load-more {
+      background: transparent; border: 0; color: var(--ink-muted);
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: var(--s-3) 0;
+      font-size: var(--t-base); cursor: pointer;
+    }
+    .load-more:hover { color: var(--rose); }
+
+    .security-row {
+      display: grid; grid-template-columns: 1fr auto; align-items: center; gap: var(--s-4);
+      padding: var(--s-4) 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .security-row:last-child { border-bottom: 0; }
+    .security-row__label { font-size: var(--t-label); color: var(--ink-muted); }
+    .security-row__value { font-size: var(--t-base); color: var(--ink); margin-top: 2px; }
+    .security-row__action {
+      background: transparent; border: 0; color: var(--rose);
+      font-weight: 600; font-size: var(--t-base); cursor: pointer;
+    }
+    .security-row__action:hover { color: var(--rose-700); text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .child-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px) {
+      .pref-name { grid-template-columns: 1fr; text-align: center; }
+      .pref-name__avatar { margin: 0 auto; }
+    }
+</style>
+
+<div class="wrap account">
+
+      <!-- ============ SIDEBAR ============ -->
+      <aside class="account__sidebar" aria-label="Account navigation">
+        <div class="account-user">
+          <span class="account-user__avatar"><i class="ph ph-user"></i></span>
+          <span class="account-user__name">Claire Sherlock</span>
+        </div>
+        <details class="sidebar-collapse">
+          <summary>Account Menu <i class="ph ph-caret-down" aria-hidden="true"></i></summary>
+          <nav class="sidebar-collapse__nav account-nav" aria-label="Account sections">
+            <a href="profile.html" aria-current="page"><i class="ph ph-user-circle"></i><span>My Profile</span><span></span></a>
+            <a href="preferences.html"><i class="ph ph-sliders-horizontal"></i><span>Preferences</span><span></span></a>
+            <a href="class-history.html"><i class="ph ph-book-open"></i><span>Class history</span><span></span></a>
+            <a href="inbox.html"><i class="ph ph-envelope"></i><span>Inbox</span><span class="account-nav__badge">3</span></a>
+          </nav>
+        </details>
+        <div class="account-side-card">
+          <span class="account-side-card__title">Browse more classes?</span>
+          <a class="btn btn--sm" href="programs.html">See more</a>
+        </div>
+        <div class="account-side-card account-side-card--ghost">
+          <span class="account-side-card__title">Looking for support?</span>
+          <a class="btn btn--sm btn--outline" href="contact.html">Contact Us</a>
+        </div>
+      </aside>
+
+      <!-- ============ MAIN ============ -->
+      <section class="account__main" aria-labelledby="profile-h1">
+        <h1 id="profile-h1" class="sr-only">My Profile</h1>
+
+        <div class="acc-section">
+          <div class="acc-section__head"><h2 class="acc-section__title">Account</h2></div>
+          <div class="pref-name">
+            <span class="pref-name__avatar"><i class="ph ph-user"></i></span>
+            <div class="pref-name__field">
+              <label class="pref-name__label" for="prefName">Your Preferred Name</label>
+              <input class="input" id="prefName" type="text" value="CLAIRE SHERLOCK">
+            </div>
+          </div>
+          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
+        </div>
+
+        <div class="acc-section">
+          <div class="acc-section__head">
+            <h2 class="acc-section__title">Child Details</h2>
+            <div class="actions">
+              <button class="btn btn--sm btn--outline" type="button" data-mock="add-profile"><i class="ph ph-plus-circle" aria-hidden="true"></i> Add profile</button>
+              <button class="btn btn--sm btn--text" type="button" data-confirm="Remove profile?" data-confirm-body="Removes the selected child from your account. Class enrollments stay; only the profile is deleted." data-confirm-cta="Remove" data-confirm-danger="true" data-confirm-action="mock:remove-profile" data-confirm-toast="Profile removed. (Shopify metaobject mutation in production.)"><i class="ph ph-minus-circle" aria-hidden="true"></i> Remove profile</button>
+            </div>
+          </div>
+
+          <article class="child-card">
+            <div class="child-grid">
+              <div class="child-grid__field"><span class="child-grid__label">Child Name</span><span class="child-grid__value">Daisy</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Child Age</span><span class="child-grid__value">10</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Child Phone Number</span><span class="child-grid__value">(718) 555-0142</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Special Conditions</span><span class="child-grid__value">None</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Allergy</span><span class="child-grid__value">None</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Emergency contact</span><span class="child-grid__value">Claire Sherlock · (718) 555-0188</span></div>
+            </div>
+            <div class="child-card__actions" style="display:flex;gap:var(--s-3);margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--line)">
+              <button class="btn btn--sm btn--outline" type="button" data-mock="edit-child">
+                <i class="ph ph-pencil-simple" aria-hidden="true"></i> Edit
+              </button>
+              <button class="btn btn--sm btn--text" type="button"
+                data-confirm="Remove this child's profile?"
+                data-confirm-body="This removes the child from your account. Class enrollments are not affected."
+                data-confirm-cta="Remove"
+                data-confirm-danger="true"
+                data-confirm-action="mock:remove-child">
+                <i class="ph ph-trash" aria-hidden="true"></i> Remove
+              </button>
+              <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
+            </div>
+          </article>
+
+          <article class="child-card">
+            <div class="child-grid">
+              <div class="child-grid__field"><span class="child-grid__label">Child Name</span><span class="child-grid__value">Peter</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Child Age</span><span class="child-grid__value">12</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Child Phone Number</span><span class="child-grid__value">(718) 555-0173</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Special Conditions</span><span class="child-grid__value">None</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Allergy</span><span class="child-grid__value">Seafood</span></div>
+              <div class="child-grid__field"><span class="child-grid__label">Emergency contact</span><span class="child-grid__value">Claire Sherlock · (718) 555-0188</span></div>
+            </div>
+            <div class="child-card__actions" style="display:flex;gap:var(--s-3);margin-top:var(--s-4);padding-top:var(--s-3);border-top:1px solid var(--line)">
+              <button class="btn btn--sm btn--outline" type="button" data-mock="edit-child">
+                <i class="ph ph-pencil-simple" aria-hidden="true"></i> Edit
+              </button>
+              <button class="btn btn--sm btn--text" type="button"
+                data-confirm="Remove this child's profile?"
+                data-confirm-body="This removes the child from your account. Class enrollments are not affected."
+                data-confirm-cta="Remove"
+                data-confirm-danger="true"
+                data-confirm-action="mock:remove-child">
+                <i class="ph ph-trash" aria-hidden="true"></i> Remove
+              </button>
+              <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
+            </div>
+          </article>
+
+          <button class="load-more" type="button" data-mock="load-more"><i class="ph ph-arrow-down"></i> Load 3 more profiles</button>
+        </div>
+
+        <div class="acc-section">
+          <div class="acc-section__head"><h2 class="acc-section__title">Account Security</h2></div>
+          <div class="security-row">
+            <div>
+              <div class="security-row__label">Email</div>
+              <div class="security-row__value">claire.sherlock@email.com</div>
+            </div>
+            <button class="security-row__action" type="button" data-mock="change-email">Change</button>
+          </div>
+          <div class="security-row">
+            <div>
+              <div class="security-row__label">Password</div>
+              <div class="security-row__value">**********</div>
+            </div>
+            <button class="security-row__action" type="button" data-mock="change-password">Change</button>
+          </div>
+          <div class="security-row">
+            <div>
+              <div class="security-row__label">2-step verification</div>
+              <div class="security-row__value"><span style="color:var(--ink-muted);font-size:var(--t-label)">Not set up</span></div>
+            </div>
+            <button class="security-row__action" type="button" data-mock="enable-2fa">Set up</button>
+          </div>
+          <span class="sync-status" aria-live="polite" aria-atomic="true"></span>
+        </div>
+
+      </section>
+    </div>
+
+{% schema %}
+{
+  "name": "Profile \u2014 Main",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

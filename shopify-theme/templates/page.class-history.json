@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-class-history",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

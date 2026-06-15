@@ -1,21 +1,11 @@
 {
   "sections": {
-    "intro": {
-      "type": "rich-text",
-      "settings": {
-        "eyebrow": "A meaningful gift",
-        "heading": "Donate in Honor or Memory",
-        "body": "<p>Celebrate a birthday, graduation, or honor a loved one with a gift to OUAT. We'll send a personalized notification card to the recipient or family.</p>",
-        "text_align": "center"
-      }
-    },
-    "content": {
-      "type": "page-content",
+    "main": {
+      "type": "main-gift-donation",
       "settings": {}
     }
   },
   "order": [
-    "intro",
-    "content"
+    "main"
   ]
 }
