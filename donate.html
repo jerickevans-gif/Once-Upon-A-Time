@@ -37,13 +37,14 @@
   <script src="once-upon-a-time-assets/mock-system.js" defer></script>
 
   <style>
-    /* ---------- Local aliases — re-map legacy tokens onto design system ---------- */
+    /* ---------- Local aliases — re-map legacy tokens onto design system.
+       Phase 1 bg/card inversion preserved (--bg = --snow body; --card = --beginning warm cream). ---------- */
     :root {
-      --bg:        var(--beginning);
-      --bg-soft:   var(--snow);
+      --bg:        var(--snow);
+      --bg-soft:   var(--beginning);
       --hero:      var(--rose-100);
       --form:      var(--rose-100);
-      --card:      var(--snow);
+      --card:      var(--beginning);
       --accent:    var(--rose);
       --accent-2:  var(--rose);
       --accent-3:  var(--rose-700);
@@ -52,6 +53,7 @@
       --ink-2:     var(--ink-muted);
       --white:     var(--snow);
       --focus:     var(--ink);
+      /* --radius-sm overridden locally for donate (was 10px) — leaving alone to avoid layout shift; uses canonical 8px elsewhere. */
       --radius-sm: 10px;
     }
 
@@ -86,7 +88,7 @@
       padding: 10px 14px; border-radius: 8px; z-index: 1000;
       text-decoration: none;
     }
-    .skip-link:focus { left: 8px; outline: 3px solid #f6c453; outline-offset: 2px; }
+    .skip-link:focus { left: 8px; outline: 3px solid var(--rose); outline-offset: 2px; }
     :focus-visible {
       outline: 3px solid var(--focus);
       outline-offset: 2px;
@@ -473,7 +475,7 @@
     .global-impact {
       background: var(--green);
       color: #f4ecd8;
-      border-radius: 18px;
+      border-radius: var(--radius-md);
       padding: 36px 24px;
       margin-bottom: 80px;
       border: 1px solid #d9c4ad;
