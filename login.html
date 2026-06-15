@@ -28,7 +28,7 @@
     }
     .auth-page__art {
       background:
-        linear-gradient(135deg, rgba(229,170,156,.05), rgba(139,80,68,.18)),
+        linear-gradient(135deg, rgba(229,170,156,.05), color-mix(in srgb, var(--rose) 18%, transparent)),
         image-set(url("once-upon-a-time-assets/auth-art.webp") type("image/webp"),
                   url("once-upon-a-time-assets/auth-art.jpg") type("image/jpeg"))
           center/cover no-repeat;
@@ -42,10 +42,10 @@
     }
     .auth-page__topbar {
       display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 56px;
+      margin-bottom: var(--s-6h);
     }
     .auth-back, .auth-close {
-      background: transparent; border: 0; padding: 6px 10px;
+      background: transparent; border: 0; padding: var(--s-1h) 10px;
       color: var(--ink); cursor: pointer;
       display: inline-flex; align-items: center; gap: var(--s-2);
       font-size: var(--t-base); font-weight: 500;
@@ -90,8 +90,8 @@
       width: 9px; height: 9px;
       background: var(--rose); border-radius: 50%;
     }
-    .auth-page__form { display: grid; gap: 18px; }
-    .field { display: flex; flex-direction: column; gap: 6px; }
+    .auth-page__form { display: grid; gap: var(--s-4h); }
+    .field { display: flex; flex-direction: column; gap: var(--s-1h); }
     .field__label { font-size: var(--t-label); font-weight: 500; color: var(--ink); }
     .field .input {
       width: 100%;
@@ -176,10 +176,10 @@
       .auth-page__panel { padding: var(--s-6) 20px; }
     }
     @media (max-width: 480px) {
-      .role-toggle { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .role-toggle { flex-direction: column; align-items: flex-start; gap: var(--s-3h); }
       .auth-page__form-row { flex-direction: column; align-items: flex-start; gap: var(--s-2); }
       .social-row { grid-template-columns: 1fr; }
-      .social-btn { justify-content: flex-start; padding-left: 18px; }
+      .social-btn { justify-content: flex-start; padding-left: var(--s-4h); }
       .auth-page__title { font-size: 38px; }
     }
   </style>

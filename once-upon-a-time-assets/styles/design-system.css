@@ -149,10 +149,18 @@
   --radius-input:  var(--radius);
   --radius-badge:  var(--radius-pill);
 
-  /* Spacing — non-standard values from Figma */
-  --s-section: 44px;
+  /* Spacing — half-step + Figma-deliberate values that live alongside the 8px scale.
+     Named for their literal value (matching --s-10/--s-28 precedent). */
+  --s-1h:      6px;    /* between --s-1/4 and --s-2/8 — chip padding, icon-row gaps */
   --s-10:      10px;
+  --s-3h:      14px;   /* between --s-3/12 and --s-4/16 — footer link margin, .nl-card meta */
+  --s-4h:      18px;   /* between --s-4/16 and --s-5/24 — .nl-card padding, press row */
+  --s-5h:      20px;   /* between --s-4/16 and --s-5/24 — press row, partner row paddings */
+  --s-5q:      22px;   /* paired with --s-4h in 18/22 Figma press row */
   --s-28:      28px;
+  --s-section: 44px;
+  --s-6h:      56px;   /* between --s-7/48 and --s-8/64 — .section padding rhythm */
+  --s-7h:      80px;   /* between --s-8/64 and --s-9/96 — auth hero / transactional hero padding */
 
   /* Typography */
   --serif: "Voltra", "Cormorant Garamond", "Playfair Display", Georgia, serif;
@@ -350,7 +358,7 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 }
 
 /* Sizes */
-.btn--sm { min-height: 36px; padding: 6px 10px; font-size: var(--t-base); }
+.btn--sm { min-height: 36px; padding: var(--s-1h) 10px; font-size: var(--t-base); }
 .btn--lg { min-height: 56px; padding: var(--s-3) 18px; font-size: var(--t-lg); }
 
 /* Brand variants opt back to rose-led fills where pages want the warmer look. */
@@ -408,7 +416,7 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 .text-on-pattern { font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,.08); }
 
 /* ---------- Form fields ---------- */
-.field { display: grid; gap: 6px; }
+.field { display: grid; gap: var(--s-1h); }
 .field__label { font-size: var(--t-label); font-weight: 600; color: var(--label-color); }
 .field__hint  { font-size: var(--t-label); color: var(--ink-muted); }
 .input, .textarea, .select {
@@ -447,7 +455,7 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 
 /* ---------- Header (Figma P4|S3 — stacked wordmark + search-led) ---------- */
 .site-header { background: var(--snow); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--n-200); }
-.site-header__inner { display: flex; align-items: center; gap: var(--s-5); padding: 20px 0; min-height: 118px; }
+.site-header__inner { display: flex; align-items: center; gap: var(--s-5); padding: var(--s-5h) 0; min-height: 118px; }
 
 /* Brand — 3-line stacked serif wordmark replacing the image logo. */
 .brand { display: inline-flex; align-items: center; text-decoration: none; line-height: 0; flex: 0 0 auto; }
@@ -601,11 +609,26 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 /* Color-contrast fix: input placeholders */
 .input::placeholder, .textarea::placeholder { color: var(--ink-muted); opacity: 1; }
 
-/* Card hover/focus interactions (program cards, related newsletter cards, alt cards) */
-.program-card, .nl-card, .pd-alt {
+/* Card hover/focus interactions — canonical lift used by every tappable info card.
+   Apply to anything that takes the user somewhere on click: program cards, related
+   newsletter cards, alt cards, tile-style listings (press, jobs, partners), and the
+   account-side info cards (.donor-tier, .stat-card, .instructor-card, etc.) so the
+   site has one consistent affordance: lift + soft shadow on hover/focus-within. */
+.program-card, .nl-card, .pd-alt,
+.donor-tier, .stat-card, .instructor-card, .portrait-card, .event-card,
+.tier-card, .offer-card, .member-card,
+.listing-row, .tile-card {
   transition: transform var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
 }
-.program-card:hover, .nl-card:hover, .pd-alt:hover {
+.program-card:hover, .nl-card:hover, .pd-alt:hover,
+.donor-tier:hover, .stat-card:hover, .instructor-card:hover, .portrait-card:hover, .event-card:hover,
+.tier-card:hover, .offer-card:hover, .member-card:hover,
+.listing-row:hover, .tile-card:hover,
+.program-card:focus-within, .nl-card:focus-within, .pd-alt:focus-within,
+.donor-tier:focus-within, .stat-card:focus-within, .instructor-card:focus-within,
+.portrait-card:focus-within, .event-card:focus-within,
+.tier-card:focus-within, .offer-card:focus-within, .member-card:focus-within,
+.listing-row:focus-within, .tile-card:focus-within {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -657,7 +680,10 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  .program-card:hover, .nl-card:hover, .pd-alt:hover { transform: none; }
+  .program-card:hover, .nl-card:hover, .pd-alt:hover,
+  .donor-tier:hover, .stat-card:hover, .instructor-card:hover, .portrait-card:hover, .event-card:hover,
+  .tier-card:hover, .offer-card:hover, .member-card:hover,
+  .listing-row:hover, .tile-card:hover { transform: none; }
 }
 
 /* Loading-state class for any button (extends design-system .btn loading) */

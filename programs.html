@@ -37,7 +37,7 @@
   <style>
     /* Hero */
     .pg-hero { background: var(--rose-100); padding: var(--s-8) 0 80px; }
-    .pg-hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .pg-hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-6h); align-items: center; }
     .pg-hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 5vw, 64px); line-height: 1.05; color: var(--rose-700); text-transform: uppercase; margin: 0 0 28px; }
     .pg-hero p { font-size: var(--t-base); line-height: 1.6; color: var(--ink); margin: 0 0 16px; max-width: 46ch; }
     .pg-hero .btn { margin-top: var(--s-4); }
@@ -60,23 +60,23 @@
       background: var(--snow);
       border: 1px solid var(--rose-100);
       border-radius: var(--radius-md);
-      padding: 18px;
+      padding: var(--s-4h);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: var(--s-3h);
       box-shadow: 0 6px 18px rgba(76, 47, 59, .06);
     }
     .pg-card__head { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s-3); }
     .pg-card__title { font-family: var(--serif); font-weight: 400; font-size: var(--t-subtitle); text-transform: uppercase; color: var(--ink); margin: 0; line-height: 1.1; letter-spacing: .01em; }
     .pg-card__price { font-family: var(--sans); font-size: var(--t-micro); color: var(--ink-muted); text-align: right; line-height: 1.35; flex: 0 0 auto; max-width: 120px; }
-    .pg-card__chips { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pg-card__chips { display: flex; gap: var(--s-1h); flex-wrap: wrap; }
     .pg-chip { font-size: var(--t-micro); font-weight: 500; padding: var(--s-1) 12px; border-radius: var(--radius-pill); font-family: var(--sans); letter-spacing: .02em; }
     .pg-chip--rose { background: var(--rose-100); color: var(--rose-700); }
     .pg-chip--garden { background: var(--garden-100); color: var(--garden-700); }
     .pg-card__schedule { font-size: var(--t-label); color: var(--ink); font-weight: 400; }
     .pg-card__desc { font-size: var(--t-label); line-height: 1.55; color: var(--ink-muted); margin: 0; }
-    .pg-card__meta { display: flex; flex-wrap: wrap; gap: 18px; font-size: var(--t-micro); color: var(--ink-muted); align-items: center; }
-    .pg-card__meta span { display: inline-flex; align-items: center; gap: 6px; }
+    .pg-card__meta { display: flex; flex-wrap: wrap; gap: var(--s-4h); font-size: var(--t-micro); color: var(--ink-muted); align-items: center; }
+    .pg-card__meta span { display: inline-flex; align-items: center; gap: var(--s-1h); }
     .pg-card__meta i { color: var(--rose); font-size: var(--t-label); }
     .pg-card__actions { display: flex; gap: var(--s-10); align-items: center; margin-top: var(--s-1); }
     .pg-card__actions .btn { padding: var(--s-2) 16px; font-size: var(--t-label); }
@@ -91,7 +91,7 @@
       color: var(--snow);
       text-align: center;
       background:
-        linear-gradient(120deg, rgba(107,109,32,.92) 0%, rgba(76,47,59,.92) 100%),
+        linear-gradient(120deg, color-mix(in srgb, var(--garden) 92%, transparent) 0%, rgba(76,47,59,.92) 100%),
         url('once-upon-a-time-assets/landing/queens-skyline.jpg') center/cover;
       overflow: hidden;
     }
@@ -117,7 +117,7 @@
     .pg-section[hidden] { display: none; }
 
     /* Testimonials */
-    .pg-testi { background: var(--rose-100); padding: 56px 0; }
+    .pg-testi { background: var(--rose-100); padding: var(--s-6h) 0; }
     .pg-testi__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-28); align-items: start; }
     .pg-testi__card { display: grid; grid-template-columns: 88px 1fr; gap: var(--s-4); align-items: start; }
     .pg-testi__avatar { width: 88px; height: 88px; border-radius: 50%; background: var(--rose); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-weight: 400; font-size: 38px; color: var(--snow); line-height: 1; }
@@ -222,7 +222,7 @@
             <input type="search" data-program-search placeholder="Search programs" aria-label="Search programs">
           </label>
         </div>
-        <p class="pg-filter__count" data-program-count style="margin:14px 0 0;font-size:var(--t-label);color:var(--ink-muted);min-height:1em" aria-live="polite"></p>
+        <p class="pg-filter__count" data-program-count style="margin:var(--s-3h) 0 0;font-size:var(--t-label);color:var(--ink-muted);min-height:1em" aria-live="polite"></p>
         <div class="empty-state" role="status" hidden>
           <div class="empty-state__icon"><i class="ph ph-funnel" aria-hidden="true"></i></div>
           <h2 class="empty-state__title">No programs match your filters</h2>
@@ -395,7 +395,7 @@
             <a href="https://www.instagram.com/onceuponatimeinc/" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
             <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
           </div>
-          <div style="margin-top:14px;font-size:12px"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
+          <div style="margin-top:var(--s-3h);font-size:var(--t-micro)"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
         </div>
       </div>
       <div class="site-footer__bottom">Once Upon A Time Inc. &copy; 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>

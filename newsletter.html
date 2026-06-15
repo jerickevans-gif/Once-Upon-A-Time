@@ -63,7 +63,7 @@
     .nl-tabs a {
       font-size: var(--t-label); font-weight: 600;
       color: var(--ink); text-decoration: none;
-      padding: 6px 0; border-bottom: 2px solid transparent;
+      padding: var(--s-1h) 0; border-bottom: 2px solid transparent;
       display: inline-flex; align-items: center; gap: var(--s-2);
     }
     .nl-tabs a.is-active { border-bottom-color: var(--rose-700); color: var(--rose-700); }
@@ -124,13 +124,13 @@
     .nl-involved-card:hover {
       border-color: var(--rose-300);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(139,80,68,.08);
+      box-shadow: 0 8px 24px color-mix(in srgb, var(--rose) 8%, transparent);
     }
     .nl-involved-card > i.ph { font-size: var(--t-h4); color: var(--rose); }
     .nl-involved-card h3 { font-family: var(--serif); font-weight: 400; font-size: var(--t-subtitle); margin: 0; }
     .nl-involved-card p { color: var(--ink-muted); font-size: var(--t-label); margin: 0; line-height: 1.55; }
     .nl-involved-card__cta {
-      display: inline-flex; align-items: center; gap: 6px;
+      display: inline-flex; align-items: center; gap: var(--s-1h);
       font-weight: 600; color: var(--rose-700); margin-top: auto;
     }
     .nl-filter {
@@ -201,7 +201,7 @@
     .nl-featured-card__actions { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-top: var(--s-3); }
     .nl-featured-card__photo {
       background:
-        linear-gradient(rgba(139,80,68,.32), rgba(139,80,68,.42)),
+        linear-gradient(color-mix(in srgb, var(--rose) 32%, transparent), color-mix(in srgb, var(--rose) 42%, transparent)),
         url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
       min-height: 360px;
     }
@@ -241,12 +241,12 @@
     }
     .nl-story-card__photo--oct {
       background-image:
-        linear-gradient(rgba(107,109,32,.30), rgba(107,109,32,.42)),
+        linear-gradient(color-mix(in srgb, var(--garden) 30%, transparent), color-mix(in srgb, var(--garden) 42%, transparent)),
         url("once-upon-a-time-assets/landing/queens-skyline.jpg");
     }
     .nl-story-card__photo--nov {
       background-image:
-        linear-gradient(rgba(139,80,68,.30), rgba(139,80,68,.45)),
+        linear-gradient(color-mix(in srgb, var(--rose) 30%, transparent), color-mix(in srgb, var(--rose) 45%, transparent)),
         url("once-upon-a-time-assets/landing/jazz-hero.jpg");
     }
     .nl-story-card__body { padding: var(--s-5) var(--s-5) var(--s-6); display: flex; flex-direction: column; gap: var(--s-3); flex: 1; }
@@ -292,7 +292,7 @@
     .nl-feature { position: relative; }
     .nl-feature__actions {
       position: absolute; top: 0; right: 0;
-      display: inline-flex; gap: 6px;
+      display: inline-flex; gap: var(--s-1h);
       padding: var(--s-3);
     }
     .nl-feature__actions .nl-action { width: 32px; height: 32px; font-size: var(--t-label); }
@@ -310,7 +310,7 @@
       padding: 2px 10px; border-radius: var(--radius-pill);
       font-weight: 600;
     }
-    .nl-chips { display: inline-flex; gap: 6px; margin-left: auto; }
+    .nl-chips { display: inline-flex; gap: var(--s-1h); margin-left: auto; }
     .nl-chip {
       width: 24px; height: 24px; border-radius: 50%;
       display: inline-flex; align-items: center; justify-content: center;
@@ -449,7 +449,7 @@
     .nl-card__meta { font-size: var(--t-micro); color: var(--ink-muted); margin: 0 0 var(--s-3); display: flex; justify-content: space-between; }
     .nl-card__copy { font-size: var(--t-label); color: var(--ink); margin: 0 0 var(--s-3); line-height: var(--lh-body); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .nl-card__footer { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); }
-    .nl-card__icons { display: inline-flex; gap: 6px; color: var(--ink-muted); }
+    .nl-card__icons { display: inline-flex; gap: var(--s-1h); color: var(--ink-muted); }
     .nl-card__icons button { background: transparent; border: 0; cursor: pointer; padding: var(--s-1); color: inherit; }
     .nl-related__arrow {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -773,7 +773,7 @@
             <a href="https://www.instagram.com/onceuponatimeinc/" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
             <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
           </div>
-          <div style="margin-top:14px;font-size:12px"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
+          <div style="margin-top:var(--s-3h);font-size:var(--t-micro)"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
         </div>
       </div>
       <div class="site-footer__bottom">Once Upon A Time Inc. &copy; 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>

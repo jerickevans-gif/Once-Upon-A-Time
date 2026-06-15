@@ -20,7 +20,7 @@
   border-radius: 50%; background: var(--rose-50);
   color: var(--rose-700); font-size: var(--t-h4);
   display: inline-flex; align-items: center; justify-content: center;
-  margin-bottom: 18px;
+  margin-bottom: var(--s-4h);
 }
 .empty-state__title {
   font-family: var(--serif); font-size: var(--t-subtitle); font-weight: 600;
@@ -74,10 +74,10 @@
 .modal--register .modal__title { text-transform: uppercase; font-size: var(--t-subtitle); padding-right: 36px; }
 .reg__meta {
   display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
-  margin: 0 0 20px; padding: 14px 0;
+  margin: 0 0 20px; padding: var(--s-3h) 0;
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
 }
-.reg__seats { display: inline-flex; align-items: center; gap: 6px; font-size: var(--t-label); color: var(--ink); }
+.reg__seats { display: inline-flex; align-items: center; gap: var(--s-1h); font-size: var(--t-label); color: var(--ink); }
 .reg__price { font-family: var(--serif); font-size: var(--t-subtitle); color: var(--rose); }
 .modal--register .modal__actions .btn[data-ok] { flex: 1; }
 .reg__signup { display: flex; gap: var(--s-10); flex-wrap: wrap; }
@@ -100,7 +100,7 @@
   animation: skeleton-wave 1.4s infinite linear;
   border-radius: 6px;
 }
-.skeleton--text { height: 14px; margin: 6px 0; }
+.skeleton--text { height: 14px; margin: var(--s-1h) 0; }
 .skeleton--title { height: 28px; width: 60%; }
 .skeleton--block { height: 200px; }
 .skeleton--avatar { width: 48px; height: 48px; border-radius: 50%; }
@@ -184,15 +184,15 @@
 }
 .dropdown__item:hover { background: var(--rose-50); }
 .dropdown__item .ph { color: var(--ink-muted); font-size: var(--t-md); }
-.dropdown__sep { height: 1px; background: var(--line); margin: 6px 0; }
-.dropdown__label { font-size: var(--t-micro); font-weight: 700; color: var(--ink-muted); letter-spacing: .04em; text-transform: uppercase; padding: 6px 12px; }
+.dropdown__sep { height: 1px; background: var(--line); margin: var(--s-1h) 0; }
+.dropdown__label { font-size: var(--t-micro); font-weight: 700; color: var(--ink-muted); letter-spacing: .04em; text-transform: uppercase; padding: var(--s-1h) 12px; }
 
 /* ---------- Cookie banner ---------- */
 .cookie-banner {
   position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 90;
   background: var(--pillar); color: var(--snow);
   border-radius: var(--radius-md);
-  padding: 18px 22px;
+  padding: var(--s-4h) 22px;
   display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
   flex-wrap: wrap;
   box-shadow: 0 12px 36px rgba(0,0,0,.30);
@@ -235,7 +235,7 @@
 }
 .date-popover__head button:hover { background: var(--rose-50); }
 .date-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: var(--t-micro); }
-.date-grid__dow { text-align: center; padding: 6px 0; font-weight: 700; color: var(--ink-muted); }
+.date-grid__dow { text-align: center; padding: var(--s-1h) 0; font-weight: 700; color: var(--ink-muted); }
 .date-grid__day {
   aspect-ratio: 1; border-radius: var(--radius-sm);
   display: inline-flex; align-items: center; justify-content: center;
@@ -260,7 +260,7 @@
 .waitlist-banner {
   background: var(--garden);
   color: var(--snow);
-  padding: 14px 22px; border-radius: var(--radius);
+  padding: var(--s-3h) 22px; border-radius: var(--radius);
   font-size: var(--t-label); font-weight: 500;
   display: flex; gap: var(--s-3); align-items: center; flex-wrap: wrap;
 }
@@ -287,7 +287,7 @@
 .chip {
   display: inline-flex; align-items: center; gap: var(--s-1);
   font-family: var(--sans); font-size: var(--t-label); font-weight: 500;
-  padding: 6px 14px; border-radius: var(--radius-pill);
+  padding: var(--s-1h) 14px; border-radius: var(--radius-pill);
   border: 1px solid var(--line); background: var(--snow); color: var(--ink);
   cursor: pointer; transition: background var(--dur-1) var(--ease), color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
 }
@@ -394,11 +394,11 @@
 .breadcrumbs { padding: var(--s-4) 0 0; }
 .breadcrumbs ol {
   list-style: none; padding: 0; margin: 0;
-  display: flex; flex-wrap: wrap; gap: 6px;
+  display: flex; flex-wrap: wrap; gap: var(--s-1h);
   width: min(1200px, 100% - 32px); margin-inline: auto;
   font-size: var(--t-label);
 }
-.breadcrumbs li { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-muted); }
+.breadcrumbs li { display: inline-flex; align-items: center; gap: var(--s-1h); color: var(--ink-muted); }
 .breadcrumbs a { color: var(--rose-700); text-decoration: none; font-weight: 500; }
 .breadcrumbs a:hover { text-decoration: underline; }
 .breadcrumbs__sep { color: var(--ink-muted); opacity: .5; }
@@ -524,7 +524,7 @@
 .sibling-banner {
   background: var(--rose-100); color: var(--rose-700);
   border: 1px solid var(--rose-300); border-radius: var(--radius);
-  padding: 14px 18px;
+  padding: var(--s-3h) 18px;
   display: flex; align-items: center; gap: var(--s-3);
   font-size: var(--t-label); line-height: 1.5;
   margin-bottom: var(--s-4);
@@ -570,7 +570,7 @@
   min-height: 50px;
   padding: var(--s-3) 20px;
 }
-.form-card .textarea { min-height: 140px; padding: 14px 20px; }
+.form-card .textarea { min-height: 140px; padding: var(--s-3h) 20px; }
 .form-card .input::placeholder,
 .form-card .textarea::placeholder {
   color: var(--rose); opacity: 1; font-weight: 400;
@@ -636,6 +636,73 @@
   line-height: var(--lh-body);
 }
 
+/* ---------- Listing row & tile-card ----------
+   Two canonical surfaces used across press / jobs / volunteer / saved-articles /
+   partners. Promoted out of inline styles so radius, border, padding, and the
+   hover lift all stay in lockstep with the rest of the site.
+
+   Markup:
+     <article class="listing-row">
+       <div>…title + meta + body…</div>
+       <a class="btn btn--sm btn--ghost" href="…">Read</a>
+     </article>
+
+     <div class="tile-card">Partner Name</div>
+*/
+.listing-row {
+  background: var(--snow);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s-4h) var(--s-5q);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--s-3);
+  align-items: center;
+}
+.listing-row + .listing-row { margin-top: var(--s-3); }
+.listing-row__title {
+  font-family: var(--serif);
+  font-size: var(--t-md);
+  text-transform: uppercase;
+  color: var(--pillar);
+  margin: 0 0 var(--s-1);
+}
+.listing-row__meta {
+  font-size: var(--t-micro);
+  color: var(--ink-muted);
+  margin-top: var(--s-1);
+}
+.listing-row__body {
+  font-size: var(--t-label);
+  line-height: var(--lh-body);
+  margin-top: var(--s-1h);
+}
+.listing-row--wide {
+  /* Press/jobs three-column layout: small label | title block | CTA */
+  grid-template-columns: 120px 1fr auto;
+  gap: var(--s-4h);
+  padding: var(--s-5h) var(--s-5);
+}
+.listing-row__label {
+  font-size: var(--t-micro);
+  font-weight: var(--weight-bold);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.tile-card {
+  background: var(--snow);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s-5);
+  text-align: center;
+  font-family: var(--serif);
+  font-size: var(--t-md);
+  color: var(--pillar);
+}
+.tile-card--rose { color: var(--rose-700); font-size: var(--t-base); }
+
 /* ---------- CTA banner ----------
    Tail-banner pattern: heading + subtext on the left, primary CTA on the right.
    Markup:
@@ -659,7 +726,7 @@
 .cta-banner__copy h3 {
   font-size: var(--t-h3);
   color: var(--rose-700);
-  margin-bottom: 6px;
+  margin-bottom: var(--s-1h);
   text-transform: uppercase;
 }
 .cta-banner__copy p { margin: 0; color: var(--ink); font-size: var(--t-base); }
@@ -823,7 +890,7 @@
 /* Register CTA stays tight + horizontal in the rose card. */
 .pd-capacity .btn {
   min-height: 36px;
-  padding: 6px 12px;
+  padding: var(--s-1h) 12px;
   font-size: var(--t-label);
   white-space: nowrap;
   flex: 0 0 auto;
@@ -843,9 +910,9 @@
 .pd-sub { margin-bottom: var(--s-5); }
 .pd-sub p { margin: 0 0 var(--s-2); color: var(--ink); font-size: var(--t-base); line-height: var(--lh-body); }
 .pd-sub p strong { font-weight: 700; }
-.pd-sub ul, .pd-sub ol { margin: 0; padding-left: 20px; color: var(--ink); font-size: var(--t-base); }
+.pd-sub ul, .pd-sub ol { margin: 0; padding-left: var(--s-5h); color: var(--ink); font-size: var(--t-base); }
 .pd-sub ul li, .pd-sub ol li { margin-bottom: var(--s-1); }
-.pd-components { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2) var(--s-4); list-style: disc; padding-left: 20px; margin: 0; }
+.pd-components { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-2) var(--s-4); list-style: disc; padding-left: var(--s-5h); margin: 0; }
 .pd-components li { font-size: var(--t-base); color: var(--ink); }
 .pd-divider { border: 0; border-top: 1px solid var(--line); margin: var(--s-6) 0; }
 
@@ -917,12 +984,12 @@
 /* =========================================================================
    .legal-body — promoted; duplicated across legal + many marketing pages.
    ========================================================================= */
-.legal-body { max-width: 720px; margin: 56px auto; padding: 0 24px; font-size: var(--t-base); line-height: 1.7; color: var(--ink); }
+.legal-body { max-width: 720px; margin: var(--s-6h) auto; padding: 0 24px; font-size: var(--t-base); line-height: 1.7; color: var(--ink); }
 .legal-body h2 { font-family: var(--serif); font-weight: 600; font-size: var(--t-subtitle); margin: var(--s-6) 0 12px; color: var(--pillar); text-transform: uppercase; }
-.legal-body h3 { font-size: var(--t-base); font-weight: 700; margin: 20px 0 8px; color: var(--ink); }
+.legal-body h3 { font-size: var(--t-base); font-weight: 700; margin: var(--s-5h) 0 8px; color: var(--ink); }
 .legal-body p { margin: 0 0 12px; }
 .legal-body ul { margin: 0 0 12px; padding-left: var(--s-5); }
-.legal-body li { margin-bottom: 6px; }
+.legal-body li { margin-bottom: var(--s-1h); }
 
 /* =========================================================================
    .stat-card — promoted from impact-report.html inline-styled stat boxes

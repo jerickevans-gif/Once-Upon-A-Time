@@ -86,7 +86,7 @@
     /* .wrap deliberately removed — use the global responsive --gutter from design-system.css. */
 
     /* ---------- Section base ---------- */
-    .section { padding: 56px 0; }
+    .section { padding: var(--s-6h) 0; }
     .section + .section { padding-top: 0; }
     .section-title {
       font-family: var(--serif); font-weight: 600;
@@ -112,7 +112,7 @@
     .vision__grid {
       display: grid;
       grid-template-columns: 1fr 1.05fr;
-      gap: 56px;
+      gap: var(--s-6h);
       align-items: center;
     }
     .vision__copy h1 {
@@ -157,7 +157,7 @@
       font-family: var(--sans); font-weight: 600;
       font-size: var(--t-micro); letter-spacing: .25em;
       color: var(--garden); text-transform: uppercase;
-      margin-bottom: 14px;
+      margin-bottom: var(--s-3h);
     }
     .values__head { text-align: center; margin-bottom: 36px; }
     .values__title {
@@ -179,13 +179,13 @@
     .value__icon {
       width: 56px; height: 56px;
       display: inline-flex; align-items: center; justify-content: center;
-      margin-bottom: 18px;
+      margin-bottom: var(--s-4h);
       color: var(--garden);
     }
     .value p { font-size: var(--t-label); color: var(--ink-2); margin: 0; line-height: 1.6; }
 
     /* ---------- Founder & Leadership shared ---------- */
-    .text-block { padding: 56px 0; text-align: center; }
+    .text-block { padding: var(--s-6h) 0; text-align: center; }
     .text-block--rose { background: var(--hero); }
     .text-block h2 {
       font-family: var(--serif); font-weight: 600;
@@ -220,7 +220,7 @@
       display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 36px;
     }
-    .leader { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
+    .leader { display: flex; flex-direction: column; gap: var(--s-3h); align-items: stretch; }
     .leader__avatar {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -234,7 +234,7 @@
     .leader--dolores .leader__avatar { background-image: url("once-upon-a-time-assets/about/leader-placeholder.jpg"); }
     .leader__name {
       font-family: var(--sans); font-weight: 700;
-      font-size: var(--t-lg); margin: 6px 0 0; color: var(--ink);
+      font-size: var(--t-lg); margin: var(--s-1h) 0 0; color: var(--ink);
     }
     .leader__role {
       color: var(--ink-muted); font-size: var(--t-base); font-weight: 400;
@@ -265,16 +265,16 @@
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       color: var(--snow);
-      padding: 6px 12px; border-radius: var(--radius-pill);
+      padding: var(--s-1h) 12px; border-radius: var(--radius-pill);
       font-size: var(--t-micro); font-weight: 500;
-      display: inline-flex; align-items: center; gap: 6px;
+      display: inline-flex; align-items: center; gap: var(--s-1h);
     }
     .program-card__tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--garden-300); }
     .program-card--camps   .program-card__media { background-image: url("once-upon-a-time-assets/about/program-camps.jpg"); }
     .program-card--private .program-card__media { background-image: url("once-upon-a-time-assets/about/program-private.jpg"); }
     .program-card__body {
       display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
-      padding: 18px 20px;
+      padding: var(--s-4h) 20px;
     }
     .program-card__title-stack { display: flex; flex-direction: column; gap: var(--s-2); }
     .program-card h3 {
@@ -282,7 +282,7 @@
       font-size: var(--t-subtitle); margin: 0;
       text-transform: uppercase;
     }
-    .program-card__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .program-card__tags { display: flex; flex-wrap: wrap; gap: var(--s-1h); }
     .program-card__tags span {
       display: inline-flex; align-items: center;
       background: var(--rose-100); color: var(--rose-700);
@@ -294,12 +294,12 @@
     .expanding {
       position: relative;
       border-radius: var(--radius-md);
-      padding: 56px 24px;
+      padding: var(--s-6h) 24px;
       color: var(--beginning);
       text-align: center;
       margin-bottom: 72px;
       background:
-        linear-gradient(105deg, rgba(107,109,32,.88) 0%, rgba(76,47,59,.92) 100%),
+        linear-gradient(105deg, color-mix(in srgb, var(--garden) 88%, transparent) 0%, rgba(76,47,59,.92) 100%),
         url("once-upon-a-time-assets/about/newsletter-bg.jpg") center/cover no-repeat,
         var(--green-2);
       overflow: hidden;
@@ -386,7 +386,7 @@
       padding: var(--s-8) 24px;
       text-align: center;
       color: var(--beginning);
-      margin-bottom: 56px;
+      margin-bottom: var(--s-6h);
       background:
         linear-gradient(rgba(74,90,62,.85), rgba(74,90,62,.85)),
         url("once-upon-a-time-assets/about/newsletter-bg.jpg") center/cover no-repeat,
@@ -420,7 +420,7 @@
       display: block; color: var(--snow); font-size: var(--t-label); margin-top: var(--s-2);
     }
     .stay-connected__actions {
-      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+      display: flex; gap: var(--s-3h); flex-wrap: wrap; justify-content: center;
     }
     .stay-connected__actions .btn {
       background: var(--snow); color: var(--pillar);
@@ -773,7 +773,7 @@
             <a href="https://www.instagram.com/onceuponatimeinc/" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
             <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
           </div>
-          <div style="margin-top:14px;font-size:12px"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
+          <div style="margin-top:var(--s-3h);font-size:var(--t-micro)"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
         </div>
       </div>
       <div class="site-footer__bottom">Once Upon A Time Inc. &copy; 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>

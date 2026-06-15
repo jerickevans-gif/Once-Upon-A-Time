@@ -43,7 +43,7 @@
       padding: var(--s-7) var(--s-7) var(--s-6);
     }
     @media (max-width: 720px) { .article-wrap { padding: var(--s-5); margin-inline: var(--s-3); } }
-    .article-back { color: var(--ink-muted); text-decoration: none; font-size: var(--t-label); display: inline-flex; gap: 6px; align-items: center; margin-bottom: var(--s-4); }
+    .article-back { color: var(--ink-muted); text-decoration: none; font-size: var(--t-label); display: inline-flex; gap: var(--s-1h); align-items: center; margin-bottom: var(--s-4); }
     .article-back:hover { color: var(--ink); }
     .article-actions {
       display: flex; gap: var(--s-2); margin-bottom: var(--s-5);
@@ -51,8 +51,8 @@
     .article-actions button {
       min-height: 38px; border: 0; border-radius: var(--radius-sm); cursor: pointer;
       background: var(--rose-700); color: var(--snow); font-size: var(--t-label); font-weight: 500;
-      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-      padding: 6px 14px;
+      display: inline-flex; align-items: center; justify-content: center; gap: var(--s-1h);
+      padding: var(--s-1h) 14px;
     }
     .article-actions button .ph { font-size: var(--t-md); }
     .article-actions button[data-share] { background: var(--garden); }
@@ -64,7 +64,7 @@
       width: 100%; aspect-ratio: 16/9;
       border-radius: var(--radius-md); overflow: hidden;
       margin-bottom: var(--s-6);
-      background: linear-gradient(rgba(139,80,68,.4), rgba(139,80,68,.5)),
+      background: linear-gradient(color-mix(in srgb, var(--rose) 40%, transparent), color-mix(in srgb, var(--rose) 50%, transparent)),
                   url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
       background-blend-mode: multiply, normal;
     }
@@ -101,7 +101,7 @@
 
     .article-related { max-width: 1200px; margin: 0 auto; padding: var(--s-7) 24px 80px; border-top: 1px solid var(--line); }
     .article-related h3 { font-family: var(--serif); font-size: var(--t-subtitle); margin: 0 0 24px; text-transform: uppercase; color: var(--pillar); text-align: center; }
-    .article-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .article-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-5h); }
     @media (max-width: 720px) { .article-related-grid { grid-template-columns: 1fr; } }
   </style>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Once Upon A Time \u2014 December 2025","datePublished":"2026-01-18","author":{"@type":"Person","name":"Sydney Phelps"},"publisher":{"@type":"NGO","name":"Once Upon A Time, Inc.","logo":{"@type":"ImageObject","url":"https://jerickevans-gif.github.io/Once-Upon-A-Time/once-upon-a-time-assets/logo/full-icon.png"}},"image":"https://jerickevans-gif.github.io/Once-Upon-A-Time/once-upon-a-time-assets/landing/jazz-hero.jpg"}</script>
@@ -193,11 +193,11 @@
       <h3 id="related-h3">More from the newsletter</h3>
       <div class="article-related-grid">
         <a href="newsletter-article.html?issue=2025-11" class="nl-card" style="text-decoration:none;color:inherit;background:var(--snow);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:block">
-          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(139,80,68,.4),rgba(139,80,68,.5)),url('once-upon-a-time-assets/landing/ballet-card.jpg') center/cover;background-blend-mode:multiply"></div>
+          <div style="aspect-ratio:16/10;background:linear-gradient(color-mix(in srgb, var(--rose) 40%, transparent),color-mix(in srgb, var(--rose) 50%, transparent)),url('once-upon-a-time-assets/landing/ballet-card.jpg') center/cover;background-blend-mode:multiply"></div>
           <div style="padding:18px"><div style="font-family:var(--serif);font-size:var(--t-md);text-transform:uppercase">November 2025</div><div style="font-size:var(--t-micro);color:var(--ink-muted);margin-top:4px">Author: Lena Stuart · Nov 18, 2025</div></div>
         </a>
         <a href="newsletter-article.html?issue=2025-10" class="nl-card" style="text-decoration:none;color:inherit;background:var(--snow);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:block">
-          <div style="aspect-ratio:16/10;background:linear-gradient(rgba(107,109,32,.45),rgba(107,109,32,.5)),url('once-upon-a-time-assets/landing/donor-bg.jpg') center/cover;background-blend-mode:multiply"></div>
+          <div style="aspect-ratio:16/10;background:linear-gradient(color-mix(in srgb, var(--garden) 45%, transparent),color-mix(in srgb, var(--garden) 50%, transparent)),url('once-upon-a-time-assets/landing/donor-bg.jpg') center/cover;background-blend-mode:multiply"></div>
           <div style="padding:18px"><div style="font-family:var(--serif);font-size:var(--t-md);text-transform:uppercase">October 2025</div><div style="font-size:var(--t-micro);color:var(--ink-muted);margin-top:4px">Author: Sydney Phelps · Oct 18, 2025</div></div>
         </a>
         <a href="newsletter.html" class="nl-card" style="text-decoration:none;color:inherit;background:var(--snow);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:block">
@@ -223,7 +223,7 @@
             <a href="https://www.instagram.com/onceuponatimeinc/" aria-label="Instagram" target="_blank" rel="noopener"><i class="ph ph-instagram-logo"></i></a>
             <a href="mailto:contact@onceuponatime.org" aria-label="Email"><i class="ph ph-envelope"></i></a>
           </div>
-          <div style="margin-top:14px;font-size:12px"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
+          <div style="margin-top:var(--s-3h);font-size:var(--t-micro)"><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="accessibility.html">Accessibility</a></div>
         </div>
       </div>
       <div class="site-footer__bottom">Once Upon A Time Inc. &copy; 202X. All rights reserved. Nonprofit legal disclaimer and tax ID.</div>

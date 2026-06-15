@@ -75,7 +75,7 @@
     .receipt__eyebrow {
       font-size: var(--t-micro); font-weight: 700; letter-spacing: .25em;
       color: var(--rose-700); text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: var(--s-1h);
     }
     .receipt__title {
       font-family: var(--serif); font-weight: 600;
@@ -135,7 +135,7 @@
 
     .receipt__payment {
       display: flex; align-items: center; gap: var(--s-3);
-      background: var(--rose-50); padding: 14px 18px; border-radius: var(--radius);
+      background: var(--rose-50); padding: var(--s-3h) 18px; border-radius: var(--radius);
       margin-top: var(--s-5); font-size: var(--t-label);
     }
     .receipt__payment .ph { font-size: var(--t-lg); color: var(--rose-700); }
@@ -168,7 +168,7 @@
     }
     @media (max-width: 480px) {
       .receipt-wrap { padding: 0 12px; }
-      .receipt { padding: 20px 16px; }
+      .receipt { padding: var(--s-5h) 16px; }
       .receipt__meta { grid-template-columns: 1fr; }
       .receipt__title { font-size: var(--t-subtitle); }
       .receipt__brand img { height: 56px; }
