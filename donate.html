@@ -164,18 +164,18 @@
       line-height: 1.6;
     }
     .hero__cta {
-      background: var(--rose);
+      background: var(--button-primary);  /* Canonical Woody Brown — was raw --rose */
       color: var(--snow);
       padding: 13px 24px;
-      border-radius: 10px;
+      border-radius: var(--radius);       /* 12px — was 10 */
       font-weight: 600;
       font-size: 14px;
-      box-shadow: 0 6px 16px rgba(139,80,68,.20);
+      box-shadow: 0 6px 16px rgba(70,43,54,.20);
       text-decoration: none;
       display: inline-block;
       transition: background .15s ease, transform .15s ease;
     }
-    .hero__cta:hover { background: var(--rose-700); transform: translateY(-1px); }
+    .hero__cta:hover { background: var(--pillar-700); transform: translateY(-1px); }
     .hero__media {
       position: relative;
       align-self: start;
@@ -188,7 +188,7 @@
     }
     .hero__image {
       position: relative;
-      border-radius: 6px;
+      border-radius: var(--radius-md);  /* 16px — was hardcoded 6 */
       overflow: hidden;
       aspect-ratio: 576 / 410;
       width: 100%;
@@ -203,8 +203,9 @@
       background: var(--blush);
       color: var(--pillar);
       padding: 16px 22px;
-      border-radius: 10px;
-      font-size: 13px;
+      border-radius: var(--radius);  /* 12px — was 10 */
+      font-size: var(--t-label);
+      line-height: var(--lh-body);
       line-height: 1.4;
       box-shadow: 0 12px 24px rgba(76,47,59,.18);
       min-width: 132px;
@@ -273,7 +274,7 @@
       position: relative; z-index: 1;
       background: var(--form);
       padding: 56px 0 64px;
-      border-radius: 24px;
+      border-radius: var(--radius-lg);  /* 20 — was 24 (now matches all other major cards) */
     }
     .donation .section-title { color: var(--ink); }
     .donation__grid {
