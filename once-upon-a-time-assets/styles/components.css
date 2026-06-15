@@ -778,13 +778,16 @@
 .pd-side__nav a.is-active { text-decoration: underline; text-underline-offset: 4px; }
 .pd-side__nav a:hover { color: var(--rose-700); }
 
-.pd-capacity { border: 1px solid var(--rose-300); border-radius: var(--radius); padding: var(--s-4) var(--s-4) var(--s-3); background: var(--snow); }
-.pd-capacity__top { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--s-2); margin-bottom: var(--s-3); }
+.pd-capacity { border: 1px solid var(--rose-300); border-radius: var(--radius); padding: var(--s-4); background: var(--snow); display: flex; flex-direction: column; gap: var(--s-3); }
+/* Stack the capacity info vertically — sidebar is only 240px wide, so the
+   register CTA needs its own row to fit comfortably. */
+.pd-capacity__top { display: flex; flex-direction: column; gap: var(--s-1); }
 .pd-capacity__label { font-size: var(--t-micro); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); display: inline-flex; align-items: center; gap: 6px; }
-.pd-capacity__sub { font-size: var(--t-micro); color: var(--ink-muted); margin: 4px 0 0; }
+.pd-capacity__sub { font-size: var(--t-micro); color: var(--ink-muted); margin: 0; }
 .pd-capacity__price { font-family: var(--serif); font-size: var(--t-subtitle); font-weight: 400; color: var(--ink); margin: 0; }
 .pd-capacity__price + p { font-size: var(--t-micro); color: var(--ink-muted); margin: 2px 0 0; }
-/* Override removed — sidebar CTA now uses canonical .btn (44px tap target). */
+/* Register CTA fills the sidebar width — no horizontal overflow at 240px column. */
+.pd-capacity .btn { width: 100%; justify-content: center; }
 
 .pd-main h1 {
   font-family: var(--serif); font-weight: 400;
