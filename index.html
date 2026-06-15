@@ -232,9 +232,9 @@
     .program-card {
       background: var(--beginning); border-radius: var(--radius-lg);
       overflow: hidden; box-shadow: var(--shadow-sm);
-      display: grid; grid-template-rows: 180px auto;
+      display: grid; grid-template-rows: auto 1fr;
     }
-    .program-card__photo { background-size: cover; background-position: center; }
+    .program-card__photo { aspect-ratio: 16 / 9; background-size: cover; background-position: center; }
     .program-card--story   .program-card__photo { background-image: url("once-upon-a-time-assets/landing/story-jazz.jpg"); }
     .program-card--ballet  .program-card__photo { background-image: url("once-upon-a-time-assets/landing/ballet-card.jpg"); }
     .program-card--arts    .program-card__photo { background-image: url("once-upon-a-time-assets/landing/arts-craft.jpg"); }
