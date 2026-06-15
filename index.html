@@ -37,20 +37,20 @@
   <script src="once-upon-a-time-assets/mock-system.js" defer></script>
 
   <style>
-    /* ===== Hero ===== */
-    .hero { background: var(--beginning); padding: var(--s-7) 0; }
-    /* One rounded card: pink content left, full-height image flush right. */
+    /* ===== Hero (Figma 2748:43946 "Hero Class Card - Iteration A") =====
+       TWO separate rounded cards side-by-side with 34px gap, both r-lg. */
+    .hero { background: var(--snow); padding: var(--s-7) 0; }
     .hero__grid {
-      display: grid; grid-template-columns: 1.1fr 1fr; gap: 0;
+      display: grid; grid-template-columns: 642fr 601fr; gap: 34px;
       align-items: stretch;
+    }
+    .hero__copy {
+      padding: var(--s-7);
+      display: flex; flex-direction: column;
       background: var(--rose-100);
       border-radius: var(--radius-lg);
-      overflow: hidden;
       box-shadow: var(--shadow-md);
     }
-    /* Figma hero: heading + schedule sit on the pink (no card); only the lede
-       is in a bordered rectangle; pill + buttons share the bottom row. */
-    .hero__copy { padding: var(--s-7); display: flex; flex-direction: column; }
     .hero__chips { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-bottom: var(--s-4); }
     .hero__copy h1 {
       font-family: var(--serif); font-weight: 400;
@@ -81,6 +81,8 @@
       overflow: hidden;
       min-height: 360px;
       background: url("once-upon-a-time-assets/landing/jazz-hero.jpg") center/cover no-repeat;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
       transition: opacity .3s ease, background-image .3s ease;
     }
     /* Mobile: card stacks, so give the image a defined height + wrap the buttons */
@@ -409,7 +411,9 @@
       <div class="wrap hero__grid">
         <div class="hero__copy" aria-live="polite" aria-atomic="false">
           <div class="hero__chips" data-hero-chips>
-            <span class="tag tag--garden" data-hero-eyebrow><i class="ph ph-star" aria-hidden="true"></i> <span>Featured Class</span></span>
+            <span class="tag tag--rose">Dance</span>
+            <span class="tag tag--rose">Theater</span>
+            <span class="tag tag--garden">Beginner</span>
           </div>
           <h1 data-hero-title>Jazz Class — Winter 2026</h1>
           <p class="hero__sub" data-hero-sub>Thursdays | 4pm | Ages 10+ | Studio Room A</p>
