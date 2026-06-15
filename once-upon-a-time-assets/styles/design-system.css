@@ -395,6 +395,7 @@ a.link--external::after { content: " ↗"; color: var(--rose); }
 .field__hint  { font-size: var(--t-label); color: var(--ink-muted); }
 .input, .textarea, .select {
   width: 100%;
+  min-height: 48px;             /* Figma Form Field height — was implicit ~44 */
   padding: 12px 14px;
   background: var(--snow);
   color: var(--ink);
