@@ -38,18 +38,34 @@
 
   <style>
     /* ===== Hero (Figma 2748:43946 "Hero Class Card - Iteration A") =====
-       TWO separate rounded cards side-by-side with 34px gap, both r-lg. */
+       LEFT column = TWO stacked cards (event card + booking CTA card),
+       RIGHT column = single photo card. 34px between columns, 15px stack gap. */
     .hero { background: var(--snow); padding: var(--s-7) 0; }
     .hero__grid {
       display: grid; grid-template-columns: 642fr 601fr; gap: 34px;
       align-items: stretch;
     }
+    /* Left column container — vertically stacks two separate cards. */
     .hero__copy {
-      padding: var(--s-7);
       display: flex; flex-direction: column;
-      background: var(--rose-100);
+      gap: 15px;
+    }
+    /* Top card: event info (title, sub, chips, lede). --beginning fill per Figma. */
+    .hero__event-card {
+      background: var(--beginning);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
+      padding: var(--s-6) var(--s-5);
+      flex: 1;
+      display: flex; flex-direction: column;
+    }
+    /* Bottom card: booking CTA panel (meta tag + action buttons). */
+    .hero__cta-card {
+      background: var(--beginning);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: var(--s-4) var(--s-5);
+      flex: 0 0 auto;
     }
     .hero__chips { display: flex; gap: var(--s-2); flex-wrap: wrap; margin-bottom: var(--s-4); }
     .hero__copy h1 {
@@ -60,15 +76,7 @@
       margin: 0 0 var(--s-3);
     }
     .hero__sub { font-size: var(--t-lg); color: var(--ink-muted); margin-bottom: var(--s-5); }
-    .hero__lede-box {
-      background: var(--snow);
-      border: 1px solid var(--rose-300);
-      border-radius: var(--radius);
-      padding: var(--s-4) var(--s-5);
-      margin-bottom: var(--s-5);
-      box-shadow: var(--shadow-sm);
-    }
-    .hero__lede { color: var(--ink); font-size: var(--t-base); margin: 0 0 var(--s-4); }
+    .hero__lede { color: var(--ink); font-size: var(--t-base); margin: 0; }
     .hero__meta {
       display: inline-flex; align-items: center; gap: 6px;
       background: var(--garden-100); color: var(--garden-700);
@@ -410,20 +418,22 @@
     <section class="hero" data-hero>
       <div class="wrap hero__grid">
         <div class="hero__copy" aria-live="polite" aria-atomic="false">
-          <div class="hero__chips" data-hero-chips>
-            <span class="tag tag--rose">Dance</span>
-            <span class="tag tag--rose">Theater</span>
-            <span class="tag tag--garden">Beginner</span>
-          </div>
-          <h1 data-hero-title>Jazz Class — Winter 2026</h1>
-          <p class="hero__sub" data-hero-sub>Thursdays | 4pm | Ages 10+ | Studio Room A</p>
-          <div class="hero__lede-box">
+          <div class="hero__event-card">
+            <div class="hero__chips" data-hero-chips>
+              <span class="tag tag--rose">Dance</span>
+              <span class="tag tag--rose">Theater</span>
+              <span class="tag tag--garden">Beginner</span>
+            </div>
+            <h1 data-hero-title>Jazz Class — Winter 2026</h1>
+            <p class="hero__sub" data-hero-sub>Thursdays | 4pm | Ages 10+ | Studio Room A</p>
             <p class="hero__lede" data-hero-lede>This winter, children will discover the rhythm of jazz through music, movement, and play. Our guided sessions help build listening skills and creative confidence, leading up to a special onstage performance where children get to play instruments and the audience feels the music.</p>
+          </div>
+          <div class="hero__cta-card">
             <div class="hero__actions" data-hero-actions>
-            <span class="tag tag--rose" data-hero-meta><i class="ph ph-clock" aria-hidden="true"></i> <span data-hero-meta-text>10 spots left</span></span>
-            <a class="btn" href="programs.html" data-hero-cta-primary><i class="ph ph-ticket"></i> <span>Enroll Now</span></a>
-            <button class="btn btn--garden" type="button" data-mock="add-to-cart" data-hero-cta-cart><i class="ph ph-shopping-cart-simple"></i> <span>Add to Cart</span></button>
-            <a class="btn btn--outline" href="seasonal-camps.html" data-hero-cta-learn><span>Learn More</span> <i class="ph ph-caret-double-right" aria-hidden="true"></i></a>
+              <span class="tag tag--rose" data-hero-meta><i class="ph ph-clock" aria-hidden="true"></i> <span data-hero-meta-text>10 spots left</span></span>
+              <a class="btn" href="programs.html" data-hero-cta-primary><i class="ph ph-ticket"></i> <span>Enroll Now</span></a>
+              <button class="btn btn--garden" type="button" data-mock="add-to-cart" data-hero-cta-cart><i class="ph ph-shopping-cart-simple"></i> <span>Add to Cart</span></button>
+              <a class="btn btn--outline" href="seasonal-camps.html" data-hero-cta-learn><span>Learn More</span> <i class="ph ph-caret-double-right" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
