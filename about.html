@@ -242,6 +242,9 @@
 
     /* ---------- Current programs ---------- */
     .programs { padding: 24px 0 72px; position: relative; }
+    /* Show two program cards side-by-side per Figma reference. */
+    .programs .carousel__slide { flex: 0 0 calc(50% - (var(--s-5) / 2)); scroll-snap-align: start; }
+    @media (max-width: 720px) { .programs .carousel__slide { flex: 0 0 100%; } }
     .program-card {
       background: var(--card);
       border-radius: var(--radius);

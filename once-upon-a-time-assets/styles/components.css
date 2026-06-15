@@ -766,7 +766,7 @@
 }
 
 .pd-body { padding: var(--s-7) 0 var(--s-9); }
-.pd-body__grid { display: grid; grid-template-columns: 240px 1fr; gap: var(--s-7); align-items: start; }
+.pd-body__grid { display: grid; grid-template-columns: 280px 1fr; gap: var(--s-7); align-items: start; }
 
 .pd-side { position: sticky; top: 24px; align-self: start; }
 .pd-side__nav { display: grid; gap: var(--s-3); margin-bottom: var(--s-5); }
@@ -779,16 +779,47 @@
 .pd-side__nav a.is-active { text-decoration: underline; text-underline-offset: 4px; }
 .pd-side__nav a:hover { color: var(--rose-700); }
 
-.pd-capacity { border: 1px solid var(--rose-300); border-radius: var(--radius); padding: var(--s-4); background: var(--snow); display: flex; flex-direction: column; gap: var(--s-3); }
-/* Stack the capacity info vertically — sidebar is only 240px wide, so the
-   register CTA needs its own row to fit comfortably. */
-.pd-capacity__top { display: flex; flex-direction: column; gap: var(--s-1); }
-.pd-capacity__label { font-size: var(--t-micro); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); display: inline-flex; align-items: center; gap: 6px; }
-.pd-capacity__sub { font-size: var(--t-micro); color: var(--ink-muted); margin: 0; }
+/* Figma reference: rose-100 outer card + dark-rose slots pill + inner white
+   price card. Sidebar widened in .pd-body__grid to 280px to fit the horizontal
+   capacity-info + Register button row comfortably. */
+.pd-capacity {
+  background: var(--rose-100);
+  border-radius: var(--radius-md);
+  padding: var(--s-3);
+  display: flex; flex-direction: column;
+  gap: var(--s-3);
+}
+.pd-capacity__top {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: var(--s-2);
+}
+.pd-capacity__top > div { display: flex; flex-direction: column; gap: var(--s-1); min-width: 0; }
+.pd-capacity__label { font-size: var(--t-micro); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); display: inline-flex; align-items: center; gap: 4px; }
+.pd-capacity__sub {
+  display: inline-block;
+  background: var(--rose-700);
+  color: var(--snow);
+  font-size: 11px; font-weight: 600;
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  margin: 0;
+  width: fit-content;
+}
+.pd-capacity__price-card {
+  background: var(--snow);
+  border-radius: var(--radius);
+  padding: var(--s-3) var(--s-4);
+}
 .pd-capacity__price { font-family: var(--serif); font-size: var(--t-subtitle); font-weight: 400; color: var(--ink); margin: 0; }
-.pd-capacity__price + p { font-size: var(--t-micro); color: var(--ink-muted); margin: 2px 0 0; }
-/* Register CTA fills the sidebar width — no horizontal overflow at 240px column. */
-.pd-capacity .btn { width: 100%; justify-content: center; }
+.pd-capacity__price-card > p { font-size: var(--t-micro); color: var(--ink-muted); margin: 2px 0 0; }
+/* Register CTA stays tight + horizontal in the rose card. */
+.pd-capacity .btn {
+  min-height: 36px;
+  padding: 6px 12px;
+  font-size: var(--t-label);
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
 
 .pd-main h1 {
   font-family: var(--serif); font-weight: 400;
