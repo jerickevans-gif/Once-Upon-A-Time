@@ -602,44 +602,89 @@
     });
   });
 
-  // -------------------- Settings dropdown (header gear) -------------------- //
-  // Replace bare gear link with a dropdown trigger if present.
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a.icon-btn--icon-only[aria-label="Settings"]').forEach(gear => {
-      // Wrap in dropdown if not already
-      if (gear.parentElement.classList.contains('dropdown')) return;
-      const wrap = document.createElement('div');
-      wrap.className = 'dropdown';
-      gear.parentNode.insertBefore(wrap, gear);
-      wrap.appendChild(gear);
-      gear.removeAttribute('href');
-      gear.setAttribute('role', 'button');
-      gear.setAttribute('aria-haspopup', 'menu');
-      gear.setAttribute('tabindex', '0');
-      gear.style.cursor = 'pointer';
-      const menu = document.createElement('div');
-      menu.className = 'dropdown__menu';
-      menu.setAttribute('role', 'menu');
-      menu.innerHTML = `
-        <div class="dropdown__label">Account</div>
-        <a class="dropdown__item" href="profile.html"><i class="ph ph-user-circle"></i> My Profile</a>
-        <a class="dropdown__item" href="preferences.html"><i class="ph ph-sliders-horizontal"></i> Preferences</a>
-        <a class="dropdown__item" href="class-history.html"><i class="ph ph-book-open"></i> Class history</a>
-        <a class="dropdown__item" href="inbox.html"><i class="ph ph-envelope"></i> Inbox</a>
-        <div class="dropdown__sep"></div>
-        <div class="dropdown__label">Site</div>
-        <a class="dropdown__item" href="search.html"><i class="ph ph-magnifying-glass"></i> Search</a>
-        <a class="dropdown__item" href="accessibility.html"><i class="ph ph-eye"></i> Accessibility</a>
-        <button class="dropdown__item" type="button" data-mock="logout" data-mock-toast="Sign out via Shopify customer accounts in production."><i class="ph ph-sign-out"></i> Sign out</button>`;
-      wrap.appendChild(menu);
-      gear.addEventListener('click', (e) => {
-        e.preventDefault();
-        wrap.classList.toggle('is-open');
-      });
-      document.addEventListener('click', (e) => {
-        if (!wrap.contains(e.target)) wrap.classList.remove('is-open');
-      });
+  // -------------------- Profile + Notifications dropdowns -------------------- //
+  // The profile dropdown carries all account/site actions (signed-in state) OR
+  // sign-in/sign-up shortcuts (signed-out state). Signed-out is signalled by
+  // `data-signed-out` on the avatar or `body[data-signed-out]`. The notifications
+  // bell sits to the LEFT of the avatar and opens its own dropdown.
+  function buildDropdown(trigger, innerHTML) {
+    if (trigger.parentElement.classList.contains('dropdown')) return null;
+    const wrap = document.createElement('div');
+    wrap.className = 'dropdown';
+    trigger.parentNode.insertBefore(wrap, trigger);
+    wrap.appendChild(trigger);
+    if (trigger.tagName === 'A') trigger.removeAttribute('href');
+    trigger.setAttribute('role', 'button');
+    trigger.setAttribute('aria-haspopup', 'menu');
+    trigger.setAttribute('aria-expanded', 'false');
+    trigger.style.cursor = 'pointer';
+    const menu = document.createElement('div');
+    menu.className = 'dropdown__menu';
+    menu.setAttribute('role', 'menu');
+    menu.innerHTML = innerHTML;
+    wrap.appendChild(menu);
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const open = !wrap.classList.contains('is-open');
+      document.querySelectorAll('.dropdown.is-open').forEach(d => d.classList.remove('is-open'));
+      wrap.classList.toggle('is-open', open);
+      trigger.setAttribute('aria-expanded', String(open));
     });
+    document.addEventListener('click', (e) => {
+      if (!wrap.contains(e.target)) {
+        wrap.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+    return wrap;
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const signedOut = document.body.hasAttribute('data-signed-out');
+
+    // Profile dropdown — attached to .avatar in the header
+    document.querySelectorAll('.site-header .avatar').forEach(avatar => {
+      // Remove old notification badge inside profile (moved to bell button)
+      avatar.querySelectorAll('.badge').forEach(b => b.remove());
+      if (signedOut || avatar.hasAttribute('data-signed-out')) {
+        avatar.classList.remove('avatar--dark');
+        avatar.classList.add('avatar--outline');
+        avatar.setAttribute('aria-label', 'Account — sign in');
+        buildDropdown(avatar, `
+          <div class="dropdown__label">Welcome</div>
+          <button class="dropdown__item" type="button" data-open-signin><i class="ph ph-sign-in"></i> Sign in</button>
+          <button class="dropdown__item" type="button" data-open-signup><i class="ph ph-user-plus"></i> Create account</button>
+          <div class="dropdown__sep"></div>
+          <a class="dropdown__item" href="accessibility.html"><i class="ph ph-eye"></i> Accessibility</a>`);
+      } else {
+        avatar.setAttribute('aria-label', 'Account');
+        buildDropdown(avatar, `
+          <div class="dropdown__label">Account</div>
+          <a class="dropdown__item" href="profile.html"><i class="ph ph-user-circle"></i> My Profile</a>
+          <a class="dropdown__item" href="preferences.html"><i class="ph ph-sliders-horizontal"></i> Preferences</a>
+          <a class="dropdown__item" href="class-history.html"><i class="ph ph-book-open"></i> Class history</a>
+          <a class="dropdown__item" href="inbox.html"><i class="ph ph-envelope"></i> Inbox</a>
+          <div class="dropdown__sep"></div>
+          <div class="dropdown__label">Site</div>
+          <a class="dropdown__item" href="search.html"><i class="ph ph-magnifying-glass"></i> Search</a>
+          <a class="dropdown__item" href="accessibility.html"><i class="ph ph-eye"></i> Accessibility</a>
+          <button class="dropdown__item" type="button" data-mock="logout" data-mock-toast="Sign out via Shopify customer accounts in production."><i class="ph ph-sign-out"></i> Sign out</button>`);
+      }
+    });
+
+    // Notifications dropdown — bell button to the left of the avatar
+    document.querySelectorAll('.site-header [data-notifications]').forEach(bell => {
+      buildDropdown(bell, `
+        <div class="dropdown__label">Notifications</div>
+        <a class="dropdown__item" href="inbox.html"><i class="ph ph-envelope"></i> New message from Ms. Greta</a>
+        <a class="dropdown__item" href="class-history.html"><i class="ph ph-calendar-check"></i> Your Spring class starts Mar&nbsp;3</a>
+        <a class="dropdown__item" href="events.html"><i class="ph ph-megaphone"></i> Open Studio Saturday Jun&nbsp;15</a>
+        <div class="dropdown__sep"></div>
+        <a class="dropdown__item" href="inbox.html"><i class="ph ph-arrow-right"></i> View all</a>`);
+    });
+
+    // Legacy: any leftover settings gear in the page body (NOT header) keeps its link.
+    // The header gear is removed in the new layout; nothing to wire.
   });
 
   // -------------------- Dark mode -------------------- //

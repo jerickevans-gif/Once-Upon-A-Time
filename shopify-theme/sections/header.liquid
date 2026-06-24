@@ -5,10 +5,8 @@
       <i class="ph ph-list" aria-hidden="true"></i>
     </button>
 
-    <a href="{{ routes.root_url }}" class="brand brand--stacked" aria-label="{{ shop.name }}, home">
-      <span class="brand__line">Once</span>
-      <span class="brand__line">Upon</span>
-      <span class="brand__line">A Time</span>
+    <a href="{{ routes.root_url }}" class="brand brand--logo" aria-label="{{ shop.name }}, home">
+      <img src="{{ 'logo-full-icon.png' | asset_url }}" alt="{{ shop.name }}" class="brand__logo">
     </a>
 
     <form class="site-search" role="search" action="{{ routes.search_url }}" method="get">
@@ -30,21 +28,20 @@
           <span class="badge" aria-hidden="true">{{ cart.item_count }}</span>
         {%- endif -%}
         <span>Cart</span>
-        <i class="ph ph-arrow-right" aria-hidden="true"></i>
       </a>
 
-      <button class="icon-btn icon-btn--icon-only" type="button" aria-label="Settings">
-        <i class="ph ph-gear" aria-hidden="true"></i>
+      <button class="icon-btn icon-btn--icon-only" type="button" data-notifications aria-label="Notifications">
+        <i class="ph ph-bell" aria-hidden="true"></i>
       </button>
 
       {%- if customer -%}
-        <a href="{{ routes.account_url }}" class="avatar avatar--dark" aria-label="Account">
+        <button class="avatar avatar--dark" type="button" aria-label="Account">
           <i class="ph ph-user" aria-hidden="true"></i>
-        </a>
+        </button>
       {%- else -%}
-        <a href="{{ routes.account_login_url }}" class="avatar avatar--dark" aria-label="Sign in">
+        <button class="avatar avatar--outline" type="button" data-signed-out aria-label="Account — sign in">
           <i class="ph ph-user" aria-hidden="true"></i>
-        </a>
+        </button>
       {%- endif -%}
     </div>
   </div>

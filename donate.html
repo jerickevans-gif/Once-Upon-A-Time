@@ -128,7 +128,7 @@
     .hero__grid {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 2.05fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
       gap: var(--s-7);
       align-items: start;
       padding-bottom: var(--s-6);
@@ -183,11 +183,11 @@
       position: relative;
       align-self: start;
       min-width: 0;
-      max-width: 440px;
+      max-width: 560px;
       width: 100%;
       justify-self: end;
       margin-top: var(--s-4);
-      padding: 0 0 56px 36px;
+      padding: 0 0 64px 24px;
     }
     .hero__image {
       position: relative;
@@ -473,6 +473,13 @@
     }
     .backer-count strong { font-weight: 600; }
     .backer-count span { color: var(--ink-2); }
+    .fund-progress { display: flex; flex-direction: column; gap: 6px; font-size: var(--t-label); color: var(--ink); }
+    .fund-progress__meta { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-3); }
+    .fund-progress__raised { font-weight: 700; color: var(--ink); }
+    .fund-progress__goal { color: var(--ink-2); font-size: var(--t-micro); }
+    .fund-progress__bar { position: relative; width: 100%; height: 8px; background: var(--rose-100); border-radius: var(--radius-pill); overflow: hidden; }
+    .fund-progress__fill { position: absolute; inset: 0; right: auto; background: var(--rose); border-radius: var(--radius-pill); transition: width .4s var(--ease); }
+    .fund-progress__pct { color: var(--ink-2); font-size: var(--t-micro); }
 
     /* ---------- Global impact band ---------- */
     .global-impact {
@@ -624,7 +631,7 @@
       .footer__brand-block, .footer__address-block { grid-column: 1 / -1; }
       .donation { padding: 40px 0 48px; border-radius: var(--radius-md); }
       .panel, .side-panel { padding: var(--s-5q); }
-      .stories { padding: var(--s-7) 0 56px; margin-bottom: var(--s-6h); }
+      .stories { padding: var(--s-7) 16px 56px; margin: 0 0 var(--s-6h); padding-inline: 16px; }
     }
 
     /* ---------- Small-phone refinements ---------- */
@@ -661,11 +668,7 @@
       <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation menu">
         <i class="ph ph-list" aria-hidden="true"></i>
       </button>
-      <a href="index.html" class="brand brand--stacked" aria-label="Once Upon A Time, home">
-        <span class="brand__line">Once</span>
-        <span class="brand__line">Upon</span>
-        <span class="brand__line">A Time</span>
-      </a>
+      <a href="index.html" class="brand brand--logo" aria-label="Once Upon A Time, home"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time" class="brand__logo"></a>
       <form class="site-search" role="search" action="search.html" method="get">
         <label class="sr-only" for="site-search-input">Search the site</label>
         <input id="site-search-input" name="q" type="search" class="site-search__input" placeholder="Search" autocomplete="off">
@@ -683,13 +686,14 @@
           <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
           <span class="badge" aria-hidden="true">9</span>
           <span>Cart</span>
-          <i class="ph ph-arrow-right" aria-hidden="true"></i>
         </button>
-        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></a>
-        <a href="profile.html" class="avatar avatar--dark" aria-label="Account, 9 notifications">
+        <button class="icon-btn icon-btn--icon-only" type="button" data-notifications aria-label="Notifications, 3 unread">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+          <span class="badge" aria-hidden="true">3</span>
+        </button>
+        <button class="avatar avatar--dark" type="button" aria-label="Account">
           <i class="ph ph-user" aria-hidden="true"></i>
-          <span class="badge" aria-hidden="true">9</span>
-        </a>
+        </button>
       </div>
     </div>
   </header>
@@ -844,10 +848,15 @@
             </div>
             <div class="impact-card__body">
               <p>Providing medical care to underserved communities</p>
-              <div class="backer-count" style="display:flex;align-items:center;gap:var(--s-2);font-size:var(--t-label);color:var(--ink)">
-                <i class="ph ph-users" aria-hidden="true"></i>
-                <strong>127 backers</strong>
-                <span>have supported this program</span>
+              <div class="fund-progress" aria-label="Healthcare Access funding progress">
+                <div class="fund-progress__meta">
+                  <span class="fund-progress__raised">$12,700 raised</span>
+                  <span class="fund-progress__goal">Goal: $20,000</span>
+                </div>
+                <div class="fund-progress__bar" role="progressbar" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100">
+                  <div class="fund-progress__fill" style="width:64%"></div>
+                </div>
+                <span class="fund-progress__pct">64% funded</span>
               </div>
             </div>
           </article>
@@ -859,10 +868,15 @@
             </div>
             <div class="impact-card__body">
               <p>Supporting children's education and literacy</p>
-              <div class="backer-count" style="display:flex;align-items:center;gap:var(--s-2);font-size:var(--t-label);color:var(--ink)">
-                <i class="ph ph-users" aria-hidden="true"></i>
-                <strong>89 backers</strong>
-                <span>have supported this program</span>
+              <div class="fund-progress" aria-label="Education Programs funding progress">
+                <div class="fund-progress__meta">
+                  <span class="fund-progress__raised">$8,900 raised</span>
+                  <span class="fund-progress__goal">Goal: $15,000</span>
+                </div>
+                <div class="fund-progress__bar" role="progressbar" aria-valuenow="59" aria-valuemin="0" aria-valuemax="100">
+                  <div class="fund-progress__fill" style="width:59%"></div>
+                </div>
+                <span class="fund-progress__pct">59% funded</span>
               </div>
             </div>
           </article>
@@ -874,10 +888,15 @@
             </div>
             <div class="impact-card__body">
               <p>Disaster response and humanitarian aid</p>
-              <div class="backer-count" style="display:flex;align-items:center;gap:var(--s-2);font-size:var(--t-label);color:var(--ink)">
-                <i class="ph ph-users" aria-hidden="true"></i>
-                <strong>54 backers</strong>
-                <span>have supported this program</span>
+              <div class="fund-progress" aria-label="Emergency Relief funding progress">
+                <div class="fund-progress__meta">
+                  <span class="fund-progress__raised">$5,400 raised</span>
+                  <span class="fund-progress__goal">Goal: $25,000</span>
+                </div>
+                <div class="fund-progress__bar" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100">
+                  <div class="fund-progress__fill" style="width:22%"></div>
+                </div>
+                <span class="fund-progress__pct">22% funded</span>
               </div>
             </div>
           </article>
@@ -889,10 +908,15 @@
             </div>
             <div class="impact-card__body">
               <p>Building homes and improving living conditions</p>
-              <div class="backer-count" style="display:flex;align-items:center;gap:var(--s-2);font-size:var(--t-label);color:var(--ink)">
-                <i class="ph ph-users" aria-hidden="true"></i>
-                <strong>41 backers</strong>
-                <span>have supported this program</span>
+              <div class="fund-progress" aria-label="Housing Support funding progress">
+                <div class="fund-progress__meta">
+                  <span class="fund-progress__raised">$4,100 raised</span>
+                  <span class="fund-progress__goal">Goal: $30,000</span>
+                </div>
+                <div class="fund-progress__bar" role="progressbar" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">
+                  <div class="fund-progress__fill" style="width:14%"></div>
+                </div>
+                <span class="fund-progress__pct">14% funded</span>
               </div>
             </div>
           </article>

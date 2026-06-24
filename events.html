@@ -35,6 +35,30 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.15.0/ScrollTrigger.min.js" defer></script>
   <script src="once-upon-a-time-assets/animations.js" defer></script>
   <style>
+  .events-layout { display: grid; grid-template-columns: minmax(280px, 360px) 1fr; gap: var(--s-7); align-items: start; padding: var(--s-7) 0; }
+  .events-calendar { position: sticky; top: var(--s-5); background: var(--snow); border: 1px solid var(--line); border-radius: var(--radius-md); padding: var(--s-5); box-shadow: 0 2px 8px rgba(76,47,59,.06); }
+  .events-list { display: grid; gap: var(--s-4h); max-width: 760px; }
+  .calendar__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--s-3); }
+  .calendar__title { font-family: var(--serif); font-weight: 600; font-size: var(--t-h6); color: var(--ink); }
+  .calendar__nav { display: flex; align-items: center; gap: var(--s-3); font-weight: 600; font-size: var(--t-label); }
+  .calendar__nav button { background: transparent; border: 0; padding: 0; color: var(--ink-muted); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; cursor: pointer; }
+  .calendar__nav button:hover { background: rgba(0,0,0,.06); }
+  .calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: var(--s-1h); text-align: center; font-size: var(--t-label); }
+  .calendar__dow { color: var(--ink-muted); font-weight: 600; padding: var(--s-1) 0; }
+  .calendar__day { width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin: 0 auto; font-weight: 500; }
+  .calendar__day--garden { background: var(--garden-300, #c9cd84); color: var(--ink); font-weight: 700; }
+  .calendar__day--rose { background: var(--rose-300); color: var(--ink); font-weight: 700; }
+  .calendar__day--blush { background: var(--blush); color: var(--ink); font-weight: 700; }
+  .calendar__legend { display: flex; flex-wrap: wrap; gap: var(--s-4); margin-top: var(--s-4); font-size: var(--t-micro); color: var(--ink-muted); }
+  .calendar__legend span { display: inline-flex; align-items: center; gap: var(--s-1h); }
+  .calendar__legend span::before { content: ''; width: 8px; height: 8px; border-radius: 50%; }
+  .calendar__legend .legend--open::before { background: var(--garden-300, #c9cd84); }
+  .calendar__legend .legend--filling::before { background: var(--rose-300); }
+  .calendar__legend .legend--full::before { background: var(--blush); }
+  @media (max-width: 860px) {
+    .events-layout { grid-template-columns: 1fr; }
+    .events-calendar { position: static; }
+  }
   @media (max-width: 540px) {
     .event-card { grid-template-columns: 1fr !important; text-align: center; }
     .event-card .btn { justify-self: center; }
@@ -49,11 +73,7 @@
       <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation menu">
         <i class="ph ph-list" aria-hidden="true"></i>
       </button>
-      <a href="index.html" class="brand brand--stacked" aria-label="Once Upon A Time, home">
-        <span class="brand__line">Once</span>
-        <span class="brand__line">Upon</span>
-        <span class="brand__line">A Time</span>
-      </a>
+      <a href="index.html" class="brand brand--logo" aria-label="Once Upon A Time, home"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time" class="brand__logo"></a>
       <form class="site-search" role="search" action="search.html" method="get">
         <label class="sr-only" for="site-search-input">Search the site</label>
         <input id="site-search-input" name="q" type="search" class="site-search__input" placeholder="Search" autocomplete="off">
@@ -71,13 +91,14 @@
           <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
           <span class="badge" aria-hidden="true">9</span>
           <span>Cart</span>
-          <i class="ph ph-arrow-right" aria-hidden="true"></i>
         </button>
-        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></a>
-        <a href="profile.html" class="avatar avatar--dark" aria-label="Account, 9 notifications">
+        <button class="icon-btn icon-btn--icon-only" type="button" data-notifications aria-label="Notifications, 3 unread">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+          <span class="badge" aria-hidden="true">3</span>
+        </button>
+        <button class="avatar avatar--dark" type="button" aria-label="Account">
           <i class="ph ph-user" aria-hidden="true"></i>
-          <span class="badge" aria-hidden="true">9</span>
-        </a>
+        </button>
       </div>
     </div>
   </header>
@@ -87,7 +108,26 @@
       <h1>Events &amp; Showcases</h1>
       <p class="page-hero__sub">From end-of-season showcases to open studios and fundraising galas — see you there.</p></div>
     </section>
-    <section class="wrap" data-skeleton-list="5" style="padding:var(--s-7) 0;display:grid;gap:var(--s-4h);max-width:880px">
+    <section class="wrap events-layout" data-skeleton-list="5">
+      <aside class="events-calendar" aria-label="Events calendar">
+        <div class="calendar__head">
+          <span class="calendar__title">Events</span>
+          <span class="calendar__nav">
+            <button type="button" aria-label="Previous month" data-cal-prev><i class="ph ph-caret-left"></i></button>
+            <span data-cal-label>Jan&nbsp;2026</span>
+            <button type="button" aria-label="Next month" data-cal-next><i class="ph ph-caret-right"></i></button>
+          </span>
+        </div>
+        <div class="calendar__grid">
+          <span class="calendar__dow">S</span><span class="calendar__dow">M</span><span class="calendar__dow">T</span><span class="calendar__dow">W</span><span class="calendar__dow">T</span><span class="calendar__dow">F</span><span class="calendar__dow">S</span>
+        </div>
+        <div class="calendar__legend">
+          <span class="legend--open">Open</span>
+          <span class="legend--filling">Filling</span>
+          <span class="legend--full">Event</span>
+        </div>
+      </aside>
+      <div class="events-list">
       
       <article class="event-card">
         <div style="text-align:center;padding:var(--s-10) 0;background:var(--rose-100);border-radius: var(--radius);color:var(--rose-700)">
@@ -154,6 +194,7 @@
         </div>
         <a class="btn btn--sm" href="#" data-mock="rsvp" data-mock-toast="RSVP recorded via Shopify customer metaobject in production.">RSVP</a>
       </article>
+      </div>
     </section>
     </main>
   <footer class="site-footer" role="contentinfo">

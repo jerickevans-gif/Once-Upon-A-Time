@@ -80,6 +80,29 @@
     .pg-card__meta i { color: var(--rose); font-size: var(--t-label); }
     .pg-card__actions { display: flex; gap: var(--s-10); align-items: center; margin-top: var(--s-1); }
     .pg-card__actions .btn { padding: var(--s-2) 16px; font-size: var(--t-label); }
+
+    /* Carousel chevrons for program card sections */
+    .pg-carousel { position: relative; }
+    .pg-carousel .pg-grid { scroll-behavior: smooth; }
+    .pg-carousel__arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--rose-100); color: var(--ink); border: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 2; box-shadow: 0 4px 12px rgba(76,47,59,.18);
+      transition: background var(--dur-1) var(--ease);
+    }
+    .pg-carousel__arrow:hover { background: var(--rose-300); }
+    .pg-carousel__arrow:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+    .pg-carousel__arrow--prev { left: -20px; }
+    .pg-carousel__arrow--next { right: -20px; }
+    .pg-carousel__arrow i { font-size: 20px; }
+    @media (max-width: 900px) {
+      .pg-carousel .pg-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: var(--s-5); }
+      .pg-carousel .pg-grid > .pg-card { flex: 0 0 85%; scroll-snap-align: start; }
+      .pg-carousel__arrow--prev { left: 4px; }
+      .pg-carousel__arrow--next { right: 4px; }
+    }
     .icon-pill { width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--rose-100); color: var(--rose-700); border: 0; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background var(--dur-1) var(--ease); }
     .icon-pill:hover, .icon-pill[aria-pressed="true"] { background: var(--rose); color: var(--snow); }
     .icon-pill i { font-size: var(--t-base); }
@@ -154,11 +177,7 @@
       <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation menu">
         <i class="ph ph-list" aria-hidden="true"></i>
       </button>
-      <a href="index.html" class="brand brand--stacked" aria-label="Once Upon A Time, home">
-        <span class="brand__line">Once</span>
-        <span class="brand__line">Upon</span>
-        <span class="brand__line">A Time</span>
-      </a>
+      <a href="index.html" class="brand brand--logo" aria-label="Once Upon A Time, home"><img src="once-upon-a-time-assets/logo/full-icon.png" alt="Once Upon A Time" class="brand__logo"></a>
       <form class="site-search" role="search" action="search.html" method="get">
         <label class="sr-only" for="site-search-input">Search the site</label>
         <input id="site-search-input" name="q" type="search" class="site-search__input" placeholder="Search" autocomplete="off">
@@ -176,13 +195,14 @@
           <i class="ph ph-shopping-cart-simple" aria-hidden="true"></i>
           <span class="badge" aria-hidden="true">9</span>
           <span>Cart</span>
-          <i class="ph ph-arrow-right" aria-hidden="true"></i>
         </button>
-        <a href="preferences.html" class="icon-btn icon-btn--icon-only" aria-label="Settings"><i class="ph ph-gear" aria-hidden="true"></i></a>
-        <a href="profile.html" class="avatar avatar--dark" aria-label="Account, 9 notifications">
+        <button class="icon-btn icon-btn--icon-only" type="button" data-notifications aria-label="Notifications, 3 unread">
+          <i class="ph ph-bell" aria-hidden="true"></i>
+          <span class="badge" aria-hidden="true">3</span>
+        </button>
+        <button class="avatar avatar--dark" type="button" aria-label="Account">
           <i class="ph ph-user" aria-hidden="true"></i>
-          <span class="badge" aria-hidden="true">9</span>
-        </a>
+        </button>
       </div>
     </div>
   </header>
@@ -236,6 +256,9 @@
     <section class="pg-section" id="open-enrollment" data-program-section>
       <div class="wrap">
         <h2>Open for Enrollment</h2>
+        <div class="pg-carousel">
+          <button class="pg-carousel__arrow pg-carousel__arrow--prev" type="button" aria-label="Scroll programs left"><i class="ph ph-caret-left" aria-hidden="true"></i></button>
+          <button class="pg-carousel__arrow pg-carousel__arrow--next" type="button" aria-label="Scroll programs right"><i class="ph ph-caret-right" aria-hidden="true"></i></button>
         <div class="pg-grid">
 
           <article class="pg-card" data-tracks="dance theater garden">
@@ -246,12 +269,12 @@
               <h3 class="pg-card__title">Seasonal Camps</h3>
               <div class="pg-card__price">Starting at<br><strong>$150/week</strong></div>
             </div>
+            <div class="pg-card__schedule">Thursdays | 4pm | Ages 10+ | Studio Room A</div>
             <div class="pg-card__chips">
               <span class="tag tag--rose">Dance</span>
               <span class="tag tag--warning">Theater</span>
               <span class="tag tag--garden">Gardening</span>
             </div>
-            <div class="pg-card__schedule">Thursdays | 4pm | Ages 10+ | Studio Room A</div>
             <p class="pg-card__desc">Seasonal camps offer programs that combine dance, acting, and art activities. In this space, children can explore their creativity, build confidence, and connect with classmates through collaborative lessons.</p>
             <div class="pg-card__meta">
               <span><i class="ph ph-user" aria-hidden="true"></i>13 + Year Old</span>
@@ -263,8 +286,8 @@
             </div>
             <div class="pg-card__actions">
               <a class="btn" href="seasonal-camps.html">View More <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-              <button class="icon-pill" type="button" aria-label="Save Seasonal Camps" data-bookmark="prog-seasonal-camps-thu"><i class="ph ph-bookmark-simple"></i></button>
-              <button class="icon-pill" type="button" aria-label="Share Seasonal Camps" data-share data-share-title="Seasonal Camps — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/seasonal-camps.html"><i class="ph ph-share-network"></i></button>
+              <button class="btn btn--sm btn--outline" type="button" aria-label="Save Seasonal Camps" aria-pressed="false" data-bookmark="prog-seasonal-camps-thu"><i class="ph ph-bookmark-simple"></i> Save</button>
+              <button class="btn btn--sm btn--outline" type="button" aria-label="Share Seasonal Camps" data-share data-share-title="Seasonal Camps — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/seasonal-camps.html"><i class="ph ph-share-network"></i> Share</button>
             </div>
           </article>
 
@@ -276,10 +299,10 @@
               <h3 class="pg-card__title">Private Lesson</h3>
               <div class="pg-card__price">Starting at<br><strong>$30/lesson</strong></div>
             </div>
+            <div class="pg-card__schedule">Thursdays | 4pm | Ages 10+ | Studio Room A</div>
             <div class="pg-card__chips">
               <span class="tag tag--rose-2">Acting</span>
             </div>
-            <div class="pg-card__schedule">Thursdays | 4pm | Ages 10+ | Studio Room A</div>
             <p class="pg-card__desc">Private lessons provide personalized guidance to support a child's skill development and confidence on stage. Instructors work at the child's pace, offering tailored materials, and focused instruction for learning.</p>
             <div class="pg-card__meta">
               <span><i class="ph ph-user" aria-hidden="true"></i>13 + Year Old</span>
@@ -291,11 +314,12 @@
             </div>
             <div class="pg-card__actions">
               <a class="btn" href="private-lessons.html">View More <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-              <button class="icon-pill" type="button" aria-label="Save Private Lesson" data-bookmark="prog-private-lesson"><i class="ph ph-bookmark-simple"></i></button>
-              <button class="icon-pill" type="button" aria-label="Share Private Lesson" data-share data-share-title="Private Lessons — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/private-lessons.html"><i class="ph ph-share-network"></i></button>
+              <button class="btn btn--sm btn--outline" type="button" aria-label="Save Private Lesson" aria-pressed="false" data-bookmark="prog-private-lesson"><i class="ph ph-bookmark-simple"></i> Save</button>
+              <button class="btn btn--sm btn--outline" type="button" aria-label="Share Private Lesson" data-share data-share-title="Private Lessons — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/private-lessons.html"><i class="ph ph-share-network"></i> Share</button>
             </div>
           </article>
 
+        </div>
         </div>
       </div>
     </section>
@@ -304,6 +328,9 @@
     <section class="pg-section" id="coming-soon" data-program-section>
       <div class="wrap">
         <h2>Coming Soon</h2>
+        <div class="pg-carousel">
+          <button class="pg-carousel__arrow pg-carousel__arrow--prev" type="button" aria-label="Scroll programs left"><i class="ph ph-caret-left" aria-hidden="true"></i></button>
+          <button class="pg-carousel__arrow pg-carousel__arrow--next" type="button" aria-label="Scroll programs right"><i class="ph ph-caret-right" aria-hidden="true"></i></button>
         <div class="pg-grid pg-grid--single">
 
           <article class="pg-card" data-tracks="dance theater garden">
@@ -314,12 +341,12 @@
               <h3 class="pg-card__title">Seasonal Camps</h3>
               <div class="pg-card__price">Starting at<br><strong>$150/week</strong></div>
             </div>
+            <div class="pg-card__schedule">Fridays | 4pm | Ages 10+ | Studio Room A</div>
             <div class="pg-card__chips">
               <span class="tag tag--rose">Dance</span>
               <span class="tag tag--warning">Theater</span>
               <span class="tag tag--garden">Gardening</span>
             </div>
-            <div class="pg-card__schedule">Fridays | 4pm | Ages 10+ | Studio Room A</div>
             <p class="pg-card__desc">Seasonal camps offer programs that combine dance, acting, and art activities. In this space, children can explore their creativity, build confidence, and connect with classmates through collaborative lessons.</p>
             <div class="pg-card__meta">
               <span><i class="ph ph-user" aria-hidden="true"></i>13 + Year Old</span>
@@ -331,11 +358,12 @@
             </div>
             <div class="pg-card__actions">
               <button class="btn" type="button" data-register data-register-state="closed">Join Waitlist <i class="ph ph-bell-ringing" aria-hidden="true"></i></button>
-              <button class="icon-pill" type="button" aria-label="Save Seasonal Camps Spring" data-bookmark="prog-seasonal-camps-fri"><i class="ph ph-bookmark-simple"></i></button>
-              <button class="icon-pill" type="button" aria-label="Share Seasonal Camps Spring" data-share data-share-title="Seasonal Camps Spring — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/seasonal-camps.html"><i class="ph ph-share-network"></i></button>
+              <button class="btn btn--sm btn--outline" type="button" aria-label="Save Seasonal Camps Spring" aria-pressed="false" data-bookmark="prog-seasonal-camps-fri"><i class="ph ph-bookmark-simple"></i> Save</button>
+              <button class="btn btn--sm btn--outline" type="button" aria-label="Share Seasonal Camps Spring" data-share data-share-title="Seasonal Camps Spring — Once Upon A Time" data-share-url="https://jerickevans-gif.github.io/Once-Upon-A-Time/seasonal-camps.html"><i class="ph ph-share-network"></i> Share</button>
             </div>
           </article>
 
+        </div>
         </div>
       </div>
     </section>
@@ -435,7 +463,7 @@
 
     /* Programs filter + search */
     (function(){
-      const chips = document.querySelectorAll('.pg-chipbtn');
+      const chips = document.querySelectorAll('.pg-filter__chips .chip');
       const search = document.querySelector('[data-program-search]');
       const cards = document.querySelectorAll('.pg-card');
       const sections = document.querySelectorAll('[data-program-section]');
@@ -491,6 +519,22 @@
       // Initial state — populates count if URL has ?q=
       const urlQ = new URLSearchParams(location.search).get('q');
       if (urlQ && search) { search.value = urlQ; applyFilters(); }
+    })();
+
+    /* Program card carousel chevrons — scrolls the .pg-grid horizontally one card-width per click */
+    (function(){
+      document.querySelectorAll('.pg-carousel').forEach(wrap => {
+        const grid = wrap.querySelector('.pg-grid');
+        const prev = wrap.querySelector('.pg-carousel__arrow--prev');
+        const next = wrap.querySelector('.pg-carousel__arrow--next');
+        if (!grid || !prev || !next) return;
+        const step = () => {
+          const card = grid.querySelector('.pg-card');
+          return card ? card.getBoundingClientRect().width + 24 : 320;
+        };
+        prev.addEventListener('click', () => grid.scrollBy({ left: -step(), behavior: 'smooth' }));
+        next.addEventListener('click', () => grid.scrollBy({ left: step(), behavior: 'smooth' }));
+      });
     })();
   </script>
 </body>
