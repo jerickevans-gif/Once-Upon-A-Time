@@ -132,16 +132,9 @@
       padding: var(--s-10) 20px; border-radius: var(--radius-pill);
       font-size: var(--t-label); font-weight: 500;
     }
-    .pill::before {
-      content: "";
-      width: 16px; height: 16px;
-      background: transparent;
-      border: 1.5px solid var(--ink);
-      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/></svg>") center/contain no-repeat;
-              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/></svg>") center/contain no-repeat;
-      background: var(--snow);
-      border: 0;
-    }
+    /* Heart icon is an inline <svg> in the markup (was a CSS mask, which
+       html2canvas does not support). */
+    .pill__icon { width: 16px; height: 16px; flex: 0 0 auto; display: block; }
     h1.hero__title {
       font-family: var(--serif);
       font-weight: 600;
@@ -249,23 +242,16 @@
 
     /* ---------- Donation block ---------- */
     .donation-wrap { position: relative; margin-bottom: 72px; }
-    .donation-wrap::before,
-    .donation-wrap::after {
-      content: "";
+    /* Decorative leaves were CSS pseudo-elements with SVG data-URI backgrounds.
+       Promoted to real inline <svg> in the markup so html2canvas captures them. */
+    .donation-wrap__leaf {
       position: absolute; top: 50%; transform: translateY(-50%);
       width: 180px; height: 320px; z-index: 0;
-      background-repeat: no-repeat; background-size: contain;
       pointer-events: none;
       opacity: .55;
     }
-    .donation-wrap::before {
-      left: -120px;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 320' fill='%23B8C266'><path d='M40 160 Q20 90 80 30 Q140 70 130 160 Q180 200 130 280 Q70 240 60 200 Q30 200 40 160 Z'/></svg>");
-    }
-    .donation-wrap::after {
-      right: -120px; transform: translateY(-50%) scaleX(-1);
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 320' fill='%23B8C266'><path d='M40 160 Q20 90 80 30 Q140 70 130 160 Q180 200 130 280 Q70 240 60 200 Q30 200 40 160 Z'/></svg>");
-    }
+    .donation-wrap__leaf--left  { left: -120px; }
+    .donation-wrap__leaf--right { right: -120px; transform: translateY(-50%) scaleX(-1); }
     .donation {
       position: relative; z-index: 1;
       background: var(--form);
@@ -514,12 +500,12 @@
       position: relative;
       overflow: hidden;
     }
-    .stories::before {
-      content: ""; position: absolute; inset: 0; opacity: .18;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 320'><g fill='none' stroke='%23f6e7d4' stroke-width='1.2' opacity='0.9'><path d='M60 40 C40 80 50 130 90 150 M90 150 C80 110 70 70 60 40 M90 150 L75 75 M90 150 L105 90'/><path d='M220 30 C260 50 270 110 240 160 M240 160 C235 120 230 80 220 30 M240 160 L225 80'/><path d='M40 220 C70 240 110 230 130 200 M130 200 C100 200 70 210 40 220'/><path d='M250 250 C220 240 200 270 195 295 M195 295 C210 280 230 265 250 250'/><circle cx='160' cy='160' r='3'/><circle cx='200' cy='100' r='2'/><circle cx='80' cy='250' r='2'/><circle cx='280' cy='200' r='2'/></g></svg>");
-      background-size: 360px 360px;
-      background-repeat: repeat;
+    /* Decorative organic-line pattern was a ::before with a CSS bg-image. Now
+       rendered as an inline <svg> in the markup so html2canvas can capture it. */
+    .stories__pattern {
+      position: absolute; inset: 0; opacity: .18;
       pointer-events: none;
+      width: 100%; height: 100%;
     }
     .stories .section-title { color: var(--snow); }
     .stories .section-lede { color: var(--beginning); }
@@ -583,7 +569,7 @@
       .hero__grid { grid-template-columns: 1fr; gap: var(--s-28); padding-bottom: var(--s-5); }
       .hero__media { padding: var(--s-2) 0 56px 40px; max-width: 560px; justify-self: start; }
       .hero__chip { left: 0; bottom: 8px; }
-      .donation-wrap::before, .donation-wrap::after { display: none; }
+      .donation-wrap__leaf { display: none; }
       .donation__grid { grid-template-columns: 1fr; }
     }
     /* Mobile */
@@ -699,7 +685,7 @@
       <div class="wrap">
         <div class="hero__grid">
           <div class="hero__copy">
-            <span class="pill">Making a Difference Together</span>
+            <span class="pill"><svg class="pill__icon" viewBox="0 0 24 24" fill="#FFFCFA" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Making a Difference Together</span>
             <h1 id="hero-title" class="hero__title">Help us create<br>lasting impact</h1>
             <p class="hero__lede">
               Your donation directly supports communities in need, providing essential
@@ -729,6 +715,8 @@
     <div class="wrap">
       <!-- DONATION -->
       <div class="donation-wrap">
+        <svg class="donation-wrap__leaf donation-wrap__leaf--left"  viewBox="0 0 200 320" fill="#B8C266" aria-hidden="true"><path d="M40 160 Q20 90 80 30 Q140 70 130 160 Q180 200 130 280 Q70 240 60 200 Q30 200 40 160 Z"/></svg>
+        <svg class="donation-wrap__leaf donation-wrap__leaf--right" viewBox="0 0 200 320" fill="#B8C266" aria-hidden="true"><path d="M40 160 Q20 90 80 30 Q140 70 130 160 Q180 200 130 280 Q70 240 60 200 Q30 200 40 160 Z"/></svg>
       <section class="donation" id="donate" aria-labelledby="donate-title">
         <div class="wrap">
           <h2 id="donate-title" class="section-title">Make Your Donation</h2>
@@ -933,6 +921,21 @@
 
     <!-- STORIES (full-bleed) -->
     <section class="stories" aria-labelledby="stories-title">
+      <svg class="stories__pattern" viewBox="0 0 320 320" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <pattern id="stories-pattern" x="0" y="0" width="360" height="360" patternUnits="userSpaceOnUse">
+          <g fill="none" stroke="#f6e7d4" stroke-width="1.2" opacity="0.9">
+            <path d="M60 40 C40 80 50 130 90 150 M90 150 C80 110 70 70 60 40 M90 150 L75 75 M90 150 L105 90"/>
+            <path d="M220 30 C260 50 270 110 240 160 M240 160 C235 120 230 80 220 30 M240 160 L225 80"/>
+            <path d="M40 220 C70 240 110 230 130 200 M130 200 C100 200 70 210 40 220"/>
+            <path d="M250 250 C220 240 200 270 195 295 M195 295 C210 280 230 265 250 250"/>
+            <circle cx="160" cy="160" r="3"/>
+            <circle cx="200" cy="100" r="2"/>
+            <circle cx="80" cy="250" r="2"/>
+            <circle cx="280" cy="200" r="2"/>
+          </g>
+        </pattern>
+        <rect width="100%" height="100%" fill="url(#stories-pattern)"/>
+      </svg>
       <div class="wrap">
         <h2 id="stories-title" class="section-title">Stories of Impact</h2>
         <p class="section-lede">Hear from the communities we serve and the donors who make it possible.</p>
