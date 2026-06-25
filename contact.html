@@ -51,17 +51,17 @@
       align-items: stretch;
     }
     .hero__photo {
-      border-radius: 32px;            /* Figma: 32px corner radius */
+      border-radius: 32px 0 0 32px;   /* Rounded only on outer (left) side; flush with rhombus on right */
       overflow: hidden;
       aspect-ratio: 674 / 400;        /* Figma frame: 1.685 : 1 */
       background: url("once-upon-a-time-assets/contact/unisphere.jpg") center/cover no-repeat;
-      box-shadow: var(--shadow-sm);
+      box-shadow: none;
     }
     .hero__rhombus {
       position: relative;
       display: flex; align-items: center; justify-content: center;
       background: var(--beginning);
-      border-radius: var(--radius-lg);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0; /* Rounded only on outer (right) side */
       min-height: 320px;
       padding: 0 var(--s-7);
       overflow: hidden;
