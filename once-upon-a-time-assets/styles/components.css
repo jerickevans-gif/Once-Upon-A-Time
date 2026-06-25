@@ -575,6 +575,23 @@
 .form-card .textarea::placeholder {
   color: var(--rose); opacity: 1; font-weight: 400;
 }
+/* Real DOM placeholder overlay — input/textarea native placeholders do NOT
+   render in html2canvas, which made design-tool exports of the form look
+   empty. We hide the native placeholder and render the hint as a sibling
+   <span class="input__placeholder"> that html2canvas captures. CSS hides the
+   span when the field has content or is focused. */
+.form-card .field { position: relative; }
+.form-card .input:placeholder-shown:not(:focus) ~ .input__placeholder,
+.form-card .textarea:placeholder-shown:not(:focus) ~ .input__placeholder { opacity: 1; }
+.form-card .input__placeholder {
+  position: absolute; left: 21px; top: 50%; transform: translateY(-50%);
+  color: var(--rose); font-weight: 400; font-size: var(--t-base);
+  font-family: inherit; line-height: 1;
+  pointer-events: none; opacity: 0; transition: opacity .12s;
+}
+.form-card .input__placeholder--textarea { top: var(--s-3h); transform: none; }
+.form-card .input::placeholder,
+.form-card .textarea::placeholder { color: transparent; }
 .form-card__actions {
   display: flex; justify-content: flex-end;
   margin-top: var(--s-6);

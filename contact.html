@@ -259,24 +259,29 @@
           <div class="form-row">
             <label class="field" for="contact-first">
               <span class="sr-only">First name</span>
-              <input id="contact-first" class="input" type="text" name="first" placeholder="John" autocomplete="given-name" required aria-required="true">
+              <input id="contact-first" class="input" type="text" name="first" placeholder=" " autocomplete="given-name" required aria-required="true">
+              <span class="input__placeholder" aria-hidden="true">John</span>
             </label>
             <label class="field" for="contact-last">
               <span class="sr-only">Last name</span>
-              <input id="contact-last" class="input" type="text" name="last" placeholder="Last Name*" autocomplete="family-name" required aria-required="true">
+              <input id="contact-last" class="input" type="text" name="last" placeholder=" " autocomplete="family-name" required aria-required="true">
+              <span class="input__placeholder" aria-hidden="true">Last Name*</span>
             </label>
           </div>
           <label class="field" data-stack for="contact-email">
             <span class="sr-only">Email</span>
-            <input id="contact-email" class="input" type="email" name="email" placeholder="Email*" autocomplete="email" required aria-required="true">
+            <input id="contact-email" class="input" type="email" name="email" placeholder=" " autocomplete="email" required aria-required="true">
+            <span class="input__placeholder" aria-hidden="true">Email*</span>
           </label>
           <label class="field" data-stack for="contact-phone">
             <span class="sr-only">Phone number (optional)</span>
-            <input id="contact-phone" class="input" type="tel" inputmode="tel" name="phone" placeholder="Phone Number (optional)" autocomplete="tel">
+            <input id="contact-phone" class="input" type="tel" inputmode="tel" name="phone" placeholder=" " autocomplete="tel">
+            <span class="input__placeholder" aria-hidden="true">Phone Number (optional)</span>
           </label>
           <label class="field" data-stack for="contact-message">
             <span class="sr-only">Your message</span>
-            <textarea id="contact-message" class="textarea" name="message" placeholder="Your message..." rows="5" required aria-required="true"></textarea>
+            <textarea id="contact-message" class="textarea" name="message" placeholder=" " rows="5" required aria-required="true"></textarea>
+            <span class="input__placeholder input__placeholder--textarea" aria-hidden="true">Your message...</span>
           </label>
           <div class="form-card__actions">
             <button class="btn" type="submit">Send Message</button>
