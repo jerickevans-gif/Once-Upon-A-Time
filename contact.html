@@ -54,9 +54,13 @@
       border-radius: 32px 0 0 32px;   /* Rounded only on outer (left) side; flush with rhombus on right */
       overflow: hidden;
       aspect-ratio: 674 / 400;        /* Figma frame: 1.685 : 1 */
-      background: url("once-upon-a-time-assets/contact/unisphere.jpg") center/cover no-repeat;
       box-shadow: none;
+      position: relative;
     }
+    /* Globe image promoted from CSS bg-image to a real <img> so html2canvas
+       captures it reliably (CSS background-images can be skipped on cross-origin
+       or render-timing edge cases in some html2canvas versions). */
+    .hero__photo__img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .hero__rhombus {
       position: relative;
       display: flex; align-items: center; justify-content: center;
@@ -66,14 +70,11 @@
       padding: 0 var(--s-7);
       overflow: hidden;
     }
-    /* Marquee/hourglass shape with concave left+right edges, per PDF design.
-       Built as inline SVG so the curves stay smooth at any size. */
-    .hero__rhombus::before {
-      content: "";
+    /* Marquee/hourglass shape: was a ::before with an SVG data-URI background.
+       Promoted to an inline <svg> sibling so html2canvas captures it. */
+    .hero__rhombus__shape {
       position: absolute; inset: 0;
-      background:
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 320' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%23b8b779'/><stop offset='55%25' stop-color='%236B6D20'/><stop offset='100%25' stop-color='%234a4d12'/></linearGradient></defs><path fill='url(%23g)' d='M 0 0 L 600 0 Q 540 160, 600 320 L 0 320 L 0 0 Z'/></svg>")
-        no-repeat center / 100% 100%;
+      width: 100%; height: 100%;
     }
     .hero__rhombus h1 {
       position: relative; z-index: 1;
@@ -146,7 +147,7 @@
       .hero__inner { grid-template-columns: 1fr; }
       .hero__photo { display: none; }
       .hero__rhombus { min-height: 180px; padding: var(--s-5); }
-      .hero__rhombus::before { display: none; }
+      .hero__rhombus__shape { display: none; }
       .talk { grid-template-columns: 1fr; gap: var(--s-5); }
       .phone-hero { width: 100%; justify-content: center; text-align: center; }
     }
@@ -209,8 +210,20 @@
     <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="wrap hero__inner">
-        <div class="hero__photo" role="img" aria-label="Unisphere monument with surrounding plaza"></div>
+        <div class="hero__photo">
+          <img class="hero__photo__img" src="once-upon-a-time-assets/contact/unisphere.jpg" alt="Unisphere monument with surrounding plaza">
+        </div>
         <div class="hero__rhombus">
+          <svg class="hero__rhombus__shape" viewBox="0 0 600 320" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="contact-rhombus-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%"   stop-color="#b8b779"/>
+                <stop offset="55%"  stop-color="#6B6D20"/>
+                <stop offset="100%" stop-color="#4a4d12"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#contact-rhombus-grad)" d="M 0 0 L 600 0 Q 540 160 600 320 L 0 320 L 0 0 Z"/>
+          </svg>
           <h1>&ldquo;Contact&nbsp;Us&rdquo;</h1>
         </div>
       </div>
